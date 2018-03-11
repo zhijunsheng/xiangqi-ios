@@ -1,0 +1,8 @@
+------------ xcode shortcuts --------------
+cmd + u: run all test cases
+
+------------ terminal commands -----------------
+pwd: show current location
+
+------------ git commands -----------------
+git status: show current status of git
