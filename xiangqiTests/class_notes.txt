@@ -6,3 +6,5 @@ pwd: show current location
 
 ------------ git commands -----------------
 git status: show current status of git
+
+------------ vim commands -----------------
