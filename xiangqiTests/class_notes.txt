@@ -9,6 +9,7 @@ git status: show current status of git
 git commit -a: commit all changes
 git branch: show all branches
 git push:
+git add .: add all the modified files
 
 ------------ vim commands -----------------
 i: enter editing mode
