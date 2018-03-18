@@ -10,9 +10,15 @@ import XCTest
 
 class SimpleLoopTests: XCTestCase {
     
-    func testPriniting() {
+    func testPrinting() {
         for i in 0...5 {
             print("____i is \(2 * i + 3)__________")
+            print("_____")
+        }
+    }
+    func testPrinting1() {
+        for i in 0...9 {
+            print("____i is \(10 - i)__________")
             print("_____")
         }
     }

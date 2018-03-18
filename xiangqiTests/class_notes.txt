@@ -6,5 +6,11 @@ pwd: show current location
 
 ------------ git commands -----------------
 git status: show current status of git
+git commit -a: commit all changes
+git branch: show all branches
+git push:
 
 ------------ vim commands -----------------
+i: enter editing mode
+esc: quit editing mode
+:x : save and quit
