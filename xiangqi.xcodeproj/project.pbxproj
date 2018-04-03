@@ -13,7 +13,7 @@
 		0765352A204A3C67008FC177 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07653529204A3C67008FC177 /* Assets.xcassets */; };
 		0765352D204A3C67008FC177 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0765352B204A3C67008FC177 /* LaunchScreen.storyboard */; };
 		9D64333420557D5100F1546C /* class_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9D64333320557D5100F1546C /* class_notes.txt */; };
-		9D8804D3204C58D300F62586 /* SimpleLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8804D2204C58D300F62586 /* SimpleLoopTests.swift */; };
+		9D8804D3204C58D300F62586 /* ForLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8804D2204C58D300F62586 /* ForLoopTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,7 @@
 		07653533204A3C67008FC177 /* xiangqiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xiangqiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07653539204A3C67008FC177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D64333320557D5100F1546C /* class_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = class_notes.txt; sourceTree = "<group>"; };
-		9D8804D2204C58D300F62586 /* SimpleLoopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLoopTests.swift; sourceTree = "<group>"; };
+		9D8804D2204C58D300F62586 /* ForLoopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForLoopTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				9D64333320557D5100F1546C /* class_notes.txt */,
-				9D8804D2204C58D300F62586 /* SimpleLoopTests.swift */,
+				9D8804D2204C58D300F62586 /* ForLoopTests.swift */,
 				07653539204A3C67008FC177 /* Info.plist */,
 			);
 			path = xiangqiTests;
@@ -212,7 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D8804D3204C58D300F62586 /* SimpleLoopTests.swift in Sources */,
+				9D8804D3204C58D300F62586 /* ForLoopTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
