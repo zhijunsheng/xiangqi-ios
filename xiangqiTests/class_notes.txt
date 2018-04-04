@@ -13,6 +13,8 @@ git add . : put everything under git's control
 git commit -a: commit all
 git push: push to remote git repo
 git pull: pull...
+git checkout -b (name): create and switch to a new branch
+git checkout (name): switch to an existing branch
 
 
 vim commands
