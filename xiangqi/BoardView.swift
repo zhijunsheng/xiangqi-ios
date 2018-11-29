@@ -11,7 +11,7 @@ import UIKit
 class BoardView: UIView {
     let originX: CGFloat = 25
     let originY: CGFloat = 20
-    let cellSide: CGFloat = 29
+    let cellSide: CGFloat = 28
     let gap: CGFloat = 5
     let outerFrameLineWidth: CGFloat = 3
     let intervalGap: CGFloat = 4
