@@ -35,7 +35,7 @@ class BoardView: UIView {
             pen.move(to: CGPoint(x: originX + side * CGFloat(i), y: originY + side * 5))
             pen.addLine(to: CGPoint(x: originX + side * CGFloat(i), y: originY + side * 9))
         }
-        
+
         UIColor.black.setStroke()
         pen.lineWidth = 2
         
