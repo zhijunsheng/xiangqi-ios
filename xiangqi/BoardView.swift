@@ -30,14 +30,15 @@ class BoardView: UIView {
         for i in 0 ..< 2 {
             drawHalfStar(locationX: 1 + i * 6, locationY: 2, isLeftHalf: true)
             drawHalfStar(locationX: 1 + i * 6, locationY: 2, isLeftHalf: false)
+            drawHalfStar(locationX: 1 + i * 6, locationY: 7, isLeftHalf: true)
+            drawHalfStar(locationX: 1 + i * 6, locationY: 7, isLeftHalf: false)
         }
         
         for i in 0 ..< 4 {
             drawHalfStar(locationX: (i + 1) * 2, locationY: 3, isLeftHalf: true)
-        }
-        
-        for i in 0 ..< 4 {
+            drawHalfStar(locationX: (i + 1) * 2, locationY: 6, isLeftHalf: true)
             drawHalfStar(locationX: i * 2, locationY: 3, isLeftHalf: false)
+            drawHalfStar(locationX: i * 2, locationY: 6, isLeftHalf: false)
         }
         
         let pen = UIBezierPath()
@@ -46,6 +47,12 @@ class BoardView: UIView {
         
         pen.move(to: CGPoint(x: originX + cellSide * 3, y: originY))
         pen.addLine(to: CGPoint(x: originX + cellSide * 5, y: originY + cellSide * 2))
+        
+        pen.move(to: CGPoint(x: originX + cellSide * 5, y: originY + cellSide * 7))
+        pen.addLine(to: CGPoint(x: originX + cellSide * 3, y: originY + cellSide * 9))
+        
+        pen.move(to: CGPoint(x: originX + cellSide * 3, y: originY + cellSide * 7))
+        pen.addLine(to: CGPoint(x: originX + cellSide * 5, y: originY + cellSide * 9))
         
         pen.stroke()
     }
