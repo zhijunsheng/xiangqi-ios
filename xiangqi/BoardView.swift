@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BoardView: UIView {
+class BoardView: UIView { 
     let originX: CGFloat = 25
     let originY: CGFloat = 20
     let cellSide: CGFloat = 28
@@ -18,7 +18,7 @@ class BoardView: UIView {
     let shortLine: CGFloat = 9
     
     let rows = 10
-    let cols = 9 // column
+    let cols = 9
     
     override func draw(_ rect: CGRect) {
         drawFrame()
@@ -71,41 +71,10 @@ class BoardView: UIView {
         if isLeftHalf {
             drawQuarterStar(locationX: locationX, locationY: locationY, isLeftHalf: true, isUpperHalf: true)
             drawQuarterStar(locationX: locationX, locationY: locationY, isLeftHalf: true, isUpperHalf: false)
-            
-            //            pencil.move(to: CGPoint(x: originX + cellSide * CGFloat(locationX) - intervalGap, y: originY + cellSide * CGFloat(locationY) - shortLine - intervalGap))
-            //            pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(locationX) - intervalGap, y: originY + cellSide * CGFloat(locationY) - intervalGap))
-            //            pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(locationX) - shortLine - intervalGap, y: originY + cellSide * CGFloat(locationY) - intervalGap))
-            //
-            //            pencil.move(to: CGPoint(x: originX + cellSide * CGFloat(locationX) - intervalGap, y: originY + cellSide * CGFloat(locationY) + shortLine + intervalGap))
-            //            pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(locationX) - intervalGap, y: originY + cellSide * CGFloat(locationY) + intervalGap))
-            //            pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(locationX) - shortLine - intervalGap, y: originY + cellSide * CGFloat(locationY) + intervalGap))
         } else {
             drawQuarterStar(locationX: locationX, locationY: locationY, isLeftHalf: false, isUpperHalf: true)
             drawQuarterStar(locationX: locationX, locationY: locationY, isLeftHalf: false, isUpperHalf: false)
-            
-            //            pencil.move(to: CGPoint(x: originX + cellSide * CGFloat(locationX) + intervalGap, y: originY + cellSide * CGFloat(locationY) - shortLine - intervalGap))
-            //            pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(locationX) + intervalGap, y: originY + cellSide * CGFloat(locationY) - intervalGap))
-            //            pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(locationX) + shortLine + intervalGap, y: originY + cellSide * CGFloat(locationY) - intervalGap))
-            //
-            //            pencil.move(to: CGPoint(x: originX + cellSide * CGFloat(locationX) + intervalGap, y: originY + cellSide * CGFloat(locationY) + shortLine + intervalGap))
-            //            pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(locationX) + intervalGap, y: originY + cellSide * CGFloat(locationY) + intervalGap))
-            //            pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(locationX) + shortLine + intervalGap, y: originY + cellSide * CGFloat(locationY) +
-            //                 intervalGap))
         }
-        
-        // sign
-        //        var abcd: Int
-        //        if true {
-        //            abcd = -1
-        //        } else {
-        //            abcd = 1
-        //        }
-        //        let xyz = abcd * (- shortLine - intervalGap)
-        // (-1) * 31 = -31
-        // 1 * 31 = 31
-        // (-1) * (-31) = 31
-        
-        
         
         pencil.stroke()
     }
