@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BoardView: UIView { 
+class BoardView: UIView {
     let originX: CGFloat = 25
     let originY: CGFloat = 20
     let cellSide: CGFloat = 28
