@@ -39,6 +39,15 @@ class BoardView: UIView {
         for i in 0 ..< 4 {
             drawHalfStar(locationX: i * 2, locationY: 3, isLeftHalf: false)
         }
+        
+        let pen = UIBezierPath()
+        pen.move(to: CGPoint(x: originX + cellSide * 5, y: originY))
+        pen.addLine(to: CGPoint(x: originX + cellSide * 3, y: originY + cellSide * 2))
+        
+        pen.move(to: CGPoint(x: originX + cellSide * 3, y: originY))
+        pen.addLine(to: CGPoint(x: originX + cellSide * 5, y: originY + cellSide * 2))
+        
+        pen.stroke()
     }
     
     func drawQuarterStar(locationX: Int, locationY: Int, isLeftHalf: Bool, isUpperHalf: Bool) {
