@@ -36,6 +36,106 @@ class BoardView: UIView {
             pen.addLine(to: CGPoint(x: originX + side * CGFloat(i), y: originY + side * 9))
         }
 
+        // diagonal
+        pen.move(to: CGPoint(x: originX + side * 3, y: originY + side * 0))
+        pen.addLine(to: CGPoint(x: originX + side * 5, y: originY + side * 2))
+        
+        pen.move(to: CGPoint(x: originX + side * 5, y: originY + side * 0))
+        pen.addLine(to: CGPoint(x: originX + side * 3, y: originY + side * 2))
+        
+        pen.move(to: CGPoint(x: originX + side * 3, y: originY + side * 7))
+        pen.addLine(to: CGPoint(x: originX + side * 5, y: originY + side * 9))
+        
+        pen.move(to: CGPoint(x: originX + side * 5, y: originY + side * 7))
+        pen.addLine(to: CGPoint(x: originX + side * 3, y: originY + side * 9))
+        
+        
+        
+        for i in 0..<8 {
+            if i % 2 == 0 {
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) + 12, y: (originY - 3) + side * 3))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY - 3) + side * 3))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY - 12) + side * 3))
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) + 12, y: (originY + 3) + side * 3))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY + 3) + side * 3))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY + 12) + side * 3))
+                
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) + 12, y: (originY - 3) + side * 6))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY - 3) + side * 6))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY - 12) + side * 6))
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) + 12, y: (originY + 3) + side * 6))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY + 3) + side * 6))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY + 12) + side * 6))
+            }
+        }
+        
+        for i in 2..<9 {
+            if i % 2 == 0 {
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY - 12) + side * 3))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY - 3) + side * 3))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 12, y: (originY - 3) + side * 3))
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY + 12) + side * 3))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY + 3) + side * 3))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 12, y: (originY + 3) + side * 3))
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY - 12) + side * 6))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY - 3) + side * 6))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 12, y: (originY - 3) + side * 6))
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY + 12) + side * 6))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY + 3) + side * 6))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 12, y: (originY + 3) + side * 6))
+                
+            }
+        }
+        
+        
+        //💣
+        for i in 0...9 {
+            if i == 1 || i == 7 {
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) + 12, y: (originY - 3) + side * 2))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY - 3) + side * 2))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY - 12) + side * 2))
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) + 12, y: (originY + 3) + side * 2))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY + 3) + side * 2))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY + 12) + side * 2))
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY - 12) + side * 2))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY - 3) + side * 2))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 12, y: (originY - 3) + side * 2))
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY + 12) + side * 2))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY + 3) + side * 2))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 12, y: (originY + 3) + side * 2))
+            }
+        }
+        
+
+        for i in 0...9 {
+            if i == 1 || i == 7 {
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) + 12, y: (originY - 3) + side * 7))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY - 3) + side * 7))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY - 12) + side * 7))
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) + 12, y: (originY + 3) + side * 7))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY + 3) + side * 7))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) + 3, y: (originY + 12) + side * 7))
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY - 12) + side * 7))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY - 3) + side * 7))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 12, y: (originY - 3) + side * 7))
+                
+                pen.move(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY + 12) + side * 7))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 3, y: (originY + 3) + side * 7))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i) - 12, y: (originY + 3) + side * 7))
+            }
+        }
+        
         UIColor.black.setStroke()
         pen.lineWidth = 2
         
