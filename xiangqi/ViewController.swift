@@ -14,12 +14,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        addPiece(piece: UIImage(named: "bm")!, col: 0, row: 6)
-        
-        
+        addPiece(piece: UIImage(named: "bm")!, col: 1, row: 0)
     }
+    
     func addPiece(piece: UIImage, col: Int, row: Int) {
-        let pieceImageView = UIImageView(frame: CGRect(x: boardView.originX + boardView.cellSide * CGFloat(col), y: boardView.originY + boardView.cellSide * CGFloat(row), width: boardView.cellSide, height: boardView.cellSide))
+        let pieceImageView = UIImageView(frame: CGRect(x: boardView.originX + boardView.cellSide * (CGFloat(col) - 0.5), y: boardView.originY + boardView.cellSide * (CGFloat(row) - 0.5), width: boardView.cellSide, height: boardView.cellSide))
         pieceImageView.image = piece
         boardView.addSubview(pieceImageView)
     }
