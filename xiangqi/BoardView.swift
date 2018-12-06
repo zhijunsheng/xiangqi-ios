@@ -14,8 +14,8 @@ class BoardView: UIView {
     let cellSide: CGFloat = 28
     let gap: CGFloat = 5
     let outerFrameLineWidth: CGFloat = 3
-    let intervalGap: CGFloat = 4
-    let shortLine: CGFloat = 9
+    let intervalGap: CGFloat = 3
+    let shortLine: CGFloat = 6
     
     let rows = 10
     let cols = 9
