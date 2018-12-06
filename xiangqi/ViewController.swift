@@ -16,7 +16,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-         addPiece(piece: UIImage(named: "bb")!, col: 4, row: 0)
+        addPiece(piece: UIImage(named: "bb")!, col: 4, row: 0)
+        
+        addPiece(piece: UIImage(named: "rb")!, col: 4, row: 9)
         
         for i in 0 ..< 2 {
             addPiece(piece: UIImage(named: "bm")!, col: 1 + i * 6, row: 0)
@@ -24,10 +26,17 @@ class ViewController: UIViewController {
             addPiece(piece: UIImage(named: "bx")!, col: 2 + i * 4, row: 0)
             addPiece(piece: UIImage(named: "bj")!, col: 0 + i * 8, row: 0)
             addPiece(piece: UIImage(named: "bs")!, col: 3 + i * 2, row: 0)
+            
+            addPiece(piece: UIImage(named: "rx")!, col: 2 + i * 4, row: 9)
+            addPiece(piece: UIImage(named: "rp")!, col: 1 + i * 6, row: 7)
+            addPiece(piece: UIImage(named: "rs")!, col: 3 + i * 2, row: 9)
+            addPiece(piece: UIImage(named: "rm")!, col: 1 + i * 6, row: 9)
+            addPiece(piece: UIImage(named: "rj")!, col: 0 + i * 8, row: 9)
         }
         
-        for i in 0 ..< 5 {
+        for i in 0 ..< 5 { // a typo
             addPiece(piece: UIImage(named: "bz")!, col: 0 + i * 2, row: 3)
+            addPiece(piece: UIImage(named: "rz")!, col: 0 + i * 2, row: 6)
         }
     }
     
