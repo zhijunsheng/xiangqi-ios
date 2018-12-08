@@ -38,10 +38,12 @@ class BoardView: UIView {
             pen.addLine(to: CGPoint(x: originX + side * CGFloat(i), y: originY + side * 9))
         }
 
-         ////\\\\
-        /////\\\\\
-//       |  |
-//
+//       ////\\\\
+//      /////\\\\\
+//     //////\\\\\\
+//      |  |  |  |
+//      |  | o|  |
+        
         // diagonal
         pen.move(to: CGPoint(x: originX + side * 3, y: originY + side * 0))
         pen.addLine(to: CGPoint(x: originX + side * 5, y: originY + side * 2))
