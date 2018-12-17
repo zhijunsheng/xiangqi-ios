@@ -13,8 +13,15 @@ class ViewController: UIViewController {
     
     // piece image files:
     // https://github.com/geeeeeeeeek/IntelligentChineseChessSystem/tree/master/res/img
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        super.viewWillTransition(to: size, with: coordinator)
+//
+//        boardView.setNeedsDisplay()
+//    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
        
         addPiece(piece: UIImage(named: "bb")!, col: 4, row: 0)
         

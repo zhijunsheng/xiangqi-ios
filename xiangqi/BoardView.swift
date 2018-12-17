@@ -7,11 +7,11 @@
 //
 
 import UIKit
-
+// (re)write the code from scratch
 class BoardView: UIView {
-    let originX: CGFloat = 25
-    let originY: CGFloat = 20
-    let cellSide: CGFloat = 28
+    var originX: CGFloat = 25
+    var originY: CGFloat = 20
+    var cellSide: CGFloat = 28
     let gap: CGFloat = 5
     let outerFrameLineWidth: CGFloat = 3
     let intervalGap: CGFloat = 3
@@ -19,8 +19,32 @@ class BoardView: UIView {
     
     let rows = 10
     let cols = 9
+    let percent: CGFloat = 0.9
+    
     
     override func draw(_ rect: CGRect) {
+        
+        var smaller = rect.width
+        if rect.width > rect.height {
+            smaller = rect.height
+        }
+            
+//        originX = (rect.width - rect.width * percent) / 2
+//        originY = (rect.height - rect.width * percent) / 2
+//        cellSide = (rect.width - originX * 2) / CGFloat(cols - 1)
+        
+//        originX = (rect.width - smaller * percent) / 2
+//        print("-------------\(originX)--------------")
+//        originY = (rect.height - smaller * percent) / 2
+//        cellSide = smaller * percent / CGFloat(cols - 1)
+        cellSide = smaller * percent / CGFloat(rows - 1)
+        originX = (rect.width - cellSide * CGFloat(cols - 1)) / 2
+        originY = (rect.height - cellSide * CGFloat(rows - 1)) / 2
+        
+        
+        print(rect.width)
+        print(rect.height)
+        
         drawFrame()
         drawLines()
         drawOuterFrame()
@@ -139,6 +163,3 @@ class BoardView: UIView {
         pen.stroke()
     }
 }
-
-
-
