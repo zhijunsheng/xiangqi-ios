@@ -28,10 +28,6 @@ class BoardView: UIView {
         if rect.width > rect.height {
             smaller = rect.height
         }
-            
-//        originX = (rect.width - rect.width * percent) / 2
-//        originY = (rect.height - rect.width * percent) / 2
-//        cellSide = (rect.width - originX * 2) / CGFloat(cols - 1)
         
 //        originX = (rect.width - smaller * percent) / 2
 //        print("-------------\(originX)--------------")

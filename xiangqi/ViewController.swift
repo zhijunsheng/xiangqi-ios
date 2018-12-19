@@ -14,15 +14,33 @@ class ViewController: UIViewController {
     // piece image files:
     // https://github.com/geeeeeeeeek/IntelligentChineseChessSystem/tree/master/res/img
     
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        super.viewWillTransition(to: size, with: coordinator)
-//
-//        boardView.setNeedsDisplay()
-//    }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        boardView.setNeedsDisplay()
+        print("1111111111111111")
+        for subView in boardView.subviews {
+            subView.removeFromSuperview()
+        }
+        addPieces()
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       
+       print("000000000000000000")
+        addPieces()
+    }
+    
+    func addPiece(piece: UIImage, col: Int, row: Int) {
+        let pieceImageView = UIImageView(frame: CGRect(x: boardView.originX + boardView.cellSide * (CGFloat(col) - 0.5) , y: boardView.originY + boardView.cellSide * (CGFloat(row) - 0.5), width: boardView.cellSide, height: boardView.cellSide))
+        pieceImageView.image = piece
+        boardView.addSubview(pieceImageView)
+        
+//        pieceImageView.frame.origin.x = boardView.originX + boardView.cellSide * (CGFloat(col) - 0.5)
+//        pieceImageView.frame.origin.y = boardView.originY + boardView.cellSide * (CGFloat(row) - 0.5)
+    }
+    
+    func addPieces() {
         addPiece(piece: UIImage(named: "bb")!, col: 4, row: 0)
         
         addPiece(piece: UIImage(named: "rb")!, col: 4, row: 9)
@@ -45,12 +63,6 @@ class ViewController: UIViewController {
             addPiece(piece: UIImage(named: "bz")!, col: 0 + i * 2, row: 3)
             addPiece(piece: UIImage(named: "rz")!, col: 0 + i * 2, row: 6)
         }
-    }
-    
-    func addPiece(piece: UIImage, col: Int, row: Int) {
-        let pieceImageView = UIImageView(frame: CGRect(x: boardView.originX + boardView.cellSide * (CGFloat(col) - 0.5) , y: boardView.originY + boardView.cellSide * (CGFloat(row) - 0.5), width: boardView.cellSide, height: boardView.cellSide))
-        pieceImageView.image = piece
-        boardView.addSubview(pieceImageView)
     }
 
 
