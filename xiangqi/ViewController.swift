@@ -21,6 +21,22 @@ class ViewController: UIViewController {
         
         print(boardView)
         
+        /*
+         |\
+         ||
+         ||
+         ||
+         ||
+         |/
+          ___
+         |   \
+         |    \
+         |     \
+         |     /
+         |    /
+         |___/
+        */
+        
         //black
      // regular pieces
         addPiece(image: #imageLiteral(resourceName: "bj"), row: 0, col: 0)
@@ -69,11 +85,26 @@ class ViewController: UIViewController {
         
     }
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
-        let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
-        let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
-        let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
-        let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
-        print("row is........................\(row)!, and col is.........................\(col)!")
+        if sender.state == UIGestureRecognizerState.began {
+            let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
+            let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
+            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
+            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
+            print("row is........................\(row)!, and col is.........................\(col)!")
+        }
+        
+        if sender.state == UIGestureRecognizerState.changed {
+            print("Not yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        }
+        
+        if sender.state == UIGestureRecognizerState.ended {
+            let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
+            let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
+            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
+            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
+            print("row is........................\(row)!, and col is.........................\(col)!")
+        }
+        
     }
     
     func addPiece(image: UIImage, row: Int, col: Int) {
