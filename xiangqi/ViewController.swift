@@ -21,67 +21,51 @@ class ViewController: UIViewController {
         
         print(boardView)
         
-        /*
-         |\
-         ||
-         ||
-         ||
-         ||
-         |/
-          ___
-         |   \
-         |    \
-         |     \
-         |     /
-         |    /
-         |___/
-        */
-        
         //black
      // regular pieces
-        addPiece(image: #imageLiteral(resourceName: "bj"), row: 0, col: 0)
-        addPiece(image: #imageLiteral(resourceName: "bm"), row: 0, col: 1)
-        addPiece(image: #imageLiteral(resourceName: "bx"), row: 0, col: 2)
-        addPiece(image: #imageLiteral(resourceName: "bs"), row: 0, col: 3)
-        addPiece(image: #imageLiteral(resourceName: "bb"), row: 0, col: 4)
-        addPiece(image: #imageLiteral(resourceName: "bs"), row: 0, col: 5)
-        addPiece(image: #imageLiteral(resourceName: "bx"), row: 0, col: 6)
-        addPiece(image: #imageLiteral(resourceName: "bm"), row: 0, col: 7)
-        addPiece(image: #imageLiteral(resourceName: "bj"), row: 0, col: 8)
+        addPiece(image: "bj", row: 0, col: 0)
+        addPiece(image: "bm", row: 0, col: 1)
+        addPiece(image: "bx", row: 0, col: 2)
+        addPiece(image: "bs", row: 0, col: 3)
+        addPiece(image: "bb", row: 0, col: 4)
+        addPiece(image: "bs", row: 0, col: 5)
+        addPiece(image: "bx", row: 0, col: 6)
+        addPiece(image: "bm", row: 0, col: 7)
+        addPiece(image: "bj", row: 0, col: 8)
         
      // c= *  *  *
-        addPiece(image: #imageLiteral(resourceName: "bp"), row: 2, col: 1)
-        addPiece(image: #imageLiteral(resourceName: "bp"), row: 2, col: 7)
+        addPiece(image: "bp", row: 2, col: 1)
+        addPiece(image: "bp", row: 2, col: 7)
      
      //
-        addPiece(image: #imageLiteral(resourceName: "bz"), row: 3, col: 0)
-        addPiece(image: #imageLiteral(resourceName: "bz"), row: 3, col: 2)
-        addPiece(image: #imageLiteral(resourceName: "bz"), row: 3, col: 4)
-        addPiece(image: #imageLiteral(resourceName: "bz"), row: 3, col: 6)
-        addPiece(image: #imageLiteral(resourceName: "bz"), row: 3, col: 8)
+        addPiece(image: "bz", row: 3, col: 0)
+        addPiece(image: "bz", row: 3, col: 2)
+        addPiece(image: "bz", row: 3, col: 4)
+        addPiece(image: "bz", row: 3, col: 6)
+        addPiece(image: "bz", row: 3, col: 8)
         
         //red
      // regular pieces
-        addPiece(image: #imageLiteral(resourceName: "rj"), row: 9, col: 0)
-        addPiece(image: #imageLiteral(resourceName: "rm"), row: 9, col: 1)
-        addPiece(image: #imageLiteral(resourceName: "rx"), row: 9, col: 2)
-        addPiece(image: #imageLiteral(resourceName: "rs"), row: 9, col: 3)
-        addPiece(image: #imageLiteral(resourceName: "rb"), row: 9, col: 4)
-        addPiece(image: #imageLiteral(resourceName: "rs"), row: 9, col: 5)
-        addPiece(image: #imageLiteral(resourceName: "rx"), row: 9, col: 6)
-        addPiece(image: #imageLiteral(resourceName: "rm"), row: 9, col: 7)
-        addPiece(image: #imageLiteral(resourceName: "rj"), row: 9, col: 8)
+        addPiece(image: "rj", row: 9, col: 0)
+        addPiece(image: "rm", row: 9, col: 1)
+        addPiece(image: "rx", row: 9, col: 2)
+        addPiece(image: "rs", row: 9, col: 3)
+        addPiece(image: "rb", row: 9, col: 4)
+        addPiece(image: "rs", row: 9, col: 5)
+        addPiece(image: "rx", row: 9, col: 6)
+        addPiece(image: "rm", row: 9, col: 7)
+        addPiece(image: "rj", row: 9, col: 8)
         
-     // c=__*__*__*__*__*__*__*__*__*__*__*__*_______________________________________________________________________
-        addPiece(image: #imageLiteral(resourceName: "rp"), row: 7, col: 1)
-        addPiece(image: #imageLiteral(resourceName: "rp"), row: 7, col: 7)
+     // c=__*__*__*
+        addPiece(image: "rp", row: 7, col: 1)
+        addPiece(image: "rp", row: 7, col: 7)
         
      //
-        addPiece(image: #imageLiteral(resourceName: "rz"), row: 6, col: 0)
-        addPiece(image: #imageLiteral(resourceName: "rz"), row: 6, col: 2)
-        addPiece(image: #imageLiteral(resourceName: "rz"), row: 6, col: 4)
-        addPiece(image: #imageLiteral(resourceName: "rz"), row: 6, col: 6)
-        addPiece(image: #imageLiteral(resourceName: "rz"), row: 6, col: 8)
+        addPiece(image: "rz", row: 6, col: 0)
+        addPiece(image: "rz", row: 6, col: 2)
+        addPiece(image: "rz", row: 6, col: 4)
+        addPiece(image: "rz", row: 6, col: 6)
+        addPiece(image: "rz", row: 6, col: 8)
         
     }
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
@@ -91,10 +75,10 @@ class ViewController: UIViewController {
             let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
             let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
             print("row is........................\(row)!, and col is.........................\(col)!")
+            
         }
         
         if sender.state == UIGestureRecognizerState.changed {
-            print("Not yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         }
         
         if sender.state == UIGestureRecognizerState.ended {
@@ -107,10 +91,11 @@ class ViewController: UIViewController {
         
     }
     
-    func addPiece(image: UIImage, row: Int, col: Int) {
+    func addPiece(image: String, row: Int, col: Int) {
+//        let anyTempName = Piece(col: col, row: row, imageName: imageName)
+        let pieceImage = UIImage(named: image)
         let piece: UIImageView = UIImageView(frame: CGRect(x: boardX + boardView.originX + boardView.side * (CGFloat(col) - 0.5), y: boardY + boardView.originY + boardView.side * (CGFloat(row) - 0.5), width: boardView.side, height: boardView.side))
-        piece.image = image
+        piece.image = pieceImage
         view.addSubview(piece)
     }
 }
-
