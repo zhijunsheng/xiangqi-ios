@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var board = Board()
     var boardX: CGFloat = 0
     var boardY: CGFloat = 0
     
@@ -21,52 +22,7 @@ class ViewController: UIViewController {
         
         print(boardView)
         
-        //black
-     // regular pieces
-        addPiece(image: "bj", row: 0, col: 0)
-        addPiece(image: "bm", row: 0, col: 1)
-        addPiece(image: "bx", row: 0, col: 2)
-        addPiece(image: "bs", row: 0, col: 3)
-        addPiece(image: "bb", row: 0, col: 4)
-        addPiece(image: "bs", row: 0, col: 5)
-        addPiece(image: "bx", row: 0, col: 6)
-        addPiece(image: "bm", row: 0, col: 7)
-        addPiece(image: "bj", row: 0, col: 8)
-        
-     // c= *  *  *
-        addPiece(image: "bp", row: 2, col: 1)
-        addPiece(image: "bp", row: 2, col: 7)
-     
-     //
-        addPiece(image: "bz", row: 3, col: 0)
-        addPiece(image: "bz", row: 3, col: 2)
-        addPiece(image: "bz", row: 3, col: 4)
-        addPiece(image: "bz", row: 3, col: 6)
-        addPiece(image: "bz", row: 3, col: 8)
-        
-        //red
-     // regular pieces
-        addPiece(image: "rj", row: 9, col: 0)
-        addPiece(image: "rm", row: 9, col: 1)
-        addPiece(image: "rx", row: 9, col: 2)
-        addPiece(image: "rs", row: 9, col: 3)
-        addPiece(image: "rb", row: 9, col: 4)
-        addPiece(image: "rs", row: 9, col: 5)
-        addPiece(image: "rx", row: 9, col: 6)
-        addPiece(image: "rm", row: 9, col: 7)
-        addPiece(image: "rj", row: 9, col: 8)
-        
-     // c=__*__*__*
-        addPiece(image: "rp", row: 7, col: 1)
-        addPiece(image: "rp", row: 7, col: 7)
-        
-     //
-        addPiece(image: "rz", row: 6, col: 0)
-        addPiece(image: "rz", row: 6, col: 2)
-        addPiece(image: "rz", row: 6, col: 4)
-        addPiece(image: "rz", row: 6, col: 6)
-        addPiece(image: "rz", row: 6, col: 8)
-        
+        addInitPieces()
     }
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.began {
@@ -92,10 +48,60 @@ class ViewController: UIViewController {
     }
     
     func addPiece(image: String, row: Int, col: Int) {
-//        let anyTempName = Piece(col: col, row: row, imageName: imageName)
+        let anyTempName = Piece(col: col, row: row, imageName: image)
+        board.pieces.append(anyTempName)
+        
         let pieceImage = UIImage(named: image)
         let piece: UIImageView = UIImageView(frame: CGRect(x: boardX + boardView.originX + boardView.side * (CGFloat(col) - 0.5), y: boardY + boardView.originY + boardView.side * (CGFloat(row) - 0.5), width: boardView.side, height: boardView.side))
         piece.image = pieceImage
         view.addSubview(piece)
+    }
+    
+    func addInitPieces() {
+        //black
+        // regular pieces
+        addPiece(image: "bj", row: 0, col: 0)
+        addPiece(image: "bm", row: 0, col: 1)
+        addPiece(image: "bx", row: 0, col: 2)
+        addPiece(image: "bs", row: 0, col: 3)
+        addPiece(image: "bb", row: 0, col: 4)
+        addPiece(image: "bs", row: 0, col: 5)
+        addPiece(image: "bx", row: 0, col: 6)
+        addPiece(image: "bm", row: 0, col: 7)
+        addPiece(image: "bj", row: 0, col: 8)
+        
+        // c= *  *  *
+        addPiece(image: "bp", row: 2, col: 1)
+        addPiece(image: "bp", row: 2, col: 7)
+        
+        //
+        addPiece(image: "bz", row: 3, col: 0)
+        addPiece(image: "bz", row: 3, col: 2)
+        addPiece(image: "bz", row: 3, col: 4)
+        addPiece(image: "bz", row: 3, col: 6)
+        addPiece(image: "bz", row: 3, col: 8)
+        
+        //red
+        // regular pieces
+        addPiece(image: "rj", row: 9, col: 0)
+        addPiece(image: "rm", row: 9, col: 1)
+        addPiece(image: "rx", row: 9, col: 2)
+        addPiece(image: "rs", row: 9, col: 3)
+        addPiece(image: "rb", row: 9, col: 4)
+        addPiece(image: "rs", row: 9, col: 5)
+        addPiece(image: "rx", row: 9, col: 6)
+        addPiece(image: "rm", row: 9, col: 7)
+        addPiece(image: "rj", row: 9, col: 8)
+        
+        // c= *  *  *
+        addPiece(image: "rp", row: 7, col: 1)
+        addPiece(image: "rp", row: 7, col: 7)
+        
+        //
+        addPiece(image: "rz", row: 6, col: 0)
+        addPiece(image: "rz", row: 6, col: 2)
+        addPiece(image: "rz", row: 6, col: 4)
+        addPiece(image: "rz", row: 6, col: 6)
+        addPiece(image: "rz", row: 6, col: 8)
     }
 }
