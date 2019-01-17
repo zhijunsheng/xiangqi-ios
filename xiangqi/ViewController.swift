@@ -12,6 +12,9 @@ class ViewController: UIViewController {
     var boardX: CGFloat = 0
     var boardY: CGFloat = 0
     
+    var keyPieceValueImageView: [Piece: UIImageView] = [:]
+    
+    
     @IBOutlet weak var boardView: BoardView!
     
     override func viewDidLoad() {
@@ -24,6 +27,18 @@ class ViewController: UIViewController {
         
         addInitPieces()
     }
+    
+    func pieceAt(col: Int, row: Int) -> Piece? {
+        for piece in board.pieces {
+            if piece.col == col && piece.row == row {
+                return piece
+            } else {
+                continue
+            }
+        }
+        return nil
+    }
+    
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.began {
             let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
@@ -31,6 +46,23 @@ class ViewController: UIViewController {
             let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
             let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
             print("row is........................\(row)!, and col is.........................\(col)!")
+            
+            print(board.pieces.count)
+            
+            if let piece = pieceAt(col: col, row: row) {
+                print(piece)
+                if let pieceImageView = keyPieceValueImageView[piece] {
+                    let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(1) * boardView.side, y: boardY + boardView.originY + CGFloat(1) * boardView.side)
+                    pieceImageView.center = pointAtColRow
+                    view.bringSubview(toFront: pieceImageView)
+                }
+                
+            } else {
+                print("I'm the creeper. Catch me if you can!")
+            }
+//            let thePiece
+//            print out it
+            
             
         }
         
@@ -43,18 +75,24 @@ class ViewController: UIViewController {
             let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
             let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
             print("row is........................\(row)!, and col is.........................\(col)!")
+            
+//            let lastPieceView = view.subviews.last!
+//            let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
+//            lastPieceView.center = pointAtColRow
         }
         
     }
     
     func addPiece(image: String, row: Int, col: Int) {
-        let anyTempName = Piece(col: col, row: row, imageName: image)
-        board.pieces.append(anyTempName)
+        let piece = Piece(col: col, row: row, imageName: image)
+        board.pieces.append(piece)
         
         let pieceImage = UIImage(named: image)
-        let piece: UIImageView = UIImageView(frame: CGRect(x: boardX + boardView.originX + boardView.side * (CGFloat(col) - 0.5), y: boardY + boardView.originY + boardView.side * (CGFloat(row) - 0.5), width: boardView.side, height: boardView.side))
-        piece.image = pieceImage
-        view.addSubview(piece)
+        let pieceImageView: UIImageView = UIImageView(frame: CGRect(x: boardX + boardView.originX + boardView.side * (CGFloat(col) - 0.5), y: boardY + boardView.originY + boardView.side * (CGFloat(row) - 0.5), width: boardView.side, height: boardView.side))
+        pieceImageView.image = pieceImage
+        view.addSubview(pieceImageView)
+        
+        keyPieceValueImageView[piece] = pieceImageView
     }
     
     func addInitPieces() {

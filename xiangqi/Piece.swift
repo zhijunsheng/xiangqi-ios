@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Piece {
+struct Piece: Hashable {
     let col: Int
     let row: Int
     let imageName: String
