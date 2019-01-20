@@ -9,8 +9,8 @@
 import Foundation
 
 struct Piece: Hashable {
-    let col: Int
-    let row: Int
+    var col: Int
+    var row: Int
     let imageName: String
     
 }
