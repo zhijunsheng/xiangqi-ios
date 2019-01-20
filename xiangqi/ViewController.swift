@@ -38,6 +38,8 @@ class ViewController: UIViewController {
         }
         return nil
     }
+    var col0: Int = 0
+    var row0: Int = 0
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.began {
@@ -49,17 +51,8 @@ class ViewController: UIViewController {
             
             print(board.pieces.count)
             
-            if let piece = pieceAt(col: col, row: row) {
-                print(piece)
-                if let pieceImageView = keyPieceValueImageView[piece] {
-                    let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(1) * boardView.side, y: boardY + boardView.originY + CGFloat(1) * boardView.side)
-                    pieceImageView.center = pointAtColRow
-                    view.bringSubview(toFront: pieceImageView)
-                }
-                
-            } else {
-                print("I'm the creeper. Catch me if you can!")
-            }
+            col0 = col
+            row0 = row
 //            let thePiece
 //            print out it
             
@@ -76,6 +69,17 @@ class ViewController: UIViewController {
             let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
             print("row is........................\(row)!, and col is.........................\(col)!")
             
+            if let piece = pieceAt(col: col0, row: row0) {
+                print(piece)
+                if let pieceImageView = keyPieceValueImageView[piece] {
+                    let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
+                    pieceImageView.center = pointAtColRow
+                    view.bringSubview(toFront: pieceImageView)
+                }
+                
+            } else {
+                print("I'm the creeper. Catch me if you can!")
+            }
 //            let lastPieceView = view.subviews.last!
 //            let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
 //            lastPieceView.center = pointAtColRow
