@@ -20,16 +20,16 @@ class BoardView: UIView {
         
         let pen = UIBezierPath()
         // horizontal
-        for i in 0..<10 {
+        for i in 0..<Board.rows {
             pen.move(to: CGPoint(x: originX, y: originY + side * CGFloat(i)))
-            pen.addLine(to: CGPoint(x: originX + side * 8, y: originY + side * CGFloat(i)))
+            pen.addLine(to: CGPoint(x: originX + side * CGFloat(Board.cols - 1), y: originY + side * CGFloat(i)))
         }
         
         // vertical
-        for i in 0..<9 {
+        for i in 0..<Board.cols {
             if i == 0 || i == 8 {
                 pen.move(to: CGPoint(x: originX + side * CGFloat(i), y: originY))
-                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i), y: originY + side * 9))
+                pen.addLine(to: CGPoint(x: originX + side * CGFloat(i), y: originY + side * CGFloat(Board.cols)))
             }
             pen.move(to: CGPoint(x: originX + side * CGFloat(i), y: originY))
             pen.addLine(to: CGPoint(x: originX + side * CGFloat(i), y: originY + side * 4))

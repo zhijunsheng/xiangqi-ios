@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         boardX = boardView.frame.origin.x
         boardY = boardView.frame.origin.y
         
-        print(boardView)
+//        print(boardView)
         
         addInitPieces()
     }
@@ -70,25 +70,25 @@ class ViewController: UIViewController {
         }
         
         if sender.state == UIGestureRecognizerState.ended {
-            let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
-            let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
-            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
-            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
-            print("row is........................\(row)!, and col is.........................\(col)!")
-            
-            if var actualActivePiece = activePiece {
-                if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
-                    let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
-                    
-                    actualActivePiece.col = col
-                    actualActivePiece.row = row
-                    
-                    pieceImageView.center = pointAtColRow
-                    view.bringSubview(toFront: pieceImageView)
-                }
-                activePiece = nil
-            }
-            
+//            let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
+//            let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
+//            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
+//            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
+//            print("row is........................\(row)!, and col is.........................\(col)!")
+//
+//            if var actualActivePiece = activePiece {
+//                if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
+//                    let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
+//
+//                    actualActivePiece.col = col
+//                    actualActivePiece.row = row
+//
+//                    pieceImageView.center = pointAtColRow
+//                    view.bringSubview(toFront: pieceImageView)
+//                }
+//                activePiece = nil
+//            }
+//
 //            if let piece = pieceAt(col: activePiececol, row: row0) {
 //                print(piece)
 //                if let pieceImageView = keyPieceValueImageView[piece] {
