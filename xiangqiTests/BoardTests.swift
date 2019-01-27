@@ -11,9 +11,23 @@ import XCTest
 
 class BoardTests: XCTestCase {
     
+    // j m x s b s x m j
+    // . . . . . . . . .
+    // . p . . . . . p .
+    // z . z . z . z . z
+    // . . . . . . . . .
+    // . . . . . . . . .
+    // Z . Z . Z . Z . Z
+    // . P . . . . . P .
+    // . . . . . . . . .
+    // J M X S B S X M J
     func testBoardOrAnything() {
-        let board = Board()
-        print(board)
+        var board = Board()
         
+        
+        let pieceA = Piece(col: 0, row: 0, imageName: "rb")
+        board.pieces.append(pieceA)
+        
+        print(board)
     }
 }
