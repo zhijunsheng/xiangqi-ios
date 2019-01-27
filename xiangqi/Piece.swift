@@ -12,5 +12,6 @@ struct Piece: Hashable {
     var col: Int
     var row: Int
     let imageName: String
-    
+    let rank: String
+    let isRed: Bool
 }

@@ -29,74 +29,32 @@ struct Board: CustomStringConvertible {
     // Θ Σ Δ Ω
     
     // pieces
+    // we need each piece inside pieces
     
     var description: String {
         var boardDesc = ""
         for i in 0..<Board.rows {
             for j in 0..<Board.cols {
-                if i == 0 {
-                    if j == 0 || j == 8 {
-                        boardDesc.append("j ")
-                    } else if j == 1 || j == 7 {
-                        boardDesc.append("m ")
-                    } else if j == 2 || j == 6 {
-                        boardDesc.append("x ")
-                    } else if j == 3 || j == 5 {
-                        boardDesc.append("s ")
-                    } else if j == 4 {
-                        boardDesc.append("b ")
+                for piece in pieces {
+                    if j == piece.col && i == piece.row {
+                        if piece.rank == "j" {
+                            boardDesc.append(piece.isRed ? "J " : "j ")
+                        } else if piece.rank == "m" {
+                            boardDesc.append(piece.isRed ? "M " : "m ")
+                        } else if piece.rank == "x" {
+                            boardDesc.append(piece.isRed ? "X " : "x ")
+                        } else if piece.rank == "s" {
+                            boardDesc.append(piece.isRed ? "S " : "s ")
+                        } else if piece.rank == "b" {
+                            boardDesc.append(piece.isRed ? "B " : "b ")
+                        } else if piece.rank == "p" {
+                            boardDesc.append(piece.isRed ? "P " : "p ")
+                        } else if piece.rank == "z" {
+                            boardDesc.append(piece.isRed ? "Z " : "z ")
+                        }
                     }
                 }
-                
-                
-                
-                if i == 2 {
-                    if j == 1 || j == 7 {
-                        boardDesc.append("p ")
-                    } else {
-                        boardDesc.append(". ")
-                    }
-                }
-                if i == 3 {
-                    if j % 2 == 0 {
-                        boardDesc.append("z ")
-                    } else {
-                        boardDesc.append(". ")
-                    }
-                }
-                
-                if i == 9 {
-                    if j == 0 || j == 8 {
-                        boardDesc.append("J ")
-                    } else if j == 1 || j == 7 {
-                        boardDesc.append("M ")
-                    } else if j == 2 || j == 6 {
-                        boardDesc.append("X ")
-                    } else if j == 3 || j == 5 {
-                        boardDesc.append("S ")
-                    } else if j == 4 {
-                        boardDesc.append("B ")
-                    }
-                }
-                
-                if i == 7 {
-                    if j == 1 || j == 7 {
-                        boardDesc.append("P ")
-                    } else {
-                        boardDesc.append(". ")
-                    }
-                }
-                if i == 6 {
-                    if j % 2 == 0 {
-                        boardDesc.append("Z ")
-                    } else {
-                        boardDesc.append(". ")
-                    }
-                }
-                
-                if i == 1 || i == 4 || i == 5 || i == 8 {
-                    boardDesc.append(". ")
-                }
+                boardDesc.append(". ")
             }
             boardDesc.append("\n")
         }
