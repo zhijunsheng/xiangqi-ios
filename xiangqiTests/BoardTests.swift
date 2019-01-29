@@ -24,9 +24,9 @@ class BoardTests: XCTestCase {
     func testBoardOrAnything() {
         var board = Board()
         
-        board.pieces.append(Piece(col: 4, row: 9, imageName: "rb", rank: "b", isRed: true))
-        board.pieces.append(Piece(col: 3, row: 9, imageName: "rs", rank: "s", isRed: true))
-        board.pieces.append(Piece(col: 5, row: 9, imageName: "rs", rank: "s", isRed: true))
+        board.pieces.append(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.append(Piece(col: 1, row: 0, imageName: "bm", rank: "m", isRed: false))
+//        board.pieces.append(Piece(col: 5, row: 9, imageName: "rs", rank: "s", isRed: true))
         print(board)
     }
 }

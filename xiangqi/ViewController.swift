@@ -32,16 +32,6 @@ class ViewController: UIViewController {
         addInitPieces()
     }
     
-    func pieceAt(col: Int, row: Int) -> Piece? {
-        for piece in board.pieces {
-            if piece.col == col && piece.row == row {
-                return piece
-            } else {
-                continue
-            }
-        }
-        return nil
-    }
    
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
@@ -54,7 +44,7 @@ class ViewController: UIViewController {
             
             print(board.pieces.count)
             
-            if let activePieceCandiate = pieceAt(col: col, row: row) {
+            if let activePieceCandiate = board.pieceAt(col: col, row: row) {
                 activePiece = activePieceCandiate
             }
             

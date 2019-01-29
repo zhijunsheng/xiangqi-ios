@@ -19,7 +19,7 @@ struct Board: CustomStringConvertible {
     // . . . . . . . . .
     // . p . . . . . p .
     // z . z . z . z . z
-    // . . . . . . . . .
+    // . p. . . . . . . .
     // . . . . . . . . .
     // Z . Z . Z . Z . Z
     // . P . . . . . P .
@@ -33,31 +33,46 @@ struct Board: CustomStringConvertible {
     
     var description: String {
         var boardDesc = ""
+        print(pieces.count)
         for i in 0..<Board.rows {
             for j in 0..<Board.cols {
-                for piece in pieces {
-                    if j == piece.col && i == piece.row {
-                        if piece.rank == "j" {
-                            boardDesc.append(piece.isRed ? "J " : "j ")
-                        } else if piece.rank == "m" {
-                            boardDesc.append(piece.isRed ? "M " : "m ")
-                        } else if piece.rank == "x" {
-                            boardDesc.append(piece.isRed ? "X " : "x ")
-                        } else if piece.rank == "s" {
-                            boardDesc.append(piece.isRed ? "S " : "s ")
-                        } else if piece.rank == "b" {
-                            boardDesc.append(piece.isRed ? "B " : "b ")
-                        } else if piece.rank == "p" {
-                            boardDesc.append(piece.isRed ? "P " : "p ")
-                        } else if piece.rank == "z" {
-                            boardDesc.append(piece.isRed ? "Z " : "z ")
+                if pieceAt(col: j, row: i) != nil {
+                    for piece in pieces {
+                        if piece.col == j && piece.row == i {
+                            if piece.rank == "j" {
+                                print(i,j)
+                                boardDesc.append(piece.isRed ? "J " : "j ")
+                                
+                            } else if piece.rank == "m" {
+                                boardDesc.append(piece.isRed ? "M " : "m ")
+                            } else if piece.rank == "x" {
+                                boardDesc.append(piece.isRed ? "X " : "x ")
+                            } else if piece.rank == "s" {
+                                boardDesc.append(piece.isRed ? "S " : "s ")
+                            } else if piece.rank == "b" {
+                                boardDesc.append(piece.isRed ? "B " : "b ")
+                            } else if piece.rank == "p" {
+                                boardDesc.append(piece.isRed ? "P " : "p ")
+                            } else if piece.rank == "z" {
+                                boardDesc.append(piece.isRed ? "Z " : "z ")
+                            }
                         }
                     }
+                } else {
+                    boardDesc.append(". ")
                 }
-                boardDesc.append(". ")
             }
             boardDesc.append("\n")
         }
         return boardDesc
+    }
+    
+    func pieceAt(col: Int, row: Int) -> Piece? {
+        for piece in pieces {
+            if piece.col == col && piece.row == row {
+                return piece
+            }
+        }
+        return nil
     }
 }
