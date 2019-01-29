@@ -25,8 +25,9 @@ class BoardTests: XCTestCase {
         var board = Board()
         
         board.pieces.append(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 0, imageName: "bm", rank: "m", isRed: false))
-//        board.pieces.append(Piece(col: 5, row: 9, imageName: "rs", rank: "s", isRed: true))
+        board.pieces.append(Piece(col: 8, row: 0, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.append(Piece(col: 0, row: 9, imageName: "rj", rank: "j", isRed: true))
+        board.pieces.append(Piece(col: 8, row: 9, imageName: "rj", rank: "j", isRed: true))
         print(board)
     }
 }
