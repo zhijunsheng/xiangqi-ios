@@ -70,7 +70,19 @@ struct Board: CustomStringConvertible {
     }
     
     func move车(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
-        if startRow == destRow || startCol == destCol {
+        if startRow == destRow {
+            for i in startCol + 1...destCol - 1 {
+                if pieceAt(col: i, row: startRow) != nil {
+                    return false
+                }
+            }
+            return true
+        } else if startCol == destCol {
+            for i in startRow + 1...destRow - 1 {
+                if pieceAt(col: startCol, row: i) != nil {
+                    return false
+                }
+            }
             return true
         }
         return false

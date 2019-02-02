@@ -33,11 +33,12 @@ class BoardTests: XCTestCase {
     func testMove车() {
         var board = Board()
         board.pieces.append(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.append(Piece(col: 4, row: 0, imageName: "bb", rank: "b", isRed: false))
         print(board)
         XCTAssertFalse(board.move车(startCol: 0, startRow: 0, destCol: 2, destRow: 1))
         XCTAssertFalse(board.move车(startCol: 0, startRow: 0, destCol: 1, destRow: 1))
         XCTAssertTrue(board.move车(startCol: 0, startRow: 0, destCol: 0, destRow: 9))
-        XCTAssertTrue(board.move车(startCol: 0, startRow: 0, destCol: 8, destRow: 0))
+        XCTAssertFalse(board.move车(startCol: 0, startRow: 0, destCol: 8, destRow: 0))
     }
     func testMove马() {
         var board = Board()
@@ -53,5 +54,16 @@ class BoardTests: XCTestCase {
         XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 5, destRow: 5))
         XCTAssertFalse(board.move马(startCol: 4, startRow: 3, destCol: 4, destRow: 5))
         XCTAssertFalse(board.move马(startCol: 4, startRow: 3, destCol: 2, destRow: 5))
+    }
+    func testMove相() {
+        var board = Board()
+        board.pieces.append(Piece(col: 4, row: 2, imageName: "bx", rank: "x", isRed: false))
+        print(board)
+        XCTAssertTrue(board.move相(startCol: 4, startRow: 2, destCol: 2, destRow: 0))
+        XCTAssertTrue(board.move相(startCol: 4, startRow: 2, destCol: 6, destRow: 0))
+        XCTAssertTrue(board.move相(startCol: 4, startRow: 2, destCol: 2, destRow: 4))
+        XCTAssertTrue(board.move相(startCol: 4, startRow: 2, destCol: 6, destRow: 4))
+        XCTAssertFalse(board.move相(startCol: 4, startRow: 2, destCol: 4, destRow: 5))
+        XCTAssertFalse(board.move相(startCol: 4, startRow: 2, destCol: 2, destRow: 5))
     }
 }
