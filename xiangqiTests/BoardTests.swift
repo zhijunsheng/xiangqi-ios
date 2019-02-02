@@ -39,4 +39,19 @@ class BoardTests: XCTestCase {
         XCTAssertTrue(board.move车(startCol: 0, startRow: 0, destCol: 0, destRow: 9))
         XCTAssertTrue(board.move车(startCol: 0, startRow: 0, destCol: 8, destRow: 0))
     }
+    func testMove马() {
+        var board = Board()
+        board.pieces.append(Piece(col: 4, row: 3, imageName: "bm", rank: "m", isRed: false))
+        print(board)
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 6, destRow: 4))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 6, destRow: 2))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 5, destRow: 1))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 3, destRow: 1))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 2, destRow: 2))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 2, destRow: 4))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 3, destRow: 5))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 5, destRow: 5))
+        XCTAssertFalse(board.move马(startCol: 4, startRow: 3, destCol: 4, destRow: 5))
+        XCTAssertFalse(board.move马(startCol: 4, startRow: 3, destCol: 2, destRow: 5))
+    }
 }
