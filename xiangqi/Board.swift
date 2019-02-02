@@ -19,7 +19,7 @@ struct Board: CustomStringConvertible {
     // . . . . . . . . .
     // . p . . . . . p .
     // z . z . z . z . z
-    // . p. . . . . . . .
+    // . . . . . . . . .
     // . . . . . . . . .
     // Z . Z . Z . Z . Z
     // . P . . . . . P .
@@ -67,5 +67,51 @@ struct Board: CustomStringConvertible {
             }
         }
         return nil
+    }
+    
+    func move车(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
+        if startRow == destRow || startCol == destCol {
+            return true
+        }
+        return false
+    }
+    
+    func move马(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
+        if abs(startRow - destRow) == 2 && abs(startCol - destCol) == 1 || abs(startRow - destRow) == 1 && abs(startCol - destCol) == 2 {
+            return true
+        }
+        return false
+    }
+    func move相(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
+        if abs(startRow - destRow) == 2 && abs(startCol - destCol) == 2 {
+            return true
+        }
+        return false
+    }
+    func move士(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
+        if destRow == 3 || destRow == 4 || destRow == 5 && destCol == 0 || destCol == 1 || destCol == 2 ||  destCol == 7 || destCol == 8 || destCol == 9 && abs(startRow - destRow) == 1 && abs(startCol - destCol) == 1 {
+            return true
+        }
+        return false
+    }
+    func move将(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
+        if abs(startRow - destRow) == 1 || abs(startCol - destCol) == 1 {
+            return true
+        }
+        return false
+    }
+    func move卒(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
+        if startRow - destRow == 1 || abs(startCol - destCol) == 1 {
+            return true
+        }
+        return false
+    }
+    func move炮(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
+        for i in -8...8 {
+            if startCol - destCol == i || startRow - destRow == i {
+                return true
+            }
+        }
+        return false
     }
 }

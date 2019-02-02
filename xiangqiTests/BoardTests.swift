@@ -30,4 +30,13 @@ class BoardTests: XCTestCase {
         board.pieces.append(Piece(col: 8, row: 9, imageName: "rj", rank: "j", isRed: true))
         print(board)
     }
+    func testMove车() {
+        var board = Board()
+        board.pieces.append(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
+        print(board)
+        XCTAssertFalse(board.move车(startCol: 0, startRow: 0, destCol: 2, destRow: 1))
+        XCTAssertFalse(board.move车(startCol: 0, startRow: 0, destCol: 1, destRow: 1))
+        XCTAssertTrue(board.move车(startCol: 0, startRow: 0, destCol: 0, destRow: 9))
+        XCTAssertTrue(board.move车(startCol: 0, startRow: 0, destCol: 8, destRow: 0))
+    }
 }
