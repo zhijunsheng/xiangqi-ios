@@ -90,6 +90,11 @@ struct Board: CustomStringConvertible {
     
     func move马(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
         if abs(startRow - destRow) == 2 && abs(startCol - destCol) == 1 || abs(startRow - destRow) == 1 && abs(startCol - destCol) == 2 {
+            for i in startCol + 1...destCol - 1 {
+                if pieceAt(col: i, row: startRow) != nil {
+                    return false
+                }
+            }
             return true
         }
         return false
@@ -119,10 +124,23 @@ struct Board: CustomStringConvertible {
         return false
     }
     func move炮(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
-        for i in -8...8 {
-            if startCol - destCol == i || startRow - destRow == i {
-                return true
+        if startRow == destRow {
+            for i in startCol + 1...destCol - 1 {
+//                if pieceAt(col: startCol + 1, row: startRow) != nil && pieceAt(col: i, row: startRow) != nil {
+//                    return true
+               // } else
+            if pieceAt(col: i, row: startRow) != nil {
+                    return false
+                }
             }
+            return true
+        } else if startCol == destCol {
+            for i in startRow + 1...destRow - 1 {
+                if pieceAt(col: startCol, row: i) != nil {
+                    return false
+                }
+            }
+            return true
         }
         return false
     }
