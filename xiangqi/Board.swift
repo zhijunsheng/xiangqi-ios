@@ -126,22 +126,60 @@ struct Board: CustomStringConvertible {
     func move炮(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
         if startRow == destRow {
             for i in startCol + 1...destCol - 1 {
-//                if pieceAt(col: startCol + 1, row: startRow) != nil && pieceAt(col: i, row: startRow) != nil {
-//                    return true
-               // } else
-            if pieceAt(col: i, row: startRow) != nil {
+                if pieceAt(col: i, row: startRow) != nil && pieceAt(col: i, row: startRow) != nil {
                     return false
                 }
             }
             return true
         } else if startCol == destCol {
             for i in startRow + 1...destRow - 1 {
-                if pieceAt(col: startCol, row: i) != nil {
+                if pieceAt(col: startCol, row: startRow + 1) != nil && pieceAt(col: i, row: startRow) != nil {
+                    return true
+                } else if pieceAt(col: startCol, row: i) != nil {
                     return false
                 }
+                break
             }
             return true
         }
         return false
+    }
+    
+    // *
+    //       *
+    //  ___________
+    // |_|_|_|_|_|_|
+    // |_|_|_|_|_|_|
+    // |_|_|_|_|_|_|
+    // |_|_|_|_|_|_|
+    // |_|_|_|_|_|_|
+    // |_|_|_|_|_|_|
+    // |_|_|_|_|_|_|
+    //
+    // *_____0______*
+    // |_|_|_|_|_|_|
+    // |_|_|_|_|_|_|
+    // |_|_|_|_|_|_|
+    // 0_|_|_|_|_|_|
+    // |_|_|_|_|_|_|
+    // |_|_|_|_|_|_|
+    // |_|_|_|_|_|_|
+    // *
+    func numberOfPiecesBetween(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Int {
+        var pieces = 0
+        if startCol != destCol && startRow == destRow {
+            for i in startCol + 1...destCol - 1 {
+                if pieceAt(col: i, row: startRow) != nil {
+                    pieces += 1
+                }
+            }
+        } else if startCol == destCol && startRow != destRow {
+            for i in startRow + 1...destRow - 1 {
+                if pieceAt(col: startCol, row: i) != nil {
+                    pieces += 1
+                }
+            }
+        }
+        return pieces
     }
 }
