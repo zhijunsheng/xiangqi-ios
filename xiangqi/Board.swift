@@ -126,14 +126,16 @@ struct Board: CustomStringConvertible {
     func move炮(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
         if startRow == destRow {
             for i in startCol + 1...destCol - 1 {
-                if pieceAt(col: i, row: startRow) != nil && pieceAt(col: i, row: startRow) != nil {
+                if abs(numberOfPiecesBetween(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow)) == 1 && pieceAt(col: destCol, row: destRow) != nil && pieceAt(col: startCol + i, row: startRow) != nil {
+                    return true
+                } else if pieceAt(col: i, row: startRow) != nil && pieceAt(col: i, row: startRow) != nil {
                     return false
                 }
             }
             return true
         } else if startCol == destCol {
             for i in startRow + 1...destRow - 1 {
-                if pieceAt(col: startCol, row: startRow + 1) != nil && pieceAt(col: i, row: startRow) != nil {
+                if abs(numberOfPiecesBetween(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow)) == 1 && pieceAt(col: destCol, row: destRow) != nil && pieceAt(col: startCol, row: startRow + 1) != nil {
                     return true
                 } else if pieceAt(col: startCol, row: i) != nil {
                     return false
@@ -147,16 +149,18 @@ struct Board: CustomStringConvertible {
     
     // *
     //       *
-    //  ___________
-    // |_|_|_|_|_|_|
-    // |_|_|_|_|_|_|
-    // |_|_|_|_|_|_|
-    // |_|_|_|_|_|_|
-    // |_|_|_|_|_|_|
-    // |_|_|_|_|_|_|
-    // |_|_|_|_|_|_|
+    //  _______________
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
+    // |_______________|
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
     //
-    // *_____0______*
+    // *_____0_____*
     // |_|_|_|_|_|_|
     // |_|_|_|_|_|_|
     // |_|_|_|_|_|_|
