@@ -11,6 +11,17 @@ import XCTest
 
 class BoardTests: XCTestCase {
     
+    //  _______________
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
+    // |_______________|
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
+    // |_|_|_|_|_|_|_|_|
+
     // j m x s b s x m j
     // . . . . . . . . .
     // . p . . . . . p .
@@ -86,6 +97,9 @@ class BoardTests: XCTestCase {
         board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
         print(board)
         
+        
+        //                                                    <=_<
+        // <=ς>____________ψ______ψψψ________Ψ_________ψ____________ψΨΨψψ______ψψψ______ψ____ΨΨ_
         // ___________________
         // . . . . . . . . . \\
         // . p . . . . . . . \\
@@ -138,7 +152,7 @@ class BoardTests: XCTestCase {
         // . . . . . . . . . \\
         // . . . . . . . . . \\
         // . . . . . . . . . \\
-        // . ψ . . . . . . . \\
+        // . P . . . . . . . \\
         // . . . . . . . . . \\
         // ___________________
         
@@ -146,12 +160,13 @@ class BoardTests: XCTestCase {
         board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
         board.pieces.append(Piece(col: 1, row: 2, imageName: "bj", rank: "j", isRed: false))
         board.pieces.append(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: true))
-        print(board)
-        XCTAssertFalse(board.move炮(startCol: 1, startRow: 1, destCol: 3, destRow: 2))
-        XCTAssertFalse(board.move炮(startCol: 1, startRow: 1, destCol: 2, destRow: 2))
-        XCTAssertFalse(board.move炮(startCol: 1, startRow: 1, destCol: 1, destRow: 9))
+        
+//        XCTAssertFalse(board.move炮(startCol: 1, startRow: 1, destCol: 3, destRow: 2))
+//        XCTAssertFalse(board.move炮(startCol: 1, startRow: 1, destCol: 2, destRow: 2))
+//        XCTAssertFalse(board.move炮(startCol: 1, startRow: 1, destCol: 1, destRow: 9))
+        XCTAssertTrue(board.move炮(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
 
-        //        ___________________
+        // ___________________
         // . . . . . . . . . \\
         // . p . . . . . . . \\
         // . j . . . . . . . \\
@@ -162,28 +177,15 @@ class BoardTests: XCTestCase {
         // . . . . . . . . . \\
         // . P . . . . . . . \\
         // . . . . . . . . . \\
-        //        ___________________
-        
-        board = Board()
-        
-        //___________________
-        // . . . . . . . . . \\
-        // . p . . . . . . . \\
-        // . j . . . . . . . \\
-        // . . . . . . . . . \\
-        // . . . . . . . . . \\
-        // . . . . . . . . . \\
-        // . . . . . . . . . \\
-        // . . . . . . . . . \\
-        // . M . . . . . . . \\
-        // . . . . . . . . . \\
-        //___________________
+        // ___________________
         
         board = Board()
         board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
         board.pieces.append(Piece(col: 1, row: 2, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.append(Piece(col: 1, row: 3, imageName: "bj", rank: "j", isRed: false))
         board.pieces.append(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: true))
-        XCTAssertTrue(board.move炮(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
+        XCTAssertFalse(board.move炮(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
+        
         
         //___________________
         // . . . . . . . . . \\
@@ -204,7 +206,7 @@ class BoardTests: XCTestCase {
         board.pieces.append(Piece(col: 7, row: 1, imageName: "rp", rank: "p", isRed: true))
         XCTAssertTrue(board.move炮(startCol: 1, startRow: 1, destCol: 7, destRow: 1))
 
-        //        ___________________
+        // ___________________
         // . . . . . . . . . \\
         // . p . . . . . . . \\
         // . j . . . . . . . \\
@@ -215,7 +217,7 @@ class BoardTests: XCTestCase {
         // . . . . . . . . . \\
         // . m . . . . . . . \\
         // . . . . . . . . . \\
-        //        ___________________
+        // ___________________
         
         board = Board()
         board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
@@ -223,7 +225,7 @@ class BoardTests: XCTestCase {
         board.pieces.append(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: true))
         XCTAssertFalse(board.move炮(startCol: 1, startRow: 1, destCol: 3, destRow: 2))
         XCTAssertFalse(board.move炮(startCol: 1, startRow: 1, destCol: 2, destRow: 2))
-//        XCTAssertFalse(board.move炮(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
+        XCTAssertFalse(board.move炮(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
     }
     
     
@@ -260,5 +262,15 @@ class BoardTests: XCTestCase {
         board.pieces.append(Piece(col: 3, row: 1, imageName: "bb", rank: "b", isRed: false))
         XCTAssertEqual(2, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 8, destRow: 1))
         
+    }
+    
+    func testMove士() {
+        var board = Board()
+        board.pieces.append(Piece(col: 3, row: 0, imageName: "bs", rank: "s", isRed: false))
+        print(board)
+        XCTAssertFalse(board.move士(startCol: 3, startRow: 0, destCol: 2, destRow: 1))
+        XCTAssertTrue(board.move士(startCol: 3, startRow: 0, destCol: 4, destRow: 1))
+        XCTAssertFalse(board.move士(startCol: 3, startRow: 0, destCol: 4, destRow: 0))
+        XCTAssertFalse(board.move士(startCol: 3, startRow: 0, destCol: 5, destRow: 0))
     }
 }

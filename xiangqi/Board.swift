@@ -124,18 +124,33 @@ struct Board: CustomStringConvertible {
         return false
     }
     func move炮(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
+        let cannon = pieceAt(col: startCol, row: startRow)
+        let destinationPiece = pieceAt(col: destCol, row: destRow)
+        
+        // not killing, can we just reuse the code from moveRook(..)
+        // if numberOfPiecesBetween(startCol: <#T##Int#>, startRow: <#T##Int#>, destCol: <#T##Int#>, destRow: <#T##Int#>) == 0
+        // and there is no piece at dest
+//        return move车(startCol:startRow:destCol:destRow:)
+        // otherwise return false
+        
+        
+        
+        // killing
+        
+        
+        
         if startRow == destRow {
             for i in startCol + 1...destCol - 1 {
-                if abs(numberOfPiecesBetween(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow)) == 1 && pieceAt(col: destCol, row: destRow) != nil && pieceAt(col: startCol + i, row: startRow) != nil {
+                if abs(numberOfPiecesBetween(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow)) == 1 && destinationPiece != nil && pieceAt(col: startCol + i, row: startRow) != nil && destinationPiece?.isRed != cannon?.isRed {
                     return true
-                } else if pieceAt(col: i, row: startRow) != nil && pieceAt(col: i, row: startRow) != nil {
+                } else if pieceAt(col: i, row: startRow) != nil {
                     return false
                 }
             }
             return true
         } else if startCol == destCol {
             for i in startRow + 1...destRow - 1 {
-                if abs(numberOfPiecesBetween(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow)) == 1 && pieceAt(col: destCol, row: destRow) != nil && pieceAt(col: startCol, row: startRow + 1) != nil {
+                if abs(numberOfPiecesBetween(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow)) == 1 && destinationPiece != nil && pieceAt(col: startCol, row: startRow + i) != nil && destinationPiece?.isRed != cannon?.isRed {
                     return true
                 } else if pieceAt(col: startCol, row: i) != nil {
                     return false
