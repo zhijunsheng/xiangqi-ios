@@ -43,6 +43,7 @@ class BoardTests: XCTestCase {
         board.pieces.append(Piece(col: 8, row: 9, imageName: "rj", rank: "j", isRed: true))
         print(board)
     }
+    
     func testMove车() {
         var board = Board()
         board.pieces.append(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
@@ -53,22 +54,23 @@ class BoardTests: XCTestCase {
         XCTAssertTrue(board.move车(startCol: 0, startRow: 0, destCol: 0, destRow: 9))
         XCTAssertFalse(board.move车(startCol: 0, startRow: 0, destCol: 8, destRow: 0))
     }
-//
-//    func testMove马() {
-//        var board = Board()
-//        board.pieces.append(Piece(col: 4, row: 3, imageName: "bm", rank: "m", isRed: false))
-//        print(board)
-//        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 6, destRow: 4))
-//        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 6, destRow: 2))
-//        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 5, destRow: 1))
-//        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 3, destRow: 1))
-//        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 2, destRow: 2))
-//        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 2, destRow: 4))
-//        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 3, destRow: 5))
-//        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 5, destRow: 5))
-//        XCTAssertFalse(board.move马(startCol: 4, startRow: 3, destCol: 4, destRow: 5))
-//        XCTAssertFalse(board.move马(startCol: 4, startRow: 3, destCol: 2, destRow: 5))
-//    }
+
+    func testMove马() {
+        var board = Board()
+        board.pieces.append(Piece(col: 4, row: 3, imageName: "bm", rank: "m", isRed: false))
+        print(board)
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 6, destRow: 4))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 6, destRow: 2))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 5, destRow: 1))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 3, destRow: 1))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 2, destRow: 2))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 2, destRow: 4))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 3, destRow: 5))
+        XCTAssertTrue(board.move马(startCol: 4, startRow: 3, destCol: 5, destRow: 5))
+        XCTAssertFalse(board.move马(startCol: 4, startRow: 3, destCol: 4, destRow: 5))
+        XCTAssertFalse(board.move马(startCol: 4, startRow: 3, destCol: 2, destRow: 5))
+    }
+    
     func testMove相() {
         var board = Board()
         board.pieces.append(Piece(col: 4, row: 2, imageName: "bx", rank: "x", isRed: false))
@@ -272,15 +274,40 @@ class BoardTests: XCTestCase {
         XCTAssertEqual(2, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 8, destRow: 1))
         
     }
-//
-//    func testMove士() {
-//        var board = Board()
-//        board.pieces.append(Piece(col: 3, row: 0, imageName: "bs", rank: "s", isRed: false))
-//        print(board)
-//        XCTAssertFalse(board.move士(startCol: 3, startRow: 0, destCol: 2, destRow: 1))
-//        XCTAssertTrue(board.move士(startCol: 3, startRow: 0, destCol: 4, destRow: 1))
-//        XCTAssertFalse(board.move士(startCol: 3, startRow: 0, destCol: 4, destRow: 0))
-//        XCTAssertFalse(board.move士(startCol: 3, startRow: 0, destCol: 5, destRow: 0))
-//    }
+
+    func testMove士() {
+        var board = Board()
+        
+        //  _______________
+        // |_|_|_|\|/|_|_|_|`
+        // |_|_|_|/|\|_|_|_|`
+        // |_|_|_|_|_|_|_|_|`
+        // |_|_|_|_|_|_|_|_|`
+        // |this is a river|`
+        // |_|_|_|_|_|_|_|_|`
+        // |_|_|_|_|_|_|_|_|`
+        // |_|_|_|\|/|_|_|_|`
+        // |_|_|_|/|\|_|_|_|`
+        //  `````````````````
+        
+        // ___________________
+        // . . . s . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        
+        board.pieces.append(Piece(col: 3, row: 0, imageName: "bs", rank: "s", isRed: false))
+        print(board)
+        XCTAssertFalse(board.move士(startCol: 3, startRow: 0, destCol: 2, destRow: 1))
+        XCTAssertTrue(board.move士(startCol: 3, startRow: 0, destCol: 4, destRow: 1))
+        XCTAssertFalse(board.move士(startCol: 3, startRow: 0, destCol: 4, destRow: 0))
+        XCTAssertFalse(board.move士(startCol: 3, startRow: 0, destCol: 5, destRow: 0))
+    }
 }
-//

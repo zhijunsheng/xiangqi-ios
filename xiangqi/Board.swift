@@ -90,9 +90,11 @@ struct Board: CustomStringConvertible {
     
     func move马(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
         if abs(startRow - destRow) == 2 && abs(startCol - destCol) == 1 || abs(startRow - destRow) == 1 && abs(startCol - destCol) == 2 {
-            for i in startCol + 1...destCol - 1 {
-                if pieceAt(col: i, row: startRow) != nil {
-                    return false
+            if startCol + 1 < destCol - 1 {
+                for i in startCol + 1...destCol - 1 {
+                    if pieceAt(col: i, row: startRow) != nil {
+                        return false
+                    }
                 }
             }
             return true
@@ -106,7 +108,7 @@ struct Board: CustomStringConvertible {
         return false
     }
     func move士(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
-        if destRow == 3 || destRow == 4 || destRow == 5 && destCol == 0 || destCol == 1 || destCol == 2 ||  destCol == 7 || destCol == 8 || destCol == 9 && abs(startRow - destRow) == 1 && abs(startCol - destCol) == 1 {
+        if ((destCol == 3 || destCol == 4 || destCol == 5) && (destRow == 0 || destRow == 1 || destRow == 2 ||  destRow == 7 || destRow == 8 || destRow == 9)) && abs(startRow - destRow) == 1 && abs(startCol - destCol) == 1 {
             return true
         }
         return false
@@ -148,16 +150,16 @@ struct Board: CustomStringConvertible {
     // *
     //       *
     //  _______________
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-    // |_______________|
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-    //
+    // |_|_|_|\|/|_|_|_|`
+    // |_|_|_|/|\|_|_|_|`
+    // |_|_|_|_|_|_|_|_|`
+    // |_|_|_|_|_|_|_|_|`
+    // |this is a river|`
+    // |_|_|_|_|_|_|_|_|`
+    // |_|_|_|_|_|_|_|_|`
+    // |_|_|_|\|/|_|_|_|`
+    // |_|_|_|/|\|_|_|_|`
+    //  `````````````````
     // *_____0_____*
     // |_|_|_|_|_|_|
     // |_|_|_|_|_|_|
@@ -167,6 +169,8 @@ struct Board: CustomStringConvertible {
     // |_|_|_|_|_|_|
     // |_|_|_|_|_|_|
     // *
+    
+    
     func numberOfPiecesBetween(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Int {
         var pieces = 0
         if startCol != destCol && startRow == destRow {
