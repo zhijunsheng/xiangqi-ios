@@ -44,7 +44,7 @@ class ViewController: UIViewController {
             
             print(board.pieces.count)
             
-            if let activePieceCandiate = board.isPieceAt(col: col, row: row) {
+            if let activePieceCandiate = board.pieceAt(col: col, row: row) {
                 activePiece = activePieceCandiate
             }
             

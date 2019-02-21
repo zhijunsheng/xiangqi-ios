@@ -15,6 +15,16 @@ struct Board: CustomStringConvertible {
     
     var pieces: [Piece] = []
     
+    func movePiece(startCol: Int, startRow: Int, destCol: Int, destRow: Int) {
+        guard let myPiece = pieceAt(col: startCol, row: startRow) else {
+            return
+        }
+        
+        if myPiece.rank == "j" && canMove车(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            
+        }
+    }
+    
     // j m x s b s x m j
     // . . . . . . . . .
     // . p . . . . . p .
@@ -35,7 +45,7 @@ struct Board: CustomStringConvertible {
         var boardDesc = ""
         for i in 0..<Board.rows {
             for j in 0..<Board.cols {
-                if let piece = isPieceAt(col: j, row: i) {
+                if let piece = pieceAt(col: j, row: i) {
                     if piece.rank == "j" {
                         boardDesc.append(piece.isRed ? "J " : "j ")
                     } else if piece.rank == "m" {
@@ -60,7 +70,7 @@ struct Board: CustomStringConvertible {
         return boardDesc
     }
     
-    func isPieceAt(col: Int, row: Int) -> Piece? {
+    func pieceAt(col: Int, row: Int) -> Piece? {
         for piece in pieces {
             if piece.col == col && piece.row == row {
                 return piece
@@ -72,14 +82,14 @@ struct Board: CustomStringConvertible {
     func canMove车(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
         if startRow == destRow {
             for i in startCol + 1...destCol - 1 {
-                if isPieceAt(col: i, row: startRow) != nil {
+                if pieceAt(col: i, row: startRow) != nil {
                     return false
                 }
             }
             return true
         } else if startCol == destCol {
             for i in startRow + 1...destRow - 1 {
-                if isPieceAt(col: startCol, row: i) != nil {
+                if pieceAt(col: startCol, row: i) != nil {
                     return false
                 }
             }
@@ -92,7 +102,7 @@ struct Board: CustomStringConvertible {
         if abs(startRow - destRow) == 2 && abs(startCol - destCol) == 1 || abs(startRow - destRow) == 1 && abs(startCol - destCol) == 2 {
             if startCol + 1 < destCol - 1 {
                 for i in startCol + 1...destCol - 1 {
-                    if isPieceAt(col: i, row: startRow) != nil {
+                    if pieceAt(col: i, row: startRow) != nil {
                         return false
                     }
                 }
@@ -131,11 +141,11 @@ struct Board: CustomStringConvertible {
     }
     
     func canMove炮(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
-        guard let cannon = isPieceAt(col: startCol, row: startRow) else {
+        guard let cannon = pieceAt(col: startCol, row: startRow) else {
             return false
         }
         
-        let destinationPiece = isPieceAt(col: destCol, row: destRow)
+        let destinationPiece = pieceAt(col: destCol, row: destRow)
         
         if destinationPiece == nil {
             return canMove车(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow)
@@ -179,13 +189,13 @@ struct Board: CustomStringConvertible {
         var pieces = 0
         if startCol != destCol && startRow == destRow {
             for i in startCol + 1...destCol - 1 {
-                if isPieceAt(col: i, row: startRow) != nil {
+                if pieceAt(col: i, row: startRow) != nil {
                     pieces += 1
                 }
             }
         } else if startCol == destCol && startRow != destRow {
             for i in startRow + 1...destRow - 1 {
-                if isPieceAt(col: startCol, row: i) != nil {
+                if pieceAt(col: startCol, row: i) != nil {
                     pieces += 1
                 }
             }
