@@ -16,44 +16,66 @@ struct Board: CustomStringConvertible {
     var pieces: [Piece] = []
     
     mutating func movePiece(startCol: Int, startRow: Int, destCol: Int, destRow: Int) {
-        guard let i = indexOfPieceAt(col: startCol, row: startRow) else {
+        guard let indexOfCandidate = indexOfPieceAt(col: startCol, row: startRow) else {
             return
         }
-        var candidate = pieces[i]
+        let indexOfTarget = indexOfPieceAt(col: destCol, row: destRow)
+        var candidate = pieces[indexOfCandidate]
         if candidate.rank == "j" && canMove车(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            if indexOfTarget != nil {
+                pieces.remove(at: indexOfTarget!)
+            }
             candidate.col = destCol
             candidate.row = destRow
-            pieces.remove(at: i)
+            pieces.remove(at: indexOfCandidate)
             pieces.append(candidate)
         } else if candidate.rank == "m" && canMove马(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            if indexOfTarget != nil {
+                pieces.remove(at: indexOfTarget!)
+            }
             candidate.col = destCol
             candidate.row = destRow
-            pieces.remove(at: i)
+            pieces.remove(at: indexOfCandidate)
             pieces.append(candidate)
         } else if candidate.rank == "x" && canMove相(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            if indexOfTarget != nil {
+                pieces.remove(at: indexOfTarget!)
+            }
             candidate.col = destCol
             candidate.row = destRow
-            pieces.remove(at: i)
+            pieces.remove(at: indexOfCandidate)
             pieces.append(candidate)
         } else if candidate.rank == "s" && canMove士(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            if indexOfTarget != nil {
+                pieces.remove(at: indexOfTarget!)
+            }
             candidate.col = destCol
             candidate.row = destRow
-            pieces.remove(at: i)
+            pieces.remove(at: indexOfCandidate)
             pieces.append(candidate)
         } else if candidate.rank == "b" && canMove将(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            if indexOfTarget != nil {
+                pieces.remove(at: indexOfTarget!)
+            }
             candidate.col = destCol
             candidate.row = destRow
-            pieces.remove(at: i)
+            pieces.remove(at: indexOfCandidate)
             pieces.append(candidate)
         } else if candidate.rank == "p" && canMove炮(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            if indexOfTarget != nil {
+                pieces.remove(at: indexOfTarget!)
+            }
             candidate.col = destCol
             candidate.row = destRow
-            pieces.remove(at: i)
+            pieces.remove(at: indexOfCandidate)
             pieces.append(candidate)
         } else if candidate.rank == "z" && canMove卒(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            if indexOfTarget != nil {
+                pieces.remove(at: indexOfTarget!)
+            }
             candidate.col = destCol
             candidate.row = destRow
-            pieces.remove(at: i)
+            pieces.remove(at: indexOfCandidate)
             pieces.append(candidate)
         }
     }

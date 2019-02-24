@@ -326,7 +326,7 @@ class BoardTests: XCTestCase {
         
         //___________________
         // . . . . . . . . . \\
-        // . p j . . . . P . \\
+        // . p j . . . . . P \\
         // . . . . . . . . . \\
         // . . . . . . . . . \\
         // . . . . . . . . . \\
@@ -341,8 +341,27 @@ class BoardTests: XCTestCase {
         board.pieces.append(Piece(col: 2, row: 1, imageName: "bj", rank: "j", isRed: false))
         board.pieces.append(Piece(col: 8, row: 1, imageName: "rp", rank: "p", isRed: true))
         print(board)
+//        XCTAssertTrue(board.pieceAt(col: 8, row: 1)!.isRed)
         board.movePiece(startCol: 1, startRow: 1, destCol: 1, destRow: 5)
+//        XCTAssertNil(board.pieceAt(col: 1, row: 1))
+//        XCTAssertFalse(board.pieceAt(col: 8, row: 1)!.isRed)
+        
+//        print("______________________")
+//        print(board.pieceAt(col: 8, row: 1)!.isRed)
+        
         print(board)
+        
+        board = Board()
+        board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.append(Piece(col: 2, row: 1, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.append(Piece(col: 8, row: 1, imageName: "rp", rank: "p", isRed: true))
+        print(board)
+        XCTAssertTrue(board.pieceAt(col: 8, row: 1)!.isRed)
+        board.movePiece(startCol: 1, startRow: 1, destCol: 8, destRow: 1)
+        XCTAssertNil(board.pieceAt(col: 1, row: 1))
+        XCTAssertFalse(board.pieceAt(col: 8, row: 1)!.isRed)
+        print(board)
+        print(board.pieces)
     }
     
 }
