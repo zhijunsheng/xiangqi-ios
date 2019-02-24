@@ -41,8 +41,8 @@ class BoardView: UIView {
 //       ////\\\\
 //      /////\\\\\
 //     //////\\\\\\
-//      |  |  |  |
-//      |  | o|  |
+//      ||||  ||||
+//      |||| o||||
         
         // diagonal
         pen.move(to: CGPoint(x: originX + side * 3, y: originY + side * 0))

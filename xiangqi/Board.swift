@@ -15,14 +15,59 @@ struct Board: CustomStringConvertible {
     
     var pieces: [Piece] = []
     
-    func movePiece(startCol: Int, startRow: Int, destCol: Int, destRow: Int) {
-        guard let myPiece = pieceAt(col: startCol, row: startRow) else {
+    mutating func movePiece(startCol: Int, startRow: Int, destCol: Int, destRow: Int) {
+        guard let i = indexOfPieceAt(col: startCol, row: startRow) else {
             return
         }
-        
-        if myPiece.rank == "j" && canMove车(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
-            
+        var candidate = pieces[i]
+        if candidate.rank == "j" && canMove车(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            candidate.col = destCol
+            candidate.row = destRow
+            pieces.remove(at: i)
+            pieces.append(candidate)
+        } else if candidate.rank == "m" && canMove马(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            candidate.col = destCol
+            candidate.row = destRow
+            pieces.remove(at: i)
+            pieces.append(candidate)
+        } else if candidate.rank == "x" && canMove相(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            candidate.col = destCol
+            candidate.row = destRow
+            pieces.remove(at: i)
+            pieces.append(candidate)
+        } else if candidate.rank == "s" && canMove士(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            candidate.col = destCol
+            candidate.row = destRow
+            pieces.remove(at: i)
+            pieces.append(candidate)
+        } else if candidate.rank == "b" && canMove将(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            candidate.col = destCol
+            candidate.row = destRow
+            pieces.remove(at: i)
+            pieces.append(candidate)
+        } else if candidate.rank == "p" && canMove炮(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            candidate.col = destCol
+            candidate.row = destRow
+            pieces.remove(at: i)
+            pieces.append(candidate)
+        } else if candidate.rank == "z" && canMove卒(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
+            candidate.col = destCol
+            candidate.row = destRow
+            pieces.remove(at: i)
+            pieces.append(candidate)
         }
+    }
+    
+    func indexOfPieceAt(col: Int, row: Int) -> Int? {
+        guard pieceAt(col: col, row: row) != nil else {
+            return nil
+        }
+        for i in 0..<pieces.count {
+            if col == pieces[i].col && row == pieces[i].row {
+                return i
+            }
+        }
+        return nil
     }
     
     // j m x s b s x m j

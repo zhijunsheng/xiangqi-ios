@@ -310,4 +310,39 @@ class BoardTests: XCTestCase {
         XCTAssertFalse(board.canMove士(startCol: 3, startRow: 0, destCol: 4, destRow: 0))
         XCTAssertFalse(board.canMove士(startCol: 3, startRow: 0, destCol: 5, destRow: 0))
     }
+    
+    func testMove() {
+        //  _______________
+        // |_|_|_|\|/|_|_|_|`
+        // |_|_|_|/|\|_|_|_|`
+        // |_|_|_|_|_|_|_|_|`
+        // |_|_|_|_|_|_|_|_|`
+        // |this is a river|`
+        // |_|_|_|_|_|_|_|_|`
+        // |_|_|_|_|_|_|_|_|`
+        // |_|_|_|\|/|_|_|_|`
+        // |_|_|_|/|\|_|_|_|`
+        //  `````````````````
+        
+        //___________________
+        // . . . . . . . . . \\
+        // . p j . . . . P . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        //___________________
+        var board = Board()
+        board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.append(Piece(col: 2, row: 1, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.append(Piece(col: 8, row: 1, imageName: "rp", rank: "p", isRed: true))
+        print(board)
+        board.movePiece(startCol: 1, startRow: 1, destCol: 1, destRow: 5)
+        print(board)
+    }
+    
 }
