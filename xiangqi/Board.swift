@@ -187,14 +187,14 @@ struct Board: CustomStringConvertible {
     }
     
     func canMove士(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
-        if ((destCol == 3 || destCol == 4 || destCol == 5) && (destRow == 0 || destRow == 1 || destRow == 2 ||  destRow == 7 || destRow == 8 || destRow == 9)) && abs(startRow - destRow) == 1 && abs(startCol - destCol) == 1 {
+        if isInPalace(row: destRow, col: destCol) && (abs(startRow - destRow) == 1 && abs(startCol - destCol) == 1) {
             return true
         }
         return false
     }
     
     func canMove将(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
-        if abs(startRow - destRow) == 1 || abs(startCol - destCol) == 1 {
+        if isInPalace(row: destRow, col: destCol) && (abs(startRow - destRow) == 1 && startCol == destCol || abs(startCol - destCol) == 1 && startRow == destRow) {
             return true
         }
         return false
@@ -226,6 +226,13 @@ struct Board: CustomStringConvertible {
             }
             return true
         }
+    }
+    
+    func isInPalace(row: Int, col: Int) -> Bool {
+        if (row == 0 || row == 1 || row == 7 || row == 8) && (col == 3 || col == 4 || col == 5) {
+            return true
+        }
+        return false
     }
     
     // *

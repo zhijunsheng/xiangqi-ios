@@ -311,6 +311,48 @@ class BoardTests: XCTestCase {
         XCTAssertFalse(board.canMove士(startCol: 3, startRow: 0, destCol: 5, destRow: 0))
     }
     
+    func testMove将() {
+        // ___________________
+        // . . . b . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        
+        var board = Board()
+        board.pieces.append(Piece(col: 3, row: 0, imageName: "bb", rank: "b", isRed: false))
+        print(board)
+        XCTAssertFalse(board.canMove将(startCol: 3, startRow: 0, destCol: 2, destRow: 0))
+        XCTAssertFalse(board.canMove将(startCol: 3, startRow: 0, destCol: 2, destRow: 1))
+        XCTAssertFalse(board.canMove将(startCol: 3, startRow: 0, destCol: 4, destRow: 1))
+        XCTAssertFalse(board.canMove将(startCol: 3, startRow: 0, destCol: 5, destRow: 0))
+        XCTAssertFalse(board.canMove将(startCol: 3, startRow: 0, destCol: 5, destRow: 1))
+        XCTAssertTrue(board.canMove将(startCol: 3, startRow: 0, destCol: 3, destRow: 1))
+        XCTAssertTrue(board.canMove将(startCol: 3, startRow: 0, destCol: 4, destRow: 0))
+        
+        // ___________________
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . b . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+//        board = Board()
+//        board.pieces.append(Piece(col: 3, row: 2, imageName: "bb", rank: "b", isRed: false))
+//        XCTAssertFalse(<#T##expression: Bool##Bool#>)
+    }
+    
     func testMove() {
         //  _______________
         // |_|_|_|\|/|_|_|_|`
