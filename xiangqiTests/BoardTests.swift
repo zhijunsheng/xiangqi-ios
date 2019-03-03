@@ -353,6 +353,131 @@ class BoardTests: XCTestCase {
 //        XCTAssertFalse(<#T##expression: Bool##Bool#>)
     }
     
+    func testMove卒() {
+        // ___________________
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . = . . . . . . \\
+        // . = z = . . . . . \\
+        // . . * . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        var board = Board()
+        board.pieces.append(Piece(col: 2, row: 3, imageName: "bz", rank: "z", isRed: false))
+        print(board)
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 3, destCol: 1, destRow: 3))
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 3, destCol: 3, destRow: 3))
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 3, destCol: 2, destRow: 2))
+        XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 3, destCol: 2, destRow: 4))
+        
+        // ___________________
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . = . . . . . . \\
+        // . = z = . . . . . \\
+        // . . * . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        board = Board()
+        board.pieces.append(Piece(col: 2, row: 4, imageName: "bz", rank: "z", isRed: false))
+        print(board)
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 4, destCol: 1, destRow: 4))
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 4, destCol: 3, destRow: 4))
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 4, destCol: 2, destRow: 3))
+        XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 4, destCol: 2, destRow: 5))
+        
+        // ___________________
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . = . . . . . . \\
+        // . * z * . . . . . \\
+        // . . * . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        
+        board = Board()
+        board.pieces.append(Piece(col: 2, row: 5, imageName: "bz", rank: "z", isRed: false))
+        print(board)
+        XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 5, destCol: 1, destRow: 5))
+        XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 5, destCol: 3, destRow: 5))
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 5, destCol: 2, destRow: 4))
+        XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 5, destCol: 2, destRow: 6))
+        
+        // ___________________
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . * . . . . . . \\
+        // . = Z = . . . . . \\
+        // . . = . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        board = Board()
+        board.pieces.append(Piece(col: 2, row: 6, imageName: "rz", rank: "z", isRed: true))
+        print(board)
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 6, destCol: 1, destRow: 6))
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 6, destCol: 3, destRow: 6))
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 6, destCol: 2, destRow: 7))
+        XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 6, destCol: 2, destRow: 5))
+        
+        // ___________________
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . * . . . . . . \\
+        // . = Z = . . . . . \\
+        // . . = . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        board = Board()
+        board.pieces.append(Piece(col: 2, row: 5, imageName: "rz", rank: "z", isRed: true))
+        print(board)
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 5, destCol: 1, destRow: 5))
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 5, destCol: 3, destRow: 5))
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 5, destCol: 2, destRow: 6))
+        XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 5, destCol: 2, destRow: 4))
+        
+        // ___________________
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . * . . . . . . \\
+        // . * Z * . . . . . \\
+        // . . = . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        
+        board = Board()
+        board.pieces.append(Piece(col: 2, row: 4, imageName: "rz", rank: "z", isRed: true))
+        print(board)
+        XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 4, destCol: 1, destRow: 4))
+        XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 4, destCol: 3, destRow: 4))
+        XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 4, destCol: 2, destRow: 5))
+        XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 4, destCol: 2, destRow: 3))
+        
+    }
+    
     func testMove() {
         //  _______________
         // |_|_|_|\|/|_|_|_|`

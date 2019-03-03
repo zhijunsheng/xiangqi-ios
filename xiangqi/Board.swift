@@ -201,8 +201,21 @@ struct Board: CustomStringConvertible {
     }
     
     func canMove卒(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
-        if startRow - destRow == 1 || abs(startCol - destCol) == 1 {
-            return true
+        guard let candidate = pieceAt(col: startCol, row: startRow) else {
+            return false
+        }
+        if !candidate.isRed {
+            if startRow <= 4 && (startRow - destRow == -1 && startCol == destCol) {
+                return true
+            } else if startRow >= 5 && (startRow - destRow == -1 || abs(startCol - destCol) == 1) {
+                return true
+            }
+        } else {
+            if startRow >= 5 && (startRow - destRow == 1 && startCol == destCol) {
+                return true
+            } else if startRow <= 4 && (startRow - destRow == 1 || abs(startCol - destCol) == 1) {
+                return true
+            }
         }
         return false
     }
