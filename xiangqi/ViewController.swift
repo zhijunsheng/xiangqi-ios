@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     
     var keyPieceValueImageView: [Piece: UIImageView] = [:]
     
+    var startCol: Int = -10
+    var startRow: Int = -10
     
     @IBOutlet weak var boardView: BoardView!
     
@@ -39,14 +41,6 @@ class ViewController: UIViewController {
             let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
             let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
             
-//            if abs(uncheckedRow0 - floor(uncheckedCol0 + 0.5))
-            
-//            print("________")
-//            print(Int(floor(uncheckedRow0 + 0.5)))
-            
-            
-//            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
-//            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
             let col = Int(floor(uncheckedCol0 + 0.5))
             let row = Int(floor(uncheckedRow0 + 0.5))
             print("row is........................\(row)!, and col is.........................\(col)!")
@@ -56,12 +50,6 @@ class ViewController: UIViewController {
             if let activePieceCandiate = board.pieceAt(col: col, row: row) {
                 activePiece = activePieceCandiate
             }
-            
-        
-            //row0 = row
-//            let thePiece
-//            print out it
-            
             
         }
         
@@ -74,6 +62,13 @@ class ViewController: UIViewController {
             let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
             let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
             print("row is_____________________\(row)!, and col is________________\(col)!")
+            
+            if board.canMove车(startCol: activePiece!.col, startRow: activePiece!.row, destCol: col, destRow: row) {
+                print("access granted")
+                // call board.movePiece(..)
+            } else {
+                print("access denied")
+            }
 
             if var actualActivePiece = activePiece {
                 if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
