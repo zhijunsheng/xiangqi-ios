@@ -10,9 +10,9 @@ import UIKit
 
 class BoardView: UIView {
     
-    let originX: CGFloat = 7.0
-    let originY: CGFloat = 7.0
-    let side: CGFloat = 40.0
+    let originX: CGFloat = 70.0
+    let originY: CGFloat = 70.0
+    let side: CGFloat = 120.0
     let space: CGFloat = 4.0
     let line: CGFloat = 12.0
     

@@ -5,6 +5,8 @@
 //  Created by Peter Shi on 2019-01-12.
 //  Copyright © 2019 GoldThumb Inc. All rights reserved.
 //
+// αβψδεφγηιξκλμνοπ;ρστθωςχυζ
+// ΑΒΨΔΕΦΓΗΙΞΚΛΜΝΟΠ:ΡΣΤΘΩ΅ΧΥΣ
 
 import Foundation
 

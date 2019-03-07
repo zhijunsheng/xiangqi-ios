@@ -38,8 +38,17 @@ class ViewController: UIViewController {
         if sender.state == UIGestureRecognizerState.began {
             let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
             let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
-            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
-            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
+            
+//            if abs(uncheckedRow0 - floor(uncheckedCol0 + 0.5))
+            
+//            print("________")
+//            print(Int(floor(uncheckedRow0 + 0.5)))
+            
+            
+//            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
+//            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
+            let col = Int(floor(uncheckedCol0 + 0.5))
+            let row = Int(floor(uncheckedRow0 + 0.5))
             print("row is........................\(row)!, and col is.........................\(col)!")
             
             print(board.pieces.count)
@@ -60,40 +69,40 @@ class ViewController: UIViewController {
         }
         
         if sender.state == UIGestureRecognizerState.ended {
-//            let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
-//            let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
-//            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
-//            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
-//            print("row is........................\(row)!, and col is.........................\(col)!")
-//
-//            if var actualActivePiece = activePiece {
-//                if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
-//                    let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
-//
-//                    actualActivePiece.col = col
-//                    actualActivePiece.row = row
-//
-//                    pieceImageView.center = pointAtColRow
-//                    view.bringSubview(toFront: pieceImageView)
-//                }
-//                activePiece = nil
-//            }
-//
-//            if let piece = pieceAt(col: activePiececol, row: row0) {
-//                print(piece)
-//                if let pieceImageView = keyPieceValueImageView[piece] {
-//                    let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
-//                    pieceImageView.center = pointAtColRow
-//                    view.bringSubview(toFront: pieceImageView)
-//                }
-//
-//            } else {
-//                print("I'm the creeper. Catch me if you can!")
-//            }
+            let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
+            let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
+            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
+            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
+            print("row is_____________________\(row)!, and col is________________\(col)!")
+
+            if var actualActivePiece = activePiece {
+                if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
+                    let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
+
+                    actualActivePiece.col = col
+                    actualActivePiece.row = row
+
+                    pieceImageView.center = pointAtColRow
+                    view.bringSubview(toFront: pieceImageView)
+                }
+                activePiece = nil
+            }
+
+            if let piece = board.pieceAt(col: col, row: row) {
+                print(piece)
+                if let pieceImageView = keyPieceValueImageView[piece] {
+                    let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
+                    pieceImageView.center = pointAtColRow
+                    view.bringSubview(toFront: pieceImageView)
+                }
+
+            } else {
+                print("I'm the creeper. Catch me if you can!")
+            }
             
-//            let lastPieceView = view.subviews.last!
-//            let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
-//            lastPieceView.center = pointAtColRow
+            let lastPieceView = view.subviews.last!
+            let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
+            lastPieceView.center = pointAtColRow
         }
         
     }
@@ -113,48 +122,48 @@ class ViewController: UIViewController {
     func addInitPieces() {
         //black
         // regular pieces
-//        addPiece(image: "bj", row: 0, col: 0)
-//        addPiece(image: "bm", row: 0, col: 1)
-//        addPiece(image: "bx", row: 0, col: 2)
-//        addPiece(image: "bs", row: 0, col: 3)
-//        addPiece(image: "bb", row: 0, col: 4)
-//        addPiece(image: "bs", row: 0, col: 5)
-//        addPiece(image: "bx", row: 0, col: 6)
-//        addPiece(image: "bm", row: 0, col: 7)
-//        addPiece(image: "bj", row: 0, col: 8)
-//
-//        // c= *  *  *
-//        addPiece(image: "bp", row: 2, col: 1)
-//        addPiece(image: "bp", row: 2, col: 7)
-//
-//        //
-//        addPiece(image: "bz", row: 3, col: 0)
-//        addPiece(image: "bz", row: 3, col: 2)
-//        addPiece(image: "bz", row: 3, col: 4)
-//        addPiece(image: "bz", row: 3, col: 6)
-//        addPiece(image: "bz", row: 3, col: 8)
-//
-//        //red
-//        // regular pieces
-//        addPiece(image: "rj", row: 9, col: 0)
-//        addPiece(image: "rm", row: 9, col: 1)
-//        addPiece(image: "rx", row: 9, col: 2)
-//        addPiece(image: "rs", row: 9, col: 3)
-//        addPiece(image: "rb", row: 9, col: 4)
-//        addPiece(image: "rs", row: 9, col: 5)
-//        addPiece(image: "rx", row: 9, col: 6)
-//        addPiece(image: "rm", row: 9, col: 7)
-//        addPiece(image: "rj", row: 9, col: 8)
-//
-//        // c= *  *  *
-//        addPiece(image: "rp", row: 7, col: 1)
-//        addPiece(image: "rp", row: 7, col: 7)
-//
-//        //
-//        addPiece(image: "rz", row: 6, col: 0)
-//        addPiece(image: "rz", row: 6, col: 2)
-//        addPiece(image: "rz", row: 6, col: 4)
-//        addPiece(image: "rz", row: 6, col: 6)
-//        addPiece(image: "rz", row: 6, col: 8)
+        addPiece(image: "bj", row: 0, col: 0, rank: "j", isRed: false)
+        addPiece(image: "bm", row: 0, col: 1, rank: "m", isRed: false)
+        addPiece(image: "bx", row: 0, col: 2, rank: "x", isRed: false)
+        addPiece(image: "bs", row: 0, col: 3, rank: "s", isRed: false)
+        addPiece(image: "bb", row: 0, col: 4, rank: "b", isRed: false)
+        addPiece(image: "bs", row: 0, col: 5, rank: "s", isRed: false)
+        addPiece(image: "bx", row: 0, col: 6, rank: "x", isRed: false)
+        addPiece(image: "bm", row: 0, col: 7, rank: "m", isRed: false)
+        addPiece(image: "bj", row: 0, col: 8, rank: "j", isRed: false)
+
+        // c= *  *  *
+        addPiece(image: "bp", row: 2, col: 1, rank: "p", isRed: false)
+        addPiece(image: "bp", row: 2, col: 7, rank: "p", isRed: false)
+
+        //
+        addPiece(image: "bz", row: 3, col: 0, rank: "z", isRed: false)
+        addPiece(image: "bz", row: 3, col: 2, rank: "z", isRed: false)
+        addPiece(image: "bz", row: 3, col: 4, rank: "z", isRed: false)
+        addPiece(image: "bz", row: 3, col: 6, rank: "z", isRed: false)
+        addPiece(image: "bz", row: 3, col: 8, rank: "z", isRed: false)
+
+        //red
+        // regular pieces
+        addPiece(image: "rj", row: 9, col: 0, rank: "j", isRed: true)
+        addPiece(image: "rm", row: 9, col: 1, rank: "m", isRed: true)
+        addPiece(image: "rx", row: 9, col: 2, rank: "x", isRed: true)
+        addPiece(image: "rs", row: 9, col: 3, rank: "s", isRed: true)
+        addPiece(image: "rb", row: 9, col: 4, rank: "b", isRed: true)
+        addPiece(image: "rs", row: 9, col: 5, rank: "s", isRed: true)
+        addPiece(image: "rx", row: 9, col: 6, rank: "x", isRed: true)
+        addPiece(image: "rm", row: 9, col: 7, rank: "m", isRed: true)
+        addPiece(image: "rj", row: 9, col: 8, rank: "j", isRed: true)
+
+        // c= *  *  *
+        addPiece(image: "rp", row: 7, col: 1, rank: "p", isRed: true)
+        addPiece(image: "rp", row: 7, col: 7, rank: "p", isRed: true)
+
+        //
+        addPiece(image: "rz", row: 6, col: 0, rank: "z", isRed: true)
+        addPiece(image: "rz", row: 6, col: 2, rank: "z", isRed: true)
+        addPiece(image: "rz", row: 6, col: 4, rank: "z", isRed: true)
+        addPiece(image: "rz", row: 6, col: 6, rank: "z", isRed: true)
+        addPiece(image: "rz", row: 6, col: 8, rank: "z", isRed: true)
     }
 }
