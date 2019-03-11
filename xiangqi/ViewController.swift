@@ -57,15 +57,18 @@ class ViewController: UIViewController {
         }
         
         if sender.state == UIGestureRecognizerState.ended {
+            guard let actualActivePiece = activePiece else {
+                return
+            }
             let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
             let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
             let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
             let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
             print("row is_____________________\(row)!, and col is________________\(col)!")
             
-            if board.canMoveTo(piece: activePiece!, destCol: col, destRow: row) {
+            if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
                 print("access granted")
-                board.movePiece(startCol: activePiece!.col, startRow: activePiece!.row, destCol: col, destRow: row)
+                board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
             } else {
                 print("access denied")
                 return
