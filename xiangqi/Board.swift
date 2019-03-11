@@ -150,6 +150,9 @@ struct Board: CustomStringConvertible {
     
     func canMove车(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
         if startRow == destRow {
+            if startCol + 1 == destCol || startCol - 1 == destCol {
+                return true
+            }
             for i in startCol + 1...destCol - 1 {
                 if pieceAt(col: i, row: startRow) != nil {
                     return false
@@ -157,6 +160,9 @@ struct Board: CustomStringConvertible {
             }
             return true
         } else if startCol == destCol {
+            if startRow + 1 == destRow || startRow - 1 == destRow {
+                return true
+            }
             for i in startRow + 1...destRow - 1 {
                 if pieceAt(col: startCol, row: i) != nil {
                     return false

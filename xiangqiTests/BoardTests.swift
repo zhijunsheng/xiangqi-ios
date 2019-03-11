@@ -53,6 +53,8 @@ class BoardTests: XCTestCase {
         XCTAssertFalse(board.canMove车(startCol: 0, startRow: 0, destCol: 1, destRow: 1))
         XCTAssertTrue(board.canMove车(startCol: 0, startRow: 0, destCol: 0, destRow: 9))
         XCTAssertFalse(board.canMove车(startCol: 0, startRow: 0, destCol: 8, destRow: 0))
+        XCTAssertTrue(board.canMove车(startCol: 0, startRow: 0, destCol: 0, destRow: 1))
+        XCTAssertTrue(board.canMove车(startCol: 0, startRow: 0, destCol: 1, destRow: 0))
     }
 
     func testMove马() {
