@@ -63,11 +63,12 @@ class ViewController: UIViewController {
             let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
             print("row is_____________________\(row)!, and col is________________\(col)!")
             
-            if board.canMove车(startCol: activePiece!.col, startRow: activePiece!.row, destCol: col, destRow: row) {
+            if board.canMoveTo(piece: activePiece!, destCol: col, destRow: row) {
                 print("access granted")
-                // call board.movePiece(..)
+                board.movePiece(startCol: activePiece!.col, startRow: activePiece!.row, destCol: col, destRow: row)
             } else {
                 print("access denied")
+                return
             }
 
             if var actualActivePiece = activePiece {

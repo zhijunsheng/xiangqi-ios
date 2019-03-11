@@ -17,6 +17,30 @@ struct Board: CustomStringConvertible {
     
     var pieces: [Piece] = []
     
+    func canMoveTo(piece: Piece, destCol: Int, destRow: Int) -> Bool {
+        if piece.row == destRow && piece.col == destCol {
+            return false
+        }
+        switch piece.rank {
+        case "j":
+            return canMove车(startCol: piece.col, startRow: piece.row, destCol: destCol, destRow: destRow)
+        case "m":
+            return canMove马(startCol: piece.col, startRow: piece.row, destCol: destCol, destRow: destRow)
+        case "x":
+            return canMove相(startCol: piece.col, startRow: piece.row, destCol: destCol, destRow: destRow)
+        case "s":
+            return canMove士(startCol: piece.col, startRow: piece.row, destCol: destCol, destRow: destRow)
+        case "b":
+            return canMove将(startCol: piece.col, startRow: piece.row, destCol: destCol, destRow: destRow)
+        case "p":
+            return canMove炮(startCol: piece.col, startRow: piece.row, destCol: destCol, destRow: destRow)
+        case "z":
+            return canMove卒(startCol: piece.col, startRow: piece.row, destCol: destCol, destRow: destRow)
+        default:
+            return false
+        }
+    }
+    
     mutating func movePiece(startCol: Int, startRow: Int, destCol: Int, destRow: Int) {
         guard let indexOfCandidate = indexOfPieceAt(col: startCol, row: startRow) else {
             return
