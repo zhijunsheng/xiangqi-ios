@@ -34,15 +34,16 @@ class ViewController: UIViewController {
         addInitPieces()
     }
     
-   
+    func nearestPoint(clicked: CGFloat) -> Int {
+        return Int(floor(clicked + 0.5))
+    }
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.began {
-            let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
-            let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
             
-            let col = Int(floor(uncheckedCol0 + 0.5))
-            let row = Int(floor(uncheckedRow0 + 0.5))
+            let col = nearestPoint(clicked: (sender.location(in: boardView).x - boardView.originX) / boardView.side)
+            let row = nearestPoint(clicked: (sender.location(in: boardView).y - boardView.originY) / boardView.side)
+            
             print("row is........................\(row)!, and col is.........................\(col)!")
             
             print(board.pieces.count)
@@ -60,12 +61,8 @@ class ViewController: UIViewController {
             guard let actualActivePiece = activePiece else {
                 return
             }
-            let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
-            let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
-//            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
-//            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
-            let col = Int(floor(uncheckedCol0 + 0.5))
-            let row = Int(floor(uncheckedRow0 + 0.5))
+            let col = nearestPoint(clicked: (sender.location(in: boardView).x - boardView.originX) / boardView.side)
+            let row = nearestPoint(clicked: (sender.location(in: boardView).y - boardView.originY) / boardView.side)
             print("row is_____________________\(row)!, and col is________________\(col)!")
             
             if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
