@@ -12,16 +12,16 @@ import XCTest
 class BoardTests: XCTestCase {
     
     //  _______________
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-    // |_______________|
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-    // |_|_|_|_|_|_|_|_|
-
+    // |_|_|_|\|/|_|_|_|`
+    // |_|_|_|/|\|_|_|_|`
+    // |_|_|_|_|_|_|_|_|`
+    // |_|_|_|_|_|_|_|_|`
+    // |this is a river|`
+    // |_|_|_|_|_|_|_|_|`
+    // |_|_|_|_|_|_|_|_|`
+    // |_|_|_|\|/|_|_|_|`
+    // |_|_|_|/|\|_|_|_|`
+    //  `````````````````
     // j m x s b s x m j
     // . . . . . . . . .
     // . p . . . . . p .
@@ -50,11 +50,27 @@ class BoardTests: XCTestCase {
         board.pieces.append(Piece(col: 4, row: 0, imageName: "bb", rank: "b", isRed: false))
         print(board)
         XCTAssertFalse(board.canMove车(startCol: 0, startRow: 0, destCol: 2, destRow: 1))
-        XCTAssertFalse(board.canMove车(startCol: 0, startRow: 0, destCol: 1, destRow: 1))
+        XCTAssertFalse(board.canMove车(startCol: 0, startRow: 0, destCol: 1, destRow: 1))        
         XCTAssertTrue(board.canMove车(startCol: 0, startRow: 0, destCol: 0, destRow: 9))
         XCTAssertFalse(board.canMove车(startCol: 0, startRow: 0, destCol: 8, destRow: 0))
         XCTAssertTrue(board.canMove车(startCol: 0, startRow: 0, destCol: 0, destRow: 1))
         XCTAssertTrue(board.canMove车(startCol: 0, startRow: 0, destCol: 1, destRow: 0))
+        // ___________________
+        // Φ . . . . . . . . \\
+        // . . . . . . . . . \\
+        // j . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        board = Board()
+        board.pieces.append(Piece(col: 0, row: 2, imageName: "bj", rank: "j", isRed: false))
+        print(board)
+        XCTAssertTrue(board.canMove车(startCol: 0, startRow: 2, destCol: 0, destRow: 0))
     }
 
     func testMove马() {

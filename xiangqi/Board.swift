@@ -177,17 +177,25 @@ struct Board: CustomStringConvertible {
             if startCol + 1 == destCol || startCol - 1 == destCol {
                 return true
             }
-            for i in startCol + 1...destCol - 1 {
+            
+            let start = min(startCol, destCol) + 1
+            let end = max(startCol, destCol) - 1
+            
+            for i in start...end {
                 if pieceAt(col: i, row: startRow) != nil {
                     return false
                 }
             }
             return true
         } else if startCol == destCol {
-            if startRow + 1 == destRow || startRow - 1 == destRow {
+            if abs(startRow - destRow) == 1 {
                 return true
             }
-            for i in startRow + 1...destRow - 1 {
+
+            let start = min(startRow, destRow) + 1
+            let end = max(startRow, destRow) - 1
+            
+            for i in start ... end {
                 if pieceAt(col: startCol, row: i) != nil {
                     return false
                 }
