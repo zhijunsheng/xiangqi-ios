@@ -12,7 +12,7 @@ class BoardView: UIView {
     
     let originX: CGFloat = 7.0
     let originY: CGFloat = 7.0
-    let side: CGFloat = 40.0
+    let side: CGFloat = 100.0
     let space: CGFloat = 4.0
     let line: CGFloat = 12.0
     

@@ -62,8 +62,10 @@ class ViewController: UIViewController {
             }
             let uncheckedCol0 = (sender.location(in: boardView).x - boardView.originX) / boardView.side
             let uncheckedRow0 = (sender.location(in: boardView).y - boardView.originY) / boardView.side
-            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
-            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
+//            let col = Int(uncheckedCol0) + (uncheckedCol0 < floor(uncheckedCol0) + 0.5 ? 0 : 1)
+//            let row = Int(uncheckedRow0) + (uncheckedRow0 < floor(uncheckedRow0) + 0.5 ? 0 : 1)
+            let col = Int(floor(uncheckedCol0 + 0.5))
+            let row = Int(floor(uncheckedRow0 + 0.5))
             print("row is_____________________\(row)!, and col is________________\(col)!")
             
             if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
