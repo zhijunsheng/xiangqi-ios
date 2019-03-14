@@ -73,34 +73,41 @@ class ViewController: UIViewController {
                 return
             }
 
-            if var actualActivePiece = activePiece {
+//            if var actualActivePiece = activePiece {
                 if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
                     let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
 
-                    actualActivePiece.col = col
-                    actualActivePiece.row = row
+//                    actualActivePiece.col = col
+//                    actualActivePiece.row = row
 
                     pieceImageView.center = pointAtColRow
-                    view.bringSubview(toFront: pieceImageView)
+//                    view.bringSubview(toFront: pieceImageView)
+                    
+                    // add a new entry in the dict
+                    let newKey = Piece(col: col, row: row, imageName: actualActivePiece.imageName, rank: actualActivePiece.rank, isRed: actualActivePiece.isRed)
+                    keyPieceValueImageView[newKey] = pieceImageView
+                    
+                    // remove a obsolete on from the
+                    keyPieceValueImageView.removeValue(forKey: actualActivePiece)
                 }
-                activePiece = nil
-            }
+//                activePiece = nil
+//            }
 
-            if let piece = board.pieceAt(col: col, row: row) {
-                print(piece)
-                if let pieceImageView = keyPieceValueImageView[piece] {
-                    let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
-                    pieceImageView.center = pointAtColRow
-                    view.bringSubview(toFront: pieceImageView)
-                }
-
-            } else {
-                print("I'm the creeper. Catch me if you can!")
-            }
-            
-            let lastPieceView = view.subviews.last!
-            let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
-            lastPieceView.center = pointAtColRow
+//            if let piece = board.pieceAt(col: col, row: row) {
+//                print(piece)
+//                if let pieceImageView = keyPieceValueImageView[piece] {
+//                    let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
+//                    pieceImageView.center = pointAtColRow
+//                    view.bringSubview(toFront: pieceImageView)
+//                }
+//
+//            } else {
+//                print("I'm the creeper. Catch me if you can!")
+//            }
+//
+//            let lastPieceView = view.subviews.last!
+//            let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
+//            lastPieceView.center = pointAtColRow
         }
         
     }

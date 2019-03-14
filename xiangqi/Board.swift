@@ -309,8 +309,7 @@ struct Board: CustomStringConvertible {
     // |_|_|_|_|_|_|
     // |_|_|_|_|_|_|
     // |_|_|_|_|_|_|
-    // *
-    
+    //
     
     func numberOfPiecesBetween(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Int {
         var pieces = 0
