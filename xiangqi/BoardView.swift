@@ -2,44 +2,48 @@ import UIKit
 
 class BoardView: UIView {
     
+    let originX: CGFloat = 13
+    let originY: CGFloat = 39
+    let cellSide: CGFloat = 7
+    
     override func draw(_ rect: CGRect) {
         let pen = UIBezierPath()
-
+        
         for i in 0..<10 {
-            pen.move(to: CGPoint(x: 10, y: i * 31 + 10))
-            pen.addLine(to: CGPoint(x: 8 * 31 + 10, y: i * 31 + 10))
+            pen.move(to: CGPoint(x: originX, y: CGFloat(i) * cellSide + originY))
+            pen.addLine(to: CGPoint(x: 8 * cellSide + originX, y: CGFloat(i) * cellSide + originY))
 
         }
         
-        for i in 0..<12 {
-            pen.move(to: CGPoint(x: i * 31 + 10, y: 10))
-            pen.addLine(to: CGPoint(x: i * 31 + 10, y: 4 * 31 + 10))
+        for i in 0..<9 {
+            pen.move(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: originY))
+            pen.addLine(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: 4 * cellSide + originY))
             
         }
         
-        for i in 0..<12 {
-            pen.move(to: CGPoint(x: i * 31 + 10, y: 5 * 31 + 10))
-            pen.addLine(to: CGPoint(x: i * 31 + 10, y: 9 * 31 + 10))
+        for i in 0..<9 {
+            pen.move(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: 5 * cellSide + originY))
+            pen.addLine(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: 9 * cellSide + originY))
             
         }
         
-        pen.move(to: CGPoint(x: 3 * 31 + 10, y: 10))
-        pen.addLine(to: CGPoint(x: 5 * 31 + 10, y: 2 * 31 + 10))
+        pen.move(to: CGPoint(x: 3 * cellSide + originX, y: originY))
+        pen.addLine(to: CGPoint(x: 5 * cellSide + originX, y: 2 * cellSide + originY))
         
-        pen.move(to: CGPoint(x: 5 * 31 + 10, y: 10))
-        pen.addLine(to: CGPoint(x: 3 * 31 + 10, y: 2 * 31 + 10))
+        pen.move(to: CGPoint(x: 5 * cellSide + originX, y: originY))
+        pen.addLine(to: CGPoint(x: 3 * cellSide + originX, y: 2 * cellSide + originY))
         
-        pen.move(to: CGPoint(x: 3 * 31 + 10, y: 7 * 31 + 10))
-        pen.addLine(to: CGPoint(x: 5 * 31 + 10, y: 9 * 31 + 10))
+        pen.move(to: CGPoint(x: 3 * cellSide + originX, y: 7 * cellSide + originY))
+        pen.addLine(to: CGPoint(x: 5 * cellSide + originX, y: 9 * cellSide + originY))
         
-        pen.move(to: CGPoint(x: 5 * 31 + 10, y: 7 * 31 + 10))
-        pen.addLine(to: CGPoint(x: 3 * 31 + 10, y: 9 * 31 + 10))
+        pen.move(to: CGPoint(x: 5 * cellSide + originX, y: 7 * cellSide + originY))
+        pen.addLine(to: CGPoint(x: 3 * cellSide + originX, y: 9 * cellSide + originY))
         
-        pen.move(to: CGPoint(x: 10, y: 4 * 31 + 10))
-        pen.addLine(to: CGPoint(x: 10, y: 5 * 31 + 10))
+        pen.move(to: CGPoint(x: originX, y: 4 * cellSide + originY))
+        pen.addLine(to: CGPoint(x: originX, y: 5 * cellSide + originY))
         
-        pen.move(to: CGPoint(x: 8 * 31 + 10, y: 4 * 31 + 10))
-        pen.addLine(to: CGPoint(x: 8 * 31 + 10, y: 5 * 31 + 10))
+        pen.move(to: CGPoint(x: 8 * cellSide + originX, y: 4 * cellSide + originY))
+        pen.addLine(to: CGPoint(x: 8 * cellSide + originX, y: 5 * cellSide + originY))
         
         
         pen.stroke()
