@@ -34,8 +34,13 @@ class BoardView: UIView {
         
         pen.move(to: CGPoint(x: 5 * 31 + 10, y: 7 * 31 + 10))
         pen.addLine(to: CGPoint(x: 3 * 31 + 10, y: 9 * 31 + 10))
-            
-  
+        
+        pen.move(to: CGPoint(x: 10, y: 4 * 31 + 10))
+        pen.addLine(to: CGPoint(x: 10, y: 5 * 31 + 10))
+        
+        pen.move(to: CGPoint(x: 8 * 31 + 10, y: 4 * 31 + 10))
+        pen.addLine(to: CGPoint(x: 8 * 31 + 10, y: 5 * 31 + 10))
+        
         
         pen.stroke()
         
