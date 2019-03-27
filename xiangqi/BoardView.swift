@@ -55,11 +55,61 @@ class BoardView: UIView {
         drawFlower(flowerX: 1, flowerY: 7)
         drawFlower(flowerX: 7, flowerY: 7)
         drawFlower(flowerX: 2, flowerY: 6)
+        
+        drawRightHalfFlower(flowerX: 8, flowerY: 3)
+        drawRightHalfFlower(flowerX: 8, flowerY: 6)
+        
+        drawLeftHalfFlower(flowerX: 0, flowerY: 3)
+        drawLeftHalfFlower(flowerX: 0, flowerY: 6)
     }
     
-    // draw a flower, 5: flowerGap, 20: flowerLength
+    // left, right, half
+    
+    func drawLeftHalfFlower(flowerX: Int, flowerY: Int) {
+        
+        let flowerGap: CGFloat = 5
+        let flowerLength: CGFloat = 15
+        
+        let pen = UIBezierPath()
+        
+        pen.move(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX + flowerGap, y: CGFloat(flowerY) * cellSide + originY - flowerLength))
+        pen.addLine(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX + flowerGap, y: CGFloat(flowerY) * cellSide + originY - flowerGap))
+        
+        pen.move(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX + flowerLength, y: CGFloat(flowerY) * cellSide + originY - flowerGap))
+        pen.addLine(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX + flowerGap, y: CGFloat(flowerY) * cellSide + originY - flowerGap))
+        
+        pen.move(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX + flowerLength, y: CGFloat(flowerY) * cellSide + originY + flowerGap))
+        pen.addLine(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX + flowerGap, y: CGFloat(flowerY) * cellSide + originY + flowerGap))
+        
+        pen.move(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX + flowerGap, y: CGFloat(flowerY) * cellSide + originY + flowerLength))
+        pen.addLine(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX + flowerGap, y: CGFloat(flowerY) * cellSide + originY + flowerGap))
+        
+        pen.stroke()
+    }
+    
+    func drawRightHalfFlower(flowerX: Int, flowerY: Int) {
+        
+        let flowerGap: CGFloat = 5
+        let flowerLength: CGFloat = 15
+        
+        let pen = UIBezierPath()
+        
+        pen.move(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX - flowerGap, y: CGFloat(flowerY) * cellSide + originY - flowerLength))
+        pen.addLine(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX - flowerGap, y: CGFloat(flowerY) * cellSide + originY - flowerGap))
+        
+        pen.move(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX - flowerLength, y: CGFloat(flowerY) * cellSide + originY - flowerGap))
+        pen.addLine(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX - flowerGap, y: CGFloat(flowerY) * cellSide + originY - flowerGap))
+        
+        pen.move(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX - flowerGap, y: CGFloat(flowerY) * cellSide + originY + flowerLength))
+        pen.addLine(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX - flowerGap, y: CGFloat(flowerY) * cellSide + originY + flowerGap))
+        
+        pen.move(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX - flowerLength, y: CGFloat(flowerY) * cellSide + originY + flowerGap))
+        pen.addLine(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX - flowerGap, y: CGFloat(flowerY) * cellSide + originY + flowerGap))
+        
+        pen.stroke()
+    }
    
-    func drawFlower(flowerX: Int, flowerY : Int) {
+    func drawFlower(flowerX: Int, flowerY: Int) {
 
         let flowerGap: CGFloat = 5
         let flowerLength: CGFloat = 15
@@ -67,7 +117,6 @@ class BoardView: UIView {
         let pen = UIBezierPath()
         
         pen.move(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX - flowerGap, y: CGFloat(flowerY) * cellSide + originY - flowerLength))
-        
         pen.addLine(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX - flowerGap, y: CGFloat(flowerY) * cellSide + originY - flowerGap))
         
         pen.move(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX - flowerLength, y: CGFloat(flowerY) * cellSide + originY - flowerGap))
