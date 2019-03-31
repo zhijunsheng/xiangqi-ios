@@ -65,6 +65,8 @@ class ViewController: UIViewController {
             let row = nearestPoint(clicked: (sender.location(in: boardView).y - boardView.originY) / boardView.side)
             print("row is_____________________\(row)!, and col is________________\(col)!")
             
+            let target = board.pieceAt(col: col, row: row)
+            
             if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
                 print("access granted")
                 board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
@@ -72,6 +74,9 @@ class ViewController: UIViewController {
                 print("access denied")
                 return
             }
+            
+            
+            
             
 //            if var actualActivePiece = activePiece {
             if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
@@ -88,7 +93,16 @@ class ViewController: UIViewController {
                 keyPieceValueImageView[newKey] = pieceImageView
                 
                 // remove a obsolete on from the
-                keyPieceValueImageView.removeValue(forKey: actualActivePiece)
+//                keyPieceValueImageView.removeValue(forKey: actualActivePiece)
+//                keyPieceValueImageView.removeValue(forKey: target!)
+//                keyPieceValueImageView.removeAll()
+                
+                let viewToRemove = keyPieceValueImageView[target!]
+                viewToRemove!.removeFromSuperview()
+                
+                print(keyPieceValueImageView.count)
+                
+                boardView.setNeedsDisplay()
             }
         }
         
