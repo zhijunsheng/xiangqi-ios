@@ -5,7 +5,7 @@ class BoardView: UIView {
     let originX: CGFloat = 30
     let originY: CGFloat = 30
     let cellSide: CGFloat = 29
-    let gap: CGFloat = 20
+    let gap: CGFloat = 15
     
     
     // refactored 重构
@@ -66,22 +66,22 @@ class BoardView: UIView {
         drawFlower(flowerX: 7, flowerY: 7)
         drawFlower(flowerX: 2, flowerY: 6)
         
-        drawRightHalfFlower(flowerX: 8, flowerY: 3)
-        drawRightHalfFlower(flowerX: 8, flowerY: 6)
+        drawLeftHalfFlower(flowerX: 8, flowerY: 3)
+        drawLeftHalfFlower(flowerX: 8, flowerY: 6)
         
-        drawLeftHalfFlower(flowerX: 0, flowerY: 3)
-        drawLeftHalfFlower(flowerX: 0, flowerY: 6)
+        drawRightHalfFlower(flowerX: 0, flowerY: 3)
+        drawRightHalfFlower(flowerX: 0, flowerY: 6)
     }
     
     // left, right, half
     
-    func drawLeftHalfFlower(flowerX: Int, flowerY: Int) {
+    func drawRightHalfFlower(flowerX: Int, flowerY: Int) {
         
-        let flowerGap: CGFloat = 5
-        let flowerLength: CGFloat = 15
+        let flowerGap: CGFloat = cellSide / 8
+        let flowerLength: CGFloat = cellSide / 3
         
         let pen = UIBezierPath()
-        
+    
         pen.move(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX + flowerGap, y: CGFloat(flowerY) * cellSide + originY - flowerLength))
         pen.addLine(to: CGPoint(x: CGFloat(flowerX) * cellSide + originX + flowerGap, y: CGFloat(flowerY) * cellSide + originY - flowerGap))
         
@@ -98,10 +98,10 @@ class BoardView: UIView {
         pen.stroke()
     }
     
-    func drawRightHalfFlower(flowerX: Int, flowerY: Int) {
+    func drawLeftHalfFlower(flowerX: Int, flowerY: Int) {
         
-        let flowerGap: CGFloat = 5
-        let flowerLength: CGFloat = 15
+        let flowerGap: CGFloat = cellSide / 8
+        let flowerLength: CGFloat = cellSide / 3
         
         let pen = UIBezierPath()
         
@@ -122,8 +122,8 @@ class BoardView: UIView {
     }
    
     func drawFlower(flowerX: Int, flowerY: Int) {
-        drawLeftHalfFlower(flowerX: flowerX, flowerY: flowerY)
         drawRightHalfFlower(flowerX: flowerX, flowerY: flowerY)
+        drawLeftHalfFlower(flowerX: flowerX, flowerY: flowerY)
     }
     
     func drawFrame() {
