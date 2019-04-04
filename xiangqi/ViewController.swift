@@ -55,6 +55,12 @@ class ViewController: UIViewController {
         }
         
         if sender.state == UIGestureRecognizerState.changed {
+            guard let activePiece = activePiece, let pieceImageView = keyPieceValueImageView[activePiece] else {
+                return
+            }
+            let translation = sender.translation(in: self.view)
+            pieceImageView.center = CGPoint(x: pieceImageView.center.x + translation.x, y: pieceImageView.center.y + translation.y)
+            sender.setTranslation(CGPoint.zero, in: self.view)
         }
         
         if sender.state == UIGestureRecognizerState.ended {
