@@ -65,7 +65,7 @@ class ViewController: UIViewController {
             let row = nearestPoint(clicked: (sender.location(in: boardView).y - boardView.originY) / boardView.side)
             print("row is_____________________\(row)!, and col is________________\(col)!")
             
-            let target = board.pieceAt(col: col, row: row)
+            let potentialTarget: Piece? = board.pieceAt(col: col, row: row)
             
             if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
                 print("access granted")
@@ -75,37 +75,20 @@ class ViewController: UIViewController {
                 return
             }
             
-            
-            
-            
-//            if var actualActivePiece = activePiece {
             if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
                 let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
                 
-//                    actualActivePiece.col = col
-//                    actualActivePiece.row = row
-                
                 pieceImageView.center = pointAtColRow
-//                    view.bringSubview(toFront: pieceImageView)
-                
-                // add a new entry in the dict
                 let newKey = Piece(col: col, row: row, imageName: actualActivePiece.imageName, rank: actualActivePiece.rank, isRed: actualActivePiece.isRed)
                 keyPieceValueImageView[newKey] = pieceImageView
                 
-                // remove a obsolete on from the
-//                keyPieceValueImageView.removeValue(forKey: actualActivePiece)
-//                keyPieceValueImageView.removeValue(forKey: target!)
-//                keyPieceValueImageView.removeAll()
-                
-                let viewToRemove = keyPieceValueImageView[target!]
-                viewToRemove!.removeFromSuperview()
-                
-                print(keyPieceValueImageView.count)
-                
-                boardView.setNeedsDisplay()
+                if let potentialTarget = potentialTarget, let viewToRemove = keyPieceValueImageView[potentialTarget] {
+                    viewToRemove.removeFromSuperview()
+                    
+                    keyPieceValueImageView.removeValue(forKey: potentialTarget)
+                }
             }
         }
-        
     }
     
     func addPiece(image: String, row: Int, col: Int, rank: String, isRed: Bool) {
