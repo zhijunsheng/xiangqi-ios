@@ -388,6 +388,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = xiangqi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldthumb.xiangqi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -403,6 +404,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = xiangqi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldthumb.xiangqi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
