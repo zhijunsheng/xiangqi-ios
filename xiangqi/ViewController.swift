@@ -11,6 +11,8 @@ class ViewController: UIViewController {
     var board = Board()
     var boardX: CGFloat = 0
     var boardY: CGFloat = 0
+    var isRedTurn: Bool = true
+    
     
     //var activePiececol: Int = 0
     //var row0: Int = 0
@@ -51,7 +53,6 @@ class ViewController: UIViewController {
             if let activePieceCandiate = board.pieceAt(col: col, row: row) {
                 activePiece = activePieceCandiate
             }
-            
         }
         
         if sender.state == UIGestureRecognizerState.changed {
@@ -73,12 +74,36 @@ class ViewController: UIViewController {
             
             let potentialTarget: Piece? = board.pieceAt(col: col, row: row)
             
-            if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
-                print("access granted")
-                board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
-            } else {
-                print("access denied")
-                return
+            if isRedTurn == true {
+                if activePiece?.isRed == nil || activePiece?.isRed == false {
+                    print("wrong side")
+                    isRedTurn = true
+                    return
+                } else if activePiece?.isRed == true {
+                    if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
+                        print("access granted")
+                        board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
+                        isRedTurn = false
+                    } else {
+                        print("access denied")
+                        return
+                    }
+                }
+            } else if isRedTurn == false {
+                if activePiece?.isRed == nil || activePiece?.isRed == true {
+                    print("wrong side")
+                    isRedTurn = false
+                    return
+                } else if activePiece?.isRed == false {
+                    if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
+                        print("access granted")
+                        board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
+                        isRedTurn = true
+                    } else {
+                        print("access denied")
+                        return
+                    }
+                }
             }
             
             if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
