@@ -28,12 +28,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        boardX = boardView.frame.origin.x
-        boardY = boardView.frame.origin.y
-        
 //        print(boardView)
         
         addInitPieces()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        boardX = boardView.frame.origin.x + boardView.originX
+        boardY = boardView.frame.origin.y + boardView.originY
+        boardView.setNeedsDisplay()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        boardX = boardView.frame.origin.x + boardView.originX
+        boardY = boardView.frame.origin.y + boardView.originY
     }
     
     func nearestPoint(clicked: CGFloat) -> Int {

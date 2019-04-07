@@ -10,13 +10,16 @@ import UIKit
 
 class BoardView: UIView {
     
-    let originX: CGFloat = 7.0
-    let originY: CGFloat = 7.0
+    var originX: CGFloat = 0.0
+    var originY: CGFloat = 0.0
     let side: CGFloat = 40.0
     let space: CGFloat = 4.0
     let line: CGFloat = 12.0
     
     override func draw(_ rect: CGRect) {
+        
+        originX = (bounds.width - side * 8) / 2
+        originY = (bounds.height - side * 9) / 2
         
         let pen = UIBezierPath()
         // horizontal
