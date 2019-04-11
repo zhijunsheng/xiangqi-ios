@@ -12,12 +12,15 @@ class BoardView: UIView {
     
     var originX: CGFloat = 0.0
     var originY: CGFloat = 0.0
-    let side: CGFloat = 40.0
-    let space: CGFloat = 4.0
-    let line: CGFloat = 12.0
+    var side: CGFloat = 40.0
+    var space: CGFloat = 4.0
+    var line: CGFloat = 12.0
     
     override func draw(_ rect: CGRect) {
         
+        side = bounds.width / 9
+        space = side / 10
+        line = side / 3.75
         originX = (bounds.width - side * 8) / 2
         originY = (bounds.height - side * 9) / 2
         
