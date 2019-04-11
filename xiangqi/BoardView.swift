@@ -18,8 +18,8 @@ class BoardView: UIView {
     
     override func draw(_ rect: CGRect) {
         
-        originX = (bounds.width - side * 9) / 2
-        originY = (bounds.height - side * 10) / 2
+        originX = (bounds.width - side * 8) / 2
+        originY = (bounds.height - side * 9) / 2
         
         let pen = UIBezierPath()
         // horizontal
