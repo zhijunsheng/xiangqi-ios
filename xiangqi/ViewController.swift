@@ -9,8 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     var board = Board()
-    var boardX: CGFloat = 0
-    var boardY: CGFloat = 0
+    var boardViewX: CGFloat = 0
+    var boardViewY: CGFloat = 0
     var isRedTurn: Bool = true
     
     
@@ -32,8 +32,8 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        boardX = boardView.frame.origin.x
-        boardY = boardView.frame.origin.y
+        boardViewX = boardView.frame.origin.x
+        boardViewY = boardView.frame.origin.y
         addInitPieces()
     }
     
@@ -108,7 +108,7 @@ class ViewController: UIViewController {
             }
             
             if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
-                let pointAtColRow = CGPoint(x: boardX + boardView.originX + CGFloat(col) * boardView.side, y: boardY + boardView.originY + CGFloat(row) * boardView.side)
+                let pointAtColRow = CGPoint(x: boardViewX + boardView.originX + CGFloat(col) * boardView.side, y: boardViewY + boardView.originY + CGFloat(row) * boardView.side)
                 
                 pieceImageView.center = pointAtColRow
                 let newKey = Piece(col: col, row: row, imageName: actualActivePiece.imageName, rank: actualActivePiece.rank, isRed: actualActivePiece.isRed)
@@ -128,7 +128,7 @@ class ViewController: UIViewController {
         board.pieces.append(piece)
         
         let pieceImage = UIImage(named: image)
-        let pieceImageView: UIImageView = UIImageView(frame: CGRect(x: boardX + boardView.originX + boardView.side * (CGFloat(col) - 0.5), y: boardY + boardView.originY + boardView.side * (CGFloat(row) - 0.5), width: boardView.side, height: boardView.side))
+        let pieceImageView: UIImageView = UIImageView(frame: CGRect(x: boardViewX + boardView.originX + boardView.side * (CGFloat(col) - 0.5), y: boardViewY + boardView.originY + boardView.side * (CGFloat(row) - 0.5), width: boardView.side, height: boardView.side))
         pieceImageView.image = pieceImage
         view.addSubview(pieceImageView)
         
