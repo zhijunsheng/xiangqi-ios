@@ -84,6 +84,8 @@ class ViewController: UIViewController {
             
             let potentialTarget: Piece? = board.pieceAt(col: col, row: row)
             
+            
+            
             if isRedTurn {
                 if !actualActivePiece.isRed {
                     print("wrong side")
@@ -92,7 +94,6 @@ class ViewController: UIViewController {
                     if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
                         print("access granted")
                         board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
-                        isRedTurn = false
                     }
                 }
             } else {
@@ -102,7 +103,6 @@ class ViewController: UIViewController {
                     if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
                         print("access granted")
                         board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
-                        isRedTurn = true
                     }
                 }
             }
@@ -114,6 +114,9 @@ class ViewController: UIViewController {
                     pieceImageView.center = startPoint
                     return
                 }
+                
+                isRedTurn = !isRedTurn
+
                 pieceImageView.center = pointAtColRow
                 let newKey = Piece(col: col, row: row, imageName: actualActivePiece.imageName, rank: actualActivePiece.rank, isRed: actualActivePiece.isRed)
                 keyPieceValueImageView[newKey] = pieceImageView
