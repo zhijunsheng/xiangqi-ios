@@ -83,40 +83,19 @@ class ViewController: UIViewController {
             print("row is_____________________\(row)!, and col is________________\(col)!")
             
             let potentialTarget: Piece? = board.pieceAt(col: col, row: row)
-            
-            
-            
-            if isRedTurn {
-                if !actualActivePiece.isRed {
-                    print("wrong side")
-//                    return
-                } else if activePiece?.isRed == true {
-                    if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
-                        print("access granted")
-                        board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
-                    }
-                }
-            } else {
-                if actualActivePiece.isRed {
-                    print("wrong side")
-                } else if activePiece?.isRed == false {
-                    if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
-                        print("access granted")
-                        board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
-                    }
-                }
+    
+            if actualActivePiece.isRed == isRedTurn && board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
+                print("access granted")
+                board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
+            } else if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
+                let startPoint = CGPoint(x: boardViewX + boardView.originX + CGFloat(pieceCol) * boardView.side, y: boardViewY + boardView.originY + CGFloat(pieceRow) * boardView.side)
+                pieceImageView.center = startPoint
+                return
             }
             
             if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
                 let pointAtColRow = CGPoint(x: boardViewX + boardView.originX + CGFloat(col) * boardView.side, y: boardViewY + boardView.originY + CGFloat(row) * boardView.side)
-                if actualActivePiece.isRed != isRedTurn {
-                    let startPoint = CGPoint(x: boardViewX + boardView.originX + CGFloat(pieceCol) * boardView.side, y: boardViewY + boardView.originY + CGFloat(pieceRow) * boardView.side)
-                    pieceImageView.center = startPoint
-                    return
-                }
-                
                 isRedTurn = !isRedTurn
-
                 pieceImageView.center = pointAtColRow
                 let newKey = Piece(col: col, row: row, imageName: actualActivePiece.imageName, rank: actualActivePiece.rank, isRed: actualActivePiece.isRed)
                 keyPieceValueImageView[newKey] = pieceImageView
