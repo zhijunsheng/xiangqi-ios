@@ -14,9 +14,12 @@ class ViewController: UIViewController {
     var isRedTurn: Bool = true
     
     
+    
     //var activePiececol: Int = 0
     //var row0: Int = 0
     var activePiece: Piece?
+    var pieceCol: Int = -2019
+    var pieceRow: Int = -2019
     
     var keyPieceValueImageView: [Piece: UIImageView] = [:]
     
@@ -44,6 +47,9 @@ class ViewController: UIViewController {
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.began {
             
+            
+            
+            
             let col = nearestPoint(clicked: (sender.location(in: boardView).x - boardView.originX) / boardView.side)
             let row = nearestPoint(clicked: (sender.location(in: boardView).y - boardView.originY) / boardView.side)
             
@@ -53,8 +59,11 @@ class ViewController: UIViewController {
             
             if let activePieceCandiate = board.pieceAt(col: col, row: row) {
                 activePiece = activePieceCandiate
+                pieceCol = activePieceCandiate.col
+                pieceRow = activePieceCandiate.row
             }
         }
+        
         
         if sender.state == UIGestureRecognizerState.changed {
             guard let activePiece = activePiece, let pieceImageView = keyPieceValueImageView[activePiece] else {
@@ -75,41 +84,36 @@ class ViewController: UIViewController {
             
             let potentialTarget: Piece? = board.pieceAt(col: col, row: row)
             
-            if isRedTurn == true {
-                if activePiece?.isRed == nil || activePiece?.isRed == false {
+            if isRedTurn {
+                if !actualActivePiece.isRed {
                     print("wrong side")
-                    isRedTurn = true
-                    return
+//                    return
                 } else if activePiece?.isRed == true {
                     if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
                         print("access granted")
                         board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
                         isRedTurn = false
-                    } else {
-                        print("access denied")
-                        return
                     }
                 }
-            } else if isRedTurn == false {
-                if activePiece?.isRed == nil || activePiece?.isRed == true {
+            } else {
+                if actualActivePiece.isRed {
                     print("wrong side")
-                    isRedTurn = false
-                    return
                 } else if activePiece?.isRed == false {
                     if board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
                         print("access granted")
                         board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
                         isRedTurn = true
-                    } else {
-                        print("access denied")
-                        return
                     }
                 }
             }
             
             if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
                 let pointAtColRow = CGPoint(x: boardViewX + boardView.originX + CGFloat(col) * boardView.side, y: boardViewY + boardView.originY + CGFloat(row) * boardView.side)
-                
+                if actualActivePiece.isRed != isRedTurn {
+                    let startPoint = CGPoint(x: boardViewX + boardView.originX + CGFloat(pieceCol) * boardView.side, y: boardViewY + boardView.originY + CGFloat(pieceRow) * boardView.side)
+                    pieceImageView.center = startPoint
+                    return
+                }
                 pieceImageView.center = pointAtColRow
                 let newKey = Piece(col: col, row: row, imageName: actualActivePiece.imageName, rank: actualActivePiece.rank, isRed: actualActivePiece.isRed)
                 keyPieceValueImageView[newKey] = pieceImageView
