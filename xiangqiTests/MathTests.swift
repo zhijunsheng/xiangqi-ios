@@ -37,4 +37,25 @@ class Swift: XCTestCase {
         }
         XCTAssertEqual(count, 252)
     }
+//    func testQ26() {
+//        <#statements#>
+//    }
+//    func testQ77() {
+//        var a: Int
+//        for a in 1...9 {
+//            for b in 1...9 {
+//                for c in 1...9 {
+//                    for d in 1...9 {
+//                        for i in 1...a {
+//                            if a % i != 0 {
+//                                if 1 / a =
+//                            } else {
+//                                continue
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 }

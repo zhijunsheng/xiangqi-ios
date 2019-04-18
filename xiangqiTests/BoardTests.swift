@@ -258,6 +258,28 @@ class BoardTests: XCTestCase {
         XCTAssertFalse(board.canMove炮(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
     }
     
+    // ___________________
+    // . m . . . . . . . \\
+    // . . . . . . . . . \\
+    // . p . . . . . . . \\
+    // . . . . . . . . . \\
+    // . . . . . . . . . \\
+    // . . . . . . . . . \\
+    // . . . . . . . . . \\
+    // . P . . . . . . . \\
+    // . . . . . . . . . \\
+    // . . . . . . . . . \\
+    // ___________________
+    
+    func testCannonCrash() {
+        var board = Board()
+        board.pieces.append(Piece(col: 1, row: 7, imageName: "rp", rank: "p", isRed: true))
+        board.pieces.append(Piece(col: 1, row: 2, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.append(Piece(col: 1, row: 0, imageName: "bm", rank: "m", isRed: false))
+        print(board)
+        XCTAssertEqual(1, board.numberOfPiecesBetween(startCol: 1, startRow: 7, destCol: 1, destRow: 0))
+    }
+    
     func testNumberOfPiecesBetweenVertical() {
         // numberOfPiecesBetween
         

@@ -313,24 +313,29 @@ struct Board: CustomStringConvertible {
     
     func numberOfPiecesBetween(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Int {
         var pieces = 0
-        let smaller = min(startCol, destCol)
-        let larger = max(startCol, destCol)
+        var smaller = min(startCol + 1, destCol - 1)
+        var larger = max(startCol + 1, destCol - 1)
         
         if startCol != destCol && startRow == destRow {
-            for i in smaller + 1...larger - 1 {
+            for i in smaller...larger {
                 if pieceAt(col: i, row: startRow) != nil {
                     pieces += 1
                 }
             }
         } else if startCol == destCol && startRow != destRow {
-            let smaller = min(startRow, destRow)
-            let larger = max(startRow, destRow)
+            smaller = min(startRow, destRow)
+            larger = max(startRow, destRow)
             
+            if larger - smaller <= 1 {
+                return 0
+            }
+            // TODO: crash (boom)
             for i in smaller + 1...larger - 1 {
                 if pieceAt(col: startCol, row: i) != nil {
                     pieces += 1
                 }
             }
+            
         }
         return pieces
     }
