@@ -312,30 +312,38 @@ struct Board: CustomStringConvertible {
     //
     
     func numberOfPiecesBetween(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Int {
-        var pieces = 0
-        var smaller = min(startCol + 1, destCol - 1)
-        var larger = max(startCol + 1, destCol - 1)
+        guard startCol == destCol || startRow == destRow else {
+            return 0
+        }
         
-        if startCol != destCol && startRow == destRow {
-            for i in smaller...larger {
-                if pieceAt(col: i, row: startRow) != nil {
-                    pieces += 1
-                }
-            }
-        } else if startCol == destCol && startRow != destRow {
+        var smaller: Int
+        var larger: Int
+        if startRow == destRow {
+            smaller = min(startCol, destCol)
+            larger = max(startCol, destCol)
+        } else {
             smaller = min(startRow, destRow)
             larger = max(startRow, destRow)
-            
-            if larger - smaller <= 1 {
-                return 0
-            }
-            // TODO: crash (boom)
-            for i in smaller + 1...larger - 1 {
-                if pieceAt(col: startCol, row: i) != nil {
+        }
+        
+        return numberOfPiecesBetween(smaller: smaller, larger: larger, isCol: startCol == destCol, indexOfColOrRow: startRow)
+    }
+    
+    func numberOfPiecesBetween(smaller: Int, larger: Int, isCol: Bool, indexOfColOrRow: Int) -> Int {
+        var pieces = 0
+        if larger - smaller <= 1 {
+            return 0
+        }
+        for i in smaller + 1...larger - 1 {
+            if isCol {
+                if pieceAt(col: i, row: indexOfColOrRow) != nil {
+                    pieces += 1
+                }
+            } else {
+                if pieceAt(col: indexOfColOrRow, row: i) != nil {
                     pieces += 1
                 }
             }
-            
         }
         return pieces
     }

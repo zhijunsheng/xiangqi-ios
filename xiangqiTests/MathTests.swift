@@ -58,4 +58,10 @@ class Swift: XCTestCase {
 //            }
 //        }
 //    }
+    
+    func testNum() {
+        var num = 0
+        num = (420 * 820 / 20) % 3
+        print(num)
+    }
 }
