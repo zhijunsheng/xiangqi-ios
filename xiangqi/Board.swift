@@ -315,7 +315,6 @@ struct Board: CustomStringConvertible {
         guard startCol == destCol || startRow == destRow else {
             return 0
         }
-        
         var smaller: Int
         var larger: Int
         if startRow == destRow {
@@ -326,23 +325,18 @@ struct Board: CustomStringConvertible {
             larger = max(startRow, destRow)
         }
         
-        return numberOfPiecesBetween(smaller: smaller, larger: larger, isCol: startCol == destCol, indexOfColOrRow: startRow)
+        return numberOfPiecesBetween(smaller: smaller, larger: larger, alongCol: startCol == destCol, indexOfColOrRow: startCol == destCol ? startCol : startRow)
     }
     
-    func numberOfPiecesBetween(smaller: Int, larger: Int, isCol: Bool, indexOfColOrRow: Int) -> Int {
+    func numberOfPiecesBetween(smaller: Int, larger: Int, alongCol: Bool, indexOfColOrRow: Int) -> Int {
         var pieces = 0
         if larger - smaller <= 1 {
             return 0
         }
+        
         for i in smaller + 1...larger - 1 {
-            if isCol {
-                if pieceAt(col: i, row: indexOfColOrRow) != nil {
-                    pieces += 1
-                }
-            } else {
-                if pieceAt(col: indexOfColOrRow, row: i) != nil {
-                    pieces += 1
-                }
+            if pieceAt(col: alongCol ? indexOfColOrRow : i, row: alongCol ? i : indexOfColOrRow) != nil {
+                pieces += 1
             }
         }
         return pieces

@@ -288,13 +288,13 @@ class BoardTests: XCTestCase {
         board.pieces.append(Piece(col: 1, row: 2, imageName: "bj", rank: "j", isRed: false))
         board.pieces.append(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: true))
         print(board)
-//        XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 3, destRow: 2))
-//        XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 2, destRow: 2))
+        XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 3, destRow: 2))
+        XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 2, destRow: 2))
         XCTAssertEqual(1, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
-//        XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 8, destRow: 1))
+        XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 8, destRow: 1))
         
-        // add another piece to test number == 2
-//        board.pieces.append(Piece(col: 1, row: 3, imageName: "bb", rank: "b", isRed: false))
+//         add another piece to test number == 2
+        board.pieces.append(Piece(col: 1, row: 3, imageName: "bb", rank: "b", isRed: false))
         XCTAssertEqual(2, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
     }
     
