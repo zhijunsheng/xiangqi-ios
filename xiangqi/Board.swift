@@ -15,7 +15,7 @@ struct Board: CustomStringConvertible {
     static let cols = 9
     static let rows = 10
     
-    var pieces: [Piece] = []
+    var pieces: Set<Piece> = Set<Piece>()
     
     func canMoveTo(piece: Piece, destCol: Int, destRow: Int) -> Bool {
         if piece.row == destRow && piece.col == destCol {
@@ -42,81 +42,63 @@ struct Board: CustomStringConvertible {
     }
     
     mutating func movePiece(startCol: Int, startRow: Int, destCol: Int, destRow: Int) {
-        guard let indexOfCandidate = indexOfPieceAt(col: startCol, row: startRow) else {
-            return
-        }
-        let indexOfTarget = indexOfPieceAt(col: destCol, row: destRow)
-        var candidate = pieces[indexOfCandidate]
+        let candidate = pieceAt(col: startCol, row: startRow)!
         if candidate.rank == "j" && canMove车(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
-            if indexOfTarget != nil {
-                pieces.remove(at: indexOfTarget!)
+            if let target = pieceAt(col: destCol, row: destRow) {
+                pieces.remove(target)
             }
-            candidate.col = destCol
-            candidate.row = destRow
-            pieces.remove(at: indexOfCandidate)
-            pieces.append(candidate)
+            pieces.remove(candidate)                                                                                                                                                                                                                                                                                                                                                                                     
+            pieces.insert(Piece(col: destCol, row: destRow, imageName: candidate.imageName, rank: candidate.rank, isRed: candidate.isRed))
         } else if candidate.rank == "m" && canMove马(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
-            if indexOfTarget != nil {
-                pieces.remove(at: indexOfTarget!)
+            if let target = pieceAt(col: destCol, row: destRow) {
+                pieces.remove(target)
             }
-            candidate.col = destCol
-            candidate.row = destRow
-            pieces.remove(at: indexOfCandidate)
-            pieces.append(candidate)
+            pieces.remove(candidate)
+            pieces.insert(Piece(col: destCol, row: destRow, imageName: candidate.imageName, rank: candidate.rank, isRed: candidate.isRed))
         } else if candidate.rank == "x" && canMove相(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
-            if indexOfTarget != nil {
-                pieces.remove(at: indexOfTarget!)
+            if let target = pieceAt(col: destCol, row: destRow) {
+                pieces.remove(target)
             }
-            candidate.col = destCol
-            candidate.row = destRow
-            pieces.remove(at: indexOfCandidate)
-            pieces.append(candidate)
+            pieces.remove(candidate)
+            pieces.insert(Piece(col: destCol, row: destRow, imageName: candidate.imageName, rank: candidate.rank, isRed: candidate.isRed))
         } else if candidate.rank == "s" && canMove士(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
-            if indexOfTarget != nil {
-                pieces.remove(at: indexOfTarget!)
+            if let target = pieceAt(col: destCol, row: destRow) {
+                pieces.remove(target)
             }
-            candidate.col = destCol
-            candidate.row = destRow
-            pieces.remove(at: indexOfCandidate)
-            pieces.append(candidate)
+            pieces.remove(candidate)
+            pieces.insert(Piece(col: destCol, row: destRow, imageName: candidate.imageName, rank: candidate.rank, isRed: candidate.isRed))
         } else if candidate.rank == "b" && canMove将(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
-            if indexOfTarget != nil {
-                pieces.remove(at: indexOfTarget!)
+            if let target = pieceAt(col: destCol, row: destRow) {
+                pieces.remove(target)
             }
-            candidate.col = destCol
-            candidate.row = destRow
-            pieces.remove(at: indexOfCandidate)
-            pieces.append(candidate)
+            pieces.remove(candidate)
+            pieces.insert(Piece(col: destCol, row: destRow, imageName: candidate.imageName, rank: candidate.rank, isRed: candidate.isRed))
         } else if candidate.rank == "p" && canMove炮(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
-            if indexOfTarget != nil {
-                pieces.remove(at: indexOfTarget!)
+            if let target = pieceAt(col: destCol, row: destRow) {
+                pieces.remove(target)
             }
-            candidate.col = destCol
-            candidate.row = destRow
-            pieces.remove(at: indexOfCandidate)
-            pieces.append(candidate)
+            pieces.remove(candidate)
+            pieces.insert(Piece(col: destCol, row: destRow, imageName: candidate.imageName, rank: candidate.rank, isRed: candidate.isRed))
         } else if candidate.rank == "z" && canMove卒(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) {
-            if indexOfTarget != nil {
-                pieces.remove(at: indexOfTarget!)
+            if let target = pieceAt(col: destCol, row: destRow) {
+                pieces.remove(target)
             }
-            candidate.col = destCol
-            candidate.row = destRow
-            pieces.remove(at: indexOfCandidate)
-            pieces.append(candidate)
+            pieces.remove(candidate)
+            pieces.insert(Piece(col: destCol, row: destRow, imageName: candidate.imageName, rank: candidate.rank, isRed: candidate.isRed))
         }
     }
     
-    func indexOfPieceAt(col: Int, row: Int) -> Int? {
-        guard pieceAt(col: col, row: row) != nil else {
-            return nil
-        }
-        for i in 0..<pieces.count {
-            if col == pieces[i].col && row == pieces[i].row {
-                return i
-            }
-        }
-        return nil
-    }
+//    func indexOfPieceAt(col: Int, row: Int) -> Int? {
+//        guard pieceAt(col: col, row: row) != nil else {
+//            return nil
+//        }
+//        for i in 0..<pieces.count {
+//            if col == pieces[i].col && row == pieces[i].row {
+//                return i
+//            }
+//        }
+//        return nil
+//    }
     
     // j m x s b s x m j
     // . . . . . . . . .

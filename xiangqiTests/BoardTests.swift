@@ -308,6 +308,8 @@ class BoardTests: XCTestCase {
         XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 2, destRow: 3))
         XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 2, destRow: 2))
         XCTAssertEqual(1, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 8, destRow: 1))
+
+        XCTAssertEqual(1, board.numberOfPiecesBetween(startCol: 8, startRow: 1, destCol: 1, destRow: 1))
         XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
         
         board.pieces.append(Piece(col: 3, row: 1, imageName: "bb", rank: "b", isRed: false))
@@ -571,4 +573,46 @@ class BoardTests: XCTestCase {
         print(board.pieces)
     }
     
+    func testTest() {
+        /*
+          _______________
+         |_|_|_|\|/|_|_|_|`
+         |_|_|_|/|\|_|_|_|`
+         |_|_|_|_|_|_|_|_|`
+         |_|_|_|_|_|_|_|_|`
+         |this is a river|`
+         |_|_|_|_|_|_|_|_|`
+         |_|_|_|_|_|_|_|_|`
+         |_|_|_|\|/|_|_|_|`
+         |_|_|_|/|\|_|_|_|`
+          `````````````````
+        */
+        
+//        ___________________\\
+//         j P x s . . . . . \\
+//         . . . . . . . . . \\
+//         . . . . . . . . . \\
+//         . . . . . . . . . \\
+//         . . . . . . . . . \\
+//         . . . . . . . . . \\
+//         . . . . . . . . . \\
+//         . . . . . . . . . \\
+//         . . . . . . . . . \\
+//         . . . . . . . . . \\
+//        ___________________\\
+        
+        var board = Board()
+        board.pieces.append(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.append(Piece(col: 1, row: 0, imageName: "rp", rank: "p", isRed: true))
+        board.pieces.append(Piece(col: 2, row: 0, imageName: "bx", rank: "x", isRed: false))
+        board.pieces.append(Piece(col: 3, row: 0, imageName: "bs", rank: "s", isRed: false))
+        print(board)
+        XCTAssertEqual(4, board.pieces.count)
+        board.movePiece(startCol: 1, startRow: 0, destCol: 3, destRow: 0)
+        XCTAssertEqual(3, board.pieces.count)
+        XCTAssertNil(board.pieceAt(col: 1, row: 0))
+        XCTAssertTrue(board.canMoveTo(piece: board.pieceAt(col: 3, row: 0)!, destCol: 0, destRow: 0))
+        
+        
+    }
 }

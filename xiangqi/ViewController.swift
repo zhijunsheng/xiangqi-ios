@@ -111,7 +111,7 @@ class ViewController: UIViewController {
     
     func addPiece(image: String, row: Int, col: Int, rank: String, isRed: Bool) {
         let piece = Piece(col: col, row: row, imageName: image, rank: rank, isRed: isRed)
-        board.pieces.append(piece)
+        board.pieces.insert(piece)
         
         let pieceImage = UIImage(named: image)
         let pieceImageView: UIImageView = UIImageView(frame: CGRect(x: boardViewX + boardView.originX + boardView.side * (CGFloat(col) - 0.5), y: boardViewY + boardView.originY + boardView.side * (CGFloat(row) - 0.5), width: boardView.side, height: boardView.side))
