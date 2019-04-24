@@ -210,7 +210,44 @@ class BoardTests: XCTestCase {
         board.pieces.insert(Piece(col: 7, row: 1, imageName: "rp", rank: "p", isRed: true))
         XCTAssertTrue(board.canMove炮(startCol: 1, startRow: 1, destCol: 7, destRow: 1))
 
+        //___________________
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . p . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . P . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        //___________________
         
+        board = Board()
+        board.pieces.insert(Piece(col: 1, row: 2, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 7, imageName: "rp", rank: "p", isRed: true))
+        
+        XCTAssertFalse(board.canMoveTo(piece: board.pieceAt(col: 1, row: 7)!, destCol: 1, destRow: 2))
+        
+        
+        //___________________
+        // . . . . . . . . . \\
+        // . p . . . J . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        //___________________
+        
+        board = Board()
+        board.pieces.insert(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 5, row: 1, imageName: "rp", rank: "p", isRed: true))
+        
+        XCTAssertFalse(board.canMoveTo(piece: board.pieceAt(col: 1, row: 1)!, destCol: 5, destRow: 1))
     }
     
     func testMove炮_cannibalism() {

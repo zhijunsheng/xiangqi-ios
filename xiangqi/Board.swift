@@ -252,14 +252,7 @@ struct Board: CustomStringConvertible {
         if destinationPiece == nil {
             return canMove车(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow)
         } else {
-            if destinationPiece!.isRed == cannon.isRed {
-                return false
-            }
-            
-            if numberOfPiecesBetween(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) > 1 {
-                return false
-            }
-            return true
+            return destinationPiece!.isRed != cannon.isRed && numberOfPiecesBetween(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) == 1
         }
     }
     
