@@ -37,17 +37,17 @@ class BoardTests: XCTestCase {
     func testBoardOrAnything() {
         var board = Board()
         
-        board.pieces.append(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 8, row: 0, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 0, row: 9, imageName: "rj", rank: "j", isRed: true))
-        board.pieces.append(Piece(col: 8, row: 9, imageName: "rj", rank: "j", isRed: true))
+        board.pieces.insert(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 8, row: 0, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 0, row: 9, imageName: "rj", rank: "j", isRed: true))
+        board.pieces.insert(Piece(col: 8, row: 9, imageName: "rj", rank: "j", isRed: true))
         print(board)
     }
     
     func testMove车() {
         var board = Board()
-        board.pieces.append(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 4, row: 0, imageName: "bb", rank: "b", isRed: false))
+        board.pieces.insert(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 4, row: 0, imageName: "bb", rank: "b", isRed: false))
         print(board)
         XCTAssertFalse(board.canMove车(startCol: 0, startRow: 0, destCol: 2, destRow: 1))
         XCTAssertFalse(board.canMove车(startCol: 0, startRow: 0, destCol: 1, destRow: 1))        
@@ -68,14 +68,14 @@ class BoardTests: XCTestCase {
         // . . . . . . . . . \\
         // ___________________
         board = Board()
-        board.pieces.append(Piece(col: 0, row: 2, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 0, row: 2, imageName: "bj", rank: "j", isRed: false))
         print(board)
         XCTAssertTrue(board.canMove车(startCol: 0, startRow: 2, destCol: 0, destRow: 0))
     }
 
     func testMove马() {
         var board = Board()
-        board.pieces.append(Piece(col: 4, row: 3, imageName: "bm", rank: "m", isRed: false))
+        board.pieces.insert(Piece(col: 4, row: 3, imageName: "bm", rank: "m", isRed: false))
         print(board)
         XCTAssertTrue(board.canMove马(startCol: 4, startRow: 3, destCol: 6, destRow: 4))
         XCTAssertTrue(board.canMove马(startCol: 4, startRow: 3, destCol: 6, destRow: 2))
@@ -91,7 +91,7 @@ class BoardTests: XCTestCase {
     
     func testMove相() {
         var board = Board()
-        board.pieces.append(Piece(col: 4, row: 2, imageName: "bx", rank: "x", isRed: false))
+        board.pieces.insert(Piece(col: 4, row: 2, imageName: "bx", rank: "x", isRed: false))
         print(board)
         XCTAssertTrue(board.canMove相(startCol: 4, startRow: 2, destCol: 2, destRow: 0))
         XCTAssertTrue(board.canMove相(startCol: 4, startRow: 2, destCol: 6, destRow: 0))
@@ -115,7 +115,7 @@ class BoardTests: XCTestCase {
     func testMove炮() {
         
         var board = Board()
-        board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
         print(board)
         
         
@@ -179,9 +179,9 @@ class BoardTests: XCTestCase {
         // ___________________
         
         board = Board()
-        board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 2, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: true))
+        board.pieces.insert(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 2, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: true))
         
         XCTAssertFalse(board.canMove炮(startCol: 1, startRow: 1, destCol: 3, destRow: 2))
         XCTAssertFalse(board.canMove炮(startCol: 1, startRow: 1, destCol: 2, destRow: 2))
@@ -205,9 +205,9 @@ class BoardTests: XCTestCase {
         //___________________
         
         board = Board()
-        board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
-        board.pieces.append(Piece(col: 5, row: 1, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 7, row: 1, imageName: "rp", rank: "p", isRed: true))
+        board.pieces.insert(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 5, row: 1, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 7, row: 1, imageName: "rp", rank: "p", isRed: true))
         XCTAssertTrue(board.canMove炮(startCol: 1, startRow: 1, destCol: 7, destRow: 1))
 
         
@@ -228,9 +228,9 @@ class BoardTests: XCTestCase {
         // ___________________
         
         var board = Board()
-        board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 2, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 2, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: false))
         XCTAssertFalse(board.canMove炮(startCol: 1, startRow: 1, destCol: 3, destRow: 2))
         XCTAssertFalse(board.canMove炮(startCol: 1, startRow: 1, destCol: 2, destRow: 2))
         XCTAssertFalse(board.canMove炮(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
@@ -251,10 +251,10 @@ class BoardTests: XCTestCase {
         // ___________________
         
         var board = Board()
-        board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 2, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 3, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: true))
+        board.pieces.insert(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 2, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 3, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: true))
         XCTAssertFalse(board.canMove炮(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
     }
     
@@ -273,9 +273,9 @@ class BoardTests: XCTestCase {
     
     func testCannonCrash() {
         var board = Board()
-        board.pieces.append(Piece(col: 1, row: 7, imageName: "rp", rank: "p", isRed: true))
-        board.pieces.append(Piece(col: 1, row: 2, imageName: "bp", rank: "p", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 0, imageName: "bm", rank: "m", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 7, imageName: "rp", rank: "p", isRed: true))
+        board.pieces.insert(Piece(col: 1, row: 2, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 0, imageName: "bm", rank: "m", isRed: false))
         print(board)
         XCTAssertEqual(1, board.numberOfPiecesBetween(startCol: 1, startRow: 7, destCol: 1, destRow: 0))
     }
@@ -284,9 +284,9 @@ class BoardTests: XCTestCase {
         // numberOfPiecesBetween
         
         var board = Board()
-        board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 2, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: true))
+        board.pieces.insert(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 2, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 8, imageName: "rp", rank: "p", isRed: true))
         print(board)
         XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 3, destRow: 2))
         XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 2, destRow: 2))
@@ -294,16 +294,16 @@ class BoardTests: XCTestCase {
         XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 8, destRow: 1))
         
 //         add another piece to test number == 2
-        board.pieces.append(Piece(col: 1, row: 3, imageName: "bb", rank: "b", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 3, imageName: "bb", rank: "b", isRed: false))
         XCTAssertEqual(2, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
     }
     
     func testNumberOfPiecesBetweenHorizontal() {
         // numberOfPiecesBetween
         var board = Board()
-        board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
-        board.pieces.append(Piece(col: 2, row: 1, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 8, row: 1, imageName: "rp", rank: "p", isRed: true))
+        board.pieces.insert(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 2, row: 1, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 8, row: 1, imageName: "rp", rank: "p", isRed: true))
         print(board)
         XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 2, destRow: 3))
         XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 2, destRow: 2))
@@ -312,7 +312,7 @@ class BoardTests: XCTestCase {
         XCTAssertEqual(1, board.numberOfPiecesBetween(startCol: 8, startRow: 1, destCol: 1, destRow: 1))
         XCTAssertEqual(0, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 1, destRow: 8))
         
-        board.pieces.append(Piece(col: 3, row: 1, imageName: "bb", rank: "b", isRed: false))
+        board.pieces.insert(Piece(col: 3, row: 1, imageName: "bb", rank: "b", isRed: false))
         XCTAssertEqual(2, board.numberOfPiecesBetween(startCol: 1, startRow: 1, destCol: 8, destRow: 1))
         
     }
@@ -345,7 +345,7 @@ class BoardTests: XCTestCase {
         // . . . . . . . . . \\
         // ___________________
         
-        board.pieces.append(Piece(col: 3, row: 0, imageName: "bs", rank: "s", isRed: false))
+        board.pieces.insert(Piece(col: 3, row: 0, imageName: "bs", rank: "s", isRed: false))
         print(board)
         XCTAssertFalse(board.canMove士(startCol: 3, startRow: 0, destCol: 2, destRow: 1))
         XCTAssertTrue(board.canMove士(startCol: 3, startRow: 0, destCol: 4, destRow: 1))
@@ -368,7 +368,7 @@ class BoardTests: XCTestCase {
         // ___________________
         
         var board = Board()
-        board.pieces.append(Piece(col: 3, row: 0, imageName: "bb", rank: "b", isRed: false))
+        board.pieces.insert(Piece(col: 3, row: 0, imageName: "bb", rank: "b", isRed: false))
         print(board)
         XCTAssertFalse(board.canMove将(startCol: 3, startRow: 0, destCol: 2, destRow: 0))
         XCTAssertFalse(board.canMove将(startCol: 3, startRow: 0, destCol: 2, destRow: 1))
@@ -391,7 +391,7 @@ class BoardTests: XCTestCase {
         // . . . . . . . . . \\
         // ___________________
 //        board = Board()
-//        board.pieces.append(Piece(col: 3, row: 2, imageName: "bb", rank: "b", isRed: false))
+//        board.pieces.insert(Piece(col: 3, row: 2, imageName: "bb", rank: "b", isRed: false))
 //        XCTAssertFalse(<#T##expression: Bool##Bool#>)
     }
     
@@ -409,7 +409,7 @@ class BoardTests: XCTestCase {
         // . . . . . . . . . \\
         // ___________________
         var board = Board()
-        board.pieces.append(Piece(col: 2, row: 3, imageName: "bz", rank: "z", isRed: false))
+        board.pieces.insert(Piece(col: 2, row: 3, imageName: "bz", rank: "z", isRed: false))
         print(board)
         XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 3, destCol: 1, destRow: 3))
         XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 3, destCol: 3, destRow: 3))
@@ -429,7 +429,7 @@ class BoardTests: XCTestCase {
         // . . . . . . . . . \\
         // ___________________
         board = Board()
-        board.pieces.append(Piece(col: 2, row: 4, imageName: "bz", rank: "z", isRed: false))
+        board.pieces.insert(Piece(col: 2, row: 4, imageName: "bz", rank: "z", isRed: false))
         print(board)
         XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 4, destCol: 1, destRow: 4))
         XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 4, destCol: 3, destRow: 4))
@@ -450,7 +450,7 @@ class BoardTests: XCTestCase {
         // ___________________
         
         board = Board()
-        board.pieces.append(Piece(col: 2, row: 5, imageName: "bz", rank: "z", isRed: false))
+        board.pieces.insert(Piece(col: 2, row: 5, imageName: "bz", rank: "z", isRed: false))
         print(board)
         XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 5, destCol: 1, destRow: 5))
         XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 5, destCol: 3, destRow: 5))
@@ -470,7 +470,7 @@ class BoardTests: XCTestCase {
         // . . . . . . . . . \\
         // ___________________
         board = Board()
-        board.pieces.append(Piece(col: 2, row: 6, imageName: "rz", rank: "z", isRed: true))
+        board.pieces.insert(Piece(col: 2, row: 6, imageName: "rz", rank: "z", isRed: true))
         print(board)
         XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 6, destCol: 1, destRow: 6))
         XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 6, destCol: 3, destRow: 6))
@@ -490,7 +490,7 @@ class BoardTests: XCTestCase {
         // . . . . . . . . . \\
         // ___________________
         board = Board()
-        board.pieces.append(Piece(col: 2, row: 5, imageName: "rz", rank: "z", isRed: true))
+        board.pieces.insert(Piece(col: 2, row: 5, imageName: "rz", rank: "z", isRed: true))
         print(board)
         XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 5, destCol: 1, destRow: 5))
         XCTAssertFalse(board.canMove卒(startCol: 2, startRow: 5, destCol: 3, destRow: 5))
@@ -511,7 +511,7 @@ class BoardTests: XCTestCase {
         // ___________________
         
         board = Board()
-        board.pieces.append(Piece(col: 2, row: 4, imageName: "rz", rank: "z", isRed: true))
+        board.pieces.insert(Piece(col: 2, row: 4, imageName: "rz", rank: "z", isRed: true))
         print(board)
         XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 4, destCol: 1, destRow: 4))
         XCTAssertTrue(board.canMove卒(startCol: 2, startRow: 4, destCol: 3, destRow: 4))
@@ -546,9 +546,9 @@ class BoardTests: XCTestCase {
         // . . . . . . . . . \\
         //___________________
         var board = Board()
-        board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
-        board.pieces.append(Piece(col: 2, row: 1, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 8, row: 1, imageName: "rp", rank: "p", isRed: true))
+        board.pieces.insert(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 2, row: 1, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 8, row: 1, imageName: "rp", rank: "p", isRed: true))
         print(board)
 //        XCTAssertTrue(board.pieceAt(col: 8, row: 1)!.isRed)
         board.movePiece(startCol: 1, startRow: 1, destCol: 1, destRow: 5)
@@ -561,9 +561,9 @@ class BoardTests: XCTestCase {
         print(board)
         
         board = Board()
-        board.pieces.append(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
-        board.pieces.append(Piece(col: 2, row: 1, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 8, row: 1, imageName: "rp", rank: "p", isRed: true))
+        board.pieces.insert(Piece(col: 1, row: 1, imageName: "bp", rank: "p", isRed: false))
+        board.pieces.insert(Piece(col: 2, row: 1, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 8, row: 1, imageName: "rp", rank: "p", isRed: true))
         print(board)
         XCTAssertTrue(board.pieceAt(col: 8, row: 1)!.isRed)
         board.movePiece(startCol: 1, startRow: 1, destCol: 8, destRow: 1)
@@ -602,10 +602,10 @@ class BoardTests: XCTestCase {
 //        ___________________\\
         
         var board = Board()
-        board.pieces.append(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
-        board.pieces.append(Piece(col: 1, row: 0, imageName: "rp", rank: "p", isRed: true))
-        board.pieces.append(Piece(col: 2, row: 0, imageName: "bx", rank: "x", isRed: false))
-        board.pieces.append(Piece(col: 3, row: 0, imageName: "bs", rank: "s", isRed: false))
+        board.pieces.insert(Piece(col: 0, row: 0, imageName: "bj", rank: "j", isRed: false))
+        board.pieces.insert(Piece(col: 1, row: 0, imageName: "rp", rank: "p", isRed: true))
+        board.pieces.insert(Piece(col: 2, row: 0, imageName: "bx", rank: "x", isRed: false))
+        board.pieces.insert(Piece(col: 3, row: 0, imageName: "bs", rank: "s", isRed: false))
         print(board)
         XCTAssertEqual(4, board.pieces.count)
         board.movePiece(startCol: 1, startRow: 0, destCol: 3, destRow: 0)
