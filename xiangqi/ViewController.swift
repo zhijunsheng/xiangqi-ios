@@ -106,6 +106,7 @@ class ViewController: UIViewController {
                     keyPieceValueImageView.removeValue(forKey: potentialTarget)
                 }
             }
+            activePiece = nil
         }
     }
     
