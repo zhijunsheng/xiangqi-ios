@@ -9,27 +9,59 @@
 import UIKit
 
 class BoardView: UIView {
-
-    override func draw(_ rect: CGRect) {
     
-        
+    let cols: Int = 9
+    let rows: Int = 10
+    
+    let originX: CGFloat = 30
+    let originY: CGFloat = 30
+    
+    let cellHeight: CGFloat = 25
+    let cellWidth: CGFloat = 25
+    
+    override func draw(_ rect: CGRect) {
+        drawGrid()
+
+    }
+    
+    func drawGrid() {
         
         let path = UIBezierPath()
+    
+        // Horozontal lines
+
+        for i in 0..<rows {
+            path.move(to: CGPoint(x: originX, y: originY + cellHeight * CGFloat(i)))
+            path.addLine(to: CGPoint(x: originX + CGFloat(cols - 1) * cellWidth, y: originY + cellHeight * CGFloat(i)))
+        }
         
-        path.move(to: CGPoint(x: 20, y: 20))
-        path.addLine(to: CGPoint(x: 300, y: 20))
+        // Vertical lines
+        
+        for i in 0..<cols {
+            path.move(to: CGPoint(x: originX + cellWidth * CGFloat(i), y: originY))
+            path.addLine(to: CGPoint(x: originX + cellWidth * CGFloat(i), y: originY + cellHeight * 4))
+
+            path.move(to: CGPoint(x: originX + cellWidth * CGFloat(i), y: originY + cellHeight * 5))
+            path.addLine(to: CGPoint(x: originX + cellWidth * CGFloat(i), y: originY + cellHeight * CGFloat(rows - 1)))
+        }
+
+        for i in 0..<2 {
+            path.move(to: CGPoint(x: originX + cellWidth * (CGFloat(i) * 8), y: originY + cellHeight * 4))
+            path.addLine(to: CGPoint(x: originX + cellWidth * (CGFloat(i) * 8), y: originY + cellHeight * 5))
+        }
+        
+        // (3,0) - (5,2)
+        path.move(to: CGPoint(x: originX + cellWidth * 3, y: originY))
+        path.addLine(to: CGPoint(x: originX + cellWidth * 5, y: originY + cellHeight * 2))
+        
+        
         
         path.stroke()
         
-        
-        
-        //Board
-        //Pieces of two players
-        //Function and movement of every piece
-        //How to check
-        
-        
     }
     
-
+    //Board
+    //Pieces of two players
+    //Function and movement of every piece
+    //How to check
 }
