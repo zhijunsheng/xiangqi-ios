@@ -46,10 +46,6 @@ class ViewController: UIViewController {
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.began {
-            
-            
-            
-            
             let col = nearestPoint(clicked: (sender.location(in: boardView).x - boardView.originX) / boardView.side)
             let row = nearestPoint(clicked: (sender.location(in: boardView).y - boardView.originY) / boardView.side)
             
