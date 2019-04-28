@@ -100,6 +100,26 @@ class ViewController: UIViewController {
                     viewToRemove.removeFromSuperview()
                     
                     keyPieceValueImageView.removeValue(forKey: potentialTarget)
+                    
+                    if potentialTarget.rank == "b" {
+                        let alert = UIAlertController(title: "GAME OVER!!!", message: "Would you like to restart?", preferredStyle: .alert)
+                        let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                            
+                            let pieceImages = self.keyPieceValueImageView.values
+                            for img in pieceImages {
+                                img.removeFromSuperview()
+                            }
+                            self.keyPieceValueImageView.removeAll()
+                            self.board.pieces.removeAll()
+                            self.addInitPieces()
+                            self.isRedTurn = true
+                        })
+                        alert.addAction(yesAction)
+                        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+                        
+                        self.present(alert, animated: true)
+                    }
+
                 }
             }
             activePiece = nil
