@@ -1,10 +1,10 @@
-//
+//  3，9。。。12
 //  AppDelegate.swift
 //  xiangqi
-//
+//  Black: bj, bm, bx, bs, bb, bp, bz. Red: rj, rm, rx, rs, rb, rp, rz.
 //  Created by Donald Sheng on 2018-03-02.
 //  Copyright © 2018 GoldThumb Inc. All rights reserved.
-//
+//  一，日，田，斜，1，一，1.
 
 import UIKit
 
@@ -43,4 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+
 

@@ -2,6 +2,8 @@
 
 import UIKit
 
+
+
 class BoardView: UIView {
     
     let originX  : CGFloat = 25
@@ -95,7 +97,6 @@ class BoardView: UIView {
     }
     
     func drawStar(pointX : CGFloat, pointY : CGFloat) {
-        
         let j10 = UIBezierPath()
         // bottom right
         j10.move(to: CGPoint(x: gapX + shortLine + pointX, y: gapY + pointY))
