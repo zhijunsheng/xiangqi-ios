@@ -19,6 +19,7 @@ class ViewController: UIViewController {
             addPiece(imageName: "bz", row: 3, col: i * 2)
         }
         
+        
         addPiece(imageName: "bp", row: 2, col: 1)
         addPiece(imageName: "bp", row: 2, col: 7)
         
@@ -53,9 +54,4 @@ class ViewController: UIViewController {
         bbImageView.image = bbImage
         boardView.addSubview(bbImageView)
     }
-    
-    
-    
 }
-
-
