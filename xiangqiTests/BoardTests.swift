@@ -101,6 +101,46 @@ class BoardTests: XCTestCase {
         XCTAssertFalse(board.canMove相(startCol: 4, startRow: 2, destCol: 2, destRow: 5))
     }
     
+    func test🐘() {
+        // ___________________
+        // . . . . . . . . . \\
+        // . . . b . . . . . \\
+        // . . . . x . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        var board = Board()
+        board.pieces.insert(Piece(col: 4, row: 2, imageName: "bx", rank: "x", isRed: false))
+        board.pieces.insert(Piece(col: 3, row: 1, imageName: "bb", rank: "b", isRed: false))
+        print(board)
+        XCTAssertFalse(board.canMove相(startCol: 4, startRow: 2, destCol: 2, destRow: 0))
+    }
+    //                      _________________________________________
+    func testI🐘() { // 🐘<(WHAT!!! I can't cross the river!!! Humph.)
+        //                  `````````````````````````````````````````
+        // ___________________
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . x . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        var board = Board()
+        board.pieces.insert(Piece(col: 2, row: 4, imageName: "bx", rank: "x", isRed: false))
+        print(board)
+        XCTAssertFalse(board.canMove相(startCol: 2, startRow: 4, destCol: 4, destRow: 6)) //        🐘<(FALSE!?!)
+    }
+    
     // j m x s b s x m j
     // . . . . . . . . .
     ///. p . . . . . p .

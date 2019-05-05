@@ -202,10 +202,23 @@ struct Board: CustomStringConvertible {
     }
     
     func canMove相(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
-        if abs(startRow - destRow) == 2 && abs(startCol - destCol) == 2 {
+        guard let candidate = pieceAt(col: startCol, row: startRow), !isPastRiver(row: destRow, isRed: candidate.isRed) else {
+            return false
+        }
+        if pieceAt(col: (startCol + destCol) / 2, row: (startRow + destRow) / 2) != nil {
+            return false
+        } else if abs(startRow - destRow) == 2 && abs(startCol - destCol) == 2 {
             return true
         }
         return false
+    }
+    
+    func isPastRiver(row: Int, isRed: Bool) -> Bool {
+        if isRed {
+            return row < 5
+        } else {
+            return row > 4
+        }
     }
     
     func canMove士(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
