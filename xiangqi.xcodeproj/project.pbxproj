@@ -15,6 +15,7 @@
 		8298DE8321BCA5D6005A95FF /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8298DE8221BCA5D6005A95FF /* BoardView.swift */; };
 		82BE257B22792D2900DF9B3F /* XiangqiBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE257A22792D2900DF9B3F /* XiangqiBoard.swift */; };
 		82BE257E22792EF600DF9B3F /* XiangqiBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE257D22792EF600DF9B3F /* XiangqiBoardTests.swift */; };
+		82BE2580227D165B00DF9B3F /* XiangqiBoardPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE257F227D165B00DF9B3F /* XiangqiBoardPiece.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		82BE257A22792D2900DF9B3F /* XiangqiBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiBoard.swift; sourceTree = "<group>"; };
 		82BE257C22792EF600DF9B3F /* xiangqiTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xiangqiTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		82BE257D22792EF600DF9B3F /* XiangqiBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiBoardTests.swift; sourceTree = "<group>"; };
+		82BE257F227D165B00DF9B3F /* XiangqiBoardPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiBoardPiece.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				82BE257A22792D2900DF9B3F /* XiangqiBoard.swift */,
+				82BE257F227D165B00DF9B3F /* XiangqiBoardPiece.swift */,
 				07653522204A3C67008FC177 /* AppDelegate.swift */,
 				07653524204A3C67008FC177 /* ViewController.swift */,
 				8298DE8221BCA5D6005A95FF /* BoardView.swift */,
@@ -211,6 +214,7 @@
 				8298DE8321BCA5D6005A95FF /* BoardView.swift in Sources */,
 				07653525204A3C67008FC177 /* ViewController.swift in Sources */,
 				82BE257B22792D2900DF9B3F /* XiangqiBoard.swift in Sources */,
+				82BE2580227D165B00DF9B3F /* XiangqiBoardPiece.swift in Sources */,
 				07653523204A3C67008FC177 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
