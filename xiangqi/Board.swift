@@ -270,7 +270,7 @@ struct Board: CustomStringConvertible {
     }
     
     func isInPalace(row: Int, col: Int) -> Bool {
-        if (row == 0 || row == 1 || row == 7 || row == 8) && (col == 3 || col == 4 || col == 5) {
+        if [0, 1, 2, 7, 8, 9].contains(row) && [3, 4, 5].contains(col) {
             return true
         }
         return false

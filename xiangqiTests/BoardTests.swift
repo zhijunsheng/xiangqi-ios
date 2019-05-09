@@ -454,6 +454,7 @@ class BoardTests: XCTestCase {
         XCTAssertFalse(board.canMove将(startCol: 3, startRow: 0, destCol: 5, destRow: 1))
         XCTAssertTrue(board.canMove将(startCol: 3, startRow: 0, destCol: 3, destRow: 1))
         XCTAssertTrue(board.canMove将(startCol: 3, startRow: 0, destCol: 4, destRow: 0))
+        XCTAssertTrue(board.canMove将(startCol: 4, startRow: 0, destCol: 5, destRow: 0))
         
         // ___________________
         // . . . . . . . . . \\
