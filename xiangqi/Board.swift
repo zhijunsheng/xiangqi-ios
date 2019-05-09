@@ -232,7 +232,8 @@ struct Board: CustomStringConvertible {
         if isInPalace(row: destRow, col: destCol) && (abs(startRow - destRow) == 1 && startCol == destCol || abs(startCol - destCol) == 1 && startRow == destRow) {
             return true
         }
-        return false
+        
+        return isKingKilledByKing(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow)
     }
     
     func canMove卒(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
@@ -276,10 +277,18 @@ struct Board: CustomStringConvertible {
         return false
     }
     
+    func isKingKilledByKing(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
+        guard let target = pieceAt(col: destCol, row: destRow) else {
+            return false
+        }
+        
+        return target.rank == "b" && numberOfPiecesBetween(startCol: startCol, startRow: startRow, destCol: destCol, destRow: destRow) == 0
+    }
+    
     // *
     //       *
-    //  _______________
-    // |_|_|_|\|/|_|_|_|`
+    //  ______________
+    // |_|_|_|\|/|__|_|_|`
     // |_|_|_|/|\|_|_|_|`
     // |_|_|_|_|_|_|_|_|`
     // |_|_|_|_|_|_|_|_|`
