@@ -14,7 +14,9 @@
 		0765352D204A3C67008FC177 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0765352B204A3C67008FC177 /* LaunchScreen.storyboard */; };
 		5B32034F227C6D1F00067AAE /* XiangqiBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B32034E227C6D1F00067AAE /* XiangqiBoard.swift */; };
 		5B320351227C6F7000067AAE /* XiangqiBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B320350227C6F7000067AAE /* XiangqiBoardTests.swift */; };
+		5B92B9A0227DC05500B249D7 /* XiangqiPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B92B99F227DC05500B249D7 /* XiangqiPiece.swift */; };
 		5BB2F62321B020E60044EE3A /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB2F62221B020E60044EE3A /* BoardView.swift */; };
+		5BDF124B228307B600059D29 /* XiangqiPieceRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDF124A228307B600059D29 /* XiangqiPieceRank.swift */; };
 		9D64333420557D5100F1546C /* class_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9D64333320557D5100F1546C /* class_notes.txt */; };
 		9D8804D3204C58D300F62586 /* SimpleLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8804D2204C58D300F62586 /* SimpleLoopTests.swift */; };
 /* End PBXBuildFile section */
@@ -41,7 +43,9 @@
 		07653539204A3C67008FC177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B32034E227C6D1F00067AAE /* XiangqiBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiBoard.swift; sourceTree = "<group>"; };
 		5B320350227C6F7000067AAE /* XiangqiBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiBoardTests.swift; sourceTree = "<group>"; };
+		5B92B99F227DC05500B249D7 /* XiangqiPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiPiece.swift; sourceTree = "<group>"; };
 		5BB2F62221B020E60044EE3A /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		5BDF124A228307B600059D29 /* XiangqiPieceRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiPieceRank.swift; sourceTree = "<group>"; };
 		9D64333320557D5100F1546C /* class_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = class_notes.txt; sourceTree = "<group>"; };
 		9D8804D2204C58D300F62586 /* SimpleLoopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLoopTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				07653522204A3C67008FC177 /* AppDelegate.swift */,
+				5BDF124A228307B600059D29 /* XiangqiPieceRank.swift */,
+				5B92B99F227DC05500B249D7 /* XiangqiPiece.swift */,
 				5B32034E227C6D1F00067AAE /* XiangqiBoard.swift */,
 				5BB2F62221B020E60044EE3A /* BoardView.swift */,
 				07653524204A3C67008FC177 /* ViewController.swift */,
@@ -214,6 +220,8 @@
 			files = (
 				5BB2F62321B020E60044EE3A /* BoardView.swift in Sources */,
 				07653525204A3C67008FC177 /* ViewController.swift in Sources */,
+				5BDF124B228307B600059D29 /* XiangqiPieceRank.swift in Sources */,
+				5B92B9A0227DC05500B249D7 /* XiangqiPiece.swift in Sources */,
 				5B32034F227C6D1F00067AAE /* XiangqiBoard.swift in Sources */,
 				07653523204A3C67008FC177 /* AppDelegate.swift in Sources */,
 			);

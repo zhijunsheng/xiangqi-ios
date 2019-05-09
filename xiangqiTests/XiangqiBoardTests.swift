@@ -11,7 +11,11 @@ import XCTest
 
 class XiangqiBoardTests: XCTestCase {
     func testXiangqiBoard() {
-        let brd = XiangqiBoard()
+        var brd = XiangqiBoard()
+        
+        brd.initializeBoard()
+        
         print(brd)
+        print(brd.pieces.count)
     }
 }
