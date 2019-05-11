@@ -30,24 +30,18 @@ struct PiecesGoRules: CustomStringConvertible {
                     bodStrg.append(". ")
                 } else {
                     switch piece!.rnk{
-                    case .rook:
-                        bodStrg.append("r ")
-                    case .knight:
-                        bodStrg.append("k ")
-                    case .bishop:
-                        bodStrg.append("b ")
-                    case .warrior:
-                        bodStrg.append("w ")
-                    case .king:
-                        bodStrg.append("👑 ")
-                    case .cannon:
-                        bodStrg.append("c ")
-                    case .pawn:
-                        bodStrg.append("p ")
+                    case .rook:     bodStrg.append(piece!.isRed ? "r " : "R ")
+                    case .knight:   bodStrg.append(piece!.isRed ? "h " : "H ")
+                    case .bishop:   bodStrg.append(piece!.isRed ? "b " : "B ")
+                    case .warrior:  bodStrg.append(piece!.isRed ? "w " : "W ")
+                    case .king:     bodStrg.append(piece!.isRed ? "k " : "K ")
+                    case .cannon:   bodStrg.append(piece!.isRed ? "c " : "C ")
+                    case .pawn:     bodStrg.append(piece!.isRed ? "p " : "P ")
                     }
                 }
             }
         }
+        
         
         return "\(bodStrg)"
     }
