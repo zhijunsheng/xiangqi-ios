@@ -37,6 +37,34 @@ struct XiangqiBoard: CustomStringConvertible {
             pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: i * 2, row: 3))
             pieces.insert(XiangqiPiece(rank: .pawn, isRed: false, col: i * 2, row: 6))
         }
+        
+        
+    }
+    
+    mutating func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+        if isValidRookMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) {
+            let piece = pieceAt(col: fromCol, row: fromRow)!
+            pieces.remove(piece)
+            pieces.insert(XiangqiPiece(rank: piece.rank, isRed: piece.isRed, col: toCol, row: toRow))
+        }
+    }
+    
+    func isValidRookMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        if toCol > fromCol && toRow == fromRow {
+            return true
+        } else if toCol < fromCol && toRow == fromRow {
+            return true
+        } else if toRow > fromRow && toCol == fromCol {
+            return true
+        } else if toRow < fromRow && toCol == fromCol {
+            return true
+        }
+        
+        return false
+    }
+    
+    func isValidKnightMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        return abs(toCol - fromCol) == 1 && abs(toRow - fromRow) == 2 || abs(toCol - fromCol) == 2 && abs(toRow - fromRow) == 1
     }
     
     var description: String {

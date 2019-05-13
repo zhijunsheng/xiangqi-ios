@@ -77,6 +77,7 @@ class BoardView: UIView {
         pen.stroke()
     }
     
+    
     func drawQuarterStar(locationX: Int, locationY: Int, isLeftHalf: Bool, isUpperHalf: Bool) {
         var sign0: CGFloat
         var sign1: CGFloat
