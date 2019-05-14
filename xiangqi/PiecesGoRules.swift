@@ -4,21 +4,54 @@ struct PiecesGoRules: CustomStringConvertible {
     
     var piecesSet = Set<XiangqiPiece>()
     
-    /*
-     
-       0 1 2 3 4 5 6 7 8
-     0 r . . . . . . . .
-     1 . . . . . . . . .
-     2 . . . . . . . . .
-     3 . . . . . . . . .
-     4 . . . . . . . . .
-     5 . . . . . . . . .
-     6 . . . . . . . . .
-     7 . . . . . . . . .
-     8 . . . . . . . . .
-     9 . . . . . . . . .
-     
-    */
+    mutating func piecesRoom() {
+        for i in 0..<2 {
+            piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 0, rnk: Rank.rook, isRed: true))
+            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 0, rnk: Rank.knight, isRed: true))
+            piecesSet.insert(XiangqiPiece(x: i * 4 + 2, y: 0, rnk: Rank.bishop, isRed: true))
+            piecesSet.insert(XiangqiPiece(x: i * 2 + 3, y: 0, rnk: Rank.warrior, isRed: true))
+            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 2, rnk: Rank.cannon, isRed: true))
+            
+            piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 9, rnk: Rank.rook, isRed: false))
+            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 9, rnk: Rank.knight, isRed: false))
+            piecesSet.insert(XiangqiPiece(x: i * 4 + 2, y: 9, rnk: Rank.bishop, isRed: false))
+            piecesSet.insert(XiangqiPiece(x: i * 2 + 3, y: 9, rnk: Rank.warrior, isRed: false))
+            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 7, rnk: Rank.cannon, isRed: false))
+        }
+        
+        for i in 0..<5 {
+            piecesSet.insert(XiangqiPiece(x: i * 2, y: 3, rnk: Rank.pawn, isRed: true))
+            piecesSet.insert(XiangqiPiece(x: i * 2, y: 6, rnk: Rank.pawn, isRed: false))
+        }
+        
+        piecesSet.insert(XiangqiPiece(x: 4, y: 0, rnk: Rank.king, isRed: true))
+        piecesSet.insert(XiangqiPiece(x: 4, y: 9, rnk: Rank.king, isRed: false))
+    }
+    
+    mutating func pieceGoes(frX: Int, frY: Int, toX: Int, toY: Int) {
+        guard let movingPiece = pieceAt(x: frX, y: frY) else {
+            return
+        }
+        
+        piecesSet.remove(movingPiece)
+        let newPiece = XiangqiPiece(x: toX, y: toY, rnk: movingPiece.rnk, isRed: movingPiece.isRed)
+        piecesSet.insert(newPiece)
+    }
+    
+    func isValidRookMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        return frX == toX && frY != toY || frY == toY && frX != toX
+    }
+    
+    func isValidKnightMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        return toX == frX + 2 && toY == frY + 1 ||
+               toX == frX + 1 && toY == frY + 2 ||
+               toX == frX - 2 && toY == frY - 1 ||
+               toX == frX - 1 && toY == frY - 2
+        
+    }
+    
+    
+    
     var description: String {
         var bodStrg = ""
         
@@ -41,7 +74,6 @@ struct PiecesGoRules: CustomStringConvertible {
                 }
             }
         }
-        
         
         return "\(bodStrg)"
     }

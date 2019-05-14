@@ -4,30 +4,26 @@ import XCTest
 
 class PiecesGoRulesTests: XCTestCase {
     
-    func testPiecesGoRules() {
-        var rls = PiecesGoRules()
+    func testRookPieceRules() {
+        let rule = PiecesGoRules()
+        XCTAssertTrue(rule.isValidRookMove(frX: 0, frY: 0, toX: 0, toY: 2))
+        XCTAssertFalse(rule.isValidRookMove(frX: 0, frY: 0, toX: 7, toY: 2))
+    }
     
-        for i in 0..<2 {
-            rls.piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 0, rnk: Rank.rook, isRed: true))
-            rls.piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 0, rnk: Rank.knight, isRed: true))
-            rls.piecesSet.insert(XiangqiPiece(x: i * 4 + 2, y: 0, rnk: Rank.bishop, isRed: true))
-            rls.piecesSet.insert(XiangqiPiece(x: i * 2 + 3, y: 0, rnk: Rank.warrior, isRed: true))
-            rls.piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 2, rnk: Rank.cannon, isRed: true))
-            
-            rls.piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 9, rnk: Rank.rook, isRed: false))
-            rls.piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 9, rnk: Rank.knight, isRed: false))
-            rls.piecesSet.insert(XiangqiPiece(x: i * 4 + 2, y: 9, rnk: Rank.bishop, isRed: false))
-            rls.piecesSet.insert(XiangqiPiece(x: i * 2 + 3, y: 9, rnk: Rank.warrior, isRed: false))
-            rls.piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 7, rnk: Rank.cannon, isRed: false))
-        }
+    func testKnightPieceRules() {
+        let rule = PiecesGoRules()
+        XCTAssertTrue(rule.isValidKnightMove(frX: 1, frY: 0, toX: 2, toY: 2))
+        XCTAssertFalse(rule.isValidKnightMove(frX: 0, frY: 0, toX: 8, toY: 9))
+    }
+    
+    func testPiecesGoRules() {
         
-        for i in 0..<5 {
-            rls.piecesSet.insert(XiangqiPiece(x: i * 2, y: 3, rnk: Rank.pawn, isRed: true))
-            rls.piecesSet.insert(XiangqiPiece(x: i * 2, y: 6, rnk: Rank.pawn, isRed: false))
-        }
+        var rls = PiecesGoRules()
         
-        rls.piecesSet.insert(XiangqiPiece(x: 4, y: 0, rnk: Rank.king, isRed: true))
-        rls.piecesSet.insert(XiangqiPiece(x: 4, y: 9, rnk: Rank.king, isRed: false))
+        
+        rls.piecesRoom()
+        
+        
         
         print("\(rls)")
         
