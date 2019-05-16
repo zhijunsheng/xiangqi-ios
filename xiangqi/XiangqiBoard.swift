@@ -13,6 +13,8 @@ struct XiangqiBoard: CustomStringConvertible {
     var pieces: Set<XiangqiPiece> = Set<XiangqiPiece>()
     
     mutating func initializeBoard() {
+        pieces = Set<XiangqiPiece>()
+        
         for i in 0 ..< 2 {
             pieces.insert(XiangqiPiece(rank: .rook, isRed: true, col: i * 8, row: 0))
             pieces.insert(XiangqiPiece(rank: .rook, isRed: false, col: i * 8, row: 9))
@@ -64,7 +66,12 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     func isValidKnightMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        return abs(toCol - fromCol) == 1 && abs(toRow - fromRow) == 2 || abs(toCol - fromCol) == 2 && abs(toRow - fromRow) == 1
+        if abs(toCol - fromCol) == 1 && abs(toRow - fromRow) == 2 {
+            return pieceAt(col: fromCol, row: (fromRow + toRow) / 2) == nil
+        } else if abs(toCol - fromCol) == 2 && abs(toRow - fromRow) == 1 {
+            return pieceAt(col: (fromCol + toCol) / 2, row: fromRow) == nil
+        }
+        return false
     }
     
     var description: String {

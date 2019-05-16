@@ -27,7 +27,7 @@ class XiangqiBoardTests: XCTestCase {
     }
     
     func testIsValidKnightMove() {
-        let brd = XiangqiBoard()
+        var brd = XiangqiBoard()
         XCTAssertTrue(brd.isValidKnightMove(fromCol: 4, fromRow: 5, toCol: 2, toRow: 4))
         XCTAssertTrue(brd.isValidKnightMove(fromCol: 4, fromRow: 5, toCol: 3, toRow: 3))
         XCTAssertTrue(brd.isValidKnightMove(fromCol: 4, fromRow: 5, toCol: 5, toRow: 3))
@@ -36,5 +36,17 @@ class XiangqiBoardTests: XCTestCase {
         XCTAssertTrue(brd.isValidKnightMove(fromCol: 4, fromRow: 5, toCol: 5, toRow: 7))
         XCTAssertTrue(brd.isValidKnightMove(fromCol: 4, fromRow: 5, toCol: 3, toRow: 7))
         XCTAssertTrue(brd.isValidKnightMove(fromCol: 4, fromRow: 5, toCol: 2, toRow: 6))
+
+        XCTAssertTrue(brd.isValidKnightMove(fromCol: 4, fromRow: 5, toCol: 5, toRow: 7))
+        
+        brd.pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: 2, row: 3))
+        XCTAssertFalse(brd.isValidKnightMove(fromCol: 2, fromRow: 2, toCol: 1, toRow: 4))
+        
+        brd.initializeBoard()
+        
+        XCTAssertTrue(brd.isValidKnightMove(fromCol: 1, fromRow: 9, toCol: 2, toRow: 7))
+        XCTAssertFalse(brd.isValidKnightMove(fromCol: 2, fromRow: 7, toCol: 3, toRow: 5))
+        
+        XCTAssertFalse(brd.isValidKnightMove(fromCol: 1, fromRow: 0, toCol: 3, toRow: 1))
     }
 }
