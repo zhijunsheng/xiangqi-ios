@@ -44,10 +44,28 @@ struct PiecesGoRules: CustomStringConvertible {
     
     func isValidKnightMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
         return toX == frX + 2 && toY == frY + 1 ||
-               toX == frX + 1 && toY == frY + 2 ||
-               toX == frX - 2 && toY == frY - 1 ||
-               toX == frX - 1 && toY == frY - 2
+            toX == frX + 1 && toY == frY + 2 ||
+            toX == frX - 2 && toY == frY - 1 ||
+            toX == frX - 1 && toY == frY - 2
         
+    }
+    
+    func isValidBishopMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        return toX == frX + 2 && toY == frY + 2 ||
+            toX == frX + 2 && toY == frY - 2 ||
+            toX == frX - 2 && toY == frY + 2 ||
+            toX == frX - 2 && toY == frY - 2
+    }
+    
+    func isValidWarriorMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        
+        if toX < 3 || toX > 5 || toY > 2 && toY < 7 {
+            return false
+        }
+        return toX == frX + 1 && toY == frY + 1 ||
+            toX == frX + 1 && toY == frY + 1 ||
+            toX == frX + 1 && toY == frY + 1 ||
+            toX == frX + 1 && toY == frY + 1
     }
     
     

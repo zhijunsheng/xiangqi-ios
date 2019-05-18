@@ -16,6 +16,20 @@ class PiecesGoRulesTests: XCTestCase {
         XCTAssertFalse(rule.isValidKnightMove(frX: 0, frY: 0, toX: 8, toY: 9))
     }
     
+    func testBishopPieceRules() {
+        let rule = PiecesGoRules()
+        XCTAssertTrue(rule.isValidBishopMove(frX: 2, frY: 0, toX: 4, toY: 2))
+        XCTAssertFalse(rule.isValidBishopMove(frX: 2, frY: 0, toX: 6, toY: 9))
+    }
+    
+    func testWarriorPieceRules() {
+        let rule = PiecesGoRules()
+        XCTAssertTrue(rule.isValidWarriorMove(frX: 3, frY: 0, toX: 4, toY: 1))
+        XCTAssertFalse(rule.isValidWarriorMove(frX: 3, frY: 0, toX: 2, toY: 1))
+    }
+    
+    
+    
     func testPiecesGoRules() {
         
         var rls = PiecesGoRules()
