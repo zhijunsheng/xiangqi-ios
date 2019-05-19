@@ -74,10 +74,36 @@ struct XiangqiBoard: CustomStringConvertible {
         return false
     }
     
+    func isValidBishopMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        if pieceAt(col: fromCol, row: fromRow)!.isRed && toRow <= 4 || !pieceAt(col: fromCol, row: fromRow)!.isRed && toRow >= 5 {
+            if fromCol == toCol + 2 && abs(toRow - fromRow) == 2 {
+                return pieceAt(col: fromCol - 1, row: (toRow + fromRow) / 2) == nil
+            } else if fromCol == toCol - 2 && abs(toRow - fromRow) == 2 {
+                return pieceAt(col: fromCol + 1, row: (toRow + fromRow) / 2) == nil
+            }
+        }
+        return false
+    }
+    
+    func isValidKingMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        if pieceAt(col: fromCol, row: fromRow)!.isRed && toCol >= 3 && toCol <= 5 && toRow >= 0 && toRow <= 2 || !pieceAt(col: fromCol, row: fromRow)!.isRed && toCol >= 3 && toCol <= 5 && toRow >= 7 && toRow <= 9 {
+            if toCol > fromCol && toRow == fromRow {
+                return true
+            } else if toCol < fromCol && toRow == fromRow {
+                return true
+            } else if toRow > fromRow && toCol == fromCol {
+                return true
+            } else if toRow < fromRow && toCol == fromCol {
+                return true
+            }
+        }
+        return false
+    }
+    
     var description: String {
         var brdStr = ""
         
-        brdStr += " "
+        brdStr += "+"
         for b in 0 ..< 9 {
             brdStr += " \(b)"
         }
