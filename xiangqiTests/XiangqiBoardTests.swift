@@ -4,6 +4,14 @@ import XCTest
 
 class XiangqiBoardTests: XCTestCase {
 
+    func testMove() {
+        var xiangqi = XiangqiBoard()
+        xiangqi.piecesBox.insert(XiangqiBoardPiece(col: 0, row: 0, rank: "R", isRed: true))
+        print(xiangqi)
+        xiangqi.move(fromCol: 0, fromRow: 0, toCol: 0, toRow: 9)
+        print(xiangqi)
+    }
+    
     func testXiangqiBoard() {
         var board = XiangqiBoard()
 

@@ -12,24 +12,18 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         return nil
     }
-    /*
-     红 = k
-     黑 = K
-       0 1 2 3 4 5 6 7 8
-     0 r n b g q g b n r
-     1 . . . . . . . . .
-     2 . c . . . . . c .
-     3 p . p . p . p . p
-     4 . . . . . . . . .
-     5 . . . . . . . . .
-     6 P . P . P . P . P
-     7 . C . . . . . C .
-     8 . . . . . . . . .
-     9 R N B G Q G B N R
-     
-     
-     */
-    var description: String { // "\n"
+    
+    mutating func move(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+        guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
+            return
+        }
+        
+        piecesBox.remove(movingPiece)
+        let newPiece = XiangqiBoardPiece(col: toCol, row: toRow, rank: movingPiece.rank, isRed: movingPiece.isRed)
+        piecesBox.insert(newPiece)
+    }
+    
+    var description: String {
         var boardString : String = ""
         boardString.append("  0 1 2 3 4 5 6 7 8")
         boardString.append("\n")
@@ -40,50 +34,27 @@ struct XiangqiBoard: CustomStringConvertible {
                 if piece == nil {
                     boardString.append(" .")
                 } else {
-                    if piece!.rank == "R" {
-//                        if piece!.isRed {
-//                            boardString.append(" r")
-//                        }else{
-//                            boardString.append(" R")
-//                        }
-                        boardString.append(piece!.isRed ? " r" : " R")
-                    } else if piece!.rank == "K" {
-                        boardString.append(piece!.isRed ? " k" : " K")
-                    } else if piece!.rank == "B" {
-                        boardString.append(piece!.isRed ? " b" : " B")
-                    } else if piece!.rank == "G" {
-                        boardString.append(piece!.isRed ? " g" : " G")
-                    } else if piece!.rank == "Q" {
-                        boardString.append(piece!.isRed ? " q" : " Q")
-                    } else if piece!.rank == "C" {
-                        boardString.append(piece!.isRed ? " c" : " C")
-                    } else if piece!.rank == "P" {
-                        boardString.append(piece!.isRed ? " p" : " P")
+                    switch piece!.rank {
+                    case "R" : boardString.append(piece!.isRed ? " r" : " R")
+                    case "K" : boardString.append(piece!.isRed ? " k" : " K")
+                    case "B" : boardString.append(piece!.isRed ? " b" : " B")
+                    case "G" : boardString.append(piece!.isRed ? " g" : " G")
+                    case "Q" : boardString.append(piece!.isRed ? " q" : " G")
+                    case "C" : boardString.append(piece!.isRed ? " c" : " C")
+                    case "P" : boardString.append(piece!.isRed ? " r" : " P")
+                        
+                    default:
+                        break
                     }
                 }
                 
             }
             boardString.append("\n")
         }
-
+        
         return boardString
     }
     
     
 }
-/*  if piece?.rank == "R" {
- boardString.append(" r")
- } else if piece?.rank == "K" {
- boardString.append(" k")
- } else if piece?.rank == "B" {
- boardString.append(" b")
- } else if piece?.rank == "G" {
- boardString.append(" g")
- } else if piece?.rank == "Q" {
- boardString.append(" q")
- } else if piece?.rank == "C" {
- boardString.append(" c")
- } else if piece?.rank == "P" {
- boardString.append(" p")
- }
- */
+

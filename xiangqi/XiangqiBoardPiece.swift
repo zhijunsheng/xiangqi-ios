@@ -1,9 +1,9 @@
 import Foundation
 
 struct XiangqiBoardPiece: Hashable {
-    let col   : Int
-    let row   : Int
-    let rank  : String
-    let isRed : Bool
+    var col   : Int
+    var row   : Int
+    var rank  : String
+    var isRed : Bool
     
 }
