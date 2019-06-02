@@ -89,6 +89,26 @@ class BoardTests: XCTestCase {
         XCTAssertFalse(board.canMove马(startCol: 4, startRow: 3, destCol: 2, destRow: 5))
     }
     
+    func testMove🌲🐎() { //🐎<(OW!!!!!)
+        // ___________________
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . m . . . . \\
+        // . . . . j . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // . . . . . . . . . \\
+        // ___________________
+        var board = Board()
+        board.pieces.insert(Piece(col: 4, row: 3, imageName: "bm", rank: "m", isRed: false))
+        board.pieces.insert(Piece(col: 4, row: 4, imageName: "bj", rank: "j", isRed: false))
+        print(board)
+        XCTAssertFalse(board.canMove马(startCol: 4, startRow: 3, destCol: 5, destRow: 5))
+    }
+    
     func testMove相() {
         var board = Board()
         board.pieces.insert(Piece(col: 4, row: 2, imageName: "bx", rank: "x", isRed: false))

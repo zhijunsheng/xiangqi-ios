@@ -188,15 +188,10 @@ struct Board: CustomStringConvertible {
     }
     
     func canMove马(startCol: Int, startRow: Int, destCol: Int, destRow: Int) -> Bool {
-        if abs(startRow - destRow) == 2 && abs(startCol - destCol) == 1 || abs(startRow - destRow) == 1 && abs(startCol - destCol) == 2 {
-            if startCol + 1 < destCol - 1 {
-                for i in startCol + 1...destCol - 1 {
-                    if pieceAt(col: i, row: startRow) != nil {
-                        return false
-                    }
-                }
-            }
-            return true
+        if abs(startRow - destRow) == 2 && abs(startCol - destCol) == 1 {
+            return pieceAt(col: startCol, row: (startRow + destRow) / 2) == nil
+        } else if abs(startRow - destRow) == 1 && abs(startCol - destCol) == 2 {
+            return pieceAt(col: (startCol + destCol) / 2, row: startRow) == nil
         }
         return false
     }
