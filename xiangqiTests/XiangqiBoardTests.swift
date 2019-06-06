@@ -12,12 +12,118 @@ import XCTest
 class XiangqiBoardTests: XCTestCase {
     
     func testIsValidRookMove() {
-        let brd: XiangqiBoard
+        var brd: XiangqiBoard
         brd = XiangqiBoard()
+        
+        /*
+         
+           0 1 2 3 4 5 6 7 8
+         0 R . ! . . . . . .
+         1 . . . . . . . . .
+         2 . . . . . . . . .
+         3 . . . . . . . . .
+         4 . . . . . . . . .
+         5 . . . . . . . . .
+         6 . . . . . . . . .
+         7 . . . . . . . . .
+         8 . . . . . . . . .
+         9 . . . . . . . . .
+         
+         */
         XCTAssertTrue(brd.isValidRookMove(fromCol: 0, fromRow: 0, toCol: 0, toRow: 2))
         
-        // TODO
-//        XCTAssertFalse(brd.isValidRookMove(fromCol: 8, fromRow: 0, toCol: 8, toRow: 4))
+        /*
+         
+           0 1 2 3 4 5 6 7 8
+         0 R . . . . . . . .
+         1 . . . . . . . . .
+         2 B . . . . . . . .
+         3 . . . . . . . . .
+         4 K . . . . . . . .
+         5 . . . . . . . . .
+         6 . . . . . . . . .
+         7 ? . . . . . . . .
+         8 . . . . . . . . .
+         9 . . . . . . . . .
+         
+         */
+//        XCTAssertFalse(brd.isValidRookMove(fromCol: 0, fromRow: 0, toCol: 0, toRow: 7))
+        
+        /*
+         
+         + 0 1 2 3 4 5 6 7 8
+         0 . . . . . . . . .
+         1 . . . . . . . . .
+         2 . . . . . . . . .
+         3 R . . P . K . ? .
+         4 . . . . . . . . .
+         5 . . . . . . . . .
+         6 . . . . . . . . .
+         7 . . . . . . . . .
+         8 . . . . . . . . .
+         9 . . . . . . . . .
+         
+         */
+        
+        brd = XiangqiBoard()
+        brd.pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: 3, row: 3))
+        brd.pieces.insert(XiangqiPiece(rank: .knight, isRed: true, col: 5, row: 3))
+        XCTAssertFalse(brd.isValidRookMove(fromCol: 0, fromRow: 3, toCol: 7, toRow: 3))
+        
+        /*
+         
+         + 0 1 2 3 4 5 6 7 8
+         0 . . . . . . . . .
+         1 . . . . . . . . .
+         2 . . . . . . . . .
+         3 R ! . . . . .  .
+         4 . . . . . . . . .
+         5 . . . . . . . . .
+         6 . . . . . . . . .
+         7 . . . . . . . . .
+         8 . . . . . . . . .
+         9 . . . . . . . . .
+         
+         */
+        brd = XiangqiBoard()
+        XCTAssertTrue(brd.isValidRookMove(fromCol: 0, fromRow: 3, toCol: 1, toRow: 3))
+        
+        /*
+         
+         + 0 1 2 3 4 5 6 7 8
+         0 . . . . . . . . .
+         1 . . . . . . . . .
+         2 . . . . . . . . .
+         3 ! R . . . . .  .
+         4 . . . . . . . . .
+         5 . . . . . . . . .
+         6 . . . . . . . . .
+         7 . . . . . . . . .
+         8 . . . . . . . . .
+         9 . . . . . . . . .
+         
+         */
+        XCTAssertTrue(brd.isValidRookMove(fromCol: 1, fromRow: 3, toCol: 0, toRow: 3))
+        
+        /*
+         
+         + 0 1 2 3 4 5 6 7 8
+         0 . . . . . . . . .
+         1 . . . . . . . . .
+         2 . . . . . . . . .
+         3 ? . . P . K . R .
+         4 . . . . . . . . .
+         5 . . . . . . . . .
+         6 . . . . . . . . .
+         7 . . . . . . . . .
+         8 . . . . . . . . .
+         9 . . . . . . . . .
+         
+         */
+        brd = XiangqiBoard()
+        brd.pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: 3, row: 3))
+        brd.pieces.insert(XiangqiPiece(rank: .knight, isRed: true, col: 5, row: 3))
+        XCTAssertFalse(brd.isValidRookMove(fromCol: 7, fromRow: 3, toCol: 0, toRow: 3))
     }
     
     func testIsValidKnightMove() {

@@ -44,6 +44,8 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     mutating func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+        
+        
         if isValidRookMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) {
             let piece = pieceAt(col: fromCol, row: fromRow)!
             pieces.remove(piece)
@@ -51,14 +53,25 @@ struct XiangqiBoard: CustomStringConvertible {
         }
     }
     
+    // 7 3 0 3
     func isValidRookMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        if toCol > fromCol && toRow == fromRow {
+        
+        if toRow == fromRow {
+            if fromCol < toCol {
+                for i in fromCol + 1 ..< toCol {
+                    if pieceAt(col: i, row: fromRow) != nil {
+                        return false
+                    }
+                }
+            } else if fromCol > toCol {
+                for i in toCol + 1 ..< fromCol {
+                    if pieceAt(col: i, row: fromRow) != nil {
+                        return false
+                    }
+                }
+            }
             return true
-        } else if toCol < fromCol && toRow == fromRow {
-            return true
-        } else if toRow > fromRow && toCol == fromCol {
-            return true
-        } else if toRow < fromRow && toCol == fromCol {
+        } else if toCol == fromCol {
             return true
         }
         
