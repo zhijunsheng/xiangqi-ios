@@ -62,10 +62,30 @@ struct PiecesGoRules: CustomStringConvertible {
         if toX < 3 || toX > 5 || toY > 2 && toY < 7 {
             return false
         }
+        
         return toX == frX + 1 && toY == frY + 1 ||
             toX == frX + 1 && toY == frY + 1 ||
             toX == frX + 1 && toY == frY + 1 ||
             toX == frX + 1 && toY == frY + 1
+    }
+    
+    func isValidKingMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        if toX < 3 || toX > 5 || toY > 2 && toY < 7 {
+            return false
+        }
+        
+        return toX == frX + 1 && toY == frY ||
+            toX == frX - 1 && toY == frY ||
+            toX == frX && toY == frY + 1 ||
+            toX == frX && toY == frY - 1
+    }
+    
+    func isValidCannonMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        return frX == toX && frY != toY || frY == toY && frX != toX
+    }
+    
+    func ifValidPawnMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        return false
     }
     
     

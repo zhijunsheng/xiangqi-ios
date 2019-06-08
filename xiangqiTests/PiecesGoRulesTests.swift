@@ -8,6 +8,7 @@ class PiecesGoRulesTests: XCTestCase {
         let rule = PiecesGoRules()
         XCTAssertTrue(rule.isValidRookMove(frX: 0, frY: 0, toX: 0, toY: 2))
         XCTAssertFalse(rule.isValidRookMove(frX: 0, frY: 0, toX: 7, toY: 2))
+        print(rule)
     }
     
     func testKnightPieceRules() {
@@ -26,6 +27,18 @@ class PiecesGoRulesTests: XCTestCase {
         let rule = PiecesGoRules()
         XCTAssertTrue(rule.isValidWarriorMove(frX: 3, frY: 0, toX: 4, toY: 1))
         XCTAssertFalse(rule.isValidWarriorMove(frX: 3, frY: 0, toX: 2, toY: 1))
+    }
+    
+    func testKingPieceRules() {
+        let rule = PiecesGoRules()
+        XCTAssertTrue(rule.isValidKingMove(frX: 4, frY: 0, toX: 4, toY: 1))
+        XCTAssertFalse(rule.isValidKingMove(frX: 4, frY: 0, toX: 3, toY: 1))
+    }
+    
+    func testCannonPieceRules() {
+        let rule = PiecesGoRules()
+        XCTAssertTrue(rule.isValidCannonMove(frX: 2, frY: 3, toX: 2, toY: 5))
+        XCTAssertFalse(rule.isValidCannonMove(frX: 2, frY: 3, toX: 3, toY: 1))
     }
     
     

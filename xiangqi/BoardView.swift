@@ -143,27 +143,11 @@ class BoardView: UIView {
         j13.addLine(to: CGPoint(x: boardOriginX + 3 * cellSide, y: boardOriginY + 9 * cellSide))
         
         j13.stroke()
+        
+        let a15 = UIBezierPath()
+        a15.move(to: CGPoint(x: boardOriginX, y: boardOriginY + 4 * cellSide + cellSide / 2))
+        a15.addLine(to: CGPoint(x: boardOriginX + 8 * cellSide, y: boardOriginY + 4 * cellSide + cellSide / 2))
+        #colorLiteral(red: 1, green: 0, blue: 0.003921568627, alpha: 1).setStroke()
+        a15.stroke()
     }
-    
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
