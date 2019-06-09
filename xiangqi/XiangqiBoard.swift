@@ -13,6 +13,40 @@ struct XiangqiBoard: CustomStringConvertible {
         return nil
     }
     
+    func isValidGuardMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        /*
+         
+         + 0 1 2 3 4 5 6 7 8
+         0 . . ! g . , ! . .
+         1 . . ! . , . ! . .
+         2 . . ! , . , ! . .
+         3 . . ! ! ! ! ! . .
+         4 . . . . . . . . .
+         5 . . . . . . . . .
+         6 . . . . . . . . .
+         7 . . . . . . . . .
+         8 . . . . . . . . .
+         9 . . . . . . . . .
+         
+         
+         */
+        if toCol < 3
+        || toCol > 5
+        || toRow > 2 {
+            return false
+        }
+        
+        if fromCol + 1 == toCol && fromRow + 1 == toRow
+        || fromCol + 1 == toCol && fromRow - 1 == toRow
+        || fromCol - 1 == toCol && fromRow + 1 == toRow
+        || fromCol - 1 == toCol && fromRow - 1 == toRow  {
+            return true
+        }
+        
+        
+        return false
+    }
+    
     mutating func move(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
             return
@@ -55,6 +89,6 @@ struct XiangqiBoard: CustomStringConvertible {
         return boardString
     }
     
-    
+
 }
 

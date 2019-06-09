@@ -11,7 +11,7 @@ class XiangqiBoardTests: XCTestCase {
         xiangqi.move(fromCol: 0, fromRow: 0, toCol: 0, toRow: 9)
         print(xiangqi)
     }
-    
+    // ≠
     func testXiangqiBoard() {
         var board = XiangqiBoard()
 
@@ -40,5 +40,30 @@ class XiangqiBoardTests: XCTestCase {
         }
  
         print(board)
+    }
+    
+    /*
+     
+     + 0 1 2 3 4 5 6 7 8
+     0 . . ! g . , ! . .
+     1 . . ! . , . ! . .
+     2 . . ! , . , ! . .
+     3 . . ! ! ! ! ! . .
+     4 . . . . . . . . .
+     5 . . . . . . . . .
+     6 . . . . . . . . .
+     7 . . . . . . . . .
+     8 . . . . . . . . .
+     9 . . . . . . . . .
+     
+     
+     */
+    func testIsValidGuardMove() {
+        let board = XiangqiBoard()
+        XCTAssertTrue(board.isValidGuardMove(fromCol: 3, fromRow: 0, toCol: 4, toRow: 1))
+        XCTAssertTrue(board.isValidGuardMove(fromCol: 4, fromRow: 1, toCol: 5, toRow: 2))
+        XCTAssertFalse(board.isValidGuardMove(fromCol: 4, fromRow: 1, toCol: 6, toRow: 8))
+        XCTAssertTrue(board.isValidGuardMove(fromCol: 4, fromRow: 1, toCol: 3, toRow: 2))
+        XCTAssertFalse(board.isValidGuardMove(fromCol: 3, fromRow: 0, toCol: 2, toRow: 1))
     }
 }
