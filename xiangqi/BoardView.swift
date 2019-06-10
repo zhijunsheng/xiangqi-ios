@@ -14,8 +14,8 @@ class BoardView: UIView {
     var cellSide: CGFloat = 28
     let gap: CGFloat = 5
     let outerFrameLineWidth: CGFloat = 3
-    let intervalGap: CGFloat = 3
-    let shortLine: CGFloat = 6
+    var intervalGap: CGFloat = 9
+    var shortLine: CGFloat = 18
     
     let rows = 10
     let cols = 9
@@ -29,14 +29,12 @@ class BoardView: UIView {
             smaller = rect.height
         }
         
-//        originX = (rect.width - smaller * percent) / 2
-//        print("-------------\(originX)--------------")
-//        originY = (rect.height - smaller * percent) / 2
-//        cellSide = smaller * percent / CGFloat(cols - 1)
         cellSide = smaller * percent / CGFloat(rows - 1)
         originX = (rect.width - cellSide * CGFloat(cols - 1)) / 2
         originY = (rect.height - cellSide * CGFloat(rows - 1)) / 2
         
+        shortLine = cellSide * 0.25
+        intervalGap = cellSide * 0.1
         
         print(rect.width)
         print(rect.height)
