@@ -1,6 +1,11 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var fromCol: Int = 28272
+    var fromRow: Int = 38477
+    
+    
     @IBOutlet var boardView: BoardView!
     
     override func viewDidLoad() {
@@ -46,6 +51,33 @@ class ViewController: UIViewController {
         addPiece(imageName: "rs", row: 9, col: 3)
         addPiece(imageName: "rs", row: 9, col: 5)
         
+    }
+    
+    @IBAction func movePiece(_ panGestureRecognizer: UIPanGestureRecognizer) {
+        
+        
+        if panGestureRecognizer.state == .began {
+            let finger = panGestureRecognizer.location(in: boardView)
+            let fromX = (finger.x - boardView.boardOriginX) / boardView.cellSide
+            let fromY = (finger.y - boardView.boardOriginY) / boardView.cellSide
+            let fromRow = Int(fromY + 0.5)
+            let fromCol = Int(fromX + 0.5)
+            
+            print("from \(fromCol,fromRow)")
+        } else if panGestureRecognizer.state == .ended {
+            let finger = panGestureRecognizer.location(in: boardView)
+            let toX = (finger.x - boardView.boardOriginX) / boardView.cellSide
+            let toY = (finger.y - boardView.boardOriginY) / boardView.cellSide
+            let toRow = Int(toY + 0.5)
+            let toCol = Int(toX + 0.5)
+            
+            print("to \(toCol,toRow)")
+            
+            // we do need 4 numbers: fromCol, fromRow, toCol, toRow
+
+        } else if panGestureRecognizer.state == .changed {
+            
+        }
     }
     
     func addPiece(imageName: String, row: Int, col: Int) {
