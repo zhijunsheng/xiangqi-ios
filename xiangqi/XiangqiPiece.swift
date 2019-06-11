@@ -5,4 +5,6 @@ struct XiangqiPiece: Hashable {
     let y: Int
     let rnk: Rank
     let isRed: Bool
+    let imgNm: String
+    
 }

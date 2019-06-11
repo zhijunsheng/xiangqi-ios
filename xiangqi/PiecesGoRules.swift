@@ -5,27 +5,27 @@ struct PiecesGoRules: CustomStringConvertible {
     var piecesSet = Set<XiangqiPiece>()
     
     mutating func piecesRoom() {
-        for i in 0..<2 {
-            piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 0, rnk: Rank.rook, isRed: true))
-            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 0, rnk: Rank.knight, isRed: true))
-            piecesSet.insert(XiangqiPiece(x: i * 4 + 2, y: 0, rnk: Rank.bishop, isRed: true))
-            piecesSet.insert(XiangqiPiece(x: i * 2 + 3, y: 0, rnk: Rank.warrior, isRed: true))
-            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 2, rnk: Rank.cannon, isRed: true))
-            
-            piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 9, rnk: Rank.rook, isRed: false))
-            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 9, rnk: Rank.knight, isRed: false))
-            piecesSet.insert(XiangqiPiece(x: i * 4 + 2, y: 9, rnk: Rank.bishop, isRed: false))
-            piecesSet.insert(XiangqiPiece(x: i * 2 + 3, y: 9, rnk: Rank.warrior, isRed: false))
-            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 7, rnk: Rank.cannon, isRed: false))
-        }
-        
-        for i in 0..<5 {
-            piecesSet.insert(XiangqiPiece(x: i * 2, y: 3, rnk: Rank.pawn, isRed: true))
-            piecesSet.insert(XiangqiPiece(x: i * 2, y: 6, rnk: Rank.pawn, isRed: false))
-        }
-        
-        piecesSet.insert(XiangqiPiece(x: 4, y: 0, rnk: Rank.king, isRed: true))
-        piecesSet.insert(XiangqiPiece(x: 4, y: 9, rnk: Rank.king, isRed: false))
+//        for i in 0..<2 {
+//            piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 0, rnk: Rank.rook, isRed: true))
+//            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 0, rnk: Rank.knight, isRed: true))
+//            piecesSet.insert(XiangqiPiece(x: i * 4 + 2, y: 0, rnk: Rank.bishop, isRed: true))
+//            piecesSet.insert(XiangqiPiece(x: i * 2 + 3, y: 0, rnk: Rank.warrior, isRed: true))
+//            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 2, rnk: Rank.cannon, isRed: true))
+//
+//            piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 9, rnk: Rank.rook, isRed: false))
+//            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 9, rnk: Rank.knight, isRed: false))
+//            piecesSet.insert(XiangqiPiece(x: i * 4 + 2, y: 9, rnk: Rank.bishop, isRed: false))
+//            piecesSet.insert(XiangqiPiece(x: i * 2 + 3, y: 9, rnk: Rank.warrior, isRed: false))
+//            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 7, rnk: Rank.cannon, isRed: false))
+//        }
+//
+//        for i in 0..<5 {
+//            piecesSet.insert(XiangqiPiece(x: i * 2, y: 3, rnk: Rank.pawn, isRed: true))
+//            piecesSet.insert(XiangqiPiece(x: i * 2, y: 6, rnk: Rank.pawn, isRed: false))
+//        }
+//
+//        piecesSet.insert(XiangqiPiece(x: 4, y: 0, rnk: Rank.king, isRed: true))
+//        piecesSet.insert(XiangqiPiece(x: 4, y: 9, rnk: Rank.king, isRed: false))
     }
     
     mutating func pieceGoes(frX: Int, frY: Int, toX: Int, toY: Int) {
@@ -34,8 +34,8 @@ struct PiecesGoRules: CustomStringConvertible {
         }
         
         piecesSet.remove(movingPiece)
-        let newPiece = XiangqiPiece(x: toX, y: toY, rnk: movingPiece.rnk, isRed: movingPiece.isRed)
-        piecesSet.insert(newPiece)
+//        let newPiece = XiangqiPiece(x: toX, y: toY, rnk: movingPiece.rnk, isRed: movingPiece.isRed)
+        //piecesSet.insert(newPiece)
     }
     
     func isValidRookMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {

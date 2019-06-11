@@ -9,6 +9,11 @@ class BoardView: UIView {
     let gapB: CGFloat = 4
     let shortLine: CGFloat = 7
     
+    override func draw(_ rect: CGRect) {
+        drawBoard()
+        drawPieces()
+    }
+    
     
     func drawTopLeftL(pointX: CGFloat, pointY: CGFloat) {
         let l15 = UIBezierPath()
@@ -83,10 +88,7 @@ class BoardView: UIView {
         }
     }
     
-    
-    
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    func drawBoard() {
         drawTopLeftLs()
         drawTopRightLs()
         drawBottomLeftLs()
@@ -149,5 +151,17 @@ class BoardView: UIView {
         a15.addLine(to: CGPoint(x: boardOriginX + 8 * cellSide, y: boardOriginY + 4 * cellSide + cellSide / 2))
         #colorLiteral(red: 1, green: 0, blue: 0.003921568627, alpha: 1).setStroke()
         a15.stroke()
+    }
+    
+    func drawPieces() {
+        drawPiece(piece: XiangqiPiece(x: 4, y: 0, rnk: .king, isRed: false, imgNm: "bb"))
+        
+        drawPiece(piece: XiangqiPiece(x: 3, y: 0, rnk: .king, isRed: false, imgNm: "bs"))
+        drawPiece(piece: XiangqiPiece(x: 5, y: 0, rnk: .king, isRed: false, imgNm: "bs"))
+    }
+    
+    func drawPiece(piece: XiangqiPiece) {
+        let pieceImage = UIImage(named: piece.imgNm)!
+        pieceImage.draw(in: CGRect(x: boardOriginX + (CGFloat(piece.x) - 0.5) * cellSide, y: boardOriginY + (CGFloat(piece.y) - 0.5) * cellSide , width: cellSide, height: cellSide))
     }
 }
