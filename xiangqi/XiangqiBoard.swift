@@ -45,6 +45,20 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         return false
     }
+    
+    func isValidBishopMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        
+        if fromRow > 4 {
+            return false
+        }
+        if fromCol - 2 == toCol && fromRow - 2 == toRow
+        || fromCol - 2 == toCol && fromRow + 2 == toRow
+        || fromCol + 2 == toCol && fromRow - 2 == toRow
+        || fromCol + 2 == toCol && fromRow + 2 == toRow{
+            return true
+        }
+        return false
+    }
     mutating func move(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
             return

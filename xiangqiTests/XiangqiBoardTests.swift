@@ -59,5 +59,13 @@ class XiangqiBoardTests: XCTestCase {
         
         XCTAssertFalse(board.isValidKingMove(fromCol: 3, fromRow: 0, toCol: 4, toRow: 1))
     }
+    func testIsValidBishopMove() {
+        let board = XiangqiBoard()
+        
+        XCTAssertTrue(board.isValidBishopMove(fromCol: 2, fromRow: 0, toCol: 0, toRow: 2))
+        XCTAssertTrue(board.isValidBishopMove(fromCol: 0, fromRow: 2, toCol: 2, toRow: 4))
+        XCTAssertFalse(board.isValidBishopMove(fromCol: 4, fromRow: 2, toCol: 6, toRow: 8))
+        XCTAssertFalse(board.isValidBishopMove(fromCol: 4, fromRow: 2, toCol: 5, toRow: 3))
+    }
     
 }
