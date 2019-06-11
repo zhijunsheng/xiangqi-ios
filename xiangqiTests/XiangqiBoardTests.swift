@@ -42,22 +42,6 @@ class XiangqiBoardTests: XCTestCase {
         print(board)
     }
     
-    /*
-     
-     + 0 1 2 3 4 5 6 7 8
-     0 . . ! g . , ! . .
-     1 . . ! . , . ! . .
-     2 . . ! , . , ! . .
-     3 . . ! ! ! ! ! . .
-     4 . . . . . . . . .
-     5 . . . . . . . . .
-     6 . . . . . . . . .
-     7 . . . . . . . . .
-     8 . . . . . . . . .
-     9 . . . . . . . . .
-     
-     
-     */
     func testIsValidGuardMove() {
         let board = XiangqiBoard()
         XCTAssertTrue(board.isValidGuardMove(fromCol: 3, fromRow: 0, toCol: 4, toRow: 1))
@@ -66,4 +50,14 @@ class XiangqiBoardTests: XCTestCase {
         XCTAssertTrue(board.isValidGuardMove(fromCol: 4, fromRow: 1, toCol: 3, toRow: 2))
         XCTAssertFalse(board.isValidGuardMove(fromCol: 3, fromRow: 0, toCol: 2, toRow: 1))
     }
+    func testIsValidKingMove() {
+        let board = XiangqiBoard()
+        XCTAssertTrue(board.isValidKingMove(fromCol: 4, fromRow: 0, toCol: 4, toRow: 1))
+        XCTAssertTrue(board.isValidKingMove(fromCol: 4, fromRow: 1, toCol: 4, toRow: 2))
+        XCTAssertFalse(board.isValidKingMove(fromCol: 4, fromRow: 2, toCol: 6, toRow: 8))
+        XCTAssertFalse(board.isValidKingMove(fromCol: 4, fromRow: 2, toCol: 5, toRow: 3))
+        
+        XCTAssertFalse(board.isValidKingMove(fromCol: 3, fromRow: 0, toCol: 4, toRow: 1))
+    }
+    
 }
