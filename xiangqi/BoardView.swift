@@ -36,14 +36,12 @@ class BoardView: UIView {
         shortLine = cellSide * 0.25
         intervalGap = cellSide * 0.1
         
-        print(rect.width)
-        print(rect.height)
         
-        drawFrame()
         drawLines()
         drawOuterFrame()
         drawVerticalLines(isUpperHalf: true)
         drawVerticalLines(isUpperHalf: false)
+        
         
         for i in 0 ..< 2 {
             drawHalfStar(locationX: 1 + i * 6, locationY: 2, isLeftHalf: true)
@@ -115,23 +113,13 @@ class BoardView: UIView {
     }
     
     func drawLines() {
-        for i in 1 ..< rows - 1 {
+        for i in 0 ..< rows {
             let pencil = UIBezierPath()
             pencil.move(to: CGPoint(x: originX, y: originY + cellSide * CGFloat(i)))
             pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(cols - 1), y: originY + cellSide * CGFloat(i)))
-            
+
             pencil.stroke()
         }
-    }
-    
-    func drawFrame() {
-        let pen = UIBezierPath()
-        pen.move(to: CGPoint(x: originX, y: originY))
-        pen.addLine(to: CGPoint(x: originX + cellSide * CGFloat(cols - 1), y: originY))
-        pen.addLine(to: CGPoint(x: originX + cellSide * CGFloat(cols - 1), y: originY + cellSide * CGFloat(rows - 1)))
-        pen.addLine(to: CGPoint(x: originX, y: originY + cellSide * CGFloat(rows - 1)))
-        pen.close()
-        pen.stroke()
     }
     
     func drawOuterFrame() {
@@ -151,10 +139,15 @@ class BoardView: UIView {
         if !isUpperHalf {
             verticalOffset = 5
         }
-        for i in 1 ..< cols - 1 {
-            pen.move(to: CGPoint(x: originX + cellSide * CGFloat(i), y: originY + cellSide * CGFloat(verticalOffset)))
-            pen.addLine(to: CGPoint(x: originX + cellSide * CGFloat(i), y: originY + cellSide * CGFloat((rows - 2) / 2 + verticalOffset)))
+        for i in 0 ..< cols {
+            if i == 0 || i == 8 {
+                pen.move(to: CGPoint(x: originX + cellSide * CGFloat(i), y: originY))
+                pen.addLine(to: CGPoint(x: originX + cellSide * CGFloat(i), y: originY + cellSide * 9))
+            } else {
+                pen.move(to: CGPoint(x: originX + cellSide * CGFloat(i), y: originY + cellSide * CGFloat(verticalOffset)))
+                pen.addLine(to: CGPoint(x: originX + cellSide * CGFloat(i), y: originY + cellSide * CGFloat((rows - 2) / 2 + verticalOffset)))
+            }
+            pen.stroke()
         }
-        pen.stroke()
     }
 }
