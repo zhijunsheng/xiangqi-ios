@@ -16,28 +16,28 @@ struct XiangqiBoard: CustomStringConvertible {
         pieces = Set<XiangqiPiece>()
         
         for i in 0 ..< 2 {
-            pieces.insert(XiangqiPiece(rank: .rook, isRed: true, col: i * 8, row: 0))
-            pieces.insert(XiangqiPiece(rank: .rook, isRed: false, col: i * 8, row: 9))
+            pieces.insert(XiangqiPiece(rank: .rook, isRed: true, col: i * 8, row: 0, imgName: "rj"))
+            pieces.insert(XiangqiPiece(rank: .rook, isRed: false, col: i * 8, row: 9, imgName: "bj"))
             
-            pieces.insert(XiangqiPiece(rank: .knight, isRed: true, col: 1 + i * 6, row: 0))
-            pieces.insert(XiangqiPiece(rank: .knight, isRed: false, col: 1 + i * 6, row: 9))
+            pieces.insert(XiangqiPiece(rank: .knight, isRed: true, col: 1 + i * 6, row: 0, imgName: "rm"))
+            pieces.insert(XiangqiPiece(rank: .knight, isRed: false, col: 1 + i * 6, row: 9, imgName: "bm"))
             
-            pieces.insert(XiangqiPiece(rank: .bishop, isRed: true, col: 2 + i * 4, row: 0))
-            pieces.insert(XiangqiPiece(rank: .bishop, isRed: false, col: 2 + i * 4, row: 9))
+            pieces.insert(XiangqiPiece(rank: .bishop, isRed: true, col: 2 + i * 4, row: 0, imgName: "rx"))
+            pieces.insert(XiangqiPiece(rank: .bishop, isRed: false, col: 2 + i * 4, row: 9, imgName: "bx"))
             
-            pieces.insert(XiangqiPiece(rank: .warrior, isRed: true, col: 3 + i * 2, row: 0))
-            pieces.insert(XiangqiPiece(rank: .warrior, isRed: false, col: 3 + i * 2, row: 9))
+            pieces.insert(XiangqiPiece(rank: .warrior, isRed: true, col: 3 + i * 2, row: 0, imgName: "rs"))
+            pieces.insert(XiangqiPiece(rank: .warrior, isRed: false, col: 3 + i * 2, row: 9, imgName: "bs"))
             
-            pieces.insert(XiangqiPiece(rank: .cannon, isRed: true, col: 1 + i * 6, row: 2))
-            pieces.insert(XiangqiPiece(rank: .cannon, isRed: false, col: 1 + i * 6, row: 7))
+            pieces.insert(XiangqiPiece(rank: .cannon, isRed: true, col: 1 + i * 6, row: 2, imgName: "rp"))
+            pieces.insert(XiangqiPiece(rank: .cannon, isRed: false, col: 1 + i * 6, row: 7, imgName: "bp"))
         }
         
-        pieces.insert(XiangqiPiece(rank: .king, isRed: true, col: 4, row: 0))
-        pieces.insert(XiangqiPiece(rank: .warrior, isRed: false, col: 4, row: 9))
+        pieces.insert(XiangqiPiece(rank: .king, isRed: true, col: 4, row: 0, imgName: "rb"))
+        pieces.insert(XiangqiPiece(rank: .warrior, isRed: false, col: 4, row: 9, imgName: "bb"))
         
         for i in 0 ..< 5 {
-            pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: i * 2, row: 3))
-            pieces.insert(XiangqiPiece(rank: .pawn, isRed: false, col: i * 2, row: 6))
+            pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: i * 2, row: 3, imgName: "rz"))
+            pieces.insert(XiangqiPiece(rank: .pawn, isRed: false, col: i * 2, row: 6, imgName: "bz"))
         }
         
         
@@ -49,7 +49,7 @@ struct XiangqiBoard: CustomStringConvertible {
         if isValidRookMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) {
             let piece = pieceAt(col: fromCol, row: fromRow)!
             pieces.remove(piece)
-            pieces.insert(XiangqiPiece(rank: piece.rank, isRed: piece.isRed, col: toCol, row: toRow))
+            pieces.insert(XiangqiPiece(rank: piece.rank, isRed: piece.isRed, col: toCol, row: toRow, imgName: piece.imgName))
         }
     }
     

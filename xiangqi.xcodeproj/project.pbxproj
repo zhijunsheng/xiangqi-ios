@@ -106,8 +106,8 @@
 		07653536204A3C67008FC177 /* xiangqiTests */ = {
 			isa = PBXGroup;
 			children = (
-				5B320350227C6F7000067AAE /* XiangqiBoardTests.swift */,
 				9D64333320557D5100F1546C /* class_notes.txt */,
+				5B320350227C6F7000067AAE /* XiangqiBoardTests.swift */,
 				9D8804D2204C58D300F62586 /* SimpleLoopTests.swift */,
 				07653539204A3C67008FC177 /* Info.plist */,
 			);

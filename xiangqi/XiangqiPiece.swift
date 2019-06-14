@@ -13,5 +13,6 @@ struct XiangqiPiece: Hashable {
     let isRed: Bool
     let col: Int
     let row: Int
+    let imgName: String
 }
 
