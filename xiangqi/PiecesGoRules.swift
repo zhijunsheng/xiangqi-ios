@@ -34,8 +34,8 @@ struct PiecesGoRules: CustomStringConvertible {
         }
         
         piecesSet.remove(movingPiece)
-//        let newPiece = XiangqiPiece(x: toX, y: toY, rnk: movingPiece.rnk, isRed: movingPiece.isRed)
-        //piecesSet.insert(newPiece)
+        let newPiece = XiangqiPiece(x: toX, y: toY, rnk: movingPiece.rnk, isRed: movingPiece.isRed, imgNm: movingPiece.imgNm)
+        piecesSet.insert(newPiece)
     }
     
     func isValidRookMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {

@@ -6,7 +6,6 @@ class ViewController: UIViewController {
     var fromRow: Int = 38477
     var board = PiecesGoRules()
     
-    
     @IBOutlet var boardView: BoardView!
     
     override func viewDidLoad() {
@@ -14,47 +13,6 @@ class ViewController: UIViewController {
         
         board.piecesRoom()
         boardView.piecesSet = board.piecesSet
-        
-//        addPiece(imageName: "bb", row: 0, col: 4)
-//
-//        addPiece(imageName: "bj", row: 0, col: 0)
-//        addPiece(imageName: "bj", row: 0, col: 8)
-//
-//        addPiece(imageName: "rj", row: 9, col: 0)
-//        addPiece(imageName: "rj", row: 9, col: 8)
-//
-//        for i in 0..<5 {
-//            addPiece(imageName: "rz", row: 6, col: i * 2)
-//            addPiece(imageName: "bz", row: 3, col: i * 2)
-//        }
-//
-//
-//        addPiece(imageName: "bp", row: 2, col: 1)
-//        addPiece(imageName: "bp", row: 2, col: 7)
-//
-//        addPiece(imageName: "rp", row: 7, col: 1)
-//        addPiece(imageName: "rp", row: 7, col: 7)
-//
-//        addPiece(imageName: "rb", row: 9, col: 4)
-//
-//        addPiece(imageName: "bm", row: 0, col: 1)
-//        addPiece(imageName: "bm", row: 0, col: 7)
-//
-//        addPiece(imageName: "rm", row: 9, col: 1)
-//        addPiece(imageName: "rm", row: 9, col: 7)
-//
-//        addPiece(imageName: "bx", row: 0, col: 2)
-//        addPiece(imageName: "bx", row: 0, col: 6)
-//
-//        addPiece(imageName: "rx", row: 9, col: 2)
-//        addPiece(imageName: "rx", row: 9, col: 6)
-//
-//        addPiece(imageName: "bs", row: 0, col: 3)
-//        addPiece(imageName: "bs", row: 0, col: 5)
-//
-//        addPiece(imageName: "rs", row: 9, col: 3)
-//        addPiece(imageName: "rs", row: 9, col: 5)
-        
     }
     
     @IBAction func movePiece(_ panGestureRecognizer: UIPanGestureRecognizer) {
@@ -64,8 +22,8 @@ class ViewController: UIViewController {
             let finger = panGestureRecognizer.location(in: boardView)
             let fromX = (finger.x - boardView.boardOriginX) / boardView.cellSide
             let fromY = (finger.y - boardView.boardOriginY) / boardView.cellSide
-            let fromRow = Int(fromY + 0.5)
-            let fromCol = Int(fromX + 0.5)
+            fromRow = Int(fromY + 0.5)
+            fromCol = Int(fromX + 0.5)
             
             print("from \(fromCol,fromRow)")
         } else if panGestureRecognizer.state == .ended {
@@ -75,9 +33,14 @@ class ViewController: UIViewController {
             let toRow = Int(toY + 0.5)
             let toCol = Int(toX + 0.5)
             
-            print("to \(toCol,toRow)")
+            print("from \(fromCol,fromRow), to \(toCol,toRow)")
+            board.pieceGoes(frX: fromCol, frY: fromRow, toX: toCol, toY: toRow)
             
-            // we do need 4 numbers: fromCol, fromRow, toCol, toRow
+            boardView.piecesSet = board.piecesSet
+            
+            boardView.setNeedsDisplay()
+            
+            // we need 4 numbers: fromCol, fromRow, toCol, toRow
 
         } else if panGestureRecognizer.state == .changed {
             
