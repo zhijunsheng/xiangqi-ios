@@ -11,6 +11,13 @@ import XCTest
 
 class XiangqiBoardTests: XCTestCase {
     
+    func testBoard() {
+        var brd: XiangqiBoard
+        brd = XiangqiBoard()
+        brd.initializeBoard()
+        print(brd)
+    }
+    
     func testIsValidRookMove() {
         var brd: XiangqiBoard
         brd = XiangqiBoard()
@@ -66,8 +73,8 @@ class XiangqiBoardTests: XCTestCase {
          */
         
         brd = XiangqiBoard()
-        brd.pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: 3, row: 3))
-        brd.pieces.insert(XiangqiPiece(rank: .knight, isRed: true, col: 5, row: 3))
+        brd.pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: 3, row: 3, imgName: "rz"))
+        brd.pieces.insert(XiangqiPiece(rank: .knight, isRed: true, col: 5, row: 3, imgName: "r"))
         XCTAssertFalse(brd.isValidRookMove(fromCol: 0, fromRow: 3, toCol: 7, toRow: 3))
         
         /*
@@ -121,8 +128,8 @@ class XiangqiBoardTests: XCTestCase {
          
          */
         brd = XiangqiBoard()
-        brd.pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: 3, row: 3))
-        brd.pieces.insert(XiangqiPiece(rank: .knight, isRed: true, col: 5, row: 3))
+        brd.pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: 3, row: 3, imgName: "rz"))
+        brd.pieces.insert(XiangqiPiece(rank: .knight, isRed: true, col: 5, row: 3, imgName: "rm"))
         XCTAssertFalse(brd.isValidRookMove(fromCol: 7, fromRow: 3, toCol: 0, toRow: 3))
     }
     
@@ -140,7 +147,7 @@ class XiangqiBoardTests: XCTestCase {
 
         XCTAssertTrue(brd.isValidKnightMove(fromCol: 4, fromRow: 5, toCol: 5, toRow: 7))
         
-        brd.pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: 2, row: 3))
+        brd.pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: 2, row: 3, imgName: "rz"))
         XCTAssertFalse(brd.isValidKnightMove(fromCol: 2, fromRow: 2, toCol: 1, toRow: 4))
         
         brd.initializeBoard()
@@ -170,7 +177,7 @@ class XiangqiBoardTests: XCTestCase {
          
          */
         brd = XiangqiBoard()
-        brd.pieces.insert(XiangqiPiece(rank: .bishop, isRed: true, col: 0, row: 2))
+        brd.pieces.insert(XiangqiPiece(rank: .bishop, isRed: true, col: 0, row: 2, imgName: "r"))
         XCTAssertTrue(brd.isValidBishopMove(fromCol: 0, fromRow: 2, toCol: 2, toRow: 0))
         
         // crossing the river
@@ -188,7 +195,7 @@ class XiangqiBoardTests: XCTestCase {
          9 . . . . . . . . .
          */
         brd = XiangqiBoard()
-        brd.pieces.insert(XiangqiPiece(rank: .bishop, isRed: true, col: 2, row: 4))
+        brd.pieces.insert(XiangqiPiece(rank: .bishop, isRed: true, col: 2, row: 4, imgName: "rx"))
         XCTAssertFalse(brd.isValidBishopMove(fromCol: 2, fromRow: 4, toCol: 4, toRow: 6))
         
         /*
@@ -205,7 +212,7 @@ class XiangqiBoardTests: XCTestCase {
          9 . . . . . . . . .
          */
         brd = XiangqiBoard()
-        brd.pieces.insert(XiangqiPiece(rank: .bishop, isRed: false, col: 6, row: 5))
+        brd.pieces.insert(XiangqiPiece(rank: .bishop, isRed: false, col: 6, row: 5, imgName: "bx"))
         XCTAssertFalse(brd.isValidBishopMove(fromCol: 6, fromRow: 5, toCol: 4, toRow: 3))
         
         // blocking
@@ -226,8 +233,8 @@ class XiangqiBoardTests: XCTestCase {
          
         */
         brd = XiangqiBoard()
-        brd.pieces.insert(XiangqiPiece(rank: .rook, isRed: true, col: 3, row: 4))
-        brd.pieces.insert(XiangqiPiece(rank: .bishop, isRed: true, col: 2, row: 3))
+        brd.pieces.insert(XiangqiPiece(rank: .rook, isRed: true, col: 3, row: 4, imgName: "rj"))
+        brd.pieces.insert(XiangqiPiece(rank: .bishop, isRed: true, col: 2, row: 3, imgName: "rx"))
         XCTAssertFalse(brd.isValidBishopMove(fromCol: 2, fromRow: 3, toCol: 4, toRow: 5))
         print(brd)
     }
@@ -250,7 +257,7 @@ class XiangqiBoardTests: XCTestCase {
          
          */
         brd = XiangqiBoard()
-        brd.pieces.insert(XiangqiPiece(rank: .king, isRed: true, col: 5, row: 0))
+        brd.pieces.insert(XiangqiPiece(rank: .king, isRed: true, col: 5, row: 0, imgName: "rb"))
         XCTAssertFalse(brd.isValidKingMove(fromCol: 5, fromRow: 0, toCol: 6, toRow: 0))
         
         /*
@@ -269,7 +276,9 @@ class XiangqiBoardTests: XCTestCase {
          
          */
         brd = XiangqiBoard()
-        brd.pieces.insert(XiangqiPiece(rank: .king, isRed: true, col: 4, row: 0))
+        brd.pieces.insert(XiangqiPiece(rank: .king, isRed: true, col: 4, row: 0, imgName: "rb"))
         XCTAssertTrue(brd.isValidKingMove(fromCol: 4, fromRow: 0, toCol: 5, toRow: 0))
+        
+        
     }
 }

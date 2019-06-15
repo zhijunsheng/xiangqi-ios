@@ -28,7 +28,8 @@ class BoardView: UIView {
     }
     
     func drawPieces() {
-        drawPiece(piece: XiangqiPiece(rank: .cannon, isRed: false, col: 1, row: 2, imgName: "bp"))
+        let a = XiangqiPiece(rank: .cannon, isRed: false, col: 1, row: 2, imgName: "bp")
+        drawPiece(piece: a)
         drawPiece(piece: XiangqiPiece(rank: .king, isRed: true, col: 4, row: 9, imgName: "rb"))
 
     }

@@ -33,14 +33,12 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         
         pieces.insert(XiangqiPiece(rank: .king, isRed: true, col: 4, row: 0, imgName: "rb"))
-        pieces.insert(XiangqiPiece(rank: .warrior, isRed: false, col: 4, row: 9, imgName: "bb"))
+        pieces.insert(XiangqiPiece(rank: .king, isRed: false, col: 4, row: 9, imgName: "bb"))
         
         for i in 0 ..< 5 {
             pieces.insert(XiangqiPiece(rank: .pawn, isRed: true, col: i * 2, row: 3, imgName: "rz"))
             pieces.insert(XiangqiPiece(rank: .pawn, isRed: false, col: i * 2, row: 6, imgName: "bz"))
         }
-        
-        
     }
     
     mutating func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
