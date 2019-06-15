@@ -9,9 +9,13 @@ class BoardView: UIView {
     let gapB: CGFloat = 4
     let shortLine: CGFloat = 7
     
+    var piecesSet = Set<XiangqiPiece>()
+    
     override func draw(_ rect: CGRect) {
         drawBoard()
         drawPieces()
+        
+        print(piecesSet.count)
     }
     
     
@@ -154,10 +158,9 @@ class BoardView: UIView {
     }
     
     func drawPieces() {
-        drawPiece(piece: XiangqiPiece(x: 4, y: 0, rnk: .king, isRed: false, imgNm: "bb"))
-        
-        drawPiece(piece: XiangqiPiece(x: 3, y: 0, rnk: .king, isRed: false, imgNm: "bs"))
-        drawPiece(piece: XiangqiPiece(x: 5, y: 0, rnk: .king, isRed: false, imgNm: "bs"))
+        for piece in piecesSet {
+            drawPiece(piece: piece)
+        }
     }
     
     func drawPiece(piece: XiangqiPiece) {

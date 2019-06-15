@@ -4,12 +4,16 @@ class ViewController: UIViewController {
     
     var fromCol: Int = 28272
     var fromRow: Int = 38477
+    var board = PiecesGoRules()
     
     
     @IBOutlet var boardView: BoardView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        board.piecesRoom()
+        boardView.piecesSet = board.piecesSet
         
 //        addPiece(imageName: "bb", row: 0, col: 4)
 //
