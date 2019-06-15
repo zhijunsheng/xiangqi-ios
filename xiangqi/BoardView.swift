@@ -7,7 +7,7 @@
 //
 
 import UIKit
-// (re)write the code from scratch
+
 class BoardView: UIView {
     var originX: CGFloat = 25
     var originY: CGFloat = 20
@@ -21,6 +21,7 @@ class BoardView: UIView {
     let cols = 9
     let percent: CGFloat = 0.9
     
+    var pieces: Set<XiangqiPiece> = Set<XiangqiPiece>()
     
     override func draw(_ rect: CGRect) {
         drawBoard()
@@ -28,10 +29,9 @@ class BoardView: UIView {
     }
     
     func drawPieces() {
-        let a = XiangqiPiece(rank: .cannon, isRed: false, col: 1, row: 2, imgName: "bp")
-        drawPiece(piece: a)
-        drawPiece(piece: XiangqiPiece(rank: .king, isRed: true, col: 4, row: 9, imgName: "rb"))
-
+        for piece in pieces {
+            drawPiece(piece: piece)
+        }
     }
     
     func drawPiece(piece: XiangqiPiece) {
