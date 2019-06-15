@@ -59,6 +59,22 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         return false
     }
+    
+    func isValidKnightMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        
+        if fromCol - 1 == toCol && fromRow - 2 == toRow // ([1]1)
+        || fromCol - 2 == toCol && fromRow - 1 == toRow // ([1]2)
+        || fromCol + 1 == toCol && fromRow - 2 == toRow // ([2]1)
+        || fromCol + 2 == toCol && fromRow - 1 == toRow // ([2]2)
+        || fromCol + 2 == toCol && fromRow + 1 == toRow // ([3]1)
+        || fromCol + 1 == toCol && fromRow + 2 == toRow // ([3]2)
+        || fromCol - 1 == toCol && fromRow + 2 == toRow // ([4]1)
+        || fromCol - 2 == toCol && fromRow + 1 == toRow // ([4]2)
+        {
+            return true
+        }
+        return false
+    }
     mutating func move(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
             return
