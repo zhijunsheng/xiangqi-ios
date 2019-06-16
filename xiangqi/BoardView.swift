@@ -68,13 +68,11 @@ class BoardView: UIView {
         
         // =================================================
         
-        let i9 = UIBezierPath()
-        i9.move(to: CGPoint(x: width * 5 + originX, y: height * 4 + ( height / 4 ) + originY))
-        i9.addLine(to: CGPoint(x: width * 5 + originX, y: height * 4 + ( ( height / 4 ) * 3 ) + originY))
-        i9.addLine(to: CGPoint(x: width * 7 + ( width / 2 ) + originX, y: height * 4 + ( ( height / 4 ) * 3 ) + originY))
-        i9.addLine(to: CGPoint(x: width * 7 + ( width / 2 ) + originX, y: height * 4 + ( height / 4 ) + originY))
-        i9.close()
-        i9.fill()
+        let j10 = UIBezierPath()
+        j10.move(to: CGPoint(x: originX, y: originY + height * 4.5))
+        j10.addLine(to: CGPoint(x: originX + width * 8, y: originY + height * 4.5))
+        #colorLiteral(red: 0, green: 0.6235294118, blue: 0.9176470588, alpha: 1).setStroke()
+        j10.stroke()
 
         drawStar(pointX : width + originX, pointY : height + height + originY)
         drawStar(pointX : width * 2 + originX, pointY : height * 3 + originY)
