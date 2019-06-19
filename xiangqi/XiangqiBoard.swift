@@ -42,16 +42,31 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     mutating func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
-        
-        
-        if isValidRookMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) {
-            let piece = pieceAt(col: fromCol, row: fromRow)!
+        if isValidMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) {
+            guard let piece = pieceAt(col: fromCol, row: fromRow) else {
+                return
+            }
             pieces.remove(piece)
             pieces.insert(XiangqiPiece(rank: piece.rank, isRed: piece.isRed, col: toCol, row: toRow, imgName: piece.imgName))
         }
     }
     
-    // 7 3 0 3
+    func isValidMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
+            return false
+        }
+        
+        if movingPiece.rank == .rook {
+            return isValidRookMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        } else if movingPiece.rank == .knight {
+            return isValidKnightMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        } else if movingPiece.rank == .bishop {
+            return isValidBishopMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        }
+        
+        return false
+    }
+    
     func isValidRookMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         
         if toRow == fromRow {
