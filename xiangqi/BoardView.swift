@@ -25,7 +25,7 @@ class BoardView: UIView {
     
     override func draw(_ rect: CGRect) {
         drawBoard()
-        drawPieces()
+//        drawPieces()
     }
     
     func drawPieces() {
@@ -123,15 +123,19 @@ class BoardView: UIView {
         }
         
         cellSide = smaller * percent / CGFloat(rows - 1) + 10
+        cellSide = 100
         originX = (bounds.width - cellSide * CGFloat(cols - 1)) / 2
+        originX = 30
         originY = (bounds.height - cellSide * CGFloat(rows - 1)) / 2
+        originY = 30
         
         shortLine = cellSide * 0.25
         intervalGap = cellSide * 0.1
-
+        
+        
         
         drawLines()
-        drawOuterFrame()
+//        drawOuterFrame()
         drawVerticalLines(isUpperHalf: true)
         drawVerticalLines(isUpperHalf: false)
         

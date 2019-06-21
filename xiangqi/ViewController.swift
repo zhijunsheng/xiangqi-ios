@@ -27,16 +27,17 @@ class ViewController: UIViewController {
         
         let fingerLocation = panGestureRecognizer.location(in: boardView)
         if panGestureRecognizer.state == .began {
+            print("from: (\(fingerLocation.x), \(fingerLocation.y))")
             (fromCol, fromRow) = xyToColRow(x: fingerLocation.x, y: fingerLocation.y)
-            print("from: (\(fromCol), \(fromRow))")
+//            print("from: (\(fromCol), \(fromRow))")
             
         } else if panGestureRecognizer.state == .ended {
             let (toCol, toRow) = xyToColRow(x: fingerLocation.x, y: fingerLocation.y)
-            print("to: (\(toCol), \(toRow))")
+//            print("to: (\(toCol), \(toRow))")
             board.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
             boardView.pieces = board.pieces
             boardView.setNeedsDisplay()
-            print(board)
+//            print(board)
         } else if panGestureRecognizer.state == .changed {
             //            print("1234567890")
         }
