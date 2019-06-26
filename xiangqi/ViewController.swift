@@ -34,16 +34,11 @@ class ViewController: UIViewController {
             fromRow = Utils.xyToColRow(xy: fingerLocation.y, orgXY: boardView.originY, cellSide: boardView.cellSide, margin: boardView.panningMargin)
             
         } else if panGestureRecognizer.state == .ended {
-            guard let toCol = Utils.xyToColRow(xy: fingerLocation.x, orgXY: boardView.originX, cellSide: boardView.cellSide, margin: boardView.panningMargin), let toRow = Utils.xyToColRow(xy: fingerLocation.y, orgXY: boardView.originY, cellSide: boardView.cellSide, margin: boardView.panningMargin) else {
+            guard let fromCol = fromCol, let fromRow = fromRow, let toCol = Utils.xyToColRow(xy: fingerLocation.x, orgXY: boardView.originX, cellSide: boardView.cellSide, margin: boardView.panningMargin), let toRow = Utils.xyToColRow(xy: fingerLocation.y, orgXY: boardView.originY, cellSide: boardView.cellSide, margin: boardView.panningMargin) else {
                 return
             }
             
-            if fromCol == nil || fromRow == nil {
-                return
-            }
-            print("from: (\(fromCol), \(toRow))")
-            print("to: (\(toCol), \(toRow))")
-            board.movePiece(fromCol: fromCol!, fromRow: fromRow!, toCol: toCol, toRow: toRow) // TODO
+            board.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
             boardView.pieces = board.pieces
             boardView.setNeedsDisplay()
             print(board)
