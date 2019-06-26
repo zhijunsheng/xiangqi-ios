@@ -9,6 +9,20 @@
 import UIKit
 
 struct Utils {
+    static func xyToColRow(xy: CGFloat, orgXY: CGFloat, cellSide: CGFloat, margin: CGFloat) -> Int? {
+        
+        let col = Int((xy - orgXY) / cellSide)
+        
+        let first = orgXY + cellSide * CGFloat(col)
+        let second = orgXY + cellSide * CGFloat(col + 1)
+        
+        if xy > first + margin && xy < second - margin {
+            return col
+        } else {
+            return nil
+        }
+    }
+    
     static func xToCol(x: CGFloat, orgX: CGFloat, cellSide: CGFloat, margin: CGFloat) -> Int? {
         let col = Int((x - orgX) / cellSide)
     

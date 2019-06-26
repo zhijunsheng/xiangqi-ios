@@ -9,6 +9,11 @@
 import UIKit
 
 class BoardView: UIView {
+    let rows = 10
+    let cols = 9
+    let percent: CGFloat = 0.85
+    let panningMargin: CGFloat = 13.0
+    
     var originX: CGFloat = 25
     var originY: CGFloat = 20
     var cellSide: CGFloat = 28
@@ -16,30 +21,34 @@ class BoardView: UIView {
     let outerFrameLineWidth: CGFloat = 3
     var intervalGap: CGFloat = 9
     var shortLine: CGFloat = 18
-    
-    let rows = 10
-    let cols = 9
-    let percent: CGFloat = 0.9
-    
     var pieces: Set<XiangqiPiece> = Set<XiangqiPiece>()
     
     override func draw(_ rect: CGRect) {
-        drawBoard()
-//        drawPieces()
+        var smaller = bounds.width
+        if bounds.width > bounds.height {
+            smaller = bounds.height
+        }
+        
+        cellSide = smaller * percent / CGFloat(rows - 1) + 10
+        originX = (bounds.width - cellSide * CGFloat(cols - 1)) / 2 - cellSide / 2
+        originY = (bounds.height - cellSide * CGFloat(rows - 1)) / 2 - cellSide / 2
+        
+        drawBoard(orgX: originX + cellSide / 2, orgY: originY + cellSide / 2)
+        drawPieces(orgX: originX, orgY: originY)
     }
     
-    func drawPieces() {
+    func drawPieces(orgX: CGFloat, orgY: CGFloat) {
         for piece in pieces {
-            drawPiece(piece: piece)
+            drawPiece(orgX: orgX, orgY: orgY, piece: piece)
         }
     }
     
-    func drawPiece(piece: XiangqiPiece) {
+    func drawPiece(orgX: CGFloat, orgY: CGFloat, piece: XiangqiPiece) {
         let pieceImage = UIImage(named: piece.imgName)!
-        pieceImage.draw(in: CGRect(x: originX + cellSide * (CGFloat(piece.col) - 0.5), y: originY + cellSide * (CGFloat(piece.row) - 0.5), width: cellSide, height: cellSide))
+        pieceImage.draw(in: CGRect(x: orgX + cellSide * CGFloat(piece.col), y: orgY + cellSide * CGFloat(piece.row), width: cellSide, height: cellSide))
     }
     
-    func drawQuarterStar(locationX: Int, locationY: Int, isLeftHalf: Bool, isUpperHalf: Bool) {
+    func drawQuarterStar(orgX: CGFloat, orgY: CGFloat, locationX: Int, locationY: Int, isLeftHalf: Bool, isUpperHalf: Bool) {
         var sign0: CGFloat
         var sign1: CGFloat
         if isLeftHalf && isUpperHalf {
@@ -57,48 +66,48 @@ class BoardView: UIView {
         }
         
         let pencil = UIBezierPath()
-        pencil.move(to: CGPoint(x: originX + cellSide * CGFloat(locationX) + intervalGap * sign1, y: originY + cellSide * CGFloat(locationY) + shortLine * sign0 + intervalGap * sign0))
-        pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(locationX) + intervalGap * sign1, y: originY + cellSide * CGFloat(locationY) + intervalGap * sign0))
-        pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(locationX) + shortLine * sign1 + intervalGap * sign1, y: originY + cellSide * CGFloat(locationY) + intervalGap * sign0))
+        pencil.move(to: CGPoint(x: orgX + cellSide * CGFloat(locationX) + intervalGap * sign1, y: orgY + cellSide * CGFloat(locationY) + shortLine * sign0 + intervalGap * sign0))
+        pencil.addLine(to: CGPoint(x: orgX + cellSide * CGFloat(locationX) + intervalGap * sign1, y: orgY + cellSide * CGFloat(locationY) + intervalGap * sign0))
+        pencil.addLine(to: CGPoint(x: orgX + cellSide * CGFloat(locationX) + shortLine * sign1 + intervalGap * sign1, y: orgY + cellSide * CGFloat(locationY) + intervalGap * sign0))
         
         pencil.stroke()
     }
     
-    func drawHalfStar(locationX: Int, locationY: Int, isLeftHalf: Bool) {
+    func drawHalfStar(orgX: CGFloat, orgY: CGFloat, locationX: Int, locationY: Int, isLeftHalf: Bool) {
         let pencil = UIBezierPath()
         if isLeftHalf {
-            drawQuarterStar(locationX: locationX, locationY: locationY, isLeftHalf: true, isUpperHalf: true)
-            drawQuarterStar(locationX: locationX, locationY: locationY, isLeftHalf: true, isUpperHalf: false)
+            drawQuarterStar(orgX: orgX, orgY: orgY, locationX: locationX, locationY: locationY, isLeftHalf: true, isUpperHalf: true)
+            drawQuarterStar(orgX: orgX, orgY: orgY, locationX: locationX, locationY: locationY, isLeftHalf: true, isUpperHalf: false)
         } else {
-            drawQuarterStar(locationX: locationX, locationY: locationY, isLeftHalf: false, isUpperHalf: true)
-            drawQuarterStar(locationX: locationX, locationY: locationY, isLeftHalf: false, isUpperHalf: false)
+            drawQuarterStar(orgX: orgX, orgY: orgY, locationX: locationX, locationY: locationY, isLeftHalf: false, isUpperHalf: true)
+            drawQuarterStar(orgX: orgX, orgY: orgY, locationX: locationX, locationY: locationY, isLeftHalf: false, isUpperHalf: false)
         }
         
         pencil.stroke()
     }
     
-    func drawLines() {
+    func drawLines(orgX: CGFloat, orgY: CGFloat) {
         for i in 0 ..< rows {
             let pencil = UIBezierPath()
-            pencil.move(to: CGPoint(x: originX, y: originY + cellSide * CGFloat(i)))
-            pencil.addLine(to: CGPoint(x: originX + cellSide * CGFloat(cols - 1), y: originY + cellSide * CGFloat(i)))
+            pencil.move(to: CGPoint(x: orgX, y: orgY + cellSide * CGFloat(i)))
+            pencil.addLine(to: CGPoint(x: orgX + cellSide * CGFloat(cols - 1), y: orgY + cellSide * CGFloat(i)))
 
             pencil.stroke()
         }
     }
     
-    func drawOuterFrame() {
+    func drawOuterFrame(orgX: CGFloat, orgY: CGFloat) {
         let pen = UIBezierPath()
-        pen.move(to: CGPoint(x: originX - gap, y: originY - gap))
-        pen.addLine(to: CGPoint(x: originX + cellSide * CGFloat(cols - 1) + gap, y: originY - gap))
-        pen.addLine(to: CGPoint(x: originX + cellSide * CGFloat(cols - 1) + gap, y: originY + cellSide * CGFloat(rows - 1) + gap))
-        pen.addLine(to: CGPoint(x: originX - gap, y: originY + cellSide * CGFloat(rows - 1) + gap))
+        pen.move(to: CGPoint(x: orgX - gap, y: orgY - gap))
+        pen.addLine(to: CGPoint(x: orgX + cellSide * CGFloat(cols - 1) + gap, y: orgY - gap))
+        pen.addLine(to: CGPoint(x: orgX + cellSide * CGFloat(cols - 1) + gap, y: orgY + cellSide * CGFloat(rows - 1) + gap))
+        pen.addLine(to: CGPoint(x: orgX - gap, y: orgY + cellSide * CGFloat(rows - 1) + gap))
         pen.close()
         pen.lineWidth = outerFrameLineWidth
         pen.stroke()
     }
     
-    func drawVerticalLines(isUpperHalf: Bool) {
+    func drawVerticalLines(orgX: CGFloat, orgY: CGFloat, isUpperHalf: Bool) {
         let pen = UIBezierPath()
         var verticalOffset = 0
         if !isUpperHalf {
@@ -106,66 +115,50 @@ class BoardView: UIView {
         }
         for i in 0 ..< cols {
             if i == 0 || i == 8 {
-                pen.move(to: CGPoint(x: originX + cellSide * CGFloat(i), y: originY))
-                pen.addLine(to: CGPoint(x: originX + cellSide * CGFloat(i), y: originY + cellSide * 9))
+                pen.move(to: CGPoint(x: orgX + cellSide * CGFloat(i), y: orgY))
+                pen.addLine(to: CGPoint(x: orgX + cellSide * CGFloat(i), y: orgY + cellSide * 9))
             } else {
-                pen.move(to: CGPoint(x: originX + cellSide * CGFloat(i), y: originY + cellSide * CGFloat(verticalOffset)))
-                pen.addLine(to: CGPoint(x: originX + cellSide * CGFloat(i), y: originY + cellSide * CGFloat((rows - 2) / 2 + verticalOffset)))
+                pen.move(to: CGPoint(x: orgX + cellSide * CGFloat(i), y: orgY + cellSide * CGFloat(verticalOffset)))
+                pen.addLine(to: CGPoint(x: orgX + cellSide * CGFloat(i), y: orgY + cellSide * CGFloat((rows - 2) / 2 + verticalOffset)))
             }
             pen.stroke()
         }
     }
     
-    func drawBoard() {
-        var smaller = bounds.width
-        if bounds.width > bounds.height {
-            smaller = bounds.height
-        }
+    func drawBoard(orgX: CGFloat, orgY: CGFloat) {
         
-        cellSide = smaller * percent / CGFloat(rows - 1) + 10
-        cellSide = 100
-        originX = (bounds.width - cellSide * CGFloat(cols - 1)) / 2
-        originX = 30
-        originY = (bounds.height - cellSide * CGFloat(rows - 1)) / 2
-        originY = 30
-        
-        shortLine = cellSide * 0.25
-        intervalGap = cellSide * 0.1
-        
-        
-        
-        drawLines()
-//        drawOuterFrame()
-        drawVerticalLines(isUpperHalf: true)
-        drawVerticalLines(isUpperHalf: false)
-        
+        drawLines(orgX: orgX, orgY: orgY)
+        drawOuterFrame(orgX: orgX, orgY: orgY)
+        drawVerticalLines(orgX: orgX, orgY: orgY, isUpperHalf: true)
+        drawVerticalLines(orgX: orgX, orgY: orgY, isUpperHalf: false)
+
         
         for i in 0 ..< 2 {
-            drawHalfStar(locationX: 1 + i * 6, locationY: 2, isLeftHalf: true)
-            drawHalfStar(locationX: 1 + i * 6, locationY: 2, isLeftHalf: false)
-            drawHalfStar(locationX: 1 + i * 6, locationY: 7, isLeftHalf: true)
-            drawHalfStar(locationX: 1 + i * 6, locationY: 7, isLeftHalf: false)
+            drawHalfStar(orgX: orgX, orgY: orgY, locationX: 1 + i * 6, locationY: 2, isLeftHalf: true)
+            drawHalfStar(orgX: orgX, orgY: orgY, locationX: 1 + i * 6, locationY: 2, isLeftHalf: false)
+            drawHalfStar(orgX: orgX, orgY: orgY, locationX: 1 + i * 6, locationY: 7, isLeftHalf: true)
+            drawHalfStar(orgX: orgX, orgY: orgY, locationX: 1 + i * 6, locationY: 7, isLeftHalf: false)
         }
         
         for i in 0 ..< 4 {
-            drawHalfStar(locationX: (i + 1) * 2, locationY: 3, isLeftHalf: true)
-            drawHalfStar(locationX: (i + 1) * 2, locationY: 6, isLeftHalf: true)
-            drawHalfStar(locationX: i * 2, locationY: 3, isLeftHalf: false)
-            drawHalfStar(locationX: i * 2, locationY: 6, isLeftHalf: false)
+            drawHalfStar(orgX: orgX, orgY: orgY, locationX: (i + 1) * 2, locationY: 3, isLeftHalf: true)
+            drawHalfStar(orgX: orgX, orgY: orgY, locationX: (i + 1) * 2, locationY: 6, isLeftHalf: true)
+            drawHalfStar(orgX: orgX, orgY: orgY, locationX: i * 2, locationY: 3, isLeftHalf: false)
+            drawHalfStar(orgX: orgX, orgY: orgY, locationX: i * 2, locationY: 6, isLeftHalf: false)
         }
         
         let pen = UIBezierPath()
-        pen.move(to: CGPoint(x: originX + cellSide * 5, y: originY))
-        pen.addLine(to: CGPoint(x: originX + cellSide * 3, y: originY + cellSide * 2))
+        pen.move(to: CGPoint(x: orgX + cellSide * 5, y: orgY))
+        pen.addLine(to: CGPoint(x: orgX + cellSide * 3, y: orgY + cellSide * 2))
         
-        pen.move(to: CGPoint(x: originX + cellSide * 3, y: originY))
-        pen.addLine(to: CGPoint(x: originX + cellSide * 5, y: originY + cellSide * 2))
+        pen.move(to: CGPoint(x: orgX + cellSide * 3, y: orgY))
+        pen.addLine(to: CGPoint(x: orgX + cellSide * 5, y: orgY + cellSide * 2))
         
-        pen.move(to: CGPoint(x: originX + cellSide * 5, y: originY + cellSide * 7))
-        pen.addLine(to: CGPoint(x: originX + cellSide * 3, y: originY + cellSide * 9))
+        pen.move(to: CGPoint(x: orgX + cellSide * 5, y: orgY + cellSide * 7))
+        pen.addLine(to: CGPoint(x: orgX + cellSide * 3, y: orgY + cellSide * 9))
         
-        pen.move(to: CGPoint(x: originX + cellSide * 3, y: originY + cellSide * 7))
-        pen.addLine(to: CGPoint(x: originX + cellSide * 5, y: originY + cellSide * 9))
+        pen.move(to: CGPoint(x: orgX + cellSide * 3, y: orgY + cellSide * 7))
+        pen.addLine(to: CGPoint(x: orgX + cellSide * 5, y: orgY + cellSide * 9))
         
         pen.stroke()
     }

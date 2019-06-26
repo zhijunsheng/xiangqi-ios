@@ -11,8 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var boardView: BoardView!
     var board = XiangqiBoard()
-    var fromCol: Int = -1
-    var fromRow: Int = -2
+    var fromCol: Int? = nil
+    var fromRow: Int? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,27 +28,28 @@ class ViewController: UIViewController {
         let fingerLocation = panGestureRecognizer.location(in: boardView)
         if panGestureRecognizer.state == .began {
             print("from: (\(fingerLocation.x), \(fingerLocation.y))")
-            (fromCol, fromRow) = xyToColRow(x: fingerLocation.x, y: fingerLocation.y)
-//            print("from: (\(fromCol), \(fromRow))")
+            
+            fromCol = Utils.xyToColRow(xy: fingerLocation.x, orgXY: boardView.originX, cellSide: boardView.cellSide, margin: boardView.panningMargin)
+            
+            fromRow = Utils.xyToColRow(xy: fingerLocation.y, orgXY: boardView.originY, cellSide: boardView.cellSide, margin: boardView.panningMargin)
             
         } else if panGestureRecognizer.state == .ended {
-            let (toCol, toRow) = xyToColRow(x: fingerLocation.x, y: fingerLocation.y)
-//            print("to: (\(toCol), \(toRow))")
-            board.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+            guard let toCol = Utils.xyToColRow(xy: fingerLocation.x, orgXY: boardView.originX, cellSide: boardView.cellSide, margin: boardView.panningMargin), let toRow = Utils.xyToColRow(xy: fingerLocation.y, orgXY: boardView.originY, cellSide: boardView.cellSide, margin: boardView.panningMargin) else {
+                return
+            }
+            
+            if fromCol == nil || fromRow == nil {
+                return
+            }
+            print("from: (\(fromCol), \(toRow))")
+            print("to: (\(toCol), \(toRow))")
+            board.movePiece(fromCol: fromCol!, fromRow: fromRow!, toCol: toCol, toRow: toRow) // TODO
             boardView.pieces = board.pieces
             boardView.setNeedsDisplay()
-//            print(board)
+            print(board)
         } else if panGestureRecognizer.state == .changed {
             //            print("1234567890")
         }
-    }
-    
-    func xyToColRow(x: CGFloat, y: CGFloat) -> (Int, Int) {
-        let fromColRaw: CGFloat = (x - boardView.originX) / boardView.cellSide
-        let fromRowRaw: CGFloat = (y - boardView.originY) / boardView.cellSide
-        let fromCol = Int(fromColRaw + 0.5)
-        let fromRow = Int(fromRowRaw + 0.5)
-        return (fromCol, fromRow)
     }
 }
 
