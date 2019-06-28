@@ -62,6 +62,8 @@ struct XiangqiBoard: CustomStringConvertible {
             return isValidKnightMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         } else if movingPiece.rank == .bishop {
             return isValidBishopMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        } else if movingPiece.rank == .king {
+            return isValidKingMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         }
         
         return false
@@ -112,19 +114,16 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     func isValidKingMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        if pieceAt(col: fromCol, row: fromRow)!.isRed && toCol >= 3 && toCol <= 5 && toRow >= 0 && toRow <= 2 || !pieceAt(col: fromCol, row: fromRow)!.isRed && toCol >= 3 && toCol <= 5 && toRow >= 7 && toRow <= 9 {
-            if toCol > fromCol && toRow == fromRow {
-                return true
-            } else if toCol < fromCol && toRow == fromRow {
-                return true
-            } else if toRow > fromRow && toCol == fromCol {
-                return true
-            } else if toRow < fromRow && toCol == fromCol {
-                return true
-            }
+        guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
+            return false
         }
-        return false
+        
+        return (movingPiece.isRed && toCol >= 3 && toCol <= 5 && toRow >= 0 && toRow <= 2 || !movingPiece.isRed && toCol >= 3 && toCol <= 5 && toRow >= 7 && toRow <= 9) && (abs(toCol - fromCol) == 1 && toRow == fromRow || abs(toRow - fromRow) == 1 && toCol == fromCol)
     }
+    
+//    func isValidMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+//        
+//    }
     
     var description: String {
         var brdStr = ""

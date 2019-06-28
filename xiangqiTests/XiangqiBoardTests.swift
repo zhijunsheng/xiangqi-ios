@@ -279,6 +279,23 @@ class XiangqiBoardTests: XCTestCase {
         brd.pieces.insert(XiangqiPiece(rank: .king, isRed: true, col: 4, row: 0, imgName: "rb"))
         XCTAssertTrue(brd.isValidKingMove(fromCol: 4, fromRow: 0, toCol: 5, toRow: 0))
         
-        
+        /*
+         
+         + 0 1 2 3 4 5 6 7 8
+         0 . . . . . . . . .
+         1 . . . K . ? . . .
+         2 . . . . . . . . .
+         3 . . . . . . . . .
+         4 . . . . . . . . .
+         5 . . . . . . . . .
+         6 . . . . . . . . .
+         7 . . . . . . . . .
+         8 . . . . . . . . .
+         9 . . . . . . . . .
+         
+         */
+        brd = XiangqiBoard()
+        brd.pieces.insert(XiangqiPiece(rank: .king, isRed: true, col: 3, row: 1, imgName: ""))
+        XCTAssertFalse(brd.isValidKingMove(fromCol: 3, fromRow: 1, toCol: 5, toRow: 1))
     }
 }
