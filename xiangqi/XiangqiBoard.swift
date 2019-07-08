@@ -52,7 +52,12 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     func isValidMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
+            return false
+        }
+
+        if stepOwnPiece(movingPiece: movingPiece, col: toCol, row: toRow) {
             return false
         }
         
@@ -71,6 +76,10 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         
         return false
+    }
+    
+    func stepOwnPiece(movingPiece: XiangqiPiece, col: Int, row: Int) -> Bool {
+        return movingPiece.isRed == pieceAt(col: col, row: row)?.isRed
     }
     
     func isValidRookMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
@@ -107,51 +116,28 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     func isValidBishopMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
+            return false
+        }
         let noBlocker = pieceAt(col: (toCol + fromCol) / 2, row: (toRow + fromRow) / 2) == nil
-        let inOwnSide = (pieceAt(col: fromCol, row: fromRow)!.isRed && toRow <= 4 || !pieceAt(col: fromCol, row: fromRow)!.isRed && toRow >= 5)
         let diagonalStep = abs(toCol - fromCol) == 2 && abs(toRow - fromRow) == 2
-        return inOwnSide && diagonalStep && noBlocker
+        return isInHome(row: toRow, isRed: movingPiece.isRed) && diagonalStep && noBlocker
     }
     
     func isValidKingMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-//        return isInPalace(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) && (abs(toCol - fromCol) == 1 && toRow == fromRow || abs(toRow - fromRow) == 1 && toCol == fromCol)
         return isInPalace(col: toCol, row: toRow) && (abs(toCol - fromCol) == 1 && toRow == fromRow || abs(toRow - fromRow) == 1 && toCol == fromCol)
     }
     
     func isValidWarriorMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-//        return isInPalace(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) && abs(toCol - fromCol) == 1 && abs(toRow - fromRow) == 1
         return isInPalace(col: toCol, row: toRow) && abs(toCol - fromCol) == 1 && abs(toRow - fromRow) == 1
     }
     
     func isValidPawnMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        /*
- 
-         if in our own side {
-            return isMovingForward
-         } else {
-            return !isMovingBackward
-         }
-         
-         if isRed {
-           if notCrossRiver {
-         
-           } else {
-         
-           }
-         } else {
-         
-         }
- 
- */
-        // 3 * 5 + 4 * 5 = （3 + 4） * 5
-        
         if pieceAt(col: fromCol, row: fromRow)!.isRed && fromRow < 5 && fromCol == toCol && toRow - fromRow == 1 || !pieceAt(col: fromCol, row: fromRow)!.isRed && fromRow > 4 && fromRow - toRow == 1 && fromCol == toCol {
             return true
         } else if (pieceAt(col: fromCol, row: fromRow)!.isRed && fromRow >= 5 && (abs(toCol - fromCol) == 1 && toRow == fromRow || toRow - fromRow == 1 || toRow == fromRow && toCol == fromCol)) || !pieceAt(col: fromCol, row: fromRow)!.isRed && fromRow <= 4 && (abs(toCol - fromCol) == 1 && toRow == fromRow || fromRow - toRow == 1 || toRow == fromRow && toCol == fromCol) {
             return true
         }
-        
-        
         return false
     }
     
@@ -161,17 +147,8 @@ struct XiangqiBoard: CustomStringConvertible {
         return isInRedPalace || isInBlackPalace
     }
     
-//    private func isInPalace(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-//        guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
-//            return false
-//        }
-//
-//        return movingPiece.isRed && toCol >= 3 && toCol <= 5 && toRow >= 0 && toRow <= 2 || !movingPiece.isRed && toCol >= 3 && toCol <= 5 && toRow >= 7 && toRow <= 9
-//    }
-    
-    private func isInHome(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        
-        return pieceAt(col: fromCol, row: fromRow)!.isRed && fromRow < 5 && fromCol == toCol && toRow - fromRow == 1 || !pieceAt(col: fromCol, row: fromRow)!.isRed && fromRow > 4 && fromRow - toRow == 1 && fromCol == toCol
+    private func isInHome(row: Int, isRed: Bool) -> Bool {
+        return isRed && row < 5 || !isRed && row > 4
     }
     
     var description: String {
