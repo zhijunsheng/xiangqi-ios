@@ -42,13 +42,20 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     mutating func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
-        if isValidMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) {
-            guard let piece = pieceAt(col: fromCol, row: fromRow) else {
-                return
-            }
-            pieces.remove(piece)
-            pieces.insert(XiangqiPiece(rank: piece.rank, isRed: piece.isRed, col: toCol, row: toRow, imgName: piece.imgName))
+        if !isValidMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) {
+            return
         }
+        
+        guard let piece = pieceAt(col: fromCol, row: fromRow) else {
+            return
+        }
+        
+        if let destinationPiece = pieceAt(col: toCol, row: toRow) {
+            pieces.remove(destinationPiece)
+        }
+        
+        pieces.remove(piece)
+        pieces.insert(XiangqiPiece(rank: piece.rank, isRed: piece.isRed, col: toCol, row: toRow, imgName: piece.imgName))
     }
     
     func isValidMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
