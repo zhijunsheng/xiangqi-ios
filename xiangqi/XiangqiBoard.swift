@@ -120,8 +120,9 @@ struct XiangqiBoard: CustomStringConvertible {
                     }
                 }
             }
+            return true
         }
-        return true
+        return false
     }
     
     func isValidKnightMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
