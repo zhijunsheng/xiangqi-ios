@@ -107,10 +107,21 @@ struct XiangqiBoard: CustomStringConvertible {
             }
             return true
         } else if toCol == fromCol {
-            return true
+            if fromRow < toRow {
+                for i in fromRow + 1 ..< toRow {
+                    if pieceAt(col: fromCol, row: i) != nil {
+                        return false
+                    }
+                }
+            } else if fromRow > toRow {
+                for i in toRow + 1 ..< fromRow {
+                    if pieceAt(col: fromCol, row: i) != nil {
+                        return false
+                    }
+                }
+            }
         }
-        
-        return false
+        return true
     }
     
     func isValidKnightMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
