@@ -42,6 +42,8 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     mutating func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+        print(numberOfPiecesBetween(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow))
+        
         if !isValidMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) {
             return
         }
@@ -80,6 +82,8 @@ struct XiangqiBoard: CustomStringConvertible {
             return isValidWarriorMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         } else if movingPiece.rank == .pawn {
             return isValidPawnMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        } else if movingPiece.rank == .cannon {
+            return isValidCannonMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         }
         
         return false
@@ -90,6 +94,8 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     func isValidRookMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        
+        
         
         if toRow == fromRow {
             if fromCol < toCol {
@@ -123,6 +129,44 @@ struct XiangqiBoard: CustomStringConvertible {
             return true
         }
         return false
+    }
+    
+    // func thereIsOnePieceBetween(..) -> Bool  x
+    
+    // func numberOfPiecesBetween(..) -> Int  √ ÷ ∆ (Opt + J)
+    
+    func isValidCannonMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        return false
+    }
+    
+    func numberOfPiecesBetween(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Int {
+        var number = 0
+        if fromCol < toCol && fromRow == toRow {
+            for i in fromCol + 1 ..< toCol {
+                if pieceAt(col: i, row: fromRow) != nil {
+                    number = number + 1
+                }
+            }
+        } else if fromCol > toCol && fromRow == toRow {
+            for i in toCol + 1 ..< fromCol {
+                if pieceAt(col: i, row: fromRow) != nil {
+                    number = number + 1
+                }
+            }
+        } else if fromRow < toRow && fromCol == toCol {
+            for i in fromRow + 1 ..< toRow {
+                if pieceAt(col: fromCol, row: i) != nil {
+                    number = number + 1
+                }
+            }
+        } else if fromRow > toRow && fromCol == toCol {
+            for i in toRow + 1 ..< fromRow {
+                if pieceAt(col: fromCol, row: i) != nil {
+                    number = number + 1
+                }
+            }
+        }
+        return number
     }
     
     func isValidKnightMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
