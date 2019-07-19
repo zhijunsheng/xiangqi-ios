@@ -94,41 +94,7 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     func isValidRookMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        
-        
-        
-        if toRow == fromRow {
-            if fromCol < toCol {
-                for i in fromCol + 1 ..< toCol {
-                    if pieceAt(col: i, row: fromRow) != nil {
-                        return false
-                    }
-                }
-            } else if fromCol > toCol {
-                for i in toCol + 1 ..< fromCol {
-                    if pieceAt(col: i, row: fromRow) != nil {
-                        return false
-                    }
-                }
-            }
-            return true
-        } else if toCol == fromCol {
-            if fromRow < toRow {
-                for i in fromRow + 1 ..< toRow {
-                    if pieceAt(col: fromCol, row: i) != nil {
-                        return false
-                    }
-                }
-            } else if fromRow > toRow {
-                for i in toRow + 1 ..< fromRow {
-                    if pieceAt(col: fromCol, row: i) != nil {
-                        return false
-                    }
-                }
-            }
-            return true
-        }
-        return false
+        return (toRow == fromRow || toCol == fromCol) && numberOfPiecesBetween(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) == 0
     }
     
     // func thereIsOnePieceBetween(..) -> Bool  x
