@@ -102,7 +102,19 @@ struct XiangqiBoard: CustomStringConvertible {
     // func numberOfPiecesBetween(..) -> Int  √ ÷ ∆ (Opt + J)
     
     func isValidCannonMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        return false
+        let numberOfPieces = numberOfPiecesBetween(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        if numberOfPieces > 1 {
+            return false
+        }
+        if numberOfPieces == 0 {
+            return isValidRookMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) && pieceAt(col: toCol, row: toRow) == nil
+        }
+        
+        guard let toPiece = pieceAt(col: toCol, row: toRow), let fromPiece = pieceAt(col: fromCol, row: fromRow) else {
+            return false
+        }
+        
+        return toPiece.isRed != fromPiece.isRed
     }
     
     func numberOfPiecesBetween(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Int {
