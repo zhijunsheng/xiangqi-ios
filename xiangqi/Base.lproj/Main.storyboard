@@ -22,9 +22,6 @@
                                 <rect key="frame" x="16" y="36" width="288" height="516"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="13B-gM-2aU" appends="YES" id="aBd-1M-eWQ"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.79788490909999998" blue="0.46395575449999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,11 +38,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="13B-gM-2aU">
-                    <connections>
-                        <action selector="moveFinger:" destination="BYZ-38-t0r" id="Uwt-iG-v6t"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="71.25" y="-95.070422535211264"/>
         </scene>

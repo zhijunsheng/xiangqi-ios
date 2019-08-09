@@ -23,11 +23,39 @@ class BoardView: UIView {
     var shortLine: CGFloat = 18
     var pieces: Set<XiangqiPiece> = Set<XiangqiPiece>()
     
+    var xiangqiDelegate: XiangqiDelegate?
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let location = touch.location(in: self)
+        print(location)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let location = touch.location(in: self)
+        print(location)
+        
+        
+        
+        
+        guard
+            let fromCol = Utils.xyToColRow(xy: location.x, orgXY: originX, cellSide: cellSide, margin: panningMargin),
+            let fromRow = Utils.xyToColRow(xy: location.y, orgXY: originY, cellSide: cellSide, margin: panningMargin),
+            let toCol = Utils.xyToColRow(xy: location.x, orgXY: originX, cellSide: cellSide, margin: panningMargin),
+            let toRow = Utils.xyToColRow(xy: location.y, orgXY: originY, cellSide: cellSide, margin: panningMargin) else {
+            return
+        }
+        
+        xiangqiDelegate?.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+    }
+    
     override func draw(_ rect: CGRect) {
         var smaller = bounds.width
         if bounds.width > bounds.height {
             smaller = bounds.height
         }
+        
         
         cellSide = smaller * percent / CGFloat(rows - 1) + 10
         originX = (bounds.width - cellSide * CGFloat(cols - 1)) / 2 - cellSide / 2

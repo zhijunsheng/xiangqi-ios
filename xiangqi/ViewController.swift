@@ -8,7 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, XiangqiDelegate {
+    
+    func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+        board.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        boardView.pieces = board.pieces
+        boardView.setNeedsDisplay()
+    }
+    
     @IBOutlet weak var boardView: BoardView!
     var board = XiangqiBoard()
     var fromCol: Int? = nil
