@@ -70,5 +70,9 @@ class XiangqiBoardTests: XCTestCase {
         XCTAssertTrue(board.isValidKnightMove(fromCol: 0, fromRow: 1, toCol: 1, toRow: 3))
         XCTAssertFalse(board.isValidKnightMove(fromCol: 0, fromRow: 1, toCol: 1, toRow: 2))
     }
+    func testIsValidPawnMove() {
+        let board = XiangqiBoard()
+        
+    }
     
 }

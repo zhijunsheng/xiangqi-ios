@@ -17,14 +17,16 @@ struct XiangqiBoard: CustomStringConvertible {
         
         if toCol < 3
         || toCol > 5
-        || toRow > 2 {
+        || toRow > 2
+        {
             return false
         }
         
         if fromCol + 1 == toCol && fromRow + 1 == toRow
         || fromCol + 1 == toCol && fromRow - 1 == toRow
         || fromCol - 1 == toCol && fromRow + 1 == toRow
-        || fromCol - 1 == toCol && fromRow - 1 == toRow  {
+        || fromCol - 1 == toCol && fromRow - 1 == toRow
+        {
             return true
         }
         return false
@@ -34,13 +36,15 @@ struct XiangqiBoard: CustomStringConvertible {
         
         if toCol < 3
         || toCol > 5
-        || toRow > 2{
+        || toRow > 2
+        {
             return false
         }
         if fromRow + 1 == toRow && fromCol == toCol
         || fromCol - 1 == toCol && fromRow == toRow
         || fromRow - 1 == toRow && fromCol == toCol
-        || fromCol + 1 == toCol && fromCol == toCol{
+        || fromCol + 1 == toCol && fromCol == toCol
+        {
             return true
         }
         return false
@@ -48,13 +52,15 @@ struct XiangqiBoard: CustomStringConvertible {
     
     func isValidBishopMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         
-        if fromRow > 4 {
+        if fromRow > 4
+        {
             return false
         }
         if fromCol - 2 == toCol && fromRow - 2 == toRow
         || fromCol - 2 == toCol && fromRow + 2 == toRow
         || fromCol + 2 == toCol && fromRow - 2 == toRow
-        || fromCol + 2 == toCol && fromRow + 2 == toRow{
+        || fromCol + 2 == toCol && fromRow + 2 == toRow
+        {
             return true
         }
         return false
@@ -73,6 +79,31 @@ struct XiangqiBoard: CustomStringConvertible {
         {
             return true
         }
+        return false
+    }
+    func isValidPawnMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        
+        if toRow <= 4 {
+            if toRow == 0
+                || toRow == 1
+                || toRow == 2
+            {
+                return false
+            }
+            if fromRow + 1 == toRow && fromCol == toCol
+            {
+                return true
+            }
+        }else if toRow >= 5
+        {
+            if fromRow + 1 == toRow && fromCol == toCol
+                || fromCol - 1 == toCol && fromRow == toRow
+                || fromCol + 1 == toCol && fromCol == toCol
+            {
+                return true
+            }
+        }
+        
         return false
     }
     mutating func move(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
@@ -119,4 +150,3 @@ struct XiangqiBoard: CustomStringConvertible {
     
 
 }
-
