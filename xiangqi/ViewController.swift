@@ -3,6 +3,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
     @IBOutlet var boardView: BoardView!
     
     override func viewDidLoad() {
@@ -48,17 +49,17 @@ class ViewController: UIViewController {
     }
     
     func addPiece(pieceName : String, row: Int, col: Int) {
-        var side: CGFloat
-        if boardView.width < boardView.height {
-            side = boardView.width
-        } else {
-            side = boardView.height
-        }
-        
-        let pieceImage = UIImage (named: pieceName)
-        let pieceImageView = UIImageView (frame: CGRect(x: boardView.originX - 0.5 * side + CGFloat(col) * boardView.width, y: boardView.originY - 0.5 * side + CGFloat(row) * boardView.height, width: side, height: side))
-        pieceImageView.image = pieceImage
-        boardView.addSubview(pieceImageView)
+//////        var side: CGFloat
+////        if boardView.width < boardView.height {
+////            side = boardView.width
+////        } else {
+////            side = boardView.height
+////        }
+////        
+////        let pieceImage = UIImage (named: pieceName)
+////        let pieceImageView = UIImageView (frame: CGRect(x: boardView.originX - 0.5 * side + CGFloat(col) * boardView.width, y: boardView.originY - 0.5 * side + CGFloat(row) * boardView.height, width: side, height: side))
+//        pieceImageView.image = pieceImage
+//        boardView.addSubview(pieceImageView)
     }
     
 }

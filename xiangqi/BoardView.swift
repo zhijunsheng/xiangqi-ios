@@ -9,8 +9,8 @@ class BoardView: UIView {
     let cols     : Int = 9
     var originX  : CGFloat = 25
     var originY  : CGFloat = 25
-    let height   : CGFloat = 41
-    let width    : CGFloat = 52
+    let height   : CGFloat = 60
+    let width    : CGFloat = 71
     let gapX     : CGFloat = 5
     let gapY     : CGFloat = 5
     let shortLine: CGFloat = 10
