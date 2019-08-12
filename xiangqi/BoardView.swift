@@ -2,9 +2,12 @@ import UIKit
 
 class BoardView: UIView {
     
-    let boardOriginX: CGFloat = 30
-    let boardOriginY: CGFloat = 60
-    let cellSide: CGFloat = 45
+    let xs: Int = 9
+    let ys: Int = 10
+    
+    var boardOriginX: CGFloat = 30
+    var boardOriginY: CGFloat = 60
+    let cellSide: CGFloat = 65
     let gapA: CGFloat = 2
     let gapB: CGFloat = 4
     let shortLine: CGFloat = 7
@@ -12,6 +15,10 @@ class BoardView: UIView {
     var piecesSet = Set<XiangqiPiece>()
     
     override func draw(_ rect: CGRect) {
+        
+        boardOriginX = (bounds.width - CGFloat(xs - 1) * cellSide) / 2
+        boardOriginY = (bounds.height - CGFloat(ys - 1) * cellSide) / 2
+        
         drawBoard()
         drawPieces()
         
@@ -100,27 +107,27 @@ class BoardView: UIView {
         
         let k14 = UIBezierPath()
         k14.move(to: CGPoint(x: boardOriginX - gapA, y: boardOriginY - gapA))
-        k14.addLine(to: CGPoint(x: boardOriginX + 8 * cellSide + gapA, y: boardOriginY - gapA))
-        k14.addLine(to: CGPoint(x: boardOriginX + 8 * cellSide + gapA, y: boardOriginY + 9 * cellSide + gapA))
-        k14.addLine(to: CGPoint(x: boardOriginX - gapA, y: boardOriginY + 9 * cellSide + gapA))
+        k14.addLine(to: CGPoint(x: boardOriginX + CGFloat(xs - 1) * cellSide + gapA, y: boardOriginY - gapA))
+        k14.addLine(to: CGPoint(x: boardOriginX + CGFloat(xs - 1) * cellSide + gapA, y: boardOriginY + CGFloat(ys - 1) * cellSide + gapA))
+        k14.addLine(to: CGPoint(x: boardOriginX - gapA, y: boardOriginY + CGFloat(ys - 1) * cellSide + gapA))
         k14.close()
         k14.stroke()
         
-        for i in 0..<10 {
+        for i in 0..<ys {
             let h11 = UIBezierPath()
             h11.move(to: CGPoint(x: boardOriginX, y: boardOriginY + CGFloat(i) * cellSide))
-            h11.addLine(to: CGPoint(x: boardOriginX + 8 * cellSide, y: boardOriginY + CGFloat(i) * cellSide))
+            h11.addLine(to: CGPoint(x: boardOriginX + CGFloat(xs - 1) * cellSide, y: boardOriginY + CGFloat(i) * cellSide))
             h11.stroke()
         }
         
-        for i in 0...8 {
+        for i in 0..<xs {
             let h11 = UIBezierPath()
             h11.move(to: CGPoint(x: boardOriginX + CGFloat(i) * cellSide, y: boardOriginY))
             h11.addLine(to: CGPoint(x: boardOriginX + CGFloat(i) * cellSide, y: boardOriginY + 4 * cellSide))
             h11.stroke()
         }
         
-        for i in 0...8 {
+        for i in 0..<xs {
             let h11 = UIBezierPath()
             h11.move(to: CGPoint(x: boardOriginX + CGFloat(i) * cellSide, y: boardOriginY + 5 * cellSide))
             h11.addLine(to: CGPoint(x: boardOriginX + CGFloat(i) * cellSide, y: boardOriginY + 9 * cellSide))
