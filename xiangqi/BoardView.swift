@@ -17,7 +17,6 @@ class BoardView: UIView {
     override func draw(_ rect: CGRect) {
         
         boardOriginX = (bounds.width - CGFloat(xs - 1) * cellSide) / 2
-        boardOriginY = (bounds.height - CGFloat(ys - 1) * cellSide) / 2
         
         drawBoard()
         drawPieces()
