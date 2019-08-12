@@ -12,7 +12,7 @@ class BoardView: UIView {
     let rows = 10
     let cols = 9
     let percent: CGFloat = 0.85
-    let panningMargin: CGFloat = 13.0
+    let panningMargin: CGFloat = 0.0
     
     var originX: CGFloat = 25
     var originY: CGFloat = 20
@@ -25,25 +25,28 @@ class BoardView: UIView {
     
     var xiangqiDelegate: XiangqiDelegate?
     
+    var touchesBeganLocation: CGPoint?
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
-        let location = touch.location(in: self)
-        print(location)
+        let touch = touches.first
+        touchesBeganLocation = touch?.location(in: self)
+        
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touchesBeganLocation = touchesBeganLocation else {
+            return
+        }
+        
         let touch = touches.first!
-        let location = touch.location(in: self)
-        print(location)
-        
-        
-        
-        
+        let touchesEndedLocation = touch.location(in: self)
+
         guard
-            let fromCol = Utils.xyToColRow(xy: location.x, orgXY: originX, cellSide: cellSide, margin: panningMargin),
-            let fromRow = Utils.xyToColRow(xy: location.y, orgXY: originY, cellSide: cellSide, margin: panningMargin),
-            let toCol = Utils.xyToColRow(xy: location.x, orgXY: originX, cellSide: cellSide, margin: panningMargin),
-            let toRow = Utils.xyToColRow(xy: location.y, orgXY: originY, cellSide: cellSide, margin: panningMargin) else {
+            let fromCol = Utils.xyToColRow(xy: touchesBeganLocation.x, orgXY: originX, cellSide: cellSide, margin: panningMargin),
+            let fromRow = Utils.xyToColRow(xy: touchesBeganLocation.y, orgXY: originY, cellSide: cellSide, margin: panningMargin),
+            let toCol = Utils.xyToColRow(xy: touchesEndedLocation.x, orgXY: originX, cellSide: cellSide, margin: panningMargin),
+            let toRow = Utils.xyToColRow(xy: touchesEndedLocation.y, orgXY: originY, cellSide: cellSide, margin: panningMargin) else {
             return
         }
         
@@ -55,7 +58,6 @@ class BoardView: UIView {
         if bounds.width > bounds.height {
             smaller = bounds.height
         }
-        
         
         cellSide = smaller * percent / CGFloat(rows - 1) + 10
         originX = (bounds.width - cellSide * CGFloat(cols - 1)) / 2 - cellSide / 2
