@@ -5,9 +5,10 @@ import UIKit
 
 
 class BoardView: UIView {
-    
-    let originX  : CGFloat = 25
-    let originY  : CGFloat = 25
+    let rows     : Int = 10
+    let cols     : Int = 9
+    var originX  : CGFloat = 25
+    var originY  : CGFloat = 25
     let height   : CGFloat = 41
     let width    : CGFloat = 52
     let gapX     : CGFloat = 5
@@ -15,16 +16,20 @@ class BoardView: UIView {
     let shortLine: CGFloat = 10
     
     override func draw(_ rect: CGRect) {
-        for i in 0..<10 {
+        originY = (bounds.height - CGFloat(rows - 1) * height) / 2
+        originX = (bounds.width - CGFloat(cols - 1) * width) / 2
+        print(bounds.width)
+        print(bounds.height)
+        for i in 0..<rows {
             let b2 = UIBezierPath()
             b2.move(to: CGPoint(x: originX, y: height * CGFloat(i) + originY))
-            b2.addLine(to: CGPoint(x: width * 8 + originX, y: height * CGFloat(i) + originY))
+            b2.addLine(to: CGPoint(x: width * CGFloat(cols - 1) + originX, y: height * CGFloat(i) + originY))
             b2.stroke()
         }
         for i in 0..<2  {
             let c3 = UIBezierPath()
-            c3.move(to: CGPoint(x: originX + CGFloat(i) * 8 * width, y: originY))
-            c3.addLine(to: CGPoint(x: originX + CGFloat(i) * 8 * width, y: height * 9 + originY))
+            c3.move(to: CGPoint(x: originX + CGFloat(i) * CGFloat(cols - 1) * width, y: originY))
+            c3.addLine(to: CGPoint(x: originX + CGFloat(i) * CGFloat(cols - 1) * width, y: height * CGFloat(rows - 1) + originY))
             c3.stroke()
         }
         for i in 1...7  {
@@ -36,7 +41,7 @@ class BoardView: UIView {
         for i in 1...7  {
             let d4 = UIBezierPath()
             d4.move(to: CGPoint(x: originX + CGFloat(i) * 1 * width, y: height * 5 + originY))
-            d4.addLine(to: CGPoint(x: originX + CGFloat(i) * 1 * width, y: height * 9 + originY))
+            d4.addLine(to: CGPoint(x: originX + CGFloat(i) * 1 * width, y: height * CGFloat(rows - 1) + originY))
             d4.stroke()
         }
         
