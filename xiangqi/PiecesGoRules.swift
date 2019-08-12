@@ -33,9 +33,47 @@ struct PiecesGoRules: CustomStringConvertible {
             return
         }
         
+        
+        
+        
+        if !isValidPieceMove(frX: frX, frY: frY, toX: toX, toY: toY) {
+            return
+        }
+        
         piecesSet.remove(movingPiece)
         let newPiece = XiangqiPiece(x: toX, y: toY, rnk: movingPiece.rnk, isRed: movingPiece.isRed, imgNm: movingPiece.imgNm)
         piecesSet.insert(newPiece)
+        
+        
+    }
+    
+    func isValidPieceMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        guard let movingPiece = pieceAt(x: frX, y: frY) else {
+            return false
+        }
+        
+        let targetPiece = pieceAt(x: toX, y: toY)
+        
+        if targetPiece != nil && targetPiece!.isRed == movingPiece.isRed {
+            return false
+        }
+        
+        switch movingPiece.rnk {
+        case .rook:
+            return isValidRookMove(frX: frX, frY: frY, toX: toX, toY: toY)
+        case .knight:
+            return isValidKnightMove(frX: frX, frY: frY, toX: toX, toY: toY)
+        case .bishop:
+            return isValidBishopMove(frX: frX, frY: frY, toX: toX, toY: toY)
+        case .warrior:
+            return isValidWarriorMove(frX: frX, frY: frY, toX: toX, toY: toY)
+        case .king:
+            return isValidKingMove(frX: frX, frY: frY, toX: toX, toY: toY)
+        case .cannon:
+            return isValidCannonMove(frX: frX, frY: frY, toX: toX, toY: toY)
+        case .pawn:
+            return isValidPawnMove(frX: frX, frY: frY, toX: toX, toY: toY)
+        }
     }
     
     func isValidRookMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
@@ -81,11 +119,35 @@ struct PiecesGoRules: CustomStringConvertible {
     }
     
     func isValidCannonMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        
         return frX == toX && frY != toY || frY == toY && frX != toX
     }
     
-    func ifValidPawnMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
-        return false
+    func isValidPawnMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        guard let movingPiece = pieceAt(x: frX, y: frY) else {
+            return false
+        }
+        
+        if movingPiece.isRed {
+            if movingPiece.y < 5 {
+                return toX == frX && toY == frY + 1
+            } else {
+                return toX == frX + 1 && toY == frY ||
+                    toX == frX - 1 && toY == frY ||
+                    toX == frX && toY == frY + 1
+            }
+        } else {
+            if movingPiece.y > 4 {
+                return toX == frX && toY == frY - 1
+            } else {
+                return toX == frX + 1 && toY == frY ||
+                toX == frX - 1 && toY == frY ||
+                toX == frX && toY == frY - 1
+
+            }
+        }
+        
+ //       return false
     }
     
     
