@@ -33,10 +33,15 @@ class ViewController: UIViewController, XiangqiDelegate {
             return
         }
         
+        if board.pieceAt(col: toCol, row: toRow)?.rank == .king {
+            print("game over")
+        }
+        
         isRedTurn = !isRedTurn
         board.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         boardView.pieces = board.pieces
         boardView.setNeedsDisplay()
+        
         if isRedTurn == true {
             whoseTurnLabel.text = "Red's Turn"
         } else {
