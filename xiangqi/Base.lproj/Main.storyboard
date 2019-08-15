@@ -20,13 +20,13 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yh1-96-Vmc" customClass="BoardView" customModule="xiangqi" customModuleProvider="target">
                                 <rect key="frame" x="20" y="20" width="374" height="374"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.9918310789" green="1" blue="0.31684241699999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Yh1-96-Vmc" secondAttribute="height" multiplier="1:1" id="rSz-Kp-KmM"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.99697014770000003" blue="0.2513433961" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.96535339549999999" green="1" blue="0.99763807559999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Yh1-96-Vmc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="7Tu-sQ-kUr"/>
