@@ -25,6 +25,12 @@
                                     <constraint firstAttribute="width" secondItem="Yh1-96-Vmc" secondAttribute="height" multiplier="1:1" id="rSz-Kp-KmM"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwY-aV-L5W">
+                                <rect key="frame" x="20" y="402" width="374" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96535339549999999" green="1" blue="0.99763807559999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -32,6 +38,9 @@
                             <constraint firstItem="Yh1-96-Vmc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="7Tu-sQ-kUr"/>
                             <constraint firstItem="Yh1-96-Vmc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Cuh-OD-h0v"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Yh1-96-Vmc" secondAttribute="trailing" constant="20" id="Qqc-fE-mR9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iwY-aV-L5W" secondAttribute="trailing" constant="20" id="hC9-aG-bH1"/>
+                            <constraint firstItem="iwY-aV-L5W" firstAttribute="top" secondItem="Yh1-96-Vmc" secondAttribute="bottom" constant="8" id="i5w-bv-n3V"/>
+                            <constraint firstItem="iwY-aV-L5W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="r8T-a3-3Uu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
@@ -40,6 +49,7 @@
                     </view>
                     <connections>
                         <outlet property="boardView" destination="Yh1-96-Vmc" id="Aae-Es-fBr"/>
+                        <outlet property="gameLabel" destination="iwY-aV-L5W" id="bYa-GP-M9d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

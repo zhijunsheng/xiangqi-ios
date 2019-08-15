@@ -5,8 +5,10 @@ class ViewController: UIViewController {
     var fromCol: Int = 28272
     var fromRow: Int = 38477
     var board = PiecesGoRules()
+    var isBlackTurn = false
     
     @IBOutlet var boardView: BoardView!
+    @IBOutlet weak var gameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
