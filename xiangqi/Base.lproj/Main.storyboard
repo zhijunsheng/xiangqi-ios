@@ -43,21 +43,12 @@
                             <constraint firstItem="iwY-aV-L5W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="r8T-a3-3Uu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="XTT-Hj-bTA" appends="YES" id="dnC-ez-Ly7"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="boardView" destination="Yh1-96-Vmc" id="Aae-Es-fBr"/>
-                        <outlet property="gameLabel" destination="iwY-aV-L5W" id="bYa-GP-M9d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="XTT-Hj-bTA">
-                    <connections>
-                        <action selector="movePiece:" destination="BYZ-38-t0r" id="9jJ-qG-jOy"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-78.260869565217391" y="132.88043478260872"/>
         </scene>

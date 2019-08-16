@@ -11,8 +11,34 @@ class BoardView: UIView {
     let gapA: CGFloat = 2
     let gapB: CGFloat = 4
     let shortLine: CGFloat = 7
+    var fromCol: Int = 28272
+    var fromRow: Int = 38477
     
     var piecesSet = Set<XiangqiPiece>()
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch1st = touches.first!
+        let location1 = touch1st.location(in: self)
+        let fromX = (location1.x - boardOriginX) / cellSide
+        let fromY = (location1.y - boardOriginY) / cellSide
+        fromRow = Int(fromY + 0.5)
+        fromCol = Int(fromX + 0.5)
+        print("from \(fromCol,fromRow)")
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch1st = touches.first!
+        let location2 = touch1st.location(in: self)
+        let toX = (location2.x - boardOriginX) / cellSide
+        let toY = (location2.y - boardOriginY) / cellSide
+        let toRow = Int(toY + 0.5)
+        let toCol = Int(toX + 0.5)
+        print("from \(fromCol,fromRow), to \(toCol,toRow)")
+
+    }
+
+    
+    
     
     override func draw(_ rect: CGRect) {
         
