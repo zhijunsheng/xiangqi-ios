@@ -21,6 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUq-Gs-9fw" customClass="BoardView" customModule="xiangqi" customModuleProvider="target">
                                 <rect key="frame" x="20" y="24" width="984" height="984"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="IUq-Gs-9fw" secondAttribute="height" multiplier="1:1" id="dDX-uS-8Yl"/>
                                 </constraints>
