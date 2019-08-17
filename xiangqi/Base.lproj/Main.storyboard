@@ -30,6 +30,9 @@
                                 <rect key="frame" x="20" y="1016" width="984" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <state key="normal" title="-&gt;Next Game"/>
+                                <connections>
+                                    <action selector="nextGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v6z-aB-a92"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6L5-Qi-OR9">
                                 <rect key="frame" x="20" y="1084" width="984" height="48"/>
@@ -54,6 +57,7 @@
                     </view>
                     <connections>
                         <outlet property="boardView" destination="IUq-Gs-9fw" id="R8L-10-Bzb"/>
+                        <outlet property="infoLabel" destination="6L5-Qi-OR9" id="2SW-Y5-N2e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

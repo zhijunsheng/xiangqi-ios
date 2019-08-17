@@ -6,8 +6,11 @@ class ViewController: UIViewController {
     
     @IBOutlet var boardView: BoardView!
     
+    @IBOutlet weak var infoLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        infoLabel.text = "红方回合"
+        infoLabel.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         addPiece(pieceName: "bj", row: 0, col: 0)
         addPiece(pieceName: "bj", row: 0, col: 8)
         addPiece(pieceName: "rj", row: 9, col: 0)
@@ -48,6 +51,8 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func nextGame(_ sender: Any) {
+    }
     func addPiece(pieceName : String, row: Int, col: Int) {
 //////        var side: CGFloat
 ////        if boardView.width < boardView.height {
