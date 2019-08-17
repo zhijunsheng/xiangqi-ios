@@ -16,6 +16,9 @@ class BoardView: UIView {
     
     var piecesSet = Set<XiangqiPiece>()
     
+    var xiangqiDelegate: XiangqiDelegate?
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch1st = touches.first!
         let location1 = touch1st.location(in: self)
@@ -34,7 +37,7 @@ class BoardView: UIView {
         let toRow = Int(toY + 0.5)
         let toCol = Int(toX + 0.5)
         print("from \(fromCol,fromRow), to \(toCol,toRow)")
-
+        xiangqiDelegate?.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
     }
 
     
