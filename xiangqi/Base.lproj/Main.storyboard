@@ -26,12 +26,29 @@
                                     <constraint firstAttribute="width" secondItem="IUq-Gs-9fw" secondAttribute="height" multiplier="1:1" id="dDX-uS-8Yl"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBm-Wf-eej">
+                                <rect key="frame" x="20" y="1016" width="984" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="-&gt;Next Game"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6L5-Qi-OR9">
+                                <rect key="frame" x="20" y="1084" width="984" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196078431372551" green="0.61568627450980395" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6L5-Qi-OR9" secondAttribute="trailing" constant="20" id="0Ve-Jf-DgJ"/>
+                            <constraint firstItem="6L5-Qi-OR9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="L3C-qo-2LE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iBm-Wf-eej" secondAttribute="trailing" constant="20" id="Ni8-Hh-BsK"/>
+                            <constraint firstItem="iBm-Wf-eej" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Ri2-va-aDp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IUq-Gs-9fw" secondAttribute="trailing" constant="20" id="Z9s-V7-8Su"/>
                             <constraint firstItem="IUq-Gs-9fw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="idy-kN-cl6"/>
+                            <constraint firstItem="iBm-Wf-eej" firstAttribute="top" secondItem="IUq-Gs-9fw" secondAttribute="bottom" constant="8" id="mEA-KJ-2GJ"/>
                             <constraint firstItem="IUq-Gs-9fw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ueA-Fu-an6"/>
+                            <constraint firstItem="6L5-Qi-OR9" firstAttribute="top" secondItem="iBm-Wf-eej" secondAttribute="bottom" constant="8" id="wdR-vt-HDs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
