@@ -2,6 +2,9 @@ import Foundation
 
 struct PiecesGoRules: CustomStringConvertible {
     
+    static let xs: Int = 9
+    static let ys: Int = 10
+    
     var piecesSet = Set<XiangqiPiece>()
     
     mutating func piecesRoom() {
@@ -48,6 +51,14 @@ struct PiecesGoRules: CustomStringConvertible {
     }
     
     func isValidPieceMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        if toX >= PiecesGoRules.xs || toY >= PiecesGoRules.ys {
+            return false
+        }
+        
+        if toX < 0 || toY < 0 {
+            return false
+        }
+        
         guard let movingPiece = pieceAt(x: frX, y: frY) else {
             return false
         }
