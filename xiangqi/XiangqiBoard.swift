@@ -112,7 +112,7 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         
         piecesBox.remove(movingPiece)
-        let newPiece = XiangqiBoardPiece(col: toCol, row: toRow, rank: movingPiece.rank, isRed: movingPiece.isRed)
+        let newPiece = XiangqiBoardPiece(col: toCol, row: toRow, rank: movingPiece.rank, isRed: movingPiece.isRed, imageName: movingPiece.imageName)
         piecesBox.insert(newPiece)
     }
     

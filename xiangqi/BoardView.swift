@@ -1,28 +1,38 @@
 import UIKit
 
 class BoardView   : UIView {
-    let rows      : Int     = 10
-    let cols      : Int     = 9
-    var originX   : CGFloat = 25 // 25
-    var originY   : CGFloat = 25 // 25
-    let height    : CGFloat = 60 // 60
-    let width     : CGFloat = 71 // 71
-    let gapX      : CGFloat = 5
-    let gapY      : CGFloat = 5
-    let shortLine : CGFloat = 10
-    var fromCol   : Int     = -10
-    var fromRow   : Int     = -10
+    let rows      : Int                    = 10
+    let cols      : Int                    = 9
+    var originX   : CGFloat                = 25 // 25
+    var originY   : CGFloat                = 25 // 25
+    let height    : CGFloat                = 60 // 60
+    let width     : CGFloat                = 71 // 71
+    let gapX      : CGFloat                = 5
+    let gapY      : CGFloat                = 5
+    let shortLine : CGFloat                = 10
+    var fromCol   : Int                    = -10
+    var fromRow   : Int                    = -10
+    var pieces    : Set<XiangqiBoardPiece> = Set<XiangqiBoardPiece>()
     
     override func draw(_ rect: CGRect) {
         originY = (bounds.height - CGFloat(rows - 1) * height) / 2
         originX = (bounds.width - CGFloat(cols - 1) * width) / 2
-        print(bounds.width)
-        print(bounds.height)
         
         drawStars()
         drawGrid()
+        drawPieces()
     }
-    
+    func drawPieces() {
+        for piece in pieces {
+            let pieceImage = UIImage(named: piece.imageName)
+            let pieceX = originX + CGFloat(piece.col) * width
+            let pieceY = originY + CGFloat(piece.row) * height
+            
+            pieceImage?.draw(in: CGRect(x: pieceX, y: pieceY, width: 40, height: 40))
+        }
+        
+        
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touchOne = touches.first!
         let fingerLocation = touchOne.location(in: self)
