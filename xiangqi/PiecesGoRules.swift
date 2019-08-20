@@ -161,9 +161,9 @@ struct PiecesGoRules: CustomStringConvertible {
         }
         
         return toX == frX + 1 && toY == frY + 1 ||
-            toX == frX + 1 && toY == frY + 1 ||
-            toX == frX + 1 && toY == frY + 1 ||
-            toX == frX + 1 && toY == frY + 1
+            toX == frX + 1 && toY == frY - 1 ||
+            toX == frX - 1 && toY == frY + 1 ||
+            toX == frX - 1 && toY == frY - 1
     }
     
     func isValidKingMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
