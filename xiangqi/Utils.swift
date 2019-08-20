@@ -18,9 +18,8 @@ struct Utils {
         
         if xy > first + margin && xy < second - margin {
             return col
-        } else {
-            return nil
         }
+        return nil
     }
 }
 

@@ -11,11 +11,11 @@ import UIKit
 class BoardView: UIView {
     let rows = 10
     let cols = 9
-    let percent: CGFloat = 0.85
+    let percent: CGFloat = 0.95
     let panningMargin: CGFloat = 0.0
     
-    var originX: CGFloat = 25
-    var originY: CGFloat = 20
+    var originX: CGFloat = -100000.0
+    var originY: CGFloat = -100000.0
     var cellSide: CGFloat = 28
     let gap: CGFloat = 5
     let outerFrameLineWidth: CGFloat = 3
@@ -30,8 +30,6 @@ class BoardView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         touchesBeganLocation = touch?.location(in: self)
-        
-        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -43,10 +41,10 @@ class BoardView: UIView {
         let touchesEndedLocation = touch.location(in: self)
 
         guard
-            let fromCol = Utils.xyToColRow(xy: touchesBeganLocation.x, orgXY: originX, cellSide: cellSide, margin: panningMargin),
-            let fromRow = Utils.xyToColRow(xy: touchesBeganLocation.y, orgXY: originY, cellSide: cellSide, margin: panningMargin),
-            let toCol = Utils.xyToColRow(xy: touchesEndedLocation.x, orgXY: originX, cellSide: cellSide, margin: panningMargin),
-            let toRow = Utils.xyToColRow(xy: touchesEndedLocation.y, orgXY: originY, cellSide: cellSide, margin: panningMargin) else {
+            let fromCol = Utils.xyToColRow(xy: touchesBeganLocation.x, orgXY: originX - cellSide / 2, cellSide: cellSide, margin: panningMargin),
+            let fromRow = Utils.xyToColRow(xy: touchesBeganLocation.y, orgXY: originY - cellSide / 2, cellSide: cellSide, margin: panningMargin),
+            let toCol = Utils.xyToColRow(xy: touchesEndedLocation.x, orgXY: originX - cellSide / 2, cellSide: cellSide, margin: panningMargin),
+            let toRow = Utils.xyToColRow(xy: touchesEndedLocation.y, orgXY: originY - cellSide / 2, cellSide: cellSide, margin: panningMargin) else {
             return
         }
         
@@ -59,11 +57,11 @@ class BoardView: UIView {
             smaller = bounds.height
         }
         
-        cellSide = smaller * percent / CGFloat(rows - 1) + 10
-        originX = (bounds.width - cellSide * CGFloat(cols - 1)) / 2 - cellSide / 2
-        originY = (bounds.height - cellSide * CGFloat(rows - 1)) / 2 - cellSide / 2
+        cellSide = smaller * percent / CGFloat(rows - 1)
+        originX = (bounds.width - cellSide * CGFloat(cols - 1)) / 2
+        originY = (bounds.height - cellSide * CGFloat(rows - 1)) / 2
         
-        drawBoard(orgX: originX + cellSide / 2, orgY: originY + cellSide / 2)
+        drawBoard(orgX: originX, orgY: originY)
         drawPieces(orgX: originX, orgY: originY)
     }
     
@@ -75,7 +73,7 @@ class BoardView: UIView {
     
     func drawPiece(orgX: CGFloat, orgY: CGFloat, piece: XiangqiPiece) {
         let pieceImage = UIImage(named: piece.imgName)!
-        pieceImage.draw(in: CGRect(x: orgX + cellSide * CGFloat(piece.col), y: orgY + cellSide * CGFloat(piece.row), width: cellSide, height: cellSide))
+        pieceImage.draw(in: CGRect(x: orgX + cellSide * CGFloat(piece.col) - cellSide / 2, y: orgY + cellSide * CGFloat(piece.row) - cellSide / 2, width: cellSide, height: cellSide))
     }
     
     func drawQuarterStar(orgX: CGFloat, orgY: CGFloat, locationX: Int, locationY: Int, isLeftHalf: Bool, isUpperHalf: Bool) {
@@ -162,7 +160,6 @@ class BoardView: UIView {
         drawVerticalLines(orgX: orgX, orgY: orgY, isUpperHalf: true)
         drawVerticalLines(orgX: orgX, orgY: orgY, isUpperHalf: false)
 
-        
         for i in 0 ..< 2 {
             drawHalfStar(orgX: orgX, orgY: orgY, locationX: 1 + i * 6, locationY: 2, isLeftHalf: true)
             drawHalfStar(orgX: orgX, orgY: orgY, locationX: 1 + i * 6, locationY: 2, isLeftHalf: false)
