@@ -131,7 +131,23 @@ struct PiecesGoRules: CustomStringConvertible {
 
     }
     
+    // |2| = 2
+    // |-2| = -(-2) = 2
+    // --------------+-2---5---8---->
+    // | x - 5 | = 3
+    // if x - 5 == 3 || 5 - x == 3
+    // abs: absolute
+    // abs(x - 5)
+    
+    // (11 + 15) / 2 = 13; 15, 19 => 17
     func isValidBishopMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        let mX = (frX + toX) / 2
+        let mY = (frY + toY) / 2
+        
+        if pieceAt(x: mX, y: mY) != nil {
+            return false
+        }
+        
         return toX == frX + 2 && toY == frY + 2 ||
             toX == frX + 2 && toY == frY - 2 ||
             toX == frX - 2 && toY == frY + 2 ||
