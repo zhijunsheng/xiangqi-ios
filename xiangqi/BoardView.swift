@@ -28,7 +28,7 @@ class BoardView   : UIView {
             let pieceX = originX + CGFloat(piece.col) * width
             let pieceY = originY + CGFloat(piece.row) * height
             
-            pieceImage?.draw(in: CGRect(x: pieceX, y: pieceY, width: 40, height: 40))
+            pieceImage?.draw(in: CGRect(x: pieceX - height / 2, y: pieceY - height / 2, width: height, height: height))
         }
         
         
