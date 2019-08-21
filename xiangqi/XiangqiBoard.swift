@@ -13,6 +13,17 @@ struct XiangqiBoard: CustomStringConvertible {
         return nil
     }
     
+    func isValidMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
+            return false
+        }
+        if movingPiece.rank == "K" {
+            return isValidKnightMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        }
+        
+        return false
+    }
+    
     func isValidGuardMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         
         if toCol < 3
@@ -108,6 +119,10 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     mutating func move(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
+            return
+        }
+        
+        if !isValidMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) {
             return
         }
         
