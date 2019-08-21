@@ -2,21 +2,26 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, XiangqiDelegate {
     
     @IBOutlet var boardView: BoardView!
     @IBOutlet weak var infoLabel: UILabel!
     
     var xiangqi = XiangqiBoard(piecesBox: Set<XiangqiBoardPiece>())
     
+    func move(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+        xiangqi.move(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        boardView.pieces = xiangqi.piecesBox
+        boardView.setNeedsDisplay()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        boardView.xiangqiDelegate = self
+            
         infoLabel.text = "红方回合"
         infoLabel.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-//        addPiece(pieceName: "bj", row: 0, col: 0)
-//        addPiece(pieceName: "bj", row: 0, col: 8)
-//        addPiece(pieceName: "rj", row: 9, col: 0)
-//        addPiece(pieceName: "rj", row: 9, col: 8)
         for i in 0..<5 {
             addPiece(pieceName: "bz", row: 3, col: i * 2, rank: "P", isRed: false)
             addPiece(pieceName: "rz", row: 6, col: i * 2, rank: "P", isRed: true)
@@ -45,18 +50,6 @@ class ViewController: UIViewController {
     
     func addPiece(pieceName : String, row: Int, col: Int, rank: String, isRed: Bool) {
         xiangqi.piecesBox.insert(XiangqiBoardPiece(col: col, row: row, rank: rank, isRed: isRed, imageName: pieceName))
-        
-//////        var side: CGFloat
-////        if boardView.width < boardView.height {
-////            side = boardView.width
-////        } else {
-////            side = boardView.height
-////        }
-////        
-////        let pieceImage = UIImage (named: pieceName)
-////        let pieceImageView = UIImageView (frame: CGRect(x: boardView.originX - 0.5 * side + CGFloat(col) * boardView.width, y: boardView.originY - 0.5 * side + CGFloat(row) * boardView.height, width: side, height: side))
-//        pieceImageView.image = pieceImage
-//        boardView.addSubview(pieceImageView)
     }
     
 }

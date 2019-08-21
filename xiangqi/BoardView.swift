@@ -1,18 +1,19 @@
 import UIKit
 
-class BoardView   : UIView {
-    let rows      : Int                    = 10
-    let cols      : Int                    = 9
-    var originX   : CGFloat                = 25 // 25
-    var originY   : CGFloat                = 25 // 25
-    let height    : CGFloat                = 60 // 60
-    let width     : CGFloat                = 71 // 71
-    let gapX      : CGFloat                = 5
-    let gapY      : CGFloat                = 5
-    let shortLine : CGFloat                = 10
-    var fromCol   : Int                    = -10
-    var fromRow   : Int                    = -10
-    var pieces    : Set<XiangqiBoardPiece> = Set<XiangqiBoardPiece>()
+class BoardView         : UIView {
+    let rows            : Int                    = 10
+    let cols            : Int                    = 9
+    var originX         : CGFloat                = 25 // 25
+    var originY         : CGFloat                = 25 // 25
+    let height          : CGFloat                = 60 // 60
+    let width           : CGFloat                = 71 // 71
+    let gapX            : CGFloat                = 5
+    let gapY            : CGFloat                = 5
+    let shortLine       : CGFloat                = 10
+    var fromCol         : Int                    = -10
+    var fromRow         : Int                    = -10
+    var pieces          : Set<XiangqiBoardPiece> = Set<XiangqiBoardPiece>()
+    var xiangqiDelegate : XiangqiDelegate?       = nil
     
     override func draw(_ rect: CGRect) {
         originY = (bounds.height - CGFloat(rows - 1) * height) / 2
@@ -36,22 +37,17 @@ class BoardView   : UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touchOne = touches.first!
         let fingerLocation = touchOne.location(in: self)
-        
-        
-        // try to figure out fromCol and fromRow, e.g (0, 0)
         fromCol = Int((fingerLocation.x - originX + width / 2) / width) // for 8.85，we want 9 instead 8, but how?
         fromRow = Int((fingerLocation.y - originY + height / 2) / height)
-        print("from: (\(fromCol), \(fromRow))") // from . . .
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touchMore = touches.first!
         let fingerlocation = touchMore.location(in: self)
         
-        // try to figure out toCol and toRow, e.g (0, 1)
         let toCol : Int = Int((fingerlocation.x - originX + width / 2) / width)
         let toRow : Int = Int((fingerlocation.y - originY + height / 2) / height)
-        print("from: (\(fromCol), \(fromRow)) to: (\(toCol), \(toRow))")
+        xiangqiDelegate?.move(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
     }
     
     func drawGrid() {
