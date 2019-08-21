@@ -31,23 +31,29 @@ struct PiecesGoRules: CustomStringConvertible {
         piecesSet.insert(XiangqiPiece(x: 4, y: 9, rnk: Rank.king, isRed: false, imgNm: "bb"))
     }
     
+    mutating func eatPiece(x: Int, y: Int) {
+        for piece in piecesSet {
+            if piece.x == x && piece.y == y {
+                piecesSet.remove(piece)
+                break
+            }
+        }
+    }
+    
     mutating func pieceGoes(frX: Int, frY: Int, toX: Int, toY: Int) {
         guard let movingPiece = pieceAt(x: frX, y: frY) else {
             return
         }
         
-        
-        
-        
         if !isValidPieceMove(frX: frX, frY: frY, toX: toX, toY: toY) {
             return
         }
         
+        eatPiece(x: toX, y: toY)
+
         piecesSet.remove(movingPiece)
         let newPiece = XiangqiPiece(x: toX, y: toY, rnk: movingPiece.rnk, isRed: movingPiece.isRed, imgNm: movingPiece.imgNm)
         piecesSet.insert(newPiece)
-        
-        
     }
     
     func isValidPieceMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
@@ -247,4 +253,3 @@ struct PiecesGoRules: CustomStringConvertible {
         return nil
     }
 }
-
