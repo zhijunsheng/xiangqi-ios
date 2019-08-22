@@ -27,6 +27,8 @@ class BoardView: UIView {
     
     var touchesBeganLocation: CGPoint?
     
+    var movingPieceLocation: CGPoint?
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         touchesBeganLocation = touch?.location(in: self)
@@ -51,6 +53,12 @@ class BoardView: UIView {
         xiangqiDelegate?.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
     }
     
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        movingPieceLocation = touch.location(in: self)
+        setNeedsDisplay()
+    }
+    
     override func draw(_ rect: CGRect) {
         var smaller = bounds.width
         if bounds.width > bounds.height {
@@ -63,6 +71,13 @@ class BoardView: UIView {
         
         drawBoard(orgX: originX, orgY: originY)
         drawPieces(orgX: originX, orgY: originY)
+        
+        if movingPieceLocation != nil {
+//            drawPiece(orgX: movingPieceLocation!.x, orgY: movingPieceLocation!.y, piece: pieces.first!)
+            let pieceImage = UIImage(named: "rj")!
+            pieceImage.draw(in: CGRect(x: movingPieceLocation!.x - cellSide / 2, y: movingPieceLocation!.y - cellSide / 2, width: cellSide, height: cellSide))
+        }
+       
     }
     
     func drawPieces(orgX: CGFloat, orgY: CGFloat) {
