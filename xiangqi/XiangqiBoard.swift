@@ -64,16 +64,23 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     func isValidBishopMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        
-        if fromRow > 4
-        {
+        guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
             return false
+        }
+        if movingPiece.isRed == false {
+            if toRow > 4 {
+                return false
+            }
+
+        } else if movingPiece.isRed == true {
+            if toRow < 5 {
+                return false
+            }
         }
         if fromCol - 2 == toCol && fromRow - 2 == toRow
         || fromCol - 2 == toCol && fromRow + 2 == toRow
         || fromCol + 2 == toCol && fromRow - 2 == toRow
-        || fromCol + 2 == toCol && fromRow + 2 == toRow
-        {
+        || fromCol + 2 == toCol && fromRow + 2 == toRow {
             return true
         }
         return false
