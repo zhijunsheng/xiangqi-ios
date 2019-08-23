@@ -19,6 +19,8 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         if movingPiece.rank == "K" {
             return isValidKnightMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        }else if movingPiece.rank == "B" {
+            return isValidBishopMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         }
         
         return false
@@ -143,13 +145,13 @@ struct XiangqiBoard: CustomStringConvertible {
                     boardString.append(" .")
                 } else {
                     switch piece!.rank {
-                    case "R" : boardString.append(piece!.isRed ? " r" : " R")
-                    case "K" : boardString.append(piece!.isRed ? " k" : " K")
-                    case "B" : boardString.append(piece!.isRed ? " b" : " B")
-                    case "G" : boardString.append(piece!.isRed ? " g" : " G")
-                    case "Q" : boardString.append(piece!.isRed ? " q" : " G")
-                    case "C" : boardString.append(piece!.isRed ? " c" : " C")
-                    case "P" : boardString.append(piece!.isRed ? " r" : " P")
+                    case "R" : boardString.append(piece!.isRed ? " r" : " R")// rook
+                    case "K" : boardString.append(piece!.isRed ? " k" : " K")// knight
+                    case "B" : boardString.append(piece!.isRed ? " b" : " B")// bishop
+                    case "G" : boardString.append(piece!.isRed ? " g" : " G")// guard
+                    case "Q" : boardString.append(piece!.isRed ? " q" : " Q")// queen
+                    case "C" : boardString.append(piece!.isRed ? " c" : " C")// cellen
+                    case "P" : boardString.append(piece!.isRed ? " p" : " P")// pown
                         
                     default:
                         break
