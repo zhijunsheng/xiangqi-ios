@@ -49,12 +49,25 @@ class ViewController: UIViewController, XiangqiDelegate {
     
     func move(startX: Int, startY: Int, endX: Int, endY: Int) {
         guard let piece = board.pieceAt(col: startX, row: startY) else { return }
-//        let target: Piece? = board.pieceAt(col: endX, row: endY)
+        let target: Piece? = board.pieceAt(col: endX, row: endY)
         if board.canMoveTo(piece: piece, destCol: endX, destRow: endY) && piece.isRed == isRedTurn {
             board.movePiece(startCol: startX, startRow: startY, destCol: endX, destRow: endY)
-//            if target != nil {
-//
-//            }
+            isRedTurn = !isRedTurn
+            boardView.pieces = board.pieces
+            boardView.setNeedsDisplay()
+            if target?.rank == "b" {
+                let alert = UIAlertController(title: "GAME OVER!!!", message: "Would you like to restart?", preferredStyle: .alert)
+                let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                    self.board.pieces.removeAll()
+                    self.addInitPieces()
+                    self.isRedTurn = true
+                    self.boardView.pieces = self.board.pieces
+                })
+                alert.addAction(yesAction)
+                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+                
+                self.present(alert, animated: true)
+            }
         }
     }
     
