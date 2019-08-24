@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -37,20 +38,12 @@
                             <constraint firstItem="5Aq-WJ-3LB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qhP-Ru-7GV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="lTc-vi-pb4" appends="YES" id="MsK-LY-ueT"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="boardView" destination="5Aq-WJ-3LB" id="kUx-6K-yc6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="lTc-vi-pb4">
-                    <connections>
-                        <action selector="panAction:" destination="BYZ-38-t0r" id="S1H-Ou-tN3"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="327.536231884058" y="2.4456521739130435"/>
         </scene>

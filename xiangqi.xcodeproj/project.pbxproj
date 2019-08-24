@@ -16,6 +16,7 @@
 		750BC2D721EAE13800488121 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750BC2D621EAE13800488121 /* Piece.swift */; };
 		750BC2D921EAE15300488121 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750BC2D821EAE15300488121 /* Board.swift */; };
 		750BC2DB21F957DB00488121 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750BC2DA21F957DB00488121 /* BoardTests.swift */; };
+		753E3EFA23116D1A0077C4E6 /* XiangqiDelagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753E3EF923116D1A0077C4E6 /* XiangqiDelagate.swift */; };
 		75487E6321B1EC6800FC3C2E /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75487E6221B1EC6800FC3C2E /* BoardView.swift */; };
 		75D59155208182DE00C96613 /* LoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D59154208182DE00C96613 /* LoopTests.swift */; };
 		9D64333420557D5100F1546C /* class_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9D64333320557D5100F1546C /* class_notes.txt */; };
@@ -46,6 +47,7 @@
 		750BC2D621EAE13800488121 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		750BC2D821EAE15300488121 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		750BC2DA21F957DB00488121 /* BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
+		753E3EF923116D1A0077C4E6 /* XiangqiDelagate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiDelagate.swift; sourceTree = "<group>"; };
 		75487E6221B1EC6800FC3C2E /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		75D59154208182DE00C96613 /* LoopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTests.swift; sourceTree = "<group>"; };
 		9D64333320557D5100F1546C /* class_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = class_notes.txt; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				07653522204A3C67008FC177 /* AppDelegate.swift */,
+				753E3EF923116D1A0077C4E6 /* XiangqiDelagate.swift */,
 				750BC2D621EAE13800488121 /* Piece.swift */,
 				750BC2D821EAE15300488121 /* Board.swift */,
 				07653524204A3C67008FC177 /* ViewController.swift */,
@@ -221,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				753E3EFA23116D1A0077C4E6 /* XiangqiDelagate.swift in Sources */,
 				750BC2D721EAE13800488121 /* Piece.swift in Sources */,
 				75487E6321B1EC6800FC3C2E /* BoardView.swift in Sources */,
 				750BC2D921EAE15300488121 /* Board.swift in Sources */,
@@ -388,7 +392,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = xiangqi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldthumb.xiangqi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -404,7 +408,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = xiangqi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldthumb.xiangqi;
 				PRODUCT_NAME = "$(TARGET_NAME)";

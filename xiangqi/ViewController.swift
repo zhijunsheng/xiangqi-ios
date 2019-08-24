@@ -7,11 +7,13 @@
 //
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, XiangqiDelegate {
+    
     var board = Board()
     var boardViewX: CGFloat = 0
     var boardViewY: CGFloat = 0
     var isRedTurn: Bool = true
+    var thing: CGPoint? = nil
     
     
     
@@ -21,7 +23,7 @@ class ViewController: UIViewController {
     var pieceCol: Int = -2019
     var pieceRow: Int = -2019
     
-    var keyPieceValueImageView: [Piece: UIImageView] = [:]
+//    var keyPieceValueImageView: [Piece: UIImageView] = [:]
     
     var startCol: Int = -10
     var startRow: Int = -10
@@ -30,114 +32,133 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        boardView.viewController = self
+        addInitPieces()
+        boardView.pieces = board.pieces
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         boardViewX = boardView.frame.origin.x
         boardViewY = boardView.frame.origin.y
-        addInitPieces()
     }
     
     func nearestPoint(clicked: CGFloat) -> Int {
         return Int(floor(clicked + 0.5))
     }
     
-    @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
-        if sender.state == UIGestureRecognizerState.began {
-            let col = nearestPoint(clicked: (sender.location(in: boardView).x - boardView.originX) / boardView.side)
-            let row = nearestPoint(clicked: (sender.location(in: boardView).y - boardView.originY) / boardView.side)
-            
-            print("row is........................\(row)!, and col is.........................\(col)!")
-            
-            print(board.pieces.count)
-            
-            if let activePieceCandiate = board.pieceAt(col: col, row: row) {
-                activePiece = activePieceCandiate
-                pieceCol = activePieceCandiate.col
-                pieceRow = activePieceCandiate.row
-            }
-        }
-        
-        
-        if sender.state == UIGestureRecognizerState.changed {
-            guard let activePiece = activePiece, let pieceImageView = keyPieceValueImageView[activePiece] else {
-                return
-            }
-            let translation = sender.translation(in: self.view)
-            pieceImageView.center = CGPoint(x: pieceImageView.center.x + translation.x, y: pieceImageView.center.y + translation.y)
-            sender.setTranslation(CGPoint.zero, in: self.view)
-        }
-        
-        if sender.state == UIGestureRecognizerState.ended {
-            guard let actualActivePiece = activePiece else {
-                return
-            }
-            let col = nearestPoint(clicked: (sender.location(in: boardView).x - boardView.originX) / boardView.side)
-            let row = nearestPoint(clicked: (sender.location(in: boardView).y - boardView.originY) / boardView.side)
-            print("row is_____________________\(row)!, and col is________________\(col)!")
-            
-            let potentialTarget: Piece? = board.pieceAt(col: col, row: row)
-    
-            if actualActivePiece.isRed == isRedTurn && board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
-                print("access granted")
-                board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
-            } else if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
-                let startPoint = CGPoint(x: boardViewX + boardView.originX + CGFloat(pieceCol) * boardView.side, y: boardViewY + boardView.originY + CGFloat(pieceRow) * boardView.side)
-                pieceImageView.center = startPoint
-                return
-            }
-            
-            if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
-                let pointAtColRow = CGPoint(x: boardViewX + boardView.originX + CGFloat(col) * boardView.side, y: boardViewY + boardView.originY + CGFloat(row) * boardView.side)
-                isRedTurn = !isRedTurn
-                pieceImageView.center = pointAtColRow
-                let newKey = Piece(col: col, row: row, imageName: actualActivePiece.imageName, rank: actualActivePiece.rank, isRed: actualActivePiece.isRed)
-                keyPieceValueImageView[newKey] = pieceImageView
-                
-                if let potentialTarget = potentialTarget, let viewToRemove = keyPieceValueImageView[potentialTarget] {
-                    viewToRemove.removeFromSuperview()
-                    
-                    keyPieceValueImageView.removeValue(forKey: potentialTarget)
-                    
-                    if potentialTarget.rank == "b" {
-                        let alert = UIAlertController(title: "GAME OVER!!!", message: "Would you like to restart?", preferredStyle: .alert)
-                        let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                            
-                            let pieceImages = self.keyPieceValueImageView.values
-                            for img in pieceImages {
-                                img.removeFromSuperview()
-                            }
-                            self.keyPieceValueImageView.removeAll()
-                            self.board.pieces.removeAll()
-                            self.addInitPieces()
-                            self.isRedTurn = true
-                        })
-                        alert.addAction(yesAction)
-                        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-                        
-                        self.present(alert, animated: true)
-                    }
-
-                }
-            }
-            activePiece = nil
+    func move(startX: Int, startY: Int, endX: Int, endY: Int) {
+        guard let piece = board.pieceAt(col: startX, row: startY) else { return }
+//        let target: Piece? = board.pieceAt(col: endX, row: endY)
+        if board.canMoveTo(piece: piece, destCol: endX, destRow: endY) && piece.isRed == isRedTurn {
+            board.movePiece(startCol: startX, startRow: startY, destCol: endX, destRow: endY)
+//            if target != nil {
+//
+//            }
         }
     }
     
+//        let startX = Int((realThing.x - cornerX) / side)
+//        let startY = Int((realThing.y - cornerY) / side)
+//        let endX = Int((loc.x - cornerX) / side)
+//        let endY = Int((loc.y - cornerY) / side)
+//        print("(\(startX), \(startY)) to (\(endX), \(endY))")
+//        cubeDelagate?.turnCube(startX: startX, startY: startY, endX: endX, endY: endY)
+    
+//    @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
+//        if sender.state == UIGestureRecognizerState.began {
+//            let col = nearestPoint(clicked: (sender.location(in: boardView).x - boardView.originX) / boardView.side)
+//            let row = nearestPoint(clicked: (sender.location(in: boardView).y - boardView.originY) / boardView.side)
+//
+//            print("row is........................\(row)!, and col is.........................\(col)!")
+//
+//            print(board.pieces.count)
+//
+//            if let activePieceCandiate = board.pieceAt(col: col, row: row) {
+//                activePiece = activePieceCandiate
+//                pieceCol = activePieceCandiate.col
+//                pieceRow = activePieceCandiate.row
+//            }
+//        }
+//
+//
+//        if sender.state == UIGestureRecognizerState.changed {
+//            guard let activePiece = activePiece, let pieceImageView = keyPieceValueImageView[activePiece] else {
+//                return
+//            }
+//            let translation = sender.translation(in: self.view)
+//            pieceImageView.center = CGPoint(x: pieceImageView.center.x + translation.x, y: pieceImageView.center.y + translation.y)
+//            sender.setTranslation(CGPoint.zero, in: self.view)
+//        }
+//
+//        if sender.state == UIGestureRecognizerState.ended {
+//            guard let actualActivePiece = activePiece else {
+//                return
+//            }
+//            let col = nearestPoint(clicked: (sender.location(in: boardView).x - boardView.originX) / boardView.side)
+//            let row = nearestPoint(clicked: (sender.location(in: boardView).y - boardView.originY) / boardView.side)
+//            print("row is_____________________\(row)!, and col is________________\(col)!")
+//
+//            let potentialTarget: Piece? = board.pieceAt(col: col, row: row)
+//
+//            if actualActivePiece.isRed == isRedTurn && board.canMoveTo(piece: actualActivePiece, destCol: col, destRow: row) {
+//                print("access granted")
+//                board.movePiece(startCol: actualActivePiece.col, startRow: actualActivePiece.row, destCol: col, destRow: row)
+//            } else if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
+//                let startPoint = CGPoint(x: boardViewX + boardView.originX + CGFloat(pieceCol) * boardView.side, y: boardViewY + boardView.originY + CGFloat(pieceRow) * boardView.side)
+//                pieceImageView.center = startPoint
+//                return
+//            }
+//
+//            if let pieceImageView = keyPieceValueImageView[actualActivePiece] {
+//                let pointAtColRow = CGPoint(x: boardViewX + boardView.originX + CGFloat(col) * boardView.side, y: boardViewY + boardView.originY + CGFloat(row) * boardView.side)
+//                isRedTurn = !isRedTurn
+//                pieceImageView.center = pointAtColRow
+//                let newKey = Piece(col: col, row: row, imageName: actualActivePiece.imageName, rank: actualActivePiece.rank, isRed: actualActivePiece.isRed)
+//                keyPieceValueImageView[newKey] = pieceImageView
+//
+//                if let potentialTarget = potentialTarget, let viewToRemove = keyPieceValueImageView[potentialTarget] {
+//                    viewToRemove.removeFromSuperview()
+//
+//                    keyPieceValueImageView.removeValue(forKey: potentialTarget)
+//
+//                    if potentialTarget.rank == "b" {
+//                        let alert = UIAlertController(title: "GAME OVER!!!", message: "Would you like to restart?", preferredStyle: .alert)
+//                        let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+//
+//                            let pieceImages = self.keyPieceValueImageView.values
+//                            for img in pieceImages {
+//                                img.removeFromSuperview()
+//                            }
+//                            self.keyPieceValueImageView.removeAll()
+//                            self.board.pieces.removeAll()
+//                            self.addInitPieces()
+//                            self.isRedTurn = true
+//                        })
+//                        alert.addAction(yesAction)
+//                        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+//
+//                        self.present(alert, animated: true)
+//                    }
+//
+//                }
+//            }
+//            activePiece = nil
+//        }
+//    }
+
     func addPiece(image: String, row: Int, col: Int, rank: String, isRed: Bool) {
         let piece = Piece(col: col, row: row, imageName: image, rank: rank, isRed: isRed)
         board.pieces.insert(piece)
-        
-        let pieceImage = UIImage(named: image)
-        let pieceImageView: UIImageView = UIImageView(frame: CGRect(x: boardViewX + boardView.originX + boardView.side * (CGFloat(col) - 0.5), y: boardViewY + boardView.originY + boardView.side * (CGFloat(row) - 0.5), width: boardView.side, height: boardView.side))
-        pieceImageView.image = pieceImage
-        view.addSubview(pieceImageView)
-        
-        keyPieceValueImageView[piece] = pieceImageView
+
+//        let pieceImage = UIImage(named: image)
+//        let pieceImageView: UIImageView = UIImageView(frame: CGRect(x: boardViewX + boardView.originX + boardView.side * (CGFloat(col) - 0.5), y: boardViewY + boardView.originY + boardView.side * (CGFloat(row) - 0.5), width: boardView.side, height: boardView.side))
+//        pieceImageView.image = pieceImage
+//        view.addSubview(pieceImageView)
+//
+//        keyPieceValueImageView[piece] = pieceImageView
     }
-    
+
     func addInitPieces() {
         //black
         // regular pieces
