@@ -19,22 +19,23 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         if movingPiece.rank == "K" {
             return isValidKnightMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-        }else if movingPiece.rank == "B" {
+        } else if movingPiece.rank == "B" {
             return isValidBishopMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        } else if movingPiece.rank == "G" {
+            return isValidGuardMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        } else if movingPiece.rank == "Q" {
+            return isValidKingMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         }
         
         return false
     }
     
     func isValidGuardMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        
         if toCol < 3
         || toCol > 5
-        || toRow > 2
-        {
+        || toRow < 7 && toRow > 2 {
             return false
         }
-        
         if fromCol + 1 == toCol && fromRow + 1 == toRow
         || fromCol + 1 == toCol && fromRow - 1 == toRow
         || fromCol - 1 == toCol && fromRow + 1 == toRow
@@ -49,18 +50,18 @@ struct XiangqiBoard: CustomStringConvertible {
         
         if toCol < 3
         || toCol > 5
-        || toRow > 2
-        {
+        || toRow < 7 && toRow > 2 {
             return false
         }
         if fromRow + 1 == toRow && fromCol == toCol
         || fromCol - 1 == toCol && fromRow == toRow
         || fromRow - 1 == toRow && fromCol == toCol
-        || fromCol + 1 == toCol && fromCol == toCol
+        || fromCol + 1 == toCol && fromRow == toRow
         {
             return true
         }
         return false
+        
     }
     
     func isValidBishopMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {

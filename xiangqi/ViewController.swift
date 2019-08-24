@@ -38,8 +38,8 @@ class ViewController: UIViewController, XiangqiDelegate {
             addPiece(pieceName: "bj", row: 0, col: i * 8, rank: "R", isRed: false)
             addPiece(pieceName: "rm", row: 9, col: 1 + i * 6, rank: "K", isRed: true)
         }
-        addPiece(pieceName: "bb", row: 0, col: 4, rank: "K", isRed: false)
-        addPiece(pieceName: "rb", row: 9, col: 4, rank: "K", isRed: false)
+        addPiece(pieceName: "bb", row: 0, col: 4, rank: "Q", isRed: false)
+        addPiece(pieceName: "rb", row: 9, col: 4, rank: "Q", isRed: false)
         
         boardView.pieces = xiangqi.piecesBox
         
