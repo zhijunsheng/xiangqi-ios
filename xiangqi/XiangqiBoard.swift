@@ -25,6 +25,8 @@ struct XiangqiBoard: CustomStringConvertible {
             return isValidGuardMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         } else if movingPiece.rank == "Q" {
             return isValidKingMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        } else if movingPiece.rank == "P" {
+            return isValidPawnMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         }
         
         return false
@@ -103,27 +105,20 @@ struct XiangqiBoard: CustomStringConvertible {
         return false
     }
     func isValidPawnMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        
-        if toRow <= 4 {
-            if toRow == 0
-                || toRow == 1
-                || toRow == 2
-            {
-                return false
-            }
-            if fromRow + 1 == toRow && fromCol == toCol
-            {
-                return true
-            }
-        }else if toRow >= 5
-        {
-            if fromRow + 1 == toRow && fromCol == toCol
-                || fromCol - 1 == toCol && fromRow == toRow
-                || fromCol + 1 == toCol && fromCol == toCol
-            {
-                return true
+        guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
+            return false
+        }
+        if movingPiece.isRed {
+            
+        } else {
+            if fromRow == 3
+            || fromRow == 4 {
+                if fromRow + 1 == toRow && fromCol == toCol {
+                    return true
+                }
             }
         }
+        
         
         return false
     }
