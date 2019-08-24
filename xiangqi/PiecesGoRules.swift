@@ -94,7 +94,52 @@ struct PiecesGoRules: CustomStringConvertible {
     }
     
     func isValidRookMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
+        
         return frX == toX && frY != toY || frY == toY && frX != toX
+    }
+    
+    func numberOfPiecesBetween(frX: Int, frY: Int, toX: Int, toY: Int) -> Int {
+        var noPieces = 0
+        
+        if frX == toX && frY != toY  { // |
+            if toY > frY { // going ⬇️
+                if frY + 1 <= toY - 1 {
+                    for y in frY + 1 ... toY - 1 {
+                        if pieceAt(x: frX, y: y) != nil {
+                            noPieces += 1
+                        }
+                    }
+                }
+            } else { // going ⬆️
+                if toY + 1 <= frY - 1 {
+                    for y in toY + 1 ... frY - 1 {
+                        if pieceAt(x: frX, y: y) != nil {
+                            noPieces += 1
+                        }
+                    }
+                }
+            }
+        } else if frY == toY && frX != toX { // -
+            if toX > frX { // going ⬇️
+                if frX + 1 <= toX - 1 {
+                    for x in frX + 1 ... toX - 1 {
+                        if pieceAt(x: x, y: frY) != nil {
+                            noPieces += 1
+                        }
+                    }
+                }
+            } else { // going ⬆️
+                if toX + 1 <= frX - 1 {
+                    for x in toX + 1 ... frX - 1 {
+                        if pieceAt(x: x, y: frY) != nil {
+                            noPieces += 1
+                        }
+                    }
+                }
+            }
+        }
+        
+        return noPieces
     }
     
     func isValidKnightMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
@@ -217,12 +262,27 @@ struct PiecesGoRules: CustomStringConvertible {
     
     
     
+    /*
+       0 1 2
+     0 . . . . . . . . .
+     1 . . . . . . . . R
+     2 . . . . . . . . .
+     . . . . . . . . .
+     . . . . . . . . .
+     . . . . . . . . .
+     . . . . . . . . .
+     . . . . . . . . .
+     . . . . . . . . r
+     . . . . . . . . .
+     */
     var description: String {
         var bodStrg = ""
-        
+        bodStrg.append("  0 1 2 3 4 5 6 7 8")
         for j in 0..<10 {
             bodStrg.append("\n")
+            bodStrg.append("\(j) ")
             for i in 0..<9 {
+                
                 let piece = pieceAt(x: i, y: j)
                 if piece == nil {
                     bodStrg.append(". ")
@@ -240,7 +300,7 @@ struct PiecesGoRules: CustomStringConvertible {
             }
         }
         
-        return "\(bodStrg)"
+        return bodStrg
     }
     
     func pieceAt(x: Int, y: Int) -> XiangqiPiece? {

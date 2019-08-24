@@ -3,6 +3,25 @@ import XCTest
 @testable import xiangqi
 
 class PiecesGoRulesTests: XCTestCase {
+    func testNumberOfPiecesBetween() {
+
+        
+        /*
+         0 1 2 3 4 5 6 7 8
+         0 . . . . . . . . .
+         1 . . . . . . . . r
+         2 . . . . . . . . .
+         3 . . . . . . . . .
+         4 . . . . . . . . .
+         5 . . . . . . . . .
+         6 . . . . . . . . .
+         7 . . . . . . . . .
+         8 . . . . . . . . R
+         9 . . . . . . . . . 
+         */
+        rule = PiecesGoRules()
+        
+    }
     
     func testRookPieceRules() {
         let rule = PiecesGoRules()
