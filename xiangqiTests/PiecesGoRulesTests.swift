@@ -7,7 +7,7 @@ class PiecesGoRulesTests: XCTestCase {
 
         
         /*
-         0 1 2 3 4 5 6 7 8
+           0 1 2 3 4 5 6 7 8
          0 . . . . . . . . .
          1 . . . . . . . . r
          2 . . . . . . . . .
@@ -17,7 +17,30 @@ class PiecesGoRulesTests: XCTestCase {
          6 . . . . . . . . .
          7 . . . . . . . . .
          8 . . . . . . . . R
-         9 . . . . . . . . . 
+         9 . . . . . . . . .
+         */
+        var rule = PiecesGoRules()
+
+        rule.piecesSet.insert(XiangqiPiece(x: 8, y: 1, rnk: Rank.rook, isRed: true, imgNm: "rj"))
+        rule.piecesSet.insert(XiangqiPiece(x: 8, y: 8, rnk: Rank.rook, isRed: false, imgNm: "bj"))
+        print(rule)
+        XCTAssertEqual(0, rule.numberOfPiecesBetween(frX: 8, frY: 1, toX: 6, toY: 1))
+        XCTAssertEqual(1, rule.numberOfPiecesBetween(frX: 8, frY: 1, toX: 8, toY: 9))
+        XCTAssertEqual(2, rule.numberOfPiecesBetween(frX: 8, frY: 0, toX: 8, toY: 9))
+        XCTAssertEqual(2, rule.numberOfPiecesBetween(frX: 8, frY: 9, toX: 8, toY: 0))
+        
+        
+        /*
+         . . . . . . . . .
+         . . . . . . . . .
+         . . . . . . . . .
+         . . . . . . . . .
+         . . . . . . . . .
+         . . . . . . . . .
+         . . . . . . . . .
+         . . . . . . . . .
+         . . . . . . . . .
+         . . . . . . . . .
          */
         rule = PiecesGoRules()
         
