@@ -105,15 +105,39 @@ struct XiangqiBoard: CustomStringConvertible {
         return false
     }
     func isValidPawnMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
             return false
         }
         if movingPiece.isRed {
-            
+            if fromRow + 1 == toRow {
+                return false
+            }
+            if fromRow == 6
+                || fromRow == 5 {
+                if fromRow - 1 == toRow && fromCol == toCol {
+                    return true
+                }
+            }else if fromRow < 5{
+                if fromRow - 1 == toRow && fromCol == toCol
+                    || fromCol - 1 == toCol && fromRow == toRow
+                    || fromCol + 1 == toCol && fromRow == toRow {
+                    return true
+                }
+            }
         } else {
+            if fromRow - 1 == toRow {
+                return false
+            }
             if fromRow == 3
             || fromRow == 4 {
                 if fromRow + 1 == toRow && fromCol == toCol {
+                    return true
+                }
+            }else if fromRow > 4{
+                if fromRow + 1 == toRow && fromCol == toCol
+                || fromCol - 1 == toCol && fromRow == toRow
+                || fromCol + 1 == toCol && fromRow == toRow {
                     return true
                 }
             }
