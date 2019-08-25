@@ -95,7 +95,7 @@ struct PiecesGoRules: CustomStringConvertible {
     
     func isValidRookMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
         
-        return frX == toX && frY != toY || frY == toY && frX != toX
+        return (frX == toX && frY != toY || frY == toY && frX != toX) && numberOfPiecesBetween(frX: frX, frY: frY, toX: toX, toY: toY) == 0
     }
     
     func numberOfPiecesBetween(frX: Int, frY: Int, toX: Int, toY: Int) -> Int {
