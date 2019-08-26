@@ -9,11 +9,11 @@ struct PiecesGoRules: CustomStringConvertible {
     
     mutating func piecesRoom() {
         for i in 0..<2 {
-            piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 0, rnk: Rank.rook, isRed: true, imgNm: "rj"))
+//            piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 0, rnk: Rank.rook, isRed: true, imgNm: "rj"))
             piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 0, rnk: Rank.knight, isRed: true, imgNm: "rm"))
             piecesSet.insert(XiangqiPiece(x: i * 4 + 2, y: 0, rnk: Rank.bishop, isRed: true, imgNm: "rx"))
             piecesSet.insert(XiangqiPiece(x: i * 2 + 3, y: 0, rnk: Rank.warrior, isRed: true, imgNm: "rs"))
-            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 2, rnk: Rank.cannon, isRed: true, imgNm: "rp"))
+//            piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 2, rnk: Rank.cannon, isRed: true, imgNm: "rp"))
 
             piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 9, rnk: Rank.rook, isRed: false, imgNm: "bj"))
             piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 9, rnk: Rank.knight, isRed: false, imgNm: "bm"))
@@ -151,7 +151,7 @@ struct PiecesGoRules: CustomStringConvertible {
         }
         
         if toX == frX + 1 && toY == frY + 2 ||
-            toX == frX - 1 && toY == frY + 2 {
+            toX == frX + 1 && toY == frY + 2 {
             if pieceAt(x: frX, y: frY + 1) != nil {
                 return false
             }
@@ -166,7 +166,7 @@ struct PiecesGoRules: CustomStringConvertible {
         
         if toX == frX - 2 && toY == frY - 1 ||
             toX == frX - 2 && toY == frY + 1 {
-            if pieceAt(x: frX + 1, y: frY) != nil {
+            if pieceAt(x: frX - 1, y: frY) != nil {
                 return false
             }
         }
