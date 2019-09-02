@@ -17,8 +17,6 @@ class ViewController: UIViewController, XiangqiDelegate {
     var fromRow: Int? = nil
     var isRedTurn: Bool = true
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,5 +45,15 @@ class ViewController: UIViewController, XiangqiDelegate {
         } else {
             whoseTurnLabel.text = "Black's Turn"
         }
+    }
+    
+    func pieceImageAt(col: Int, row: Int) -> UIImage? {
+        guard let piece = board.pieceAt(col: col, row: row) else {
+            return nil
+        }
+        
+        
+        let pieceName: UIImage? = UIImage(named: piece.imgName)
+        return pieceName
     }
 }

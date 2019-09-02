@@ -6,8 +6,9 @@
 //  Copyright © 2019 GoldThumb Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol XiangqiDelegate {
     func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int)
+    func pieceImageAt(col: Int, row: Int) -> UIImage?
 }
