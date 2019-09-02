@@ -32,12 +32,16 @@ class BoardView: UIView {
     var pieceImage: UIImage?
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
-        touchesBeganLocation = touch?.location(in: self)
+        let touch = touches.first!
+        touchesBeganLocation = touch.location(in: self)
+        guard
+            let touchesBeganLocation = touchesBeganLocation,
+            let fromCol = Utils.xyToColRow(xy: touchesBeganLocation.x, orgXY: originX - cellSide / 2, cellSide: cellSide, margin: panningMargin),
+            let fromRow = Utils.xyToColRow(xy: touchesBeganLocation.y, orgXY: originY - cellSide / 2, cellSide: cellSide, margin: panningMargin) else {
+            return
+        }
         
-        let fromCol = Utils.xyToColRow(xy: touchesBeganLocation!.x, orgXY: originX - cellSide / 2, cellSide: cellSide, margin: panningMargin)
-        let fromRow = Utils.xyToColRow(xy: touchesBeganLocation!.y, orgXY: originY - cellSide / 2, cellSide: cellSide, margin: panningMargin)
-        pieceImage = xiangqiDelegate?.pieceImageAt(col: fromCol!, row: fromRow!)
+        pieceImage = xiangqiDelegate?.pieceImageAt(col: fromCol, row: fromRow)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
