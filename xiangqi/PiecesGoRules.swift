@@ -229,25 +229,15 @@ struct PiecesGoRules: CustomStringConvertible {
     }
     
     func isValidCannonMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
-        
-       return cannonWalk(frX: frX, frY: frY, toX: toX, toY: toY) || cannonEat(frX: frX, frY: frY, toX: toX, toY: toY)
-        
-//        let piecesNumber = numberOfPiecesBetween(frX: <#T##Int#>, frY: <#T##Int#>, toX: <#T##Int#>, toY: <#T##Int#>)
-//
-//
-//
-//        // cannon's walk
-//        return (frX == toX && frY != toY || frY == toY && frX != toX) && numberOfPiecesBetween(frX: frX, frY: frY, toX: toX, toY: toY) == 0
-//        // cannon's eat
-//        return (frX == toX && frY != toY || frY == toY && frX != toX) && numberOfPiecesBetween(frX: frX, frY: frY, toX: toX, toY: toY) == 1
+        return cannonWalk(frX: frX, frY: frY, toX: toX, toY: toY) || cannonEat(frX: frX, frY: frY, toX: toX, toY: toY)
     }
     
     func cannonWalk(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
-        return isValidRookMove(frX: frX, frY: frY, toX: toX, toY: toY)
+        return pieceAt(x: toX, y: toY) == nil && (frX == toX && frY != toY || frY == toY && frX != toX) && numberOfPiecesBetween(frX: frX, frY: frY, toX: toX, toY: toY) == 0
     }
     
     func cannonEat(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
-        return (frX == toX && frY != toY || frY == toY && frX != toX) && numberOfPiecesBetween(frX: frX, frY: frY, toX: toX, toY: toY) == 1
+        return pieceAt(x: toX, y: toY) != nil && (frX == toX && frY != toY || frY == toY && frX != toX) && numberOfPiecesBetween(frX: frX, frY: frY, toX: toX, toY: toY) == 1
     }
     
     func isValidPawnMove(frX: Int, frY: Int, toX: Int, toY: Int) -> Bool {
