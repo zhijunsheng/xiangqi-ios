@@ -1,6 +1,6 @@
 import UIKit
 
-class BoardView         : UIView {
+  class BoardView       : UIView {
     let rows            : Int                    = 10
     let cols            : Int                    = 9
     var originX         : CGFloat                = 25 // 25

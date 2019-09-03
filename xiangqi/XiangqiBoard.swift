@@ -12,7 +12,7 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         return nil
     }
-    
+//    frC, frR, tC, tR
     func isValidMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
             return false
@@ -27,6 +27,8 @@ struct XiangqiBoard: CustomStringConvertible {
             return isValidKingMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         } else if movingPiece.rank == "P" {
             return isValidPawnMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        } else if movingPiece.rank == "R" {
+            return isValidRookMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         }
         
         return false
@@ -74,20 +76,24 @@ struct XiangqiBoard: CustomStringConvertible {
             if toRow > 4 {
                 return false
             }
-
         } else if movingPiece.isRed == true {
             if toRow < 5 {
                 return false
             }
         }
+        
         if fromCol - 2 == toCol && fromRow - 2 == toRow
         || fromCol - 2 == toCol && fromRow + 2 == toRow
         || fromCol + 2 == toCol && fromRow - 2 == toRow
         || fromCol + 2 == toCol && fromRow + 2 == toRow {
             return true
         }
+        
+        
+        
         return false
     }
+    
     
     func isValidKnightMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         
@@ -155,9 +161,22 @@ struct XiangqiBoard: CustomStringConvertible {
             return
         }
         
+        let targetPiece = pieceAt(col: toCol, row: toRow)
+        if targetPiece != nil {
+            piecesBox.remove(targetPiece!)
+        }
+        
         piecesBox.remove(movingPiece)
         let newPiece = XiangqiBoardPiece(col: toCol, row: toRow, rank: movingPiece.rank, isRed: movingPiece.isRed, imageName: movingPiece.imageName)
         piecesBox.insert(newPiece)
+    }
+    
+    func isValidRookMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        if fromCol == toCol
+        || fromRow == toRow {
+            return true
+        }
+        return false
     }
     
     var description: String {
@@ -184,13 +203,10 @@ struct XiangqiBoard: CustomStringConvertible {
                         break
                     }
                 }
-                
             }
             boardString.append("\n")
         }
-        
         return boardString
     }
-    
-
+ 
 }
