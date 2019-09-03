@@ -25,7 +25,6 @@ class BoardView: UIView {
         let fromY = (location1.y - boardOriginY) / cellSide
         fromRow = Int(fromY + 0.5)
         fromCol = Int(fromX + 0.5)
-        print("from \(fromCol,fromRow)")
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -35,13 +34,14 @@ class BoardView: UIView {
         let toY = (location2.y - boardOriginY) / cellSide
         let toRow = Int(toY + 0.5)
         let toCol = Int(toX + 0.5)
+        if fromCol == toCol && fromRow == toRow {
+            return
+        }
+        
         print("from \(fromCol,fromRow), to \(toCol,toRow)")
         xiangqiDelegate?.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
     }
 
-    
-    
-    
     override func draw(_ rect: CGRect) {
         
         boardOriginX = (bounds.width - CGFloat(PiecesGoRules.xs - 1) * cellSide) / 2
