@@ -27,12 +27,17 @@ class ViewController: UIViewController, XiangqiDelegate {
     }
     
     func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+        if fromCol == toCol && fromRow == toRow {
+            return
+        }
+        
         if board.pieceAt(col: fromCol, row: fromRow)?.isRed != isRedTurn {
             return
         }
         
         if board.pieceAt(col: toCol, row: toRow)?.rank == .king {
             print("game over")
+            
         }
         
         isRedTurn = !isRedTurn
@@ -52,8 +57,7 @@ class ViewController: UIViewController, XiangqiDelegate {
             return nil
         }
         
-        
-        let pieceName: UIImage? = UIImage(named: piece.imgName)
-        return pieceName
+        let pieceImage: UIImage? = UIImage(named: piece.imgName)
+        return pieceImage
     }
 }

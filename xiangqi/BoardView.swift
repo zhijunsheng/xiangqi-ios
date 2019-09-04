@@ -22,14 +22,10 @@ class BoardView: UIView {
     var intervalGap: CGFloat = 9
     var shortLine: CGFloat = 18
     var pieces: Set<XiangqiPiece> = Set<XiangqiPiece>()
-    
     var xiangqiDelegate: XiangqiDelegate?
-    
     var touchesBeganLocation: CGPoint?
-    
     var movingPieceLocation: CGPoint?
-    
-    var pieceImage: UIImage?
+    var movingPieceImage: UIImage?
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
@@ -41,7 +37,7 @@ class BoardView: UIView {
             return
         }
         
-        pieceImage = xiangqiDelegate?.pieceImageAt(col: fromCol, row: fromRow)
+        movingPieceImage = xiangqiDelegate?.pieceImageAt(col: fromCol, row: fromRow)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -61,6 +57,7 @@ class BoardView: UIView {
         }
         
         xiangqiDelegate?.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        movingPieceImage = nil
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -68,7 +65,6 @@ class BoardView: UIView {
         movingPieceLocation = touch.location(in: self)
         setNeedsDisplay()
     }
-    
     
     override func draw(_ rect: CGRect) {
         var smaller = bounds.width
@@ -87,7 +83,7 @@ class BoardView: UIView {
         guard let movingPieceLocation = movingPieceLocation else {
             return
         }
-        pieceImage?.draw(in: CGRect(x: movingPieceLocation.x - cellSide / 2, y: movingPieceLocation.y - cellSide / 2, width: cellSide, height: cellSide))
+        movingPieceImage?.draw(in: CGRect(x: movingPieceLocation.x - cellSide / 2, y: movingPieceLocation.y - cellSide / 2, width: cellSide, height: cellSide))
     }
     
     func drawPieces(orgX: CGFloat, orgY: CGFloat) {
