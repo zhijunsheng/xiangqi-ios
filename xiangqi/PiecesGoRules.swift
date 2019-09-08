@@ -7,6 +7,42 @@ struct PiecesGoRules: CustomStringConvertible {
     
     var piecesSet = Set<XiangqiPiece>()
     
+    func blackWins(toX: Int, toY: Int) -> Bool {
+        guard let redBoss = getRedBoss() else {
+            return false
+        }
+
+        return redBoss.x == toX && redBoss.y == toY
+    }
+    
+    func redWins(toX: Int, toY: Int) -> Bool {
+        guard let blackBoss = getBlackBoss() else {
+            return false
+        }
+        
+        return blackBoss.x == toX && blackBoss.y == toY
+    }
+    
+    func getRedBoss() -> XiangqiPiece? {
+        for piece in piecesSet {
+            if piece.isRed && piece.rnk == .king {
+                return piece
+            }
+        }
+        
+        return nil
+    }
+    
+    func getBlackBoss() -> XiangqiPiece? {
+        for piece in piecesSet {
+            if !piece.isRed && piece.rnk == .king {
+                return piece
+            }
+        }
+        
+        return nil
+    }
+    
     mutating func piecesRoom() {
         for i in 0..<2 {
             piecesSet.insert(XiangqiPiece(x: i * 8 + 0, y: 0, rnk: Rank.rook, isRed: true, imgNm: "rj"))
@@ -21,6 +57,8 @@ struct PiecesGoRules: CustomStringConvertible {
             piecesSet.insert(XiangqiPiece(x: i * 2 + 3, y: 9, rnk: Rank.warrior, isRed: false, imgNm: "bs"))
             piecesSet.insert(XiangqiPiece(x: i * 6 + 1, y: 7, rnk: Rank.cannon, isRed: false, imgNm: "bp"))
         }
+        
+        
 
         for i in 0..<5 {
             piecesSet.insert(XiangqiPiece(x: i * 2, y: 6, rnk: Rank.pawn, isRed: false, imgNm: "bz"))
@@ -29,6 +67,16 @@ struct PiecesGoRules: CustomStringConvertible {
 
         piecesSet.insert(XiangqiPiece(x: 4, y: 0, rnk: Rank.king, isRed: true, imgNm: "rb"))
         piecesSet.insert(XiangqiPiece(x: 4, y: 9, rnk: Rank.king, isRed: false, imgNm: "bb"))
+    }
+    
+    func isChecked() -> Bool {
+        
+        return true
+    }
+    
+    func isRookCheck() -> Bool {
+//        isValidRookMove(frX: <#T##Int#>, frY: <#T##Int#>, toX: <#T##Int#>, toY: <#T##Int#>)
+        return false
     }
     
     mutating func eatPiece(x: Int, y: Int) {

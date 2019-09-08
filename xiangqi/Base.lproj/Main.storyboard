@@ -55,6 +55,7 @@
                     </view>
                     <connections>
                         <outlet property="boardView" destination="Yh1-96-Vmc" id="Aae-Es-fBr"/>
+                        <outlet property="jiangImageView" destination="XnP-WQ-0qY" id="zWA-IX-esx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
