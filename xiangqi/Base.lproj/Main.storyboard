@@ -18,13 +18,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JfT-MP-Vbi" customClass="BoardView" customModule="xiangqi" customModuleProvider="target">
-                                <rect key="frame" x="16" y="83" width="288" height="327"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JfT-MP-Vbi" customClass="BoardView" customModule="xiangqi" customModuleProvider="target">
+                                <rect key="frame" x="16" y="20" width="288" height="288"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="JfT-MP-Vbi" secondAttribute="height" multiplier="1:1" id="IPc-cc-f4a"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JfT-MP-Vbi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Xn6-DH-vDz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JfT-MP-Vbi" secondAttribute="trailing" constant="16" id="kuR-n9-d21"/>
+                            <constraint firstItem="JfT-MP-Vbi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vPF-9W-B7Z"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
