@@ -149,6 +149,12 @@ class BoardView: UIView {
         
         pen.stroke()
         
+        let bbImg = UIImage(named: "bb")
+        bbImg?.draw(at: CGPoint(x: originX + 4 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
+        
+        let bsImg = UIImage(named: "bs")
+        bsImg?.draw(at: CGPoint(x: originX + 3 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
+        bsImg?.draw(at: CGPoint(x: originX + 5 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
     }
     
 }
