@@ -2,14 +2,18 @@ import UIKit
 
 class BoardView: UIView {
     
-    let originX: CGFloat = 30
-    let originY: CGFloat = 30
-    let cellSide: CGFloat = 29
+    var originX: CGFloat = 78
+    var originY: CGFloat = 30
+    let cellSide: CGFloat = 74
     let gap: CGFloat = 15
-    
     
     // refactored 重构
     override func draw(_ rect: CGRect) {
+        print(bounds.width)
+        print(bounds.height)
+        originX = (bounds.width - cellSide * 8) / 2
+        originY = (bounds.height - cellSide * 9) / 2
+        
         let pen = UIBezierPath()
         
         for i in 0..<10 {
