@@ -24,12 +24,18 @@ class BoardView: UIView {
     var pieces: Set<XiangqiPiece> = Set<XiangqiPiece>()
     var xiangqiDelegate: XiangqiDelegate?
     var touchesBeganLocation: CGPoint?
+//    var fromCol: Int
+//    var fromRow: Int
+    
     var movingPieceLocation: CGPoint?
     var movingPieceImage: UIImage?
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         let touch = touches.first!
         touchesBeganLocation = touch.location(in: self)
+//        fromCol = Utils.xyToColRow(xy: touchesBeganLocation.x, orgXY: originX - cellSide / 2, cellSide: cellSide, margin: panningMargin)
+//        fromRow
         guard
             let touchesBeganLocation = touchesBeganLocation,
             let fromCol = Utils.xyToColRow(xy: touchesBeganLocation.x, orgXY: originX - cellSide / 2, cellSide: cellSide, margin: panningMargin),
@@ -47,6 +53,7 @@ class BoardView: UIView {
         
         let touch = touches.first!
         let touchesEndedLocation = touch.location(in: self)
+        print(touchesEndedLocation)
         
         guard
             let fromCol = Utils.xyToColRow(xy: touchesBeganLocation.x, orgXY: originX - cellSide / 2, cellSide: cellSide, margin: panningMargin),
@@ -79,7 +86,6 @@ class BoardView: UIView {
         drawBoard(orgX: originX, orgY: originY)
         drawPieces(orgX: originX, orgY: originY)
         
-        
         guard let movingPieceLocation = movingPieceLocation else {
             return
         }
@@ -88,6 +94,7 @@ class BoardView: UIView {
     
     func drawPieces(orgX: CGFloat, orgY: CGFloat) {
         for piece in pieces {
+            
             drawPiece(orgX: orgX, orgY: orgY, piece: piece)
         }
     }
