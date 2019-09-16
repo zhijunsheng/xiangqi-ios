@@ -13,6 +13,7 @@
 		0765352A204A3C67008FC177 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07653529204A3C67008FC177 /* Assets.xcassets */; };
 		0765352D204A3C67008FC177 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0765352B204A3C67008FC177 /* LaunchScreen.storyboard */; };
 		7314DFF322392025000F0439 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7314DFF222392025000F0439 /* BoardView.swift */; };
+		73F3EECF232FBA9D002DA3EA /* XiangqiPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F3EECE232FBA9D002DA3EA /* XiangqiPiece.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		07653533204A3C67008FC177 /* xiangqiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xiangqiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07653539204A3C67008FC177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7314DFF222392025000F0439 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		73F3EECE232FBA9D002DA3EA /* XiangqiPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiPiece.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				07653522204A3C67008FC177 /* AppDelegate.swift */,
+				73F3EECE232FBA9D002DA3EA /* XiangqiPiece.swift */,
 				7314DFF222392025000F0439 /* BoardView.swift */,
 				07653524204A3C67008FC177 /* ViewController.swift */,
 				07653526204A3C67008FC177 /* Main.storyboard */,
@@ -199,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73F3EECF232FBA9D002DA3EA /* XiangqiPiece.swift in Sources */,
 				7314DFF322392025000F0439 /* BoardView.swift in Sources */,
 				07653525204A3C67008FC177 /* ViewController.swift in Sources */,
 				07653523204A3C67008FC177 /* AppDelegate.swift in Sources */,
