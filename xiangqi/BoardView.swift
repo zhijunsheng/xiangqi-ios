@@ -7,77 +7,15 @@ class BoardView: UIView {
     let cellSide: CGFloat = 74
     let gap: CGFloat = 15
     
-    // refactored 重构
     override func draw(_ rect: CGRect) {
-        print(bounds.width)
-        print(bounds.height)
         originX = (bounds.width - cellSide * 8) / 2
         originY = (bounds.height - cellSide * 9) / 2
-        
-        let pen = UIBezierPath()
-        
-        for i in 0..<10 {
-            pen.move(to: CGPoint(x: originX, y: CGFloat(i) * cellSide + originY))
-            pen.addLine(to: CGPoint(x: 8 * cellSide + originX, y: CGFloat(i) * cellSide + originY))
-        }
 
-        for i in 0..<9 {
-            pen.move(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: originY))
-            pen.addLine(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: 4 * cellSide + originY))
-        }
-
-        for i in 0..<9 {
-            pen.move(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: 5 * cellSide + originY))
-            pen.addLine(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: 9 * cellSide + originY))
-        }
-        
-        // 2 Xs
-        
-        pen.move(to: CGPoint(x: 3 * cellSide + originX, y: originY))
-        pen.addLine(to: CGPoint(x: 5 * cellSide + originX, y: 2 * cellSide + originY))
-
-        pen.move(to: CGPoint(x: 5 * cellSide + originX, y: originY))
-        pen.addLine(to: CGPoint(x: 3 * cellSide + originX, y: 2 * cellSide + originY))
-
-        pen.move(to: CGPoint(x: 3 * cellSide + originX, y: 7 * cellSide + originY))
-        pen.addLine(to: CGPoint(x: 5 * cellSide + originX, y: 9 * cellSide + originY))
-
-        pen.move(to: CGPoint(x: 5 * cellSide + originX, y: 7 * cellSide + originY))
-        pen.addLine(to: CGPoint(x: 3 * cellSide + originX, y: 9 * cellSide + originY))
-
-        // river
-
-        pen.move(to: CGPoint(x: originX, y: originY + 4 * cellSide))
-        pen.addLine(to: CGPoint(x: originX, y: originY + 5 * cellSide))
-        
-        pen.move(to: CGPoint(x: originX + 8 * cellSide, y: originY + 4 * cellSide))
-        pen.addLine(to: CGPoint(x: originX + 8 * cellSide, y: originY + 5 * cellSide))
-        
-        pen.lineWidth = 0.5
-        
-        pen.stroke()
-        
+        drawBoard()
         drawFrame()
-        
-        drawFlower(flowerX: 1, flowerY: 2)
-        drawFlower(flowerX: 6, flowerY: 6)
-        drawFlower(flowerX: 7, flowerY: 2)
-        drawFlower(flowerX: 2, flowerY: 3)
-        drawFlower(flowerX: 4, flowerY: 3)
-        drawFlower(flowerX: 6, flowerY: 3)
-        drawFlower(flowerX: 4, flowerY: 6)
-        drawFlower(flowerX: 1, flowerY: 7)
-        drawFlower(flowerX: 7, flowerY: 7)
-        drawFlower(flowerX: 2, flowerY: 6)
-        
-        drawLeftHalfFlower(flowerX: 8, flowerY: 3)
-        drawLeftHalfFlower(flowerX: 8, flowerY: 6)
-        
-        drawRightHalfFlower(flowerX: 0, flowerY: 3)
-        drawRightHalfFlower(flowerX: 0, flowerY: 6)
+        drawFlowers()
+        drawPieces()
     }
-    
-    // left, right, half
     
     func drawRightHalfFlower(flowerX: Int, flowerY: Int) {
         
@@ -130,6 +68,25 @@ class BoardView: UIView {
         drawLeftHalfFlower(flowerX: flowerX, flowerY: flowerY)
     }
     
+    func drawFlowers() {
+        drawFlower(flowerX: 1, flowerY: 2)
+        drawFlower(flowerX: 6, flowerY: 6)
+        drawFlower(flowerX: 7, flowerY: 2)
+        drawFlower(flowerX: 2, flowerY: 3)
+        drawFlower(flowerX: 4, flowerY: 3)
+        drawFlower(flowerX: 6, flowerY: 3)
+        drawFlower(flowerX: 4, flowerY: 6)
+        drawFlower(flowerX: 1, flowerY: 7)
+        drawFlower(flowerX: 7, flowerY: 7)
+        drawFlower(flowerX: 2, flowerY: 6)
+        
+        drawLeftHalfFlower(flowerX: 8, flowerY: 3)
+        drawLeftHalfFlower(flowerX: 8, flowerY: 6)
+        
+        drawRightHalfFlower(flowerX: 0, flowerY: 3)
+        drawRightHalfFlower(flowerX: 0, flowerY: 6)
+    }
+    
     func drawFrame() {
         let pen = UIBezierPath()
         
@@ -148,6 +105,11 @@ class BoardView: UIView {
         pen.lineWidth = 3
         
         pen.stroke()
+    }
+    
+    func drawPieces() {
+        
+        //black
         
         let bbImg = UIImage(named: "bb")
         bbImg?.draw(at: CGPoint(x: originX + 4 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
@@ -155,6 +117,106 @@ class BoardView: UIView {
         let bsImg = UIImage(named: "bs")
         bsImg?.draw(at: CGPoint(x: originX + 3 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
         bsImg?.draw(at: CGPoint(x: originX + 5 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
+        
+        let bxImg = UIImage(named: "bx")
+        bxImg?.draw(at: CGPoint(x: originX + 2 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
+        bxImg?.draw(at: CGPoint(x: originX + 6 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
+        
+        let bmImg = UIImage(named: "bm")
+        bmImg?.draw(at: CGPoint(x: originX + 1 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
+        bmImg?.draw(at: CGPoint(x: originX + 7 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
+        
+        let bjImg = UIImage(named: "bj")
+        bjImg?.draw(at: CGPoint(x: originX + 0 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
+        bjImg?.draw(at: CGPoint(x: originX + 8 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide))
+        
+        let bpImg = UIImage(named: "bp")
+        bpImg?.draw(at: CGPoint(x: originX + 1 * cellSide - 0.5 * cellSide, y: originY + 7 * cellSide - 0.5 * cellSide))
+        bpImg?.draw(at: CGPoint(x: originX + 7 * cellSide - 0.5 * cellSide, y: originY + 7 * cellSide - 0.5 * cellSide))
+        
+        let bzImg = UIImage(named: "bz")
+        bzImg?.draw(at: CGPoint(x: originX + 0 * cellSide - 0.5 * cellSide, y: originY + 6 * cellSide - 0.5 * cellSide))
+        bzImg?.draw(at: CGPoint(x: originX + 2 * cellSide - 0.5 * cellSide, y: originY + 6 * cellSide - 0.5 * cellSide))
+        bzImg?.draw(at: CGPoint(x: originX + 4 * cellSide - 0.5 * cellSide, y: originY + 6 * cellSide - 0.5 * cellSide))
+        bzImg?.draw(at: CGPoint(x: originX + 6 * cellSide - 0.5 * cellSide, y: originY + 6 * cellSide - 0.5 * cellSide))
+        bzImg?.draw(at: CGPoint(x: originX + 8 * cellSide - 0.5 * cellSide, y: originY + 6 * cellSide - 0.5 * cellSide))
+        
+        //red
+        
+        let rbImg = UIImage(named: "rb")
+        rbImg?.draw(at: CGPoint(x: originX + 4 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
+        
+        let rsImg = UIImage(named: "rs")
+        rsImg?.draw(at: CGPoint(x: originX + 3 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
+        rsImg?.draw(at: CGPoint(x: originX + 5 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
+        
+        let rxImg = UIImage(named: "rx")
+        rxImg?.draw(at: CGPoint(x: originX + 2 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
+        rxImg?.draw(at: CGPoint(x: originX + 6 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
+        
+        let rmImg = UIImage(named: "rm")
+        rmImg?.draw(at: CGPoint(x: originX + 1 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
+        rmImg?.draw(at: CGPoint(x: originX + 7 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
+        
+        let rjImg = UIImage(named: "rj")
+        rjImg?.draw(at: CGPoint(x: originX + 0 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
+        rjImg?.draw(at: CGPoint(x: originX + 8 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
+        
+        let rpImg = UIImage(named: "rp")
+        rpImg?.draw(at: CGPoint(x: originX + 1 * cellSide - 0.5 * cellSide, y: originY + 2 * cellSide - 0.5 * cellSide))
+        rpImg?.draw(at: CGPoint(x: originX + 7 * cellSide - 0.5 * cellSide, y: originY + 2 * cellSide - 0.5 * cellSide))
+        
+        let rzImg = UIImage(named: "rz")
+        rzImg?.draw(at: CGPoint(x: originX + 0 * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide))
+        rzImg?.draw(at: CGPoint(x: originX + 2 * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide))
+        rzImg?.draw(at: CGPoint(x: originX + 4 * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide))
+        rzImg?.draw(at: CGPoint(x: originX + 6 * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide))
+        rzImg?.draw(at: CGPoint(x: originX + 8 * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide))
+    }
+    
+    func drawBoard() {
+        let pen = UIBezierPath()
+        
+        for i in 0..<10 {
+            pen.move(to: CGPoint(x: originX, y: CGFloat(i) * cellSide + originY))
+            pen.addLine(to: CGPoint(x: 8 * cellSide + originX, y: CGFloat(i) * cellSide + originY))
+        }
+        
+        for i in 0..<9 {
+            pen.move(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: originY))
+            pen.addLine(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: 4 * cellSide + originY))
+        }
+        
+        for i in 0..<9 {
+            pen.move(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: 5 * cellSide + originY))
+            pen.addLine(to: CGPoint(x: CGFloat(i) * cellSide + originX, y: 9 * cellSide + originY))
+        }
+        
+        // 2 Xs
+        
+        pen.move(to: CGPoint(x: 3 * cellSide + originX, y: originY))
+        pen.addLine(to: CGPoint(x: 5 * cellSide + originX, y: 2 * cellSide + originY))
+        
+        pen.move(to: CGPoint(x: 5 * cellSide + originX, y: originY))
+        pen.addLine(to: CGPoint(x: 3 * cellSide + originX, y: 2 * cellSide + originY))
+        
+        pen.move(to: CGPoint(x: 3 * cellSide + originX, y: 7 * cellSide + originY))
+        pen.addLine(to: CGPoint(x: 5 * cellSide + originX, y: 9 * cellSide + originY))
+        
+        pen.move(to: CGPoint(x: 5 * cellSide + originX, y: 7 * cellSide + originY))
+        pen.addLine(to: CGPoint(x: 3 * cellSide + originX, y: 9 * cellSide + originY))
+        
+        // river
+        
+        pen.move(to: CGPoint(x: originX, y: originY + 4 * cellSide))
+        pen.addLine(to: CGPoint(x: originX, y: originY + 5 * cellSide))
+        
+        pen.move(to: CGPoint(x: originX + 8 * cellSide, y: originY + 4 * cellSide))
+        pen.addLine(to: CGPoint(x: originX + 8 * cellSide, y: originY + 5 * cellSide))
+        
+        pen.lineWidth = 0.5
+        
+        pen.stroke()
     }
     
 }
