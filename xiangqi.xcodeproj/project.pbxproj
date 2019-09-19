@@ -14,6 +14,8 @@
 		0765352D204A3C67008FC177 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0765352B204A3C67008FC177 /* LaunchScreen.storyboard */; };
 		7314DFF322392025000F0439 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7314DFF222392025000F0439 /* BoardView.swift */; };
 		73F3EECF232FBA9D002DA3EA /* XiangqiPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F3EECE232FBA9D002DA3EA /* XiangqiPiece.swift */; };
+		73F3EED12333A63C002DA3EA /* XiangqiBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F3EED02333A63C002DA3EA /* XiangqiBoard.swift */; };
+		73F3EED32333A7F2002DA3EA /* XiangqiBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F3EED22333A7F2002DA3EA /* XiangqiBoardTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		07653539204A3C67008FC177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7314DFF222392025000F0439 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		73F3EECE232FBA9D002DA3EA /* XiangqiPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiPiece.swift; sourceTree = "<group>"; };
+		73F3EED02333A63C002DA3EA /* XiangqiBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiBoard.swift; sourceTree = "<group>"; };
+		73F3EED22333A7F2002DA3EA /* XiangqiBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiangqiBoardTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 			children = (
 				07653522204A3C67008FC177 /* AppDelegate.swift */,
 				73F3EECE232FBA9D002DA3EA /* XiangqiPiece.swift */,
+				73F3EED02333A63C002DA3EA /* XiangqiBoard.swift */,
 				7314DFF222392025000F0439 /* BoardView.swift */,
 				07653524204A3C67008FC177 /* ViewController.swift */,
 				07653526204A3C67008FC177 /* Main.storyboard */,
@@ -95,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				07653539204A3C67008FC177 /* Info.plist */,
+				73F3EED22333A7F2002DA3EA /* XiangqiBoardTests.swift */,
 			);
 			path = xiangqiTests;
 			sourceTree = "<group>";
@@ -153,6 +159,7 @@
 					};
 					07653532204A3C67008FC177 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 0765351E204A3C67008FC177;
 					};
@@ -204,6 +211,7 @@
 			files = (
 				73F3EECF232FBA9D002DA3EA /* XiangqiPiece.swift in Sources */,
 				7314DFF322392025000F0439 /* BoardView.swift in Sources */,
+				73F3EED12333A63C002DA3EA /* XiangqiBoard.swift in Sources */,
 				07653525204A3C67008FC177 /* ViewController.swift in Sources */,
 				07653523204A3C67008FC177 /* AppDelegate.swift in Sources */,
 			);
@@ -213,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73F3EED32333A7F2002DA3EA /* XiangqiBoardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,12 +397,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = xiangqiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldthumb.xiangqiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xiangqi.app/xiangqi";
@@ -405,6 +416,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = xiangqiTests/Info.plist;
