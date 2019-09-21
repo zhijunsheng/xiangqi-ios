@@ -29,6 +29,8 @@ struct XiangqiBoard: CustomStringConvertible {
             return isValidPawnMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         } else if movingPiece.rank == "R" {
             return isValidRookMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        } else if movingPiece.rank == "C" {
+            return isValidCannonMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         }
         
         return false
@@ -177,6 +179,9 @@ struct XiangqiBoard: CustomStringConvertible {
             return true
         }
         return false
+    }
+    func isValidCannonMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        return true
     }
     
     var description: String {
