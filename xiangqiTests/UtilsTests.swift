@@ -13,18 +13,18 @@ class UtilsTests: XCTestCase {
 
     func testXToCol() {
         
-        XCTAssertNil(Utils.xToCol(x: 169.0, orgX: 70.0, cellSide: 100.0, margin: 15))
-        XCTAssertNil(Utils.xToCol(x: 175.0, orgX: 70.0, cellSide: 100.0, margin: 15))
-        XCTAssertNil(Utils.xToCol(x: 66.0, orgX: 70.0, cellSide: 100.0, margin: 15))
-        XCTAssertEqual(1, Utils.xToCol(x: 189.0, orgX: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertNil(Utils.xyToColRow(xy: 169.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertNil(Utils.xyToColRow(xy: 175.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertNil(Utils.xyToColRow(xy: 66.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertEqual(1, Utils.xyToColRow(xy: 189.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
         
-        XCTAssertNil(Utils.xToCol(x: 71.0, orgX: 70.0, cellSide: 100.0, margin: 15))
-        XCTAssertEqual(0, Utils.xToCol(x: 86.0, orgX: 70.0, cellSide: 100.0, margin: 15))
-        XCTAssertEqual(0, Utils.xToCol(x: 150.0, orgX: 70.0, cellSide: 100.0, margin: 15))
-        XCTAssertNil(Utils.xToCol(x: 160.0, orgX: 70.0, cellSide: 100.0, margin: 15))
-        XCTAssertNil(Utils.xToCol(x: 180.0, orgX: 70.0, cellSide: 100.0, margin: 15))
-        XCTAssertEqual(1, Utils.xToCol(x: 186.0, orgX: 70.0, cellSide: 100.0, margin: 15))
-        XCTAssertNil(Utils.xToCol(x: 280.0, orgX: 70.0, cellSide: 100.0, margin: 15))
-        XCTAssertEqual(2, Utils.xToCol(x: 287.0, orgX: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertNil(Utils.xyToColRow(xy: 71.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertEqual(0, Utils.xyToColRow(xy: 86.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertEqual(0, Utils.xyToColRow(xy: 150.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertNil(Utils.xyToColRow(xy: 160.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertNil(Utils.xyToColRow(xy: 180.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertEqual(1, Utils.xyToColRow(xy: 186.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertNil(Utils.xyToColRow(xy: 280.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
+        XCTAssertEqual(2, Utils.xyToColRow(xy: 287.0, orgXY: 70.0, cellSide: 100.0, margin: 15))
     }
 }
