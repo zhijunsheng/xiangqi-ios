@@ -1,6 +1,8 @@
 import Foundation
 
 struct XiangqiBoard: CustomStringConvertible {
+    
+    
     var description: String {
         var desc = ""
         
