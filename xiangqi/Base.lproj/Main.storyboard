@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5J2-Y0-63t">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5J2-Y0-63t" customClass="BoardView" customModule="xiangqi" customModuleProvider="target">
                                 <rect key="frame" x="16" y="20" width="288" height="288"/>
                                 <color key="backgroundColor" red="0.98076671513949765" green="1" blue="0.0028883243894693988" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>

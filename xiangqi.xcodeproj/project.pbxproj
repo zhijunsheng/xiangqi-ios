@@ -79,11 +79,11 @@
 			children = (
 				07653522204A3C67008FC177 /* AppDelegate.swift */,
 				07653524204A3C67008FC177 /* ViewController.swift */,
+				A105EC242342A9D300C98F09 /* BoardView.swift */,
 				07653526204A3C67008FC177 /* Main.storyboard */,
 				07653529204A3C67008FC177 /* Assets.xcassets */,
 				0765352B204A3C67008FC177 /* LaunchScreen.storyboard */,
 				0765352E204A3C67008FC177 /* Info.plist */,
-				A105EC242342A9D300C98F09 /* BoardView.swift */,
 			);
 			path = xiangqi;
 			sourceTree = "<group>";

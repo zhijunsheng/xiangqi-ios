@@ -9,13 +9,74 @@
 import UIKit
 
 class BoardView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
+    
+    let originX: CGFloat = 100
+    let originY: CGFloat = 50
+    let cellSide: CGFloat = 50
+    
+    
     override func draw(_ rect: CGRect) {
-        // Drawing code
+        
+        let pencil = UIBezierPath()
+        
+        pencil.move(to: CGPoint (x: originX, y: originY))
+        pencil.addLine(to: CGPoint (x: 600, y: originY))
+        
+        pencil.move(to: CGPoint (x: originX, y: originY + cellSide))
+        pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide))
+        
+        pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 2))
+        pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide * 2))
+        
+        pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 3))
+        pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide * 3))
+        
+        pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 4))
+        pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide * 4))
+        
+        pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 5))
+        pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide * 5))
+        
+        pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 6))
+        pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide * 6))
+        
+        pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 7))
+        pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide * 7))
+        
+        pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 8))
+        pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide * 8))
+        
+        pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 9))
+        pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide * 9))
+        
+        pencil.move(to: CGPoint (x: originX, y: originY))
+        pencil.addLine(to: CGPoint (x: originX, y: originY + cellSide * 9))
+        
+        pencil.move(to: CGPoint (x: 600, y: originY))
+        pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide * 9))
+
+        pencil.move(to: CGPoint (x: originX + cellSide, y: originY))
+        pencil.addLine(to: CGPoint (x: originX + cellSide, y: originY + cellSide * 4))
+
+        pencil.move(to: CGPoint (x: originX + cellSide * 2, y: originY))
+        pencil.addLine(to: CGPoint (x: originX + cellSide * 2, y: originY + cellSide * 4))
+
+        
+        
+        
+        
+        
+        
+        
+        pencil.stroke()
+        
+        
+        
     }
-    */
+    
+    
+    
+    
+ 
 
 }
