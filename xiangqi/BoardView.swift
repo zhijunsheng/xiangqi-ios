@@ -127,7 +127,6 @@ class BoardView: UIView {
             bpImg?.draw(in: CGRect(x: originX + CGFloat(1 + 6 * i) * cellSide - 0.5 * cellSide, y: originY + 7 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
         }
         
-        
         let bzImg = UIImage(named: "bz")
         for i in 0..<5 {
             bzImg?.draw(in: CGRect(x: originX + CGFloat(2 * i) * cellSide - 0.5 * cellSide, y: originY + 6 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
@@ -139,31 +138,22 @@ class BoardView: UIView {
         rbImg?.draw(at: CGPoint(x: originX + 4 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
         
         let rsImg = UIImage(named: "rs")
-        rsImg?.draw(at: CGPoint(x: originX + 3 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
-        rsImg?.draw(at: CGPoint(x: originX + 5 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
-        
         let rxImg = UIImage(named: "rx")
-        rxImg?.draw(at: CGPoint(x: originX + 2 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
-        rxImg?.draw(at: CGPoint(x: originX + 6 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
-        
         let rmImg = UIImage(named: "rm")
-        rmImg?.draw(at: CGPoint(x: originX + 1 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
-        rmImg?.draw(at: CGPoint(x: originX + 7 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
-        
         let rjImg = UIImage(named: "rj")
-        rjImg?.draw(at: CGPoint(x: originX + 0 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
-        rjImg?.draw(at: CGPoint(x: originX + 8 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
-        
         let rpImg = UIImage(named: "rp")
-        rpImg?.draw(at: CGPoint(x: originX + 1 * cellSide - 0.5 * cellSide, y: originY + 2 * cellSide - 0.5 * cellSide))
-        rpImg?.draw(at: CGPoint(x: originX + 7 * cellSide - 0.5 * cellSide, y: originY + 2 * cellSide - 0.5 * cellSide))
+        for i in 0..<2 {
+            rsImg?.draw(in: CGRect(x: originX + CGFloat(3 + 2 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+            rxImg?.draw(in: CGRect(x: originX + CGFloat(2 + 4 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+            rmImg?.draw(in: CGRect(x: originX + CGFloat(1 + 6 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+            rjImg?.draw(in: CGRect(x: originX + CGFloat(8 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+            rpImg?.draw(in: CGRect(x: originX + CGFloat(1 + 6 * i) * cellSide - 0.5 * cellSide, y: originY + 2 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+        }
         
         let rzImg = UIImage(named: "rz")
-        rzImg?.draw(at: CGPoint(x: originX + 0 * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide))
-        rzImg?.draw(at: CGPoint(x: originX + 2 * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide))
-        rzImg?.draw(at: CGPoint(x: originX + 4 * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide))
-        rzImg?.draw(at: CGPoint(x: originX + 6 * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide))
-        rzImg?.draw(at: CGPoint(x: originX + 8 * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide))
+        for i in 0..<5 {
+            rzImg?.draw(in: CGRect(x: originX + CGFloat(2 * i) * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+        }
     }
     
     func drawBoard() {
