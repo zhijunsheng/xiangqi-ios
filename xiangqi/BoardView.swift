@@ -109,17 +109,31 @@ class BoardView: UIView {
     
     func drawPieces() {
         
-        //black
-        
+        let rbImg = UIImage(named: "rb")
         let bbImg = UIImage(named: "bb")
-        bbImg?.draw(in: CGRect(x: originX + 4 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
-        
         let bsImg = UIImage(named: "bs")
         let bxImg = UIImage(named: "bx")
         let bmImg = UIImage(named: "bm")
         let bjImg = UIImage(named: "bj")
         let bpImg = UIImage(named: "bp")
+        let rsImg = UIImage(named: "rs")
+        let rxImg = UIImage(named: "rx")
+        let rmImg = UIImage(named: "rm")
+        let rjImg = UIImage(named: "rj")
+        let rpImg = UIImage(named: "rp")
+        let rzImg = UIImage(named: "rz")
+        let bzImg = UIImage(named: "bz")
+        
+        bbImg?.draw(in: CGRect(x: originX + 4 * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+        rbImg?.draw(at: CGPoint(x: originX + 4 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
+        
         for i in 0..<2 {
+            rsImg?.draw(in: CGRect(x: originX + CGFloat(3 + 2 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+            rxImg?.draw(in: CGRect(x: originX + CGFloat(2 + 4 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+            rmImg?.draw(in: CGRect(x: originX + CGFloat(1 + 6 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+            rjImg?.draw(in: CGRect(x: originX + CGFloat(8 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+            rpImg?.draw(in: CGRect(x: originX + CGFloat(1 + 6 * i) * cellSide - 0.5 * cellSide, y: originY + 2 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+            
             bsImg?.draw(in: CGRect(x: originX + CGFloat(3 + 2 * i) * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
             bxImg?.draw(in: CGRect(x: originX + CGFloat(2 + 4 * i) * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
             bmImg?.draw(in: CGRect(x: originX + CGFloat(1 + 6 * i) * cellSide - 0.5 * cellSide, y: originY + 9 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
@@ -127,32 +141,9 @@ class BoardView: UIView {
             bpImg?.draw(in: CGRect(x: originX + CGFloat(1 + 6 * i) * cellSide - 0.5 * cellSide, y: originY + 7 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
         }
         
-        let bzImg = UIImage(named: "bz")
-        for i in 0..<5 {
-            bzImg?.draw(in: CGRect(x: originX + CGFloat(2 * i) * cellSide - 0.5 * cellSide, y: originY + 6 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
-        }
-        
-        //red
-        
-        let rbImg = UIImage(named: "rb")
-        rbImg?.draw(at: CGPoint(x: originX + 4 * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide))
-        
-        let rsImg = UIImage(named: "rs")
-        let rxImg = UIImage(named: "rx")
-        let rmImg = UIImage(named: "rm")
-        let rjImg = UIImage(named: "rj")
-        let rpImg = UIImage(named: "rp")
-        for i in 0..<2 {
-            rsImg?.draw(in: CGRect(x: originX + CGFloat(3 + 2 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
-            rxImg?.draw(in: CGRect(x: originX + CGFloat(2 + 4 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
-            rmImg?.draw(in: CGRect(x: originX + CGFloat(1 + 6 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
-            rjImg?.draw(in: CGRect(x: originX + CGFloat(8 * i) * cellSide - 0.5 * cellSide, y: originY + 0 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
-            rpImg?.draw(in: CGRect(x: originX + CGFloat(1 + 6 * i) * cellSide - 0.5 * cellSide, y: originY + 2 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
-        }
-        
-        let rzImg = UIImage(named: "rz")
         for i in 0..<5 {
             rzImg?.draw(in: CGRect(x: originX + CGFloat(2 * i) * cellSide - 0.5 * cellSide, y: originY + 3 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
+            bzImg?.draw(in: CGRect(x: originX + CGFloat(2 * i) * cellSide - 0.5 * cellSide, y: originY + 6 * cellSide - 0.5 * cellSide, width: cellSide, height: cellSide))
         }
     }
     
