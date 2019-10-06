@@ -12,20 +12,19 @@ class BoardView: UIView {
     
     let originX: CGFloat = 100
     let originY: CGFloat = 50
-    let cellSide: CGFloat = 62.5
-    
+    let cellSide: CGFloat = 90 // 62.5
     
     override func draw(_ rect: CGRect) {
-        
+    
         let pencil = UIBezierPath()
         
         //      Horizantal Lines 1
         
-        pencil.move(to: CGPoint (x: originX, y: originY))
-        pencil.addLine(to: CGPoint (x: 600, y: originY))
+        pencil.move(to: CGPoint(x: originX, y: originY))
+        pencil.addLine(to: CGPoint(x: 600, y: originY))
 
-        pencil.move(to: CGPoint (x: originX, y: originY + cellSide))
-        pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide))
+        pencil.move(to: CGPoint(x: originX, y: originY + cellSide))
+        pencil.addLine(to: CGPoint(x: 600, y: originY + cellSide))
         
         pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 2))
         pencil.addLine(to: CGPoint (x: 600, y: originY + cellSide * 2))
@@ -119,7 +118,8 @@ class BoardView: UIView {
         
         pencil.stroke()
         
-        
+        let pieceImage = UIImage(named: "bp")
+        pieceImage?.draw(in: CGRect(x: originX - cellSide / 2, y: originY - cellSide / 2, width: cellSide, height: cellSide))
         
     }
     
