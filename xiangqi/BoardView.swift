@@ -9,10 +9,9 @@
 import UIKit
 
 class BoardView: UIView {
-    
     var originX: CGFloat = 120
     var originY: CGFloat = 100
-    let cellSide: CGFloat = 40
+    let cellSide: CGFloat = 70
     
     
     override func draw(_ rect: CGRect) {
