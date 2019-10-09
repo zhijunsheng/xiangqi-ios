@@ -13,6 +13,7 @@
 		0765352A204A3C67008FC177 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07653529204A3C67008FC177 /* Assets.xcassets */; };
 		0765352D204A3C67008FC177 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0765352B204A3C67008FC177 /* LaunchScreen.storyboard */; };
 		A5BB36FE23402CF600F6E871 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BB36FD23402CF600F6E871 /* BoardView.swift */; };
+		A5C1F2BD234D5C0A0010C993 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1F2BC234D5C0A0010C993 /* MathTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		07653533204A3C67008FC177 /* xiangqiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xiangqiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07653539204A3C67008FC177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5BB36FD23402CF600F6E871 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		A5C1F2BC234D5C0A0010C993 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				07653539204A3C67008FC177 /* Info.plist */,
+				A5C1F2BC234D5C0A0010C993 /* MathTests.swift */,
 			);
 			path = xiangqiTests;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 					};
 					07653532204A3C67008FC177 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 0765351E204A3C67008FC177;
 					};
@@ -209,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5C1F2BD234D5C0A0010C993 /* MathTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,12 +389,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = xiangqiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldthumb.xiangqiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xiangqi.app/xiangqi";
@@ -401,6 +408,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = xiangqiTests/Info.plist;
