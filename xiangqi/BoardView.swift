@@ -14,9 +14,7 @@ class BoardView: UIView {
     let originY:CGFloat = 25
     let cellSide:CGFloat = 258/8
     override func draw(_ rect: CGRect) {
-        let pieceImage = UIImage(named:"rb")
-        pieceImage?.draw(at: CGPoint(x: 25, y: 25))
-        
+      
         let pen = UIBezierPath()
         pen.move(to: CGPoint(x: originX, y: originY))
         pen.addLine(to: CGPoint(x: cellSide * 8 + originX, y: originY))
@@ -50,6 +48,47 @@ class BoardView: UIView {
             pen.addLine(to: CGPoint(x: cellSide * 3 + originX, y: originY + cellSide * CGFloat(i * 7 + 2)))
         }
         pen.stroke()
+        
+        drawPiece(col: 4, row: 0, imageName: "rb")
+        drawPiece(col: 3, row: 0, imageName: "rs")
+        drawPiece(col: 5, row: 0, imageName: "rs")
+        drawPiece(col: 2, row: 0, imageName: "rx")
+        drawPiece(col: 6, row: 0, imageName: "rx")
+        drawPiece(col: 1, row: 0, imageName: "rm")
+        drawPiece(col: 7, row: 0, imageName: "rm")
+        drawPiece(col: 0, row: 0, imageName: "rj")
+        drawPiece(col: 8, row: 0, imageName: "rj")
+        drawPiece(col: 1, row: 2, imageName: "rp")
+        drawPiece(col: 7, row: 2, imageName: "rp")
+        drawPiece(col: 0, row: 3, imageName: "rz")
+        drawPiece(col: 2, row: 3, imageName: "rz")
+        drawPiece(col: 4, row: 3, imageName: "rz")
+        drawPiece(col: 6, row: 3, imageName: "rz")
+        drawPiece(col: 8, row: 3, imageName: "rz")
+        
+        drawPiece(col: 4, row: 9, imageName: "bb")
+        drawPiece(col: 3, row: 9, imageName: "bs")
+        drawPiece(col: 5, row: 9, imageName: "bs")
+        drawPiece(col: 2, row: 9, imageName: "bx")
+        drawPiece(col: 6, row: 9, imageName: "bx")
+        drawPiece(col: 1, row: 9, imageName: "bm")
+        drawPiece(col: 7, row: 9, imageName: "bm")
+        drawPiece(col: 0, row: 9, imageName: "bj")
+        drawPiece(col: 8, row: 9, imageName: "bj")
+        drawPiece(col: 1, row: 7, imageName: "bp")
+        drawPiece(col: 7, row: 7, imageName: "bp")
+        drawPiece(col: 0, row: 6, imageName: "bz")
+        drawPiece(col: 2, row: 6, imageName: "bz")
+        drawPiece(col: 4, row: 6, imageName: "bz")
+        drawPiece(col: 6, row: 6, imageName: "bz")
+        drawPiece(col: 8, row: 6, imageName: "bz")
+        
+        
+    }
+    
+    func drawPiece(col:Int, row:Int, imageName:String) {
+        let pieceImage = UIImage(named: imageName)
+        pieceImage?.draw(in: CGRect(x: cellSide * (CGFloat(col) - 0.5) + originX, y: cellSide * CGFloat(row) + originY - 15, width: 35, height: 35))
     }
  
 }
