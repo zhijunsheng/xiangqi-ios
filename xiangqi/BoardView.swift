@@ -11,46 +11,84 @@ import UIKit
 class BoardView: UIView {
     
     let cols: Int = 9
-    let rows: Int = 5
+    let rows: Int = 10
  
     let originX: CGFloat = 20
     let originY: CGFloat = 20
     let cellSide: CGFloat = 37
    
     override func draw(_ rect: CGRect) {
+  
         let pencil = UIBezierPath()
         for i in 0..<10 {
             pencil.move(to: CGPoint(x: originX, y: originY + cellSide * CGFloat(i)))
             pencil.addLine(to: CGPoint(x: originX + (CGFloat(cols) - 1) * cellSide, y: originY + cellSide * CGFloat(i)))
-            
-            pencil.move(to: CGPoint(x: originX + cellSide * (CGFloat(i)-2), y: originY ))
-            pencil.addLine(to: CGPoint(x:  originX + cellSide * (CGFloat(i)-2) , y: originY + (CGFloat(rows)-1) * cellSide))
-            
-            pencil.move(to: CGPoint(x: originX + cellSide * (CGFloat(i)-2), y: originY + cellSide * 5))
-            pencil.addLine(to: CGPoint(x:  originX + cellSide * (CGFloat(i)-2), y: originY + (CGFloat(rows)+4) * cellSide))
-        }
 
-        pencil.move(to: CGPoint(x: originX, y: originY ))
-        pencil.addLine(to: CGPoint(x:  originX  , y: originY + (CGFloat(rows) - 1) * cellSide))
+            pencil.move(to: CGPoint(x: originX + cellSide * CGFloat(i - 1), y: originY ))
+            pencil.addLine(to: CGPoint(x:  originX + cellSide * CGFloat(i - 1), y: originY + CGFloat(rows - 6) * cellSide))
+
+            pencil.move(to: CGPoint(x: originX + cellSide * CGFloat(i - 1), y: originY + cellSide * 5))
+            pencil.addLine(to: CGPoint(x:  originX + cellSide * CGFloat(i - 1), y: originY + CGFloat(rows - 1) * cellSide))
+        }
         
-        pencil.move(to: CGPoint(x: originX + cellSide * 8, y: originY ))
-        pencil.addLine(to: CGPoint(x:  originX + cellSide * 8 , y: originY + (CGFloat(rows) + 4) * cellSide))
+        pencil.move(to: CGPoint(x: originX, y: originY + cellSide * 4))
+        pencil.addLine(to: CGPoint(x:  originX, y: originY + cellSide * 5))
+
+        pencil.move(to: CGPoint(x: originX + cellSide * 8, y: originY + cellSide * 4))
+        pencil.addLine(to: CGPoint(x:  originX + cellSide * 8, y: originY + cellSide * 5))
+
+        /*
+         
+         i => 3 * i
+         0 => 0
+         1 => 3
+         2 => 6
+ 
+         i => 7 * i
+         0 => 0
+         1 => 7
+         
+         i => 2 + 7 * i
+         0 => 2
+         1 => 9
+         2 => 16
+         3 => 23
+         
+        */
+
+//        pencil.move(to: CGPoint(x: originX + cellSide * 3, y: originY + cellSide * 7))
+//        pencil.addLine(to: CGPoint(x:  originX + cellSide * 5, y: originY + cellSide * 9))
+
+        for i in 0..<2  {
+
+            pencil.move(to: CGPoint(x: originX + CGFloat(rows - 5) * cellSide, y: originY + CGFloat(i) * 7 * cellSide))
+            pencil.addLine(to: CGPoint(x:  originX + CGFloat(rows - 7) * cellSide, y: originY +  CGFloat(i) * 7 * cellSide + 2 * cellSide))
+            pencil.move(to: CGPoint(x: originX + CGFloat(rows - 7) * cellSide, y: originY + CGFloat(i) * 7 * cellSide ))
+            pencil.addLine(to: CGPoint(x:  originX + CGFloat(rows - 5) * cellSide , y: originY + CGFloat(i) * 7 * cellSide + 2 * cellSide))
+
+
+        }
         
-        pencil.move(to: CGPoint(x: originX, y: originY ))
-        pencil.addLine(to: CGPoint(x:  originX  , y: originY + (CGFloat(rows) + 4) * cellSide))
-        
-        pencil.move(to: CGPoint(x: originX + cellSide * 3, y:originY))
-        pencil.addLine(to: CGPoint(x: originX + cellSide * 5, y: originY + cellSide * 2))
-        
-        pencil.move(to: CGPoint(x: originX + cellSide * 5, y: originY))
-        pencil.addLine(to: CGPoint(x: originX + cellSide * 3, y: originY + cellSide * 2))
-        
-        pencil.move(to: CGPoint(x:originX + cellSide * 3 , y: originY + cellSide * 7))
-        pencil.addLine(to: CGPoint(x:originX + cellSide * 5 , y: originY + cellSide * 9))
-        
-        pencil.move(to: CGPoint(x: originX + cellSide * 5, y:originY + cellSide * 7))
-        pencil.addLine(to: CGPoint(x: originX + cellSide * 3, y: originY + cellSide * 9))
-       
         pencil.stroke()
+        
+        let image = UIImage(named: "rb")
+        image?.draw(in: CGRect(x: 150, y: 3, width: 40, height: 40))
     }
 }
+
+/*
+ 
+ ABCDE * 4 = EDCBA
+ 
+ A = 2
+ E = 8
+ B = 1
+ 
+   33
+ 21978
+*    4
+-------
+ 87912
+ 
+ 
+ */
