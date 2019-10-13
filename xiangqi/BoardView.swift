@@ -12,7 +12,7 @@ class BoardView: UIView {
     
     let originX: CGFloat = 100
     let originY: CGFloat = 50
-    let cellSide: CGFloat = 100
+    let cellSide: CGFloat = 70
     
     override func draw(_ rect: CGRect) {
     
@@ -21,34 +21,34 @@ class BoardView: UIView {
         //      Horizantal Lines 1
         
         pencil.move(to: CGPoint(x: originX, y: originY))
-        pencil.addLine(to: CGPoint(x: 500, y: originY))
+        pencil.addLine(to: CGPoint(x: originX + cellSide * 8, y: originY))
 
         pencil.move(to: CGPoint(x: originX, y: originY + cellSide))
-        pencil.addLine(to: CGPoint(x: 500, y: originY + cellSide))
+        pencil.addLine(to: CGPoint(x: originX + cellSide * 8, y: originY + cellSide))
         
         pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 2))
-        pencil.addLine(to: CGPoint (x: 500, y: originY + cellSide * 2))
+        pencil.addLine(to: CGPoint (x: originX + cellSide * 8, y: originY + cellSide * 2))
         
         pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 3))
-        pencil.addLine(to: CGPoint (x: 500, y: originY + cellSide * 3))
+        pencil.addLine(to: CGPoint (x: originX + cellSide * 8, y: originY + cellSide * 3))
         
         pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 4))
-        pencil.addLine(to: CGPoint (x: 500, y: originY + cellSide * 4))
+        pencil.addLine(to: CGPoint (x: originX + cellSide * 8, y: originY + cellSide * 4))
         
         pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 5))
-        pencil.addLine(to: CGPoint (x: 500, y: originY + cellSide * 5))
+        pencil.addLine(to: CGPoint (x: originX + cellSide * 8, y: originY + cellSide * 5))
         
         pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 6))
-        pencil.addLine(to: CGPoint (x: 500, y: originY + cellSide * 6))
+        pencil.addLine(to: CGPoint (x: originX + cellSide * 8, y: originY + cellSide * 6))
         
         pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 7))
-        pencil.addLine(to: CGPoint (x: 500, y: originY + cellSide * 7))
+        pencil.addLine(to: CGPoint (x: originX + cellSide * 8, y: originY + cellSide * 7))
         
         pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 8))
-        pencil.addLine(to: CGPoint (x: 500, y: originY + cellSide * 8))
+        pencil.addLine(to: CGPoint (x: originX + cellSide * 8, y: originY + cellSide * 8))
         
         pencil.move(to: CGPoint (x: originX, y: originY + cellSide * 9))
-        pencil.addLine(to: CGPoint (x: 500, y: originY + cellSide * 9))
+        pencil.addLine(to: CGPoint (x: originX + cellSide * 8, y: originY + cellSide * 9))
         
         //  Upper Vertical Lines
         
@@ -76,8 +76,8 @@ class BoardView: UIView {
         pencil.move(to: CGPoint (x: originX + cellSide * 7, y: originY))
         pencil.addLine(to: CGPoint (x: originX + cellSide * 7, y: originY + cellSide * 4))
         
-        pencil.move(to: CGPoint (x: 500, y: originY))
-        pencil.addLine(to: CGPoint (x: 500, y: originY + cellSide * 9))
+        pencil.move(to: CGPoint (x: originX + cellSide * 8, y: originY))
+        pencil.addLine(to: CGPoint (x: originX + cellSide * 8, y: originY + cellSide * 9))
         
         // Lower Vertical Lines
         
@@ -122,7 +122,6 @@ class BoardView: UIView {
         
         let redRookImage = UIImage(named: "rj")
         redRookImage?.draw(in: CGRect(x: originX - cellSide / 2, y: originY - cellSide / 2, width: cellSide, height: cellSide))
-//        redRookImage?.draw(in: CGRect(x: originX - cellSide / 2 + cellSide, y: originY - cellSide / 2 + cellSide, width: cellSide, height: cellSide))
         
         let pieceImage = UIImage(named: "bp")
         pieceImage?.draw(in: CGRect(x: originX - cellSide / 2 + cellSide, y:  originY - cellSide / 2 + cellSide * 2 , width: cellSide, height: cellSide))
@@ -134,7 +133,38 @@ class BoardView: UIView {
         redElephantImage?.draw(in: CGRect(x: originX - cellSide / 2 + cellSide * 2, y:  originY - cellSide / 2 , width: cellSide, height: cellSide))
 
         let redSoldierImage = UIImage(named: "rs")
-        redSoldierImage?.draw(in: CGRect(x: originX - cellSide / 2 + cellSide * 3, y:  originY - cellSide / 2 + cellSide , width: cellSide, height: cellSide))
+        redSoldierImage?.draw(in: CGRect(x: originX - cellSide / 2 + cellSide * 3, y:  originY - cellSide / 2  , width: cellSide, height: cellSide))
+        
+        let redKingImage = UIImage(named: "rb")
+        redKingImage?.draw(in: CGRect(x: originX - cellSide / 2 + cellSide * 4, y:  originY - cellSide / 2  , width: cellSide, height: cellSide))
+        
+        let redSoldier2Image = UIImage(named: "rs")
+        redSoldier2Image?.draw(in: CGRect(x: originX - cellSide / 2 + cellSide * 5, y:  originY - cellSide / 2  , width: cellSide, height: cellSide))
+        
+        let redElephant2Image = UIImage(named: "rx")
+        redElephant2Image?.draw(in: CGRect(x: originX - cellSide / 2 + cellSide * 6, y:  originY - cellSide / 2 , width: cellSide, height: cellSide))
+        
+        let redHorse2Image = UIImage(named: "rm")
+        redHorse2Image?.draw(in: CGRect(x: originX - cellSide / 2 + cellSide * 7 , y:  originY - cellSide / 2 , width: cellSide, height: cellSide))
+        
+        
+        let redRook2Image = UIImage(named: "rj")
+        redRook2Image?.draw(in: CGRect(x: originX - cellSide / 2 + cellSide * 8, y: originY - cellSide / 2 , width: cellSide, height: cellSide))
+        
+        let redPawn1Image = UIImage(named: "rz")
+        redPawn1Image?.draw(in: CGRect(x: originX - cellSide / 2, y: originY - cellSide / 2 + cellSide * 3, width: cellSide, height: cellSide))
+        
+        
+        
+        
+        
+        
+        
+        
+        let redPawn5Image = UIImage(named: "rz")
+        redPawn5Image?.draw(in: CGRect(x: originX - cellSide / 2 + cellSide * 8, y: originY - cellSide / 2 + cellSide * 3, width: cellSide, height: cellSide))
+        
+        
         
         
         
