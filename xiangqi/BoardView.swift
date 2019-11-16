@@ -71,8 +71,25 @@ class BoardView: UIView {
         
         pencil.stroke()
         
-        let image = UIImage(named: "rb")
+        let image = UIImage(named: "bz")
         image?.draw(in: CGRect(x: 150, y: 3, width: 40, height: 40))
+//
+        let imkfld = UIImage(named: "rp")
+        imkfld?.draw(in: CGRect(x: 150, y: 90, width: 40, height: 40))
+
+        let jfkd = UIImage(named: "bb")
+        jfkd?.draw(in: CGRect(x: 150, y: 120, width: 40, height: 40))
+        
+        let dfk = UIImage(named: "rb")
+        dfk?.draw(in: CGRect(x: 150, y: 190, width: 40, height: 40))
+        
+        let efk = UIImage(named: "bm")
+        efk?.draw(in: CGRect(x: 150, y: 210, width: 40, height: 40))
+        
+        let erk = UIImage(named: "rj")
+        erk?.draw(in: CGRect(x: 150, y: 330, width: 40, height: 40))
+
+       
     }
 }
 
