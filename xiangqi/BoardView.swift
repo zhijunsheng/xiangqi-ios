@@ -1,4 +1,4 @@
-//
+
 //  BoardView.swift
 //  xiangqi
 //
@@ -10,17 +10,21 @@ import UIKit
 
 class BoardView: UIView {
 
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
+    
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath()
         
-        path.move(to: CGPoint(x: 50, y: 50))
-        path.addLine(to: CGPoint(x: 50, y: 200))
+        for i in 0 ..< 10 {
+            path.move(to: CGPoint(x: i * 50 + 77, y: 91))
+            path.addLine(to: CGPoint(x: i * 50 + 77, y: 500 + 91))
+        }
+
+        for i in 0 ..< 11 {
+            path.move(to: CGPoint(x: 77, y: i * 50 + 91))
+            path.addLine(to: CGPoint(x: 450 + 77, y: i * 50 + 91))
+        }
         
-        path.move(to: CGPoint(x: 250, y: 400))
-        path.addLine(to: CGPoint(x: 50, y: 200))
-        
+        #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).setStroke()
         path.stroke()
         
     }
