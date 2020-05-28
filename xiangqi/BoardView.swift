@@ -55,7 +55,7 @@ class BoardView: UIView {
         
     }
     
-    func drawStar(x: 500, y: 200)
+    
     
     
     func drawHalfStarRight(x: CGFloat, y: CGFloat) {
@@ -82,12 +82,9 @@ class BoardView: UIView {
         
             path.stroke()
     }
+    func drawHalfStarRight(x: 500, y: 200)
+        
+        
     
-    func drawStar(x: CGFloat, y: CGFloat) {
-        drawHalfStarLeft(x: x, y: y)
-        drawHalfStarRight(x: x, y: y)
-        
-        
-    }
     
 }
