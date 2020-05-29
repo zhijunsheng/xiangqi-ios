@@ -52,33 +52,46 @@ class BoardView: UIView {
         #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).setStroke()
         path.stroke()
         
-        drawStar(x: 500, y: 200)
+        drawStar(x: 77 + 50, y: 91  + 100)
+        drawStar(x: 77 + 350, y: 91 + 100)
+        drawStar(x: 77 + 100, y: 91 + 150)
+        drawStar(x: 77 + 200, y: 91 + 150)
+        drawStar(x: 77 + 300, y: 91 + 150)
+        drawStar(x: 77 + 50, y: 91 + 350)
+        drawStar(x: 77 + 350, y: 91 + 350)
+        drawStar(x: 77 + 100, y: 91 + 300)
+        drawStar(x: 77 + 200, y: 91 + 300)
+        drawStar(x: 77 + 300, y: 91 + 300)
+        drawHalfStarRight(x: 400 + 77, y: 91 + 300)
+        drawHalfStarLeft(x: 77, y: 91 + 300)
+        drawHalfStarRight(x: 400 + 77, y: 91 + 150)
+        drawHalfStarLeft(x: 77, y: 91 + 150)
     }
     
     
     
     
-    func drawHalfStarRight(x: CGFloat, y: CGFloat) {
+    func drawHalfStarLeft(x: CGFloat, y: CGFloat) {
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: x + 25, y: y + 10))
-        path.addLine(to: CGPoint(x: x + 10, y: y + 10))
-        path.addLine(to: CGPoint(x: x + 10, y: y + 25))
-        path.move(to: CGPoint(x: x + 25, y: y - 10))
-        path.addLine(to: CGPoint(x: x + 10, y: y - 10))
-        path.addLine(to: CGPoint(x: x + 10, y: y - 25))
+        path.move(to: CGPoint(x: x + 20, y: y + 5))
+        path.addLine(to: CGPoint(x: x + 5, y: y + 5))
+        path.addLine(to: CGPoint(x: x + 5, y: y + 20))
+        path.move(to: CGPoint(x: x + 20, y: y - 5))
+        path.addLine(to: CGPoint(x: x + 5, y: y - 5))
+        path.addLine(to: CGPoint(x: x + 5, y: y - 20))
         
             path.stroke()
     }
     
-    func drawHalfStarLeft(x: CGFloat, y: CGFloat) {
+    func drawHalfStarRight(x: CGFloat, y: CGFloat) {
     let path = UIBezierPath()
         
-        path.move(to: CGPoint(x: x - 25, y: y + 10))
-        path.addLine(to: CGPoint(x: x - 10, y: y + 10))
-        path.addLine(to: CGPoint(x: x - 10, y: y + 25))
-        path.move(to: CGPoint(x: x - 25, y: y - 10))
-        path.addLine(to: CGPoint(x: x - 10, y: y - 10))
-        path.addLine(to: CGPoint(x: x - 10, y: y - 25))
+        path.move(to: CGPoint(x: x - 20, y: y + 5))
+        path.addLine(to: CGPoint(x: x - 5, y: y + 5))
+        path.addLine(to: CGPoint(x: x - 5, y: y + 20))
+        path.move(to: CGPoint(x: x - 20, y: y - 5))
+        path.addLine(to: CGPoint(x: x - 5, y: y - 5))
+        path.addLine(to: CGPoint(x: x - 5, y: y - 20))
         
             path.stroke()
     }

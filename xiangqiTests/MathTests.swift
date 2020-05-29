@@ -11,7 +11,7 @@ import XCTest
 class MathTests: XCTestCase {
 
     func testMath() {
-        let x = 23
+        _ = 23
         let onesPlace = 0 //
         print(onesPlace)
     }
