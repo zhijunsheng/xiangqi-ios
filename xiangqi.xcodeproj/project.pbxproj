@@ -13,6 +13,9 @@
 		0765352A204A3C67008FC177 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07653529204A3C67008FC177 /* Assets.xcassets */; };
 		0765352D204A3C67008FC177 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0765352B204A3C67008FC177 /* LaunchScreen.storyboard */; };
 		A306DB4E2341888B00B82E02 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306DB4D2341888B00B82E02 /* BoardView.swift */; };
+		A37040B824847B7C001648F0 /* CChessPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37040B724847B7C001648F0 /* CChessPiece.swift */; };
+		A3A7E47824805FDE008DFD90 /* CChessBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A7E47724805FDE008DFD90 /* CChessBoard.swift */; };
+		A3A7E47A248060AB008DFD90 /* CChessBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A7E479248060AB008DFD90 /* CChessBoardTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		07653533204A3C67008FC177 /* xiangqiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xiangqiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07653539204A3C67008FC177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A306DB4D2341888B00B82E02 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		A37040B724847B7C001648F0 /* CChessPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessPiece.swift; sourceTree = "<group>"; };
+		A3A7E47724805FDE008DFD90 /* CChessBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessBoard.swift; sourceTree = "<group>"; };
+		A3A7E479248060AB008DFD90 /* CChessBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessBoardTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,13 +83,15 @@
 		07653521204A3C67008FC177 /* xiangqi */ = {
 			isa = PBXGroup;
 			children = (
-				07653522204A3C67008FC177 /* AppDelegate.swift */,
 				A306DB4D2341888B00B82E02 /* BoardView.swift */,
+				A3A7E47724805FDE008DFD90 /* CChessBoard.swift */,
 				07653524204A3C67008FC177 /* ViewController.swift */,
 				07653526204A3C67008FC177 /* Main.storyboard */,
 				07653529204A3C67008FC177 /* Assets.xcassets */,
 				0765352B204A3C67008FC177 /* LaunchScreen.storyboard */,
+				07653522204A3C67008FC177 /* AppDelegate.swift */,
 				0765352E204A3C67008FC177 /* Info.plist */,
+				A37040B724847B7C001648F0 /* CChessPiece.swift */,
 			);
 			path = xiangqi;
 			sourceTree = "<group>";
@@ -92,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				07653539204A3C67008FC177 /* Info.plist */,
+				A3A7E479248060AB008DFD90 /* CChessBoardTests.swift */,
 			);
 			path = xiangqiTests;
 			sourceTree = "<group>";
@@ -150,6 +159,7 @@
 					};
 					07653532204A3C67008FC177 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 0765351E204A3C67008FC177;
 					};
@@ -200,8 +210,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A306DB4E2341888B00B82E02 /* BoardView.swift in Sources */,
+				A3A7E47824805FDE008DFD90 /* CChessBoard.swift in Sources */,
 				07653525204A3C67008FC177 /* ViewController.swift in Sources */,
 				07653523204A3C67008FC177 /* AppDelegate.swift in Sources */,
+				A37040B824847B7C001648F0 /* CChessPiece.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3A7E47A248060AB008DFD90 /* CChessBoardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,12 +397,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = xiangqiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldthumb.xiangqiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xiangqi.app/xiangqi";
@@ -401,6 +416,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = xiangqiTests/Info.plist;
