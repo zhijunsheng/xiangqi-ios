@@ -9,6 +9,8 @@
 import Foundation
 
 struct CChessBoard: CustomStringConvertible {
+    var pieceBox: Set<CChessPiece> = Set<CChessPiece>()
+
     var description: String {
         var desc: String = ""
         desc += "  "

@@ -8,4 +8,10 @@
 
 import Foundation
 
-
+struct CChessPiece: Hashable {
+    let imgName: String
+    let col: Int
+    let row: Int
+    let isBlack: Bool
+    let pieceType: String
+}
