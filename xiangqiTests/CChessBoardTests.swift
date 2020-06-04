@@ -12,7 +12,10 @@ import XCTest
 class CChessBoardTests: XCTestCase {
 
     func testPrintingBoard() {
-        let board = CChessBoard()
+        var board = CChessBoard()
+        
+        board.pieceBox.insert(CChessPiece(imgName:"rb", col: 3, row: 3, isBlack: false, pieceType:"B"))
+        board.pieceBox.insert(CChessPiece(imgName:"bb", col: 3, row: 6, isBlack: true, pieceType:"B"))
         print(board)
         
     }

@@ -53,10 +53,22 @@ class BoardView: UIView {
             pen.addLine(to: CGPoint(x: cellSide * 3 + originX, y: originY + cellSide * CGFloat(i * 7 + 2)))
         }
         
-        star(x: 1, y: 2, half: false, isLeft: false)
-        star(x: 7, y: 2, half: false, isLeft: false)
-        star(x: 1, y: 7, half: false, isLeft: false)
-        star(x: 7, y: 7, half: false, isLeft: false)
+        star(x: 1, y: 2, isLeft: 2)
+        star(x: 7, y: 2, isLeft: 2)
+        star(x: 1, y: 7, isLeft: 2)
+        star(x: 7, y: 7, isLeft: 2)
+        
+        star(x: 2, y: 3, isLeft: 2)
+        star(x: 4, y: 3, isLeft: 2)
+        star(x: 6, y: 3, isLeft: 2)
+        star(x: 2, y: 6, isLeft: 2)
+        star(x: 4, y: 6, isLeft: 2)
+        star(x: 6, y: 6, isLeft: 2)
+        
+        star(x: 0, y: 3, isLeft: 3)
+        star(x: 0, y: 6, isLeft: 3)
+        star(x: 8, y: 3, isLeft: 1)
+        star(x: 8, y: 6, isLeft: 1)
         pen.stroke()
     }
     
@@ -82,42 +94,43 @@ class BoardView: UIView {
             drawPiece(col: i * 2, row: 6, imageName: "bz")
         }
     }
+    // 1 = left, 2 = all, 3 = right
+    func star(x: CGFloat, y: CGFloat, isLeft: Int) {
+        if isLeft == 1  {
+            starLeg(quadrant: 2, x: x, y: y)
+            starLeg(quadrant: 3, x: x, y: y)
+        } else if isLeft == 2 {
+            starLeg(quadrant: 1, x: x, y: y)
+            starLeg(quadrant: 2, x: x, y: y)
+            starLeg(quadrant: 3, x: x, y: y)
+            starLeg(quadrant: 4, x: x, y: y)
+        } else if isLeft == 3 {
+            starLeg(quadrant: 1, x: x, y: y)
+            starLeg(quadrant: 4, x: x, y: y)
+        }
+    }
     
-    func star(x: CGFloat, y: CGFloat, half: Bool, isLeft: Bool) {
+    func starLeg(quadrant: Int, x: CGFloat, y: CGFloat) {
         let pen = UIBezierPath()
         let gap = cellSide / 6
         let length = cellSide / 3
-        if half && isLeft  {
+        if quadrant == 1 {
             pen.move(to: CGPoint(x: cellSide * x + originX + gap, y: cellSide * y + originY - length))
             pen.addLine(to: CGPoint(x: cellSide * x + originX + gap, y: cellSide * y + originY - gap))
             pen.addLine(to: CGPoint(x: cellSide * x + originX + length, y: cellSide * y + originY - gap))
-            
+        } else if quadrant == 2 {
+            pen.move(to: CGPoint(x: cellSide * x + originX - gap, y: cellSide * y + originY - length))
+            pen.addLine(to: CGPoint(x: cellSide * x + originX - gap, y: cellSide * y + originY - gap))
+            pen.addLine(to: CGPoint(x: cellSide * x + originX - length, y: cellSide * y + originY - gap))
+        } else if quadrant == 3 {
+            pen.move(to: CGPoint(x: cellSide * x + originX - gap, y: cellSide * y + originY + length))
+            pen.addLine(to: CGPoint(x: cellSide * x + originX - gap, y: cellSide * y + originY + gap))
+            pen.addLine(to: CGPoint(x: cellSide * x + originX - length, y: cellSide * y + originY + gap))
+        } else if quadrant == 4 {
             pen.move(to: CGPoint(x: cellSide * x + originX + gap, y: cellSide * y + originY + length))
             pen.addLine(to: CGPoint(x: cellSide * x + originX + gap, y: cellSide * y + originY + gap))
             pen.addLine(to: CGPoint(x: cellSide * x + originX + length, y: cellSide * y + originY + gap))
-        } else if half && !isLeft {
-            
         }
-        
-        pen.move(to: CGPoint(x: cellSide * x + originX + gap, y: cellSide * y + originY - length))
-        pen.addLine(to: CGPoint(x: cellSide * x + originX + gap, y: cellSide * y + originY - gap))
-        pen.addLine(to: CGPoint(x: cellSide * x + originX + length, y: cellSide * y + originY - gap))
-        
-        pen.move(to: CGPoint(x: cellSide * x + originX + gap, y: cellSide * y + originY + length))
-        pen.addLine(to: CGPoint(x: cellSide * x + originX + gap, y: cellSide * y + originY + gap))
-        pen.addLine(to: CGPoint(x: cellSide * x + originX + length, y: cellSide * y + originY + gap))
-        
-        pen.move(to: CGPoint(x: cellSide * x + originX - gap, y: cellSide * y + originY - length))
-        pen.addLine(to: CGPoint(x: cellSide * x + originX - gap, y: cellSide * y + originY - gap))
-        pen.addLine(to: CGPoint(x: cellSide * x + originX - length, y: cellSide * y + originY - gap))
-        
-        pen.move(to: CGPoint(x: cellSide * x + originX - gap, y: cellSide * y + originY + length))
-        pen.addLine(to: CGPoint(x: cellSide * x + originX - gap, y: cellSide * y + originY + gap))
-        pen.addLine(to: CGPoint(x: cellSide * x + originX - length, y: cellSide * y + originY + gap))
-        
         pen.stroke()
     }
-    
-    
-    
 }

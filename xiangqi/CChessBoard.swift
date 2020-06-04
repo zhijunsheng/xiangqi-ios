@@ -8,10 +8,13 @@
 
 import Foundation
 
+
 struct CChessBoard: CustomStringConvertible {
     var pieceBox: Set<CChessPiece> = Set<CChessPiece>()
-
+    
+    
     var description: String {
+        let piece = pieceBox.first
         var desc: String = ""
         desc += "  "
         
@@ -24,12 +27,19 @@ struct CChessBoard: CustomStringConvertible {
         for row in 0..<10 {
             desc += "\(row) "
             for col in 0..<9 {
-                desc += ". "
+                if col == piece?.col && row == piece?.row{
+                    desc += "B "
+                } else {
+                    desc += ". "
+                }
             }
+            
             desc += "\n"
         }
         return desc
     }
+    
+   
 }
 
 
