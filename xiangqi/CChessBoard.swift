@@ -41,20 +41,20 @@ struct CChessBoard: CustomStringConvertible {
                 if piece == nil {
                     desc += ". "
                 } else {
-                    if piece?.pieceType == "B" {
+                    if piece?.pieceType == .King {
+                        desc += piece?.isBlack == true ? "K " : "k "
+                    } else if piece?.pieceType == .Warrior {
+                        desc += piece?.isBlack == true ? "W " : "w "
+                    } else if piece?.pieceType == .Bishop {
                         desc += piece?.isBlack == true ? "B " : "b "
-                    } else if piece?.pieceType == "S" {
-                        desc += piece?.isBlack == true ? "S " : "s "
-                    } else if piece?.pieceType == "X" {
-                        desc += piece?.isBlack == true ? "X " : "x "
-                    } else if piece?.pieceType == "M" {
-                        desc += piece?.isBlack == true ? "M " : "m "
-                    } else if piece?.pieceType == "J" {
-                        desc += piece?.isBlack == true ? "J " : "j "
-                    } else if piece?.pieceType == "P" {
+                    } else if piece?.pieceType == .Knight {
+                        desc += piece?.isBlack == true ? "N " : "n "
+                    } else if piece?.pieceType == .Rook {
+                        desc += piece?.isBlack == true ? "R " : "r "
+                    } else if piece?.pieceType == .Cannon {
+                        desc += piece?.isBlack == true ? "C " : "c "
+                    } else if piece?.pieceType == .Pawn {
                         desc += piece?.isBlack == true ? "P " : "p "
-                    } else if piece?.pieceType == "Z" {
-                        desc += piece?.isBlack == true ? "Z " : "z "
                     }
                 }
             }
