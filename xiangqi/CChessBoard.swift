@@ -13,8 +13,17 @@ struct CChessBoard: CustomStringConvertible {
     var pieceBox: Set<CChessPiece> = Set<CChessPiece>()
     
     
+    func pieceAt(col: Int, row: Int) -> CChessPiece? {
+        for piece in pieceBox {
+            if col == piece.col && row == piece.row {
+                return piece
+            }
+        }
+        return nil
+    }
+    
     var description: String {
-        let piece = pieceBox.first
+       
         var desc: String = ""
         desc += "  "
         
@@ -27,10 +36,46 @@ struct CChessBoard: CustomStringConvertible {
         for row in 0..<10 {
             desc += "\(row) "
             for col in 0..<9 {
-                if col == piece?.col && row == piece?.row{
-                    desc += "B "
+                let piece = pieceAt(col: col, row: row)
+                
+                if piece == nil {
+                   desc += ". "
                 } else {
-                    desc += ". "
+                    if piece?.isBlack == true {
+            
+                        if piece?.pieceType == "B" {
+                            desc += "B "
+                        } else if piece?.pieceType == "S" {
+                            desc += "S "
+                        } else if piece?.pieceType == "X" {
+                            desc += "X "
+                        } else if piece?.pieceType == "M" {
+                            desc += "M "
+                        } else if piece?.pieceType == "J" {
+                            desc += "J "
+                        } else if piece?.pieceType == "P" {
+                            desc += "S "
+                        } else if piece?.pieceType == "Z" {
+                            desc += "Z "
+                        }
+                    } else {
+                        if piece?.pieceType == "B" {
+                            desc += "b "
+                        } else if piece?.pieceType == "S" {
+                            desc += "s "
+                        } else if piece?.pieceType == "X" {
+                            desc += "x "
+                        } else if piece?.pieceType == "M" {
+                            desc += "m "
+                        } else if piece?.pieceType == "J" {
+                            desc += "j "
+                        } else if piece?.pieceType == "P" {
+                            desc += "s "
+                        } else if piece?.pieceType == "Z" {
+                            desc += "z "
+                        }
+                    }
+                    
                 }
             }
             
