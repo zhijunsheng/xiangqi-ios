@@ -39,46 +39,25 @@ struct CChessBoard: CustomStringConvertible {
                 let piece = pieceAt(col: col, row: row)
                 
                 if piece == nil {
-                   desc += ". "
+                    desc += ". "
                 } else {
-                    if piece?.isBlack == true {
-            
-                        if piece?.pieceType == "B" {
-                            desc += "B "
-                        } else if piece?.pieceType == "S" {
-                            desc += "S "
-                        } else if piece?.pieceType == "X" {
-                            desc += "X "
-                        } else if piece?.pieceType == "M" {
-                            desc += "M "
-                        } else if piece?.pieceType == "J" {
-                            desc += "J "
-                        } else if piece?.pieceType == "P" {
-                            desc += "S "
-                        } else if piece?.pieceType == "Z" {
-                            desc += "Z "
-                        }
-                    } else {
-                        if piece?.pieceType == "B" {
-                            desc += "b "
-                        } else if piece?.pieceType == "S" {
-                            desc += "s "
-                        } else if piece?.pieceType == "X" {
-                            desc += "x "
-                        } else if piece?.pieceType == "M" {
-                            desc += "m "
-                        } else if piece?.pieceType == "J" {
-                            desc += "j "
-                        } else if piece?.pieceType == "P" {
-                            desc += "s "
-                        } else if piece?.pieceType == "Z" {
-                            desc += "z "
-                        }
+                    if piece?.pieceType == "B" {
+                        desc += piece?.isBlack == true ? "B " : "b "
+                    } else if piece?.pieceType == "S" {
+                        desc += piece?.isBlack == true ? "S " : "s "
+                    } else if piece?.pieceType == "X" {
+                        desc += piece?.isBlack == true ? "X " : "x "
+                    } else if piece?.pieceType == "M" {
+                        desc += piece?.isBlack == true ? "M " : "m "
+                    } else if piece?.pieceType == "J" {
+                        desc += piece?.isBlack == true ? "J " : "j "
+                    } else if piece?.pieceType == "P" {
+                        desc += piece?.isBlack == true ? "P " : "p "
+                    } else if piece?.pieceType == "Z" {
+                        desc += piece?.isBlack == true ? "Z " : "z "
                     }
-                    
                 }
             }
-            
             desc += "\n"
         }
         return desc

@@ -19,4 +19,27 @@ class CChessBoardTests: XCTestCase {
         print(board)
         
     }
+    
+    func testTernary() {
+//        if 5 % 2 == 1 {
+//            print("odd")
+//        } else {
+//            print("Even")
+//        }
+        
+        print(5 % 2 == 1 ? "odd" : "even")
+        
+        var a = 3
+        // Collatz Conjecture
+        if a % 2 == 0 {
+            a = a / 2
+        } else {
+            a = 3 * a + 1
+        }
+        
+        a = a % 2 == 0 ? a / 2 : 3 * a + 1
+    }
+    
+    
+    
 }
