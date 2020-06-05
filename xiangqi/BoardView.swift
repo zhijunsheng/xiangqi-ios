@@ -15,8 +15,11 @@ class BoardView: UIView {
     let anchorX: CGFloat = 70
     
     override func draw(_ rect: CGRect) {
+        drawGrid()
+    }
+    
+    func drawGrid() {
         let path = UIBezierPath()
-        
         for i in 0 ..< 9 {
             path.move(to: CGPoint(x: CGFloat(i) * size + anchorX, y: anchorY))
             path.addLine(to: CGPoint(x: CGFloat(i) * size + anchorX, y: size * 4 + anchorY))
@@ -26,7 +29,7 @@ class BoardView: UIView {
             path.move(to: CGPoint(x: CGFloat(i) * size + anchorX, y: anchorY + size * 5))
             path.addLine(to: CGPoint(x: CGFloat(i) * size + anchorX, y: size * 9 + anchorY))
         }
-
+        
         for i in 0 ..< 10 {
             path.move(to: CGPoint(x: anchorX, y: CGFloat(i) * size + anchorY))
             path.addLine(to: CGPoint(x: size * 8 + anchorX, y: CGFloat(i) * size + anchorY))
@@ -57,8 +60,6 @@ class BoardView: UIView {
             drawStar(col: 2 + 2 * i, row: 3)
             drawStar(col: 2 + 2 * i, row: 6)
         }
-        
-        
     }
     
     func drawHalfStarLeft(col: Int, row: Int) {
@@ -93,11 +94,8 @@ class BoardView: UIView {
         path.stroke()
     }
     
-        
     func drawStar(col: Int, row: Int) {
         drawHalfStarLeft(col: col, row: row)
         drawHalfStarRight(col: col, row: row)
     }
-    
-    
 }
