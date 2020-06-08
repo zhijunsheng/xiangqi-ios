@@ -13,14 +13,11 @@ struct CChessBoard: CustomStringConvertible {
     var pieceBox: Set<CChessPiece> = Set<CChessPiece>()
     
     mutating func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
-        let piece = pieceAt(col: fromCol, row: fromRow)
+        if let piece = pieceAt(col: fromCol, row: fromRow) {
+            pieceBox.insert(CChessPiece(imgName: piece.imgName, col: toCol, row: toRow, isBlack: piece.isBlack, pieceType: piece.pieceType))
+            pieceBox.remove(piece)
+        }
         
-        if piece == nil {
-            return
-        } 
-        
-        pieceBox.insert(CChessPiece(imgName: piece!.imgName, col: toCol, row: toRow, isBlack: piece!.isBlack, pieceType: piece!.pieceType))
-        pieceBox.remove(piece!)
     }
     
     func pieceAt(col: Int, row: Int) -> CChessPiece? {

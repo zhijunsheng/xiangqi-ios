@@ -23,11 +23,27 @@ class CChessBoardTests: XCTestCase {
         
     }
     
-    func testMovePiece() {
+    func testMovePieceEmpty() {
         var board = CChessBoard()
         
         board.movePiece(fromCol: 3, fromRow: 3, toCol: 7, toRow: 7)
         print(board)
+    }
+    
+    func testMovePieceReal() {
+        var board = CChessBoard()
+        board.pieceBox.insert(CChessPiece(imgName:"rb", col: 3, row: 3, isBlack: false, pieceType: .King))
+        
+        XCTAssertNil(board.pieceAt(col: 7, row: 7))
+        XCTAssertNotNil(board.pieceAt(col: 3, row: 3))
+        XCTAssertEqual(1, board.pieceBox.count)
+        
+        board.movePiece(fromCol: 3, fromRow: 3, toCol: 7, toRow: 7)
+        
+        XCTAssertNil(board.pieceAt(col: 3, row: 3))
+        XCTAssertNotNil(board.pieceAt(col: 7, row: 7))
+        XCTAssertEqual(1, board.pieceBox.count)
+
     }
     
     func testTernary() {
