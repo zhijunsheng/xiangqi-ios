@@ -14,6 +14,11 @@ struct CChessBoard: CustomStringConvertible {
     
     mutating func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         let piece = pieceAt(col: fromCol, row: fromRow)
+        
+        if piece == nil {
+            return
+        } 
+        
         pieceBox.insert(CChessPiece(imgName: piece!.imgName, col: toCol, row: toRow, isBlack: piece!.isBlack, pieceType: piece!.pieceType))
         pieceBox.remove(piece!)
     }
