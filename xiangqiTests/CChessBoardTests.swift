@@ -16,6 +16,7 @@ class CChessBoardTests: XCTestCase {
         
         board.pieceBox.insert(CChessPiece(imgName:"rb", col: 3, row: 3, isBlack: false, pieceType: .King))
         board.pieceBox.insert(CChessPiece(imgName:"bb", col: 3, row: 6, isBlack: true, pieceType: .King))
+        board.movePiece(fromCol: 3, fromRow: 3, toCol: 7, toRow: 7)
         print(board)
         
     }

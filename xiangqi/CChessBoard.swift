@@ -12,6 +12,11 @@ import Foundation
 struct CChessBoard: CustomStringConvertible {
     var pieceBox: Set<CChessPiece> = Set<CChessPiece>()
     
+    mutating func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+        let piece = pieceAt(col: fromCol, row: fromRow)
+        pieceBox.insert(CChessPiece(imgName: piece!.imgName, col: toCol, row: toRow, isBlack: piece!.isBlack, pieceType: piece!.pieceType))
+        pieceBox.remove(piece!)
+    }
     
     func pieceAt(col: Int, row: Int) -> CChessPiece? {
         for piece in pieceBox {
@@ -36,34 +41,31 @@ struct CChessBoard: CustomStringConvertible {
         for row in 0..<10 {
             desc += "\(row) "
             for col in 0..<9 {
-                let piece = pieceAt(col: col, row: row)
-                
-                if piece == nil {
-                    desc += ". "
-                } else {
-                    if piece?.pieceType == .King {
-                        desc += piece?.isBlack == true ? "K " : "k "
-                    } else if piece?.pieceType == .Warrior {
-                        desc += piece?.isBlack == true ? "W " : "w "
-                    } else if piece?.pieceType == .Bishop {
-                        desc += piece?.isBlack == true ? "B " : "b "
-                    } else if piece?.pieceType == .Knight {
-                        desc += piece?.isBlack == true ? "N " : "n "
-                    } else if piece?.pieceType == .Rook {
-                        desc += piece?.isBlack == true ? "R " : "r "
-                    } else if piece?.pieceType == .Cannon {
-                        desc += piece?.isBlack == true ? "C " : "c "
-                    } else if piece?.pieceType == .Pawn {
-                        desc += piece?.isBlack == true ? "P " : "p "
+                if let piece = pieceAt(col: col, row: row) {
+                    switch piece.pieceType {
+                    case .King :
+                        desc += piece.isBlack ? "K " : "k "
+                    case .Rook :
+                        desc += piece.isBlack ? "R " : "r "
+                    case .Bishop :
+                        desc += piece.isBlack ? "B " : "b "
+                    case .Warrior :
+                        desc += piece.isBlack ? "W " : "w "
+                    case .Knight :
+                        desc += piece.isBlack ? "N " : "n "
+                    case .Pawn :
+                        desc += piece.isBlack ? "P " : "p "
+                    case .Cannon :
+                        desc += piece.isBlack ? "C " : "c "
                     }
+                } else {
+                    desc += ". "
                 }
             }
             desc += "\n"
         }
         return desc
     }
-    
-   
 }
 
 
