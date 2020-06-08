@@ -11,12 +11,115 @@ import UIKit
 class BoardView: UIView {
 
     let size: CGFloat = 75
-    let anchorY: CGFloat = 142
-    let anchorX: CGFloat = 70
+    let anchorY: CGFloat = 50
+    let anchorX: CGFloat = 50
     
     override func draw(_ rect: CGRect) {
         drawGrid()
+        drawChessPieceB()
+        drawChessPieceR()
     }
+    
+    func drawChessPieceB() {
+        let pieceImage = UIImage(named: "bb")
+        pieceImage?.draw(in: CGRect(x: size * 4.2, y: size/4.2, width: size, height: size))
+        
+        let pieceImage2 = UIImage(named: "bs")
+        pieceImage2?.draw(in: CGRect(x: size * 5.2, y: size/4.2, width: size, height: size))
+        
+        let pieceImage3 = UIImage(named: "bs")
+        pieceImage3?.draw(in: CGRect(x: size * 3.2, y: size/4.2, width: size, height: size))
+        
+        let pieceImage4 = UIImage(named: "bx")
+        pieceImage4?.draw(in: CGRect(x: size * 2.2, y: size/4.2, width: size, height: size))
+        
+        let pieceImage5 = UIImage(named: "bx")
+        pieceImage5?.draw(in: CGRect(x: size * 6.2, y: size/4.2, width: size, height: size))
+        
+        let pieceImage6 = UIImage(named: "bm")
+        pieceImage6?.draw(in: CGRect(x: size * 7.2, y: size/4.2, width: size, height: size))
+        
+        let pieceImage7 = UIImage(named: "bm")
+        pieceImage7?.draw(in: CGRect(x: size * 1.2, y: size/4.2, width: size, height: size))
+        
+        let pieceImage8 = UIImage(named: "bj")
+        pieceImage8?.draw(in: CGRect(x: size * 0.2, y: size/4.2, width: size, height: size))
+        
+        let pieceImage9 = UIImage(named: "bj")
+        pieceImage9?.draw(in: CGRect(x: size * 8.2, y: size/4.2, width: size, height: size))
+        
+        let pieceImage10 = UIImage(named: "bz")
+        pieceImage10?.draw(in: CGRect(x: size * 0.2, y: size * 3.2, width: size, height: size))
+        
+        let pieceImage11 = UIImage(named: "bz")
+        pieceImage11?.draw(in: CGRect(x: size * 2.2, y: size * 3.2, width: size, height: size))
+        
+        let pieceImage12 = UIImage(named: "bz")
+        pieceImage12?.draw(in: CGRect(x: size * 4.2, y: size * 3.2, width: size, height: size))
+        
+        let pieceImage13 = UIImage(named: "bz")
+        pieceImage13?.draw(in: CGRect(x: size * 6.2, y: size * 3.2, width: size, height: size))
+        
+        let pieceImage14 = UIImage(named: "bz")
+        pieceImage14?.draw(in: CGRect(x: size * 8.2, y: size * 3.2, width: size, height: size))
+        
+        let pieceImage15 = UIImage(named: "bp")
+        pieceImage15?.draw(in: CGRect(x: size * 1.2, y: size * 2.2, width: size, height: size))
+        
+        let pieceImage16 = UIImage(named: "bp")
+        pieceImage16?.draw(in: CGRect(x: size * 7.2, y: size * 2.2, width: size, height: size))
+    }
+    
+    func drawChessPieceR() {
+        let pieceImage = UIImage(named: "rb")
+        pieceImage?.draw(in: CGRect(x: size * 4.2, y: size * 9.2, width: size, height: size))
+        
+        let pieceImage2 = UIImage(named: "rs")
+        pieceImage2?.draw(in: CGRect(x: size * 5.2, y: size * 9.2, width: size, height: size))
+        
+        let pieceImage3 = UIImage(named: "rs")
+        pieceImage3?.draw(in: CGRect(x: size * 3.2, y: size * 9.2, width: size, height: size))
+        
+        let pieceImage4 = UIImage(named: "rx")
+        pieceImage4?.draw(in: CGRect(x: size * 2.2, y: size * 9.2, width: size, height: size))
+        
+        let pieceImage5 = UIImage(named: "rx")
+        pieceImage5?.draw(in: CGRect(x: size * 6.2, y: size * 9.2, width: size, height: size))
+        
+        let pieceImage6 = UIImage(named: "rm")
+        pieceImage6?.draw(in: CGRect(x: size * 7.2, y: size * 9.2, width: size, height: size))
+        
+        let pieceImage7 = UIImage(named: "rm")
+        pieceImage7?.draw(in: CGRect(x: size * 1.2, y: size * 9.2, width: size, height: size))
+        
+        let pieceImage8 = UIImage(named: "rj")
+        pieceImage8?.draw(in: CGRect(x: size * 0.2, y: size * 9.2, width: size, height: size))
+        
+        let pieceImage9 = UIImage(named: "rj")
+        pieceImage9?.draw(in: CGRect(x: size * 8.2, y: size * 9.2, width: size, height: size))
+        
+        let pieceImage10 = UIImage(named: "rz")
+        pieceImage10?.draw(in: CGRect(x: size * 0.2, y: size * 6.2, width: size, height: size))
+        
+        let pieceImage11 = UIImage(named: "rz")
+        pieceImage11?.draw(in: CGRect(x: size * 2.2, y: size * 6.2, width: size, height: size))
+        
+        let pieceImage12 = UIImage(named: "rz")
+        pieceImage12?.draw(in: CGRect(x: size * 4.2, y: size * 6.2, width: size, height: size))
+        
+        let pieceImage13 = UIImage(named: "rz")
+        pieceImage13?.draw(in: CGRect(x: size * 6.2, y: size * 6.2, width: size, height: size))
+        
+        let pieceImage14 = UIImage(named: "rz")
+        pieceImage14?.draw(in: CGRect(x: size * 8.2, y: size * 6.2, width: size, height: size))
+        
+        let pieceImage15 = UIImage(named: "rp")
+        pieceImage15?.draw(in: CGRect(x: size * 1.2, y: size * 7.2, width: size, height: size))
+        
+        let pieceImage16 = UIImage(named: "rp")
+        pieceImage16?.draw(in: CGRect(x: size * 7.2, y: size * 7.2, width: size, height: size))
+    }
+    
     
     func drawGrid() {
         let path = UIBezierPath()
