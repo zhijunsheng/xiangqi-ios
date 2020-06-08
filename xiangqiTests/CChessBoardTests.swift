@@ -19,15 +19,17 @@ class CChessBoardTests: XCTestCase {
         print(board)
         board.movePiece(fromCol: 3, fromRow: 3, toCol: 7, toRow: 7)
         print(board)
-        
-        
     }
     
     func testMovePieceEmpty() {
         var board = CChessBoard()
         
+        XCTAssertEqual(0, board.pieceBox.count)
+        XCTAssertNil(board.pieceAt(col: 3, row: 3))
+        
         board.movePiece(fromCol: 3, fromRow: 3, toCol: 7, toRow: 7)
-        print(board)
+        
+        XCTAssertEqual(0, board.pieceBox.count)
     }
     
     func testMovePieceReal() {
