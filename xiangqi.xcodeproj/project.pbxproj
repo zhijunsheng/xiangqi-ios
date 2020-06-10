@@ -13,7 +13,10 @@
 		0765352A204A3C67008FC177 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07653529204A3C67008FC177 /* Assets.xcassets */; };
 		0765352D204A3C67008FC177 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0765352B204A3C67008FC177 /* LaunchScreen.storyboard */; };
 		1E5ADEA324782DB900EBDB7F /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5ADEA224782DB900EBDB7F /* BoardView.swift */; };
-		A1074209234EB3D500CDD037 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1074208234EB3D500CDD037 /* MathTests.swift */; };
+		1EDC4C72248E89CF00691004 /* CChessPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC4C71248E89CF00691004 /* CChessPiece.swift */; };
+		1EE931D124912EBE00592A8D /* CChessRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE931D024912EBE00592A8D /* CChessRank.swift */; };
+		1EE931D32491300700592A8D /* CChessGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE931D22491300700592A8D /* CChessGame.swift */; };
+		1EE931D5249130C900592A8D /* CChessGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE931D4249130C900592A8D /* CChessGameTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +40,10 @@
 		07653533204A3C67008FC177 /* xiangqiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xiangqiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07653539204A3C67008FC177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E5ADEA224782DB900EBDB7F /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
-		A1074208234EB3D500CDD037 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
+		1EDC4C71248E89CF00691004 /* CChessPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessPiece.swift; sourceTree = "<group>"; };
+		1EE931D024912EBE00592A8D /* CChessRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessRank.swift; sourceTree = "<group>"; };
+		1EE931D22491300700592A8D /* CChessGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessGame.swift; sourceTree = "<group>"; };
+		1EE931D4249130C900592A8D /* CChessGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessGameTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,9 @@
 				0765352B204A3C67008FC177 /* LaunchScreen.storyboard */,
 				0765352E204A3C67008FC177 /* Info.plist */,
 				1E5ADEA224782DB900EBDB7F /* BoardView.swift */,
+				1EDC4C71248E89CF00691004 /* CChessPiece.swift */,
+				1EE931D024912EBE00592A8D /* CChessRank.swift */,
+				1EE931D22491300700592A8D /* CChessGame.swift */,
 			);
 			path = xiangqi;
 			sourceTree = "<group>";
@@ -94,7 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				07653539204A3C67008FC177 /* Info.plist */,
-				A1074208234EB3D500CDD037 /* MathTests.swift */,
+				1EE931D4249130C900592A8D /* CChessGameTests.swift */,
 			);
 			path = xiangqiTests;
 			sourceTree = "<group>";
@@ -207,6 +216,9 @@
 				1E5ADEA324782DB900EBDB7F /* BoardView.swift in Sources */,
 				07653525204A3C67008FC177 /* ViewController.swift in Sources */,
 				07653523204A3C67008FC177 /* AppDelegate.swift in Sources */,
+				1EDC4C72248E89CF00691004 /* CChessPiece.swift in Sources */,
+				1EE931D32491300700592A8D /* CChessGame.swift in Sources */,
+				1EE931D124912EBE00592A8D /* CChessRank.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1074209234EB3D500CDD037 /* MathTests.swift in Sources */,
+				1EE931D5249130C900592A8D /* CChessGameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
