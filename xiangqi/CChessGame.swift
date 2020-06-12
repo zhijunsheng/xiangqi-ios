@@ -10,12 +10,15 @@ import Foundation
 
 struct CChessGame: CustomStringConvertible {
     var description: String {
-        var desc = ""
-        for _ in 0 ..< 10 {
+        var desc = " "
+        for i in 0 ..< 9 {
+            desc = desc + " \(i)"
+        }
+        for i in 0 ..< 10 {
             desc = desc + "\n"
-            for i in 0 ..< 9 {
-                desc = desc + "\(i)"
-                desc = desc + ". "
+            desc = desc + "\(i)"
+            for _ in 0 ..< 9 {
+                desc = desc + " ."
             }
         }
         
