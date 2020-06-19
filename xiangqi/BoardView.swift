@@ -14,10 +14,20 @@ class BoardView: UIView {
     let anchorY: CGFloat = 50
     let anchorX: CGFloat = 50
     
+    var shadowPieces: Set<CChessPiece> = Set<CChessPiece>()
+    
     override func draw(_ rect: CGRect) {
         drawGrid()
-        drawChessPieceB()
-        drawChessPieceR()
+        drawPieces()
+//        drawChessPieceB()
+//        drawChessPieceR()
+    }
+    
+    func drawPieces() {
+        for piece in shadowPieces {
+            let pieceImage = UIImage(named: piece.imageName)
+            pieceImage?.draw(in: CGRect(x: CGFloat(piece.col) * size + anchorX - size/2, y: CGFloat(piece.row) * size + anchorY - size/2, width: size, height: size))
+        }
     }
     
     func drawChessPieceB() {

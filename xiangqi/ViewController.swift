@@ -9,10 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var cchessGame = CChessGame()
+    
+    @IBOutlet weak var boardView: BoardView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        cchessGame.resetGame()
+        boardView.shadowPieces = cchessGame.pieces
     }
 
     override func didReceiveMemoryWarning() {

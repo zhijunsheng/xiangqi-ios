@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct CChessPiece {
+struct CChessPiece: Hashable {
     let isBlack: Bool
     let rank: CChessRank
-    let row: Int
     let col: Int
+    let row: Int
     let imageName: String
 }
