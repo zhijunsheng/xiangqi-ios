@@ -67,18 +67,12 @@ struct CChessGame: CustomStringConvertible {
                     if piece.rank == .pawn {
                         desc += piece.isBlack ? " P" : " p"
                     } else if piece.rank == .knight {
-//                        if piece .isBlack {
-//                            desc += piece.isBlack ? " N" : " n"
-//                        } else if piece.rank == .bishop {
-//                            desc += piece.isBlack ? " B" : " b"
-//                        } else if piece.rank == .cannon {
-//                            desc += piece.isBlack ? " C" : " c"
-//                        }
-                    }
+                        desc += piece.isBlack ? " N" : " n"
+                    } 
                     
-                        } else {
-                            desc += " ."
-                        }
+                } else {
+                    desc += " ."
+                }
                 
             }
         }
