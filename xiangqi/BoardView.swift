@@ -19,8 +19,6 @@ class BoardView: UIView {
     override func draw(_ rect: CGRect) {
         drawGrid()
         drawPieces()
-//        drawChessPieceB()
-//        drawChessPieceR()
     }
     
     func drawPieces() {
