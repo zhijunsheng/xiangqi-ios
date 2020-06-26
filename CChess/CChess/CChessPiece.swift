@@ -15,6 +15,7 @@ struct CChessPiece: Hashable {
 }
 
 var testData: Set<CChessPiece> = [
-//    CChessPiece(col: 0, row: 0, imageName: "bj"),
+    CChessPiece(col: 0, row: 0, imageName: "bj"),
     CChessPiece(col: 1, row: 0, imageName: "bm"),
+    CChessPiece(col: 2, row: 0, imageName: "bx"),
 ]

@@ -20,7 +20,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        var game = CChessGame()
+//        game.pieces = [
+//            CChessPiece(col: 0, row: 0, imageName: "bj"),
+//            CChessPiece(col: 1, row: 0, imageName: "bm"),
+//            CChessPiece(col: 2, row: 0, imageName: "bx"),
+//            CChessPiece(col: 3, row: 0, imageName: "bs"),
+//        ]
+//
+        for i in 0..<2 {
+            game.pieces.insert(CChessPiece(col: 0 + i * 8, row: 0, imageName: "bj"))
+            game.pieces.insert(CChessPiece(col: 0 + i * 8, row: 9, imageName: "rj"))
+            
+            game.pieces.insert(CChessPiece(col: 1 + i * 6, row: 0, imageName: "bm"))
+            game.pieces.insert(CChessPiece(col: 1 + i * 6, row: 9, imageName: "rm"))
+            
+            game.pieces.insert(CChessPiece(col: 2 + i * 4, row: 0, imageName: "bx"))
+            game.pieces.insert(CChessPiece(col: 2 + i * 4, row: 9, imageName: "rx"))
+
+            game.pieces.insert(CChessPiece(col: 3 + i * 2, row: 0, imageName: "bs"))
+            game.pieces.insert(CChessPiece(col: 3 + i * 2, row: 9, imageName: "rs"))
+
+            game.pieces.insert(CChessPiece(col: 1 + i * 6, row: 2, imageName: "bp"))
+            game.pieces.insert(CChessPiece(col: 1 + i * 6, row: 7, imageName: "rp"))
+        }
+        
+        for i in 0..<5 {
+            game.pieces.insert(CChessPiece(col: i * 2, row: 3, imageName: "bz"))
+            game.pieces.insert(CChessPiece(col: i * 2, row: 5, imageName: "rz"))
+        }
+        
+        game.pieces.insert(CChessPiece(col: 4, row: 0, imageName: "bb"))
+        game.pieces.insert(CChessPiece(col: 4, row: 9, imageName: "rb"))
+        
+        let contentView = ContentView(game: game)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

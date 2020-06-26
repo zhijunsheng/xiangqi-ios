@@ -9,15 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    var game: CChessGame
     
     var body: some View {
-        BoardView(piece: testData.first!)
+        BoardView(pieces: Array(game.pieces))
         
     }
 }
 
 struct BoardView: View {
-    let piece: CChessPiece
+    let pieces: [CChessPiece]
     
     @State private var movingPieceLocation = CGPoint(x: 200, y: 300)
     
@@ -27,10 +28,12 @@ struct BoardView: View {
                 BoardGrid(bounds: geo.frame(in: .local))
                 .stroke(Color.black)
                 
-                Image(self.piece.imageName)
-                    .resizable()
-                    .frame(width: cellSide(bounds: geo.frame(in: .local)), height: cellSide(bounds: geo.frame(in: .local)))
-                    .position(piecePosition(bounds: geo.frame(in: .local), col: self.piece.col, row: self.piece.row))
+                ForEach(self.pieces, id: \.self) { piece in
+                    Image(piece.imageName)
+                        .resizable()
+                        .frame(width: cellSide(bounds: geo.frame(in: .local)), height: cellSide(bounds: geo.frame(in: .local)))
+                        .position(piecePosition(bounds: geo.frame(in: .local), col: piece.col, row: piece.row))
+                }
                 
                 Image("rb")
                     .position(self.movingPieceLocation)
@@ -104,6 +107,6 @@ struct BoardGrid: Shape {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(game: CChessGame())
     }
 }
