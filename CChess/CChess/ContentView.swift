@@ -20,50 +20,69 @@ struct BoardView: View {
     
     var body: some View {
         ZStack {
-            BoardGrid()
-            .stroke(Color.black)
-            
-            Image("rb")
-                .position(movingPieceLocation)
-                .gesture(DragGesture().onChanged({ value in
-                    self.movingPieceLocation = value.location
-                }))
+            GeometryReader { geo in
+                BoardGrid(bounds: geo.frame(in: .local))
+                .stroke(Color.black)
+                
+                Image("rb")
+                    .position(self.movingPieceLocation)
+                    .gesture(DragGesture().onChanged({ value in
+                        self.movingPieceLocation = value.location
+                    }))
+            }
         }
     }
 }
 
+private func originX(bounds: CGRect) -> CGFloat {
+    let cols: Int = 9
+    return (bounds.size.width - CGFloat(cols - 1) * cellSide(bounds: bounds)) / 2
+}
+
+private func originY(bounds: CGRect) -> CGFloat {
+    let rows: Int = 10
+    return (bounds.size.height - CGFloat(rows - 1) * cellSide(bounds: bounds)) / 2
+}
+
+private func cellSide(bounds: CGRect) -> CGFloat {
+    let rows: Int = 10
+    return min(bounds.size.width, bounds.size.height) / CGFloat(rows + 1)
+}
+
 struct BoardGrid: Shape {
+    let bounds: CGRect
+    
     func path(in rect: CGRect) -> Path {
         var path = Path()
         
         let cols: Int = 9
         let rows: Int = 10
-        let originX: CGFloat = 40
-        let originY: CGFloat = 47
-        let cellWidth: CGFloat = 41
-        let cellHeight: CGFloat = 41
+        let origX: CGFloat = originX(bounds: bounds)
+        let origY: CGFloat = originY(bounds: bounds)
+        let cellWidth: CGFloat = cellSide(bounds: bounds)
+        let cellHeight: CGFloat = cellSide(bounds: bounds)
 
         for row in 0..<rows {
-            path.move(to: CGPoint(x: originX, y: originY + CGFloat(row) * cellHeight ))
-            path.addLine(to: CGPoint(x: originX + CGFloat(cols - 1) * cellWidth, y: originY + CGFloat(row) * cellHeight))
+            path.move(to: CGPoint(x: origX, y: origY + CGFloat(row) * cellHeight ))
+            path.addLine(to: CGPoint(x: origX + CGFloat(cols - 1) * cellWidth, y: origY + CGFloat(row) * cellHeight))
         }
 
         for col in 0..<cols {
-            path.move(to: CGPoint(x: originX + CGFloat(col) * cellWidth, y: originY))
-            path.addLine(to: CGPoint(x: originX + CGFloat(col) * cellWidth, y: originY + 4 * cellHeight))
+            path.move(to: CGPoint(x: origX + CGFloat(col) * cellWidth, y: origY))
+            path.addLine(to: CGPoint(x: origX + CGFloat(col) * cellWidth, y: origY + 4 * cellHeight))
 
-            path.move(to: CGPoint(x: originX + CGFloat(col) * cellWidth, y: originY + 5 * cellHeight))
-            path.addLine(to: CGPoint(x: originX + CGFloat(col) * cellWidth, y: originY + 9 * cellHeight))
+            path.move(to: CGPoint(x: origX + CGFloat(col) * cellWidth, y: origY + 5 * cellHeight))
+            path.addLine(to: CGPoint(x: origX + CGFloat(col) * cellWidth, y: origY + 9 * cellHeight))
         }
 
         for i in 0..<2 {
-            path.move(to: CGPoint(x: originX + 3 * cellWidth, y: originY + CGFloat(i) * 7 * cellHeight))
-            path.addLine(to: CGPoint(x: originX + 5 * cellWidth, y: originY + CGFloat(2 + i * 7) * cellHeight))
-            path.move(to: CGPoint(x: originX + 5 * cellWidth, y: originY + CGFloat(i) * 7 * cellHeight))
-            path.addLine(to: CGPoint(x: originX + 3 * cellWidth, y: originY + CGFloat(2 + i * 7) * cellHeight))
+            path.move(to: CGPoint(x: origX + 3 * cellWidth, y: origY + CGFloat(i) * 7 * cellHeight))
+            path.addLine(to: CGPoint(x: origX + 5 * cellWidth, y: origY + CGFloat(2 + i * 7) * cellHeight))
+            path.move(to: CGPoint(x: origX + 5 * cellWidth, y: origY + CGFloat(i) * 7 * cellHeight))
+            path.addLine(to: CGPoint(x: origX + 3 * cellWidth, y: origY + CGFloat(2 + i * 7) * cellHeight))
 
-            path.move(to: CGPoint(x: originX + CGFloat(i) * 8 * cellWidth, y: originY + 4 * cellHeight))
-            path.addLine(to: CGPoint(x: originX + CGFloat(i) * 8 * cellWidth, y: originY + 5 * cellHeight))
+            path.move(to: CGPoint(x: origX + CGFloat(i) * 8 * cellWidth, y: origY + 4 * cellHeight))
+            path.addLine(to: CGPoint(x: origX + CGFloat(i) * 8 * cellWidth, y: origY + 5 * cellHeight))
         }
         return path
     }
