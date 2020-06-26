@@ -9,13 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
-        BoardView()
+        BoardView(piece: testData.first!)
         
     }
 }
 
 struct BoardView: View {
+    let piece: CChessPiece
+    
     @State private var movingPieceLocation = CGPoint(x: 200, y: 300)
     
     var body: some View {
@@ -23,6 +26,11 @@ struct BoardView: View {
             GeometryReader { geo in
                 BoardGrid(bounds: geo.frame(in: .local))
                 .stroke(Color.black)
+                
+                Image(self.piece.imageName)
+                    .resizable()
+                    .frame(width: cellSide(bounds: geo.frame(in: .local)), height: cellSide(bounds: geo.frame(in: .local)))
+                    .position(piecePosition(bounds: geo.frame(in: .local), col: self.piece.col, row: self.piece.row))
                 
                 Image("rb")
                     .position(self.movingPieceLocation)
@@ -32,6 +40,12 @@ struct BoardView: View {
             }
         }
     }
+}
+
+private func piecePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
+    let x = originX(bounds: bounds) + CGFloat(col) * cellSide(bounds: bounds)
+    let y = originY(bounds: bounds) + CGFloat(row) * cellSide(bounds: bounds)
+    return CGPoint(x: x, y: y)
 }
 
 private func originX(bounds: CGRect) -> CGFloat {

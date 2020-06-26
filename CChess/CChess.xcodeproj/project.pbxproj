@@ -15,6 +15,8 @@
 		07C2586124A2B0BD009C4025 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C2585F24A2B0BD009C4025 /* LaunchScreen.storyboard */; };
 		07C2586C24A2B0BD009C4025 /* CChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2586B24A2B0BD009C4025 /* CChessTests.swift */; };
 		07FA1E8D24A58F8F00B633F6 /* Pieces.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */; };
+		07FA1E8F24A5B76800B633F6 /* CChessPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */; };
+		07FA1E9124A5B7B300B633F6 /* CChessGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E9024A5B7B300B633F6 /* CChessGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		07C2586B24A2B0BD009C4025 /* CChessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessTests.swift; sourceTree = "<group>"; };
 		07C2586D24A2B0BD009C4025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pieces.xcassets; sourceTree = "<group>"; };
+		07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessPiece.swift; sourceTree = "<group>"; };
+		07FA1E9024A5B7B300B633F6 /* CChessGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 			children = (
 				07C2585424A2B0BC009C4025 /* AppDelegate.swift */,
 				07C2585624A2B0BC009C4025 /* SceneDelegate.swift */,
+				07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */,
+				07FA1E9024A5B7B300B633F6 /* CChessGame.swift */,
 				07C2585824A2B0BC009C4025 /* ContentView.swift */,
 				07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */,
 				07C2585A24A2B0BD009C4025 /* Assets.xcassets */,
@@ -215,6 +221,8 @@
 				07C2585524A2B0BC009C4025 /* AppDelegate.swift in Sources */,
 				07C2585724A2B0BC009C4025 /* SceneDelegate.swift in Sources */,
 				07C2585924A2B0BC009C4025 /* ContentView.swift in Sources */,
+				07FA1E8F24A5B76800B633F6 /* CChessPiece.swift in Sources */,
+				07FA1E9124A5B7B300B633F6 /* CChessGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
