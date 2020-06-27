@@ -9,52 +9,66 @@
 import SwiftUI
 
 struct ContentView: View {
-    var game: CChessGame
-    
-    var body: some View {
-        BoardView(pieces: Array(game.pieces))
-        
-    }
-}
-
-struct BoardView: View {
-    let pieces: [CChessPiece]
+    @ObservedObject var game = CChessGame()
     
     @State private var movingPieceLocation = CGPoint(x: 200, y: 300)
     @State private var fromPoint: CGPoint?
+    @State private var movingPiece: CChessPiece?
     
     var body: some View {
-        ZStack {
-            GeometryReader { geo in
-                BoardGrid(bounds: geo.frame(in: .local))
-                .stroke(Color.black)
-                
-                ForEach(self.pieces, id: \.self) { piece in
-                    Image(piece.imageName)
-                        .resizable()
-                        .frame(width: cellSide(bounds: geo.frame(in: .local)), height: cellSide(bounds: geo.frame(in: .local)))
-                        .position(piecePosition(bounds: geo.frame(in: .local), col: piece.col, row: piece.row))
+        VStack {
+            ZStack {
+                GeometryReader { geo in
+                    BoardGrid(bounds: geo.frame(in: .local))
+                    .stroke(Color.pink)
+                    
+                    ForEach(Array(self.game.pieces), id: \.self) { piece in
+                        Image(piece.imageName)
+                            .resizable()
+                            .frame(width: cellSide(bounds: geo.frame(in: .local)), height: cellSide(bounds: geo.frame(in: .local)))
+                            .position(piecePosition(bounds: geo.frame(in: .local), col: piece.col, row: piece.row))
+                            .gesture(DragGesture().onChanged({ value in
+                                self.movingPieceLocation = value.location
+                                if self.fromPoint == nil {
+                                    self.fromPoint = value.location
+                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
+                                    self.movingPiece = self.game.pieceAt(col: fromCol, row: fromRow)
+                                }
+                            }).onEnded({ value in
+                                let toPoint: CGPoint = value.location
+                                if let fromPoint = self.fromPoint {
+                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
+                                    let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
+                                    print("from: (\(fromCol), \(fromRow)) to: (\(toCol), \(toRow))")
+                                    self.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+                                }
+                                
+                                self.fromPoint = nil
+                                self.movingPiece = nil
+                            }))
+                    }
+                    
+                    if self.movingPiece != nil {
+                        Image(self.movingPiece!.imageName)
+                            .resizable()
+                            .frame(width: cellSide(bounds: geo.frame(in: .local)), height: cellSide(bounds: geo.frame(in: .local)))
+                            .position(self.movingPieceLocation)
+                    }
                 }
+            }
+            
+            Text("Red")
+            
+            Button(action: {
                 
-                Image("rb")
-                    .position(self.movingPieceLocation)
-                    .gesture(DragGesture().onChanged({ value in
-                        self.movingPieceLocation = value.location
-                        if self.fromPoint == nil {
-                            self.fromPoint = value.location
-                        }
-                    }).onEnded({ value in
-                        let toPoint: CGPoint = value.location
-                        if let fromPoint = self.fromPoint {
-                            let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
-                            let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
-                            print("from: (\(fromCol), \(fromRow)) to: (\(toCol), \(toRow))")
-                        }
-                        
-                        self.fromPoint = nil
-                    }))
+            }) {
+                Text("Reset")
             }
         }
+    }
+    
+    private func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+        game.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
     }
 }
 
