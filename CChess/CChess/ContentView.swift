@@ -21,6 +21,7 @@ struct BoardView: View {
     let pieces: [CChessPiece]
     
     @State private var movingPieceLocation = CGPoint(x: 200, y: 300)
+    @State private var fromPoint: CGPoint?
     
     var body: some View {
         ZStack {
@@ -39,10 +40,28 @@ struct BoardView: View {
                     .position(self.movingPieceLocation)
                     .gesture(DragGesture().onChanged({ value in
                         self.movingPieceLocation = value.location
+                        if self.fromPoint == nil {
+                            self.fromPoint = value.location
+                        }
+                    }).onEnded({ value in
+                        let toPoint: CGPoint = value.location
+                        if let fromPoint = self.fromPoint {
+                            let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
+                            let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
+                            print("from: (\(fromCol), \(fromRow)) to: (\(toCol), \(toRow))")
+                        }
+                        
+                        self.fromPoint = nil
                     }))
             }
         }
     }
+}
+
+private func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
+    let col: Int = Int((x - originX(bounds: bounds)) / cellSide(bounds: bounds) + 0.5)
+    let row: Int = Int((y - originY(bounds: bounds)) / cellSide(bounds: bounds) + 0.5)
+    return (col, row)
 }
 
 private func piecePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
