@@ -38,6 +38,7 @@ struct ContentView: View {
                                 if let movingPiece = self.movingPiece {
                                     let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
                                     self.movePiece(fromCol: movingPiece.col, fromRow: movingPiece.row, toCol: toCol, toRow: toRow)
+                                    self.game.playSound()
                                 }
                                 
                                 self.movingPiece = nil

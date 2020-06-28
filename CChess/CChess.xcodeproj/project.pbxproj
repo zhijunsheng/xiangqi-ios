@@ -17,6 +17,7 @@
 		07FA1E8D24A58F8F00B633F6 /* Pieces.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */; };
 		07FA1E8F24A5B76800B633F6 /* CChessPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */; };
 		07FA1E9124A5B7B300B633F6 /* CChessGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E9024A5B7B300B633F6 /* CChessGame.swift */; };
+		07FA1E9B24A9491F00B633F6 /* drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 07FA1E9A24A9491F00B633F6 /* drop.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pieces.xcassets; sourceTree = "<group>"; };
 		07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessPiece.swift; sourceTree = "<group>"; };
 		07FA1E9024A5B7B300B633F6 /* CChessGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessGame.swift; sourceTree = "<group>"; };
+		07FA1E9A24A9491F00B633F6 /* drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = drop.wav; path = ../../../../Downloads/drop.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				07C2585824A2B0BC009C4025 /* ContentView.swift */,
 				07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */,
 				07C2585A24A2B0BD009C4025 /* Assets.xcassets */,
+				07FA1E9A24A9491F00B633F6 /* drop.wav */,
 				07C2585F24A2B0BD009C4025 /* LaunchScreen.storyboard */,
 				07C2586224A2B0BD009C4025 /* Info.plist */,
 				07C2585C24A2B0BD009C4025 /* Preview Content */,
@@ -197,6 +200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07FA1E9B24A9491F00B633F6 /* drop.wav in Resources */,
 				07FA1E8D24A58F8F00B633F6 /* Pieces.xcassets in Resources */,
 				07C2586124A2B0BD009C4025 /* LaunchScreen.storyboard in Resources */,
 				07C2585E24A2B0BD009C4025 /* Preview Assets.xcassets in Resources */,

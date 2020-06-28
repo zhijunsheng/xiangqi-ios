@@ -8,16 +8,28 @@
 
 import Foundation
 import Combine
+import AVFoundation
 
 class CChessGame: ObservableObject {
     @Published var pieces: Set<CChessPiece> = []
     
+    var audioPlayer: AVAudioPlayer?
+    
     init() {
         reset()
+        
+        if let url = Bundle.main.url(forResource: "drop", withExtension: "wav") {
+            audioPlayer = try? AVAudioPlayer(contentsOf: url)
+        }
     }
     
     init(pieces: Set<CChessPiece> = []) {
         self.pieces = pieces
+    }
+    
+    func playSound() {
+        // TODO: come back to uncomment the following line
+//        audioPlayer?.play()
     }
     
     func reset() {
@@ -41,7 +53,7 @@ class CChessGame: ObservableObject {
         
         for i in 0..<5 {
             pieces.insert(CChessPiece(col: i * 2, row: 3, imageName: "bz"))
-            pieces.insert(CChessPiece(col: i * 2, row: 5, imageName: "rz"))
+            pieces.insert(CChessPiece(col: i * 2, row: 6, imageName: "rz"))
         }
         
         pieces.insert(CChessPiece(col: 4, row: 0, imageName: "bb"))
