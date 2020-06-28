@@ -12,7 +12,6 @@ struct ContentView: View {
     @ObservedObject var game = CChessGame()
     
     @State private var movingPieceLocation = CGPoint(x: 200, y: 300)
-    @State private var fromPoint: CGPoint?
     @State private var movingPiece: CChessPiece?
     
     var body: some View {
@@ -29,21 +28,17 @@ struct ContentView: View {
                             .position(piece == self.movingPiece ? self.movingPieceLocation : piecePosition(bounds: geo.frame(in: .local), col: piece.col, row: piece.row))
                             .gesture(DragGesture().onChanged({ value in
                                 self.movingPieceLocation = value.location
-                                if self.fromPoint == nil {
-                                    self.fromPoint = value.location
+                                if self.movingPiece == nil {
                                     let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
                                     self.movingPiece = self.game.pieceAt(col: fromCol, row: fromRow)
                                 }
                             }).onEnded({ value in
                                 let toPoint: CGPoint = value.location
-                                if let fromPoint = self.fromPoint {
-                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
+                                if let movingPiece = self.movingPiece {
                                     let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
-                                    print("from: (\(fromCol), \(fromRow)) to: (\(toCol), \(toRow))")
-                                    self.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+                                    self.movePiece(fromCol: movingPiece.col, fromRow: movingPiece.row, toCol: toCol, toRow: toRow)
                                 }
                                 
-                                self.fromPoint = nil
                                 self.movingPiece = nil
                             }))
                     }
