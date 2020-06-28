@@ -47,11 +47,13 @@ struct ContentView: View {
             }
             
             Text("Red")
+                .font(.largeTitle)
             
             Button(action: {
-                
+                self.game.reset()
             }) {
                 Text("Reset")
+                    .font(.largeTitle)
             }
         }
     }

@@ -13,6 +13,15 @@ class CChessGame: ObservableObject {
     @Published var pieces: Set<CChessPiece> = []
     
     init() {
+        reset()
+    }
+    
+    init(pieces: Set<CChessPiece> = []) {
+        self.pieces = pieces
+    }
+    
+    func reset() {
+        pieces.removeAll()
         for i in 0..<2 {
             pieces.insert(CChessPiece(col: 0 + i * 8, row: 0, imageName: "bj"))
             pieces.insert(CChessPiece(col: 0 + i * 8, row: 9, imageName: "rj"))
@@ -37,10 +46,6 @@ class CChessGame: ObservableObject {
         
         pieces.insert(CChessPiece(col: 4, row: 0, imageName: "bb"))
         pieces.insert(CChessPiece(col: 4, row: 9, imageName: "rb"))
-    }
-    
-    init(pieces: Set<CChessPiece> = []) {
-        self.pieces = pieces
     }
     
     func pieceAt(col: Int, row: Int) -> CChessPiece? {
