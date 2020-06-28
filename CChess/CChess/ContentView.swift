@@ -25,6 +25,7 @@ struct ContentView: View {
                         Image(piece.imageName)
                             .resizable()
                             .frame(width: cellSide(bounds: geo.frame(in: .local)), height: cellSide(bounds: geo.frame(in: .local)))
+                            .zIndex(piece == self.movingPiece ? 1 : 0)
                             .position(piece == self.movingPiece ? self.movingPieceLocation : piecePosition(bounds: geo.frame(in: .local), col: piece.col, row: piece.row))
                             .gesture(DragGesture().onChanged({ value in
                                 self.movingPieceLocation = value.location
