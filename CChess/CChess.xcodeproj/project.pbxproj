@@ -18,6 +18,7 @@
 		07FA1E8F24A5B76800B633F6 /* CChessPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */; };
 		07FA1E9124A5B7B300B633F6 /* CChessGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E9024A5B7B300B633F6 /* CChessGame.swift */; };
 		07FA1E9B24A9491F00B633F6 /* drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 07FA1E9A24A9491F00B633F6 /* drop.wav */; };
+		07FA1E9D24A9574400B633F6 /* NearbyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E9C24A9574400B633F6 /* NearbyService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessPiece.swift; sourceTree = "<group>"; };
 		07FA1E9024A5B7B300B633F6 /* CChessGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessGame.swift; sourceTree = "<group>"; };
 		07FA1E9A24A9491F00B633F6 /* drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = drop.wav; path = ../../../../Downloads/drop.wav; sourceTree = "<group>"; };
+		07FA1E9C24A9574400B633F6 /* NearbyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			children = (
 				07C2585424A2B0BC009C4025 /* AppDelegate.swift */,
 				07C2585624A2B0BC009C4025 /* SceneDelegate.swift */,
+				07FA1E9C24A9574400B633F6 /* NearbyService.swift */,
 				07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */,
 				07FA1E9024A5B7B300B633F6 /* CChessGame.swift */,
 				07C2585824A2B0BC009C4025 /* ContentView.swift */,
@@ -224,6 +227,7 @@
 			files = (
 				07C2585524A2B0BC009C4025 /* AppDelegate.swift in Sources */,
 				07C2585724A2B0BC009C4025 /* SceneDelegate.swift in Sources */,
+				07FA1E9D24A9574400B633F6 /* NearbyService.swift in Sources */,
 				07C2585924A2B0BC009C4025 /* ContentView.swift in Sources */,
 				07FA1E8F24A5B76800B633F6 /* CChessPiece.swift in Sources */,
 				07FA1E9124A5B7B300B633F6 /* CChessGame.swift in Sources */,
