@@ -26,7 +26,7 @@ struct ContentView: View {
                         Image(piece.imageName)
                             .resizable()
                             .frame(width: cellSide(bounds: geo.frame(in: .local)), height: cellSide(bounds: geo.frame(in: .local)))
-                            .position(piecePosition(bounds: geo.frame(in: .local), col: piece.col, row: piece.row))
+                            .position(piece == self.movingPiece ? self.movingPieceLocation : piecePosition(bounds: geo.frame(in: .local), col: piece.col, row: piece.row))
                             .gesture(DragGesture().onChanged({ value in
                                 self.movingPieceLocation = value.location
                                 if self.fromPoint == nil {
@@ -46,13 +46,6 @@ struct ContentView: View {
                                 self.fromPoint = nil
                                 self.movingPiece = nil
                             }))
-                    }
-                    
-                    if self.movingPiece != nil {
-                        Image(self.movingPiece!.imageName)
-                            .resizable()
-                            .frame(width: cellSide(bounds: geo.frame(in: .local)), height: cellSide(bounds: geo.frame(in: .local)))
-                            .position(self.movingPieceLocation)
                     }
                 }
             }
