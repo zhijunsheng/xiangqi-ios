@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
     let cols: Int = 9
     let rows: Int = 10
-    var blackAtTop = true
+    var blackAtTop = false
     
     @ObservedObject var game = CChessGame()
     
@@ -24,25 +24,25 @@ struct ContentView: View {
         VStack {
             ZStack {
                 GeometryReader { geo in
-                    BoardGrid(bounds: geo.frame(in: .local))
+                    BoardGrid(bounds: geo.frame(in: .local), cols: self.cols, rows: self.rows, origX: self.originX(bounds: geo.frame(in: .local)), origY: self.originY(bounds: geo.frame(in: .local)), cellWidth: self.cellSide(bounds: geo.frame(in: .local)), cellHeight: self.cellSide(bounds: geo.frame(in: .local)))
                     .stroke(Color.pink)
                     
                     ForEach(Array(self.game.pieces), id: \.self) { piece in
                         Image(piece.imageName)
                             .resizable()
-                            .frame(width: cellSide(bounds: geo.frame(in: .local)), height: cellSide(bounds: geo.frame(in: .local)))
+                            .frame(width: self.cellSide(bounds: geo.frame(in: .local)), height: self.cellSide(bounds: geo.frame(in: .local)))
                             .zIndex(piece == self.movingPiece ? 1 : 0)
                             .position(self.piecePosition(bounds: geo.frame(in: .local), piece: piece))
                             .gesture(DragGesture().onChanged({ value in
                                 self.movingPieceLocation = value.location
                                 if self.movingPiece == nil {
-                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
+                                    let (fromCol, fromRow) = self.xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
                                     self.movingPiece = self.game.pieceAt(col: fromCol, row: fromRow)
                                 }
                             }).onEnded({ value in
                                 let toPoint: CGPoint = value.location
                                 if let movingPiece = self.movingPiece {
-                                    let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
+                                    let (toCol, toRow) = self.xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
                                     self.movePiece(fromCol: movingPiece.col, fromRow: movingPiece.row, toCol: toCol, toRow: toRow)
                                     self.game.playSound()
                                 }
@@ -76,10 +76,28 @@ struct ContentView: View {
         if piece == movingPiece {
             return movingPieceLocation
         } else {
-            let x = originX(bounds: bounds) + CGFloat(piece.col) * cellSide(bounds: bounds)
-            let y = originY(bounds: bounds) + CGFloat(piece.row) * cellSide(bounds: bounds)
+            let x = originX(bounds: bounds) + CGFloat(p2pX(piece.col)) * cellSide(bounds: bounds)
+            let y = originY(bounds: bounds) + CGFloat(p2pY(piece.row)) * cellSide(bounds: bounds)
             return CGPoint(x: x, y: y)
         }
+    }
+    
+    private func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
+        let col: Int = Int((x - originX(bounds: bounds)) / cellSide(bounds: bounds) + 0.5)
+        let row: Int = Int((y - originY(bounds: bounds)) / cellSide(bounds: bounds) + 0.5)
+        return (p2pX(col), p2pY(row))
+    }
+
+    private func originX(bounds: CGRect) -> CGFloat {
+        return (bounds.size.width - CGFloat(cols - 1) * cellSide(bounds: bounds)) / 2
+    }
+
+    private func originY(bounds: CGRect) -> CGFloat {
+        return (bounds.size.height - CGFloat(rows - 1) * cellSide(bounds: bounds)) / 2
+    }
+
+    private func cellSide(bounds: CGRect) -> CGFloat {
+        return min(bounds.size.width, bounds.size.height) / CGFloat(rows)
     }
     
     func p2pX(_ col: Int) -> Int { // p2p: peer to peer
@@ -100,39 +118,17 @@ extension ContentView: NearbyServiceDelegate {
     }
 }
 
-private func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
-    let col: Int = Int((x - originX(bounds: bounds)) / cellSide(bounds: bounds) + 0.5)
-    let row: Int = Int((y - originY(bounds: bounds)) / cellSide(bounds: bounds) + 0.5)
-    return (col, row)
-}
-
-private func originX(bounds: CGRect) -> CGFloat {
-    let cols: Int = 9
-    return (bounds.size.width - CGFloat(cols - 1) * cellSide(bounds: bounds)) / 2
-}
-
-private func originY(bounds: CGRect) -> CGFloat {
-    let rows: Int = 10
-    return (bounds.size.height - CGFloat(rows - 1) * cellSide(bounds: bounds)) / 2
-}
-
-private func cellSide(bounds: CGRect) -> CGFloat {
-    let rows: Int = 10
-    return min(bounds.size.width, bounds.size.height) / CGFloat(rows)
-}
-
 struct BoardGrid: Shape {
     let bounds: CGRect
+    let cols: Int
+    let rows: Int
+    let origX: CGFloat
+    let origY: CGFloat
+    let cellWidth: CGFloat
+    let cellHeight: CGFloat
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        
-        let cols: Int = 9
-        let rows: Int = 10
-        let origX: CGFloat = originX(bounds: bounds)
-        let origY: CGFloat = originY(bounds: bounds)
-        let cellWidth: CGFloat = cellSide(bounds: bounds)
-        let cellHeight: CGFloat = cellSide(bounds: bounds)
 
         for row in 0..<rows {
             path.move(to: CGPoint(x: origX, y: origY + CGFloat(row) * cellHeight ))
