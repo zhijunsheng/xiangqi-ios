@@ -11,10 +11,10 @@ import SwiftUI
 struct ContentView: View {
     let cols: Int = 9
     let rows: Int = 10
-    var blackAtTop = false
     
     @ObservedObject var game = CChessGame()
     
+    @State private var blackAtTop = true
     @State private var movingPieceLocation = CGPoint(x: 200, y: 300)
     @State private var movingPiece: CChessPiece?
     
@@ -58,6 +58,7 @@ struct ContentView: View {
             
             Button(action: {
                 self.game.reset()
+                self.blackAtTop = true
             }) {
                 Text("Reset")
                     .font(.largeTitle)
@@ -110,6 +111,10 @@ struct ContentView: View {
 }
 
 extension ContentView: NearbyServiceDelegate {
+    func didSendInvitation() {
+        blackAtTop.toggle()
+    }
+    
     func didReceive(msg: String) { // fromCol:fromRow:toCol:toRow
         let moveSubstringArray = msg.components(separatedBy: ":")
         if let fromCol = Int(moveSubstringArray[0]), let fromRow = Int(moveSubstringArray[1]), let toCol = Int(moveSubstringArray[2]), let toRow = Int(moveSubstringArray[3]) {

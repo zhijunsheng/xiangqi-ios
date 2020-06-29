@@ -88,18 +88,29 @@ extension NearbyService: MCSessionDelegate {
     }
 }
 
-extension NearbyService: MCNearbyServiceAdvertiserDelegate {
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        invitationHandler(true, session)
-    }
-}
-
 extension NearbyService: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         browser.invitePeer(peerID, to: session, withContext: nil, timeout: 60)
+        print("\(self.peerID.displayName) found and invited \(peerID.displayName)")
+        self.nearbyServiceDelegate?.didSendInvitation()
+        
+        nearbyServiceAdvertiser.stopAdvertisingPeer()
+        nearbyServiceBrowser.stopBrowsingForPeers()
+        print("\(self.peerID.displayName) stopped advertising peer and browsing for peers")
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         print("lost peer: \(peerID.displayName)")
+    }
+}
+
+extension NearbyService: MCNearbyServiceAdvertiserDelegate {
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+        invitationHandler(true, session)
+        print("\(self.peerID.displayName) received invatation from \(peerID.displayName)")
+        
+        nearbyServiceAdvertiser.stopAdvertisingPeer()
+        nearbyServiceBrowser.stopBrowsingForPeers()
+        print("\(self.peerID.displayName) stopped advertising peer and browsing for peers")
     }
 }
