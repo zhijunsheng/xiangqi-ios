@@ -10,6 +10,7 @@ import Foundation
 import MultipeerConnectivity
 
 class NearbyService: NSObject {
+    var nearbyServiceDelegate: NearbyServiceDelegate?
     
     private var serviceType = "gt-nearby"
     
@@ -37,9 +38,20 @@ class NearbyService: NSObject {
         print("\(peerID.displayName) started browsing for peers...")
     }
     
+    convenience init(serviceType: String) {
+        self.init()
+        self.serviceType = serviceType
+    }
+    
     deinit {
         nearbyServiceAdvertiser.stopAdvertisingPeer()
         nearbyServiceBrowser.stopBrowsingForPeers()
+    }
+    
+    func send(msg: String) {
+        if let data = msg.data(using: .utf8), session.connectedPeers.count > 0 {
+            try? session.send(data, toPeers: session.connectedPeers, with: .reliable)
+        }
     }
 }
 
@@ -59,6 +71,11 @@ extension NearbyService: MCSessionDelegate {
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         print("did receive data: \(data)")
+        if let msg = String(data: data, encoding: .utf8) {
+            DispatchQueue.main.async {
+                self.nearbyServiceDelegate?.didReceive(msg: msg)
+            }
+        }
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

@@ -14,6 +14,8 @@ struct ContentView: View {
     @State private var movingPieceLocation = CGPoint(x: 200, y: 300)
     @State private var movingPiece: CChessPiece?
     
+    let nearbyService = NearbyService(serviceType: "gt-cchess")
+    
     var body: some View {
         VStack {
             ZStack {
@@ -56,11 +58,23 @@ struct ContentView: View {
                 Text("Reset")
                     .font(.largeTitle)
             }
+        }.onAppear {
+            self.nearbyService.nearbyServiceDelegate = self
         }
     }
     
     private func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         game.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        nearbyService.send(msg: "\(fromCol):\(fromRow):\(toCol):\(toRow)")
+    }
+}
+
+extension ContentView: NearbyServiceDelegate {
+    func didReceive(msg: String) { // fromCol:fromRow:toCol:toRow
+        let moveSubstringArray = msg.components(separatedBy: ":")
+        if let fromCol = Int(moveSubstringArray[0]), let fromRow = Int(moveSubstringArray[1]), let toCol = Int(moveSubstringArray[2]), let toRow = Int(moveSubstringArray[3]) {
+            game.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+        }
     }
 }
 
