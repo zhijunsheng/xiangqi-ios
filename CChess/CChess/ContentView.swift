@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    let cols: Int = 9
+    let rows: Int = 10
+    var blackAtTop = true
+    
     @ObservedObject var game = CChessGame()
     
     @State private var movingPieceLocation = CGPoint(x: 200, y: 300)
@@ -28,7 +32,7 @@ struct ContentView: View {
                             .resizable()
                             .frame(width: cellSide(bounds: geo.frame(in: .local)), height: cellSide(bounds: geo.frame(in: .local)))
                             .zIndex(piece == self.movingPiece ? 1 : 0)
-                            .position(piece == self.movingPiece ? self.movingPieceLocation : piecePosition(bounds: geo.frame(in: .local), col: piece.col, row: piece.row))
+                            .position(self.piecePosition(bounds: geo.frame(in: .local), piece: piece))
                             .gesture(DragGesture().onChanged({ value in
                                 self.movingPieceLocation = value.location
                                 if self.movingPiece == nil {
@@ -67,6 +71,24 @@ struct ContentView: View {
         game.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         nearbyService.send(msg: "\(fromCol):\(fromRow):\(toCol):\(toRow)")
     }
+    
+    private func piecePosition(bounds: CGRect, piece: CChessPiece) -> CGPoint {
+        if piece == movingPiece {
+            return movingPieceLocation
+        } else {
+            let x = originX(bounds: bounds) + CGFloat(piece.col) * cellSide(bounds: bounds)
+            let y = originY(bounds: bounds) + CGFloat(piece.row) * cellSide(bounds: bounds)
+            return CGPoint(x: x, y: y)
+        }
+    }
+    
+    func p2pX(_ col: Int) -> Int { // p2p: peer to peer
+        return blackAtTop ? col : cols - 1 - col
+    }
+    
+    func p2pY(_ row: Int) -> Int {
+        return blackAtTop ? row : rows - 1 - row
+    }
 }
 
 extension ContentView: NearbyServiceDelegate {
@@ -84,12 +106,6 @@ private func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
     return (col, row)
 }
 
-private func piecePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
-    let x = originX(bounds: bounds) + CGFloat(col) * cellSide(bounds: bounds)
-    let y = originY(bounds: bounds) + CGFloat(row) * cellSide(bounds: bounds)
-    return CGPoint(x: x, y: y)
-}
-
 private func originX(bounds: CGRect) -> CGFloat {
     let cols: Int = 9
     return (bounds.size.width - CGFloat(cols - 1) * cellSide(bounds: bounds)) / 2
@@ -102,7 +118,7 @@ private func originY(bounds: CGRect) -> CGFloat {
 
 private func cellSide(bounds: CGRect) -> CGFloat {
     let rows: Int = 10
-    return min(bounds.size.width, bounds.size.height) / CGFloat(rows + 1)
+    return min(bounds.size.width, bounds.size.height) / CGFloat(rows)
 }
 
 struct BoardGrid: Shape {
