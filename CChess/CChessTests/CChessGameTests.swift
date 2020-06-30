@@ -13,6 +13,7 @@ class CChessGameTests: XCTestCase {
 
     func testPrintingGameBoard() {
         let game = CChessGame()
+        game.reset()
         print(game)
     }
 
