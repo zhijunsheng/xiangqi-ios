@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0789494624AAC40B007EEFB2 /* CChessGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789494524AAC40B007EEFB2 /* CChessGameTests.swift */; };
+		0789494824AAC6B2007EEFB2 /* CChessRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789494724AAC6B2007EEFB2 /* CChessRank.swift */; };
 		07C2585524A2B0BC009C4025 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2585424A2B0BC009C4025 /* AppDelegate.swift */; };
 		07C2585724A2B0BC009C4025 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2585624A2B0BC009C4025 /* SceneDelegate.swift */; };
 		07C2585924A2B0BC009C4025 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2585824A2B0BC009C4025 /* ContentView.swift */; };
 		07C2585B24A2B0BD009C4025 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C2585A24A2B0BD009C4025 /* Assets.xcassets */; };
 		07C2585E24A2B0BD009C4025 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C2585D24A2B0BD009C4025 /* Preview Assets.xcassets */; };
 		07C2586124A2B0BD009C4025 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C2585F24A2B0BD009C4025 /* LaunchScreen.storyboard */; };
-		07C2586C24A2B0BD009C4025 /* CChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2586B24A2B0BD009C4025 /* CChessTests.swift */; };
 		07FA1E8D24A58F8F00B633F6 /* Pieces.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */; };
 		07FA1E8F24A5B76800B633F6 /* CChessPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */; };
 		07FA1E9124A5B7B300B633F6 /* CChessGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E9024A5B7B300B633F6 /* CChessGame.swift */; };
@@ -33,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0789494524AAC40B007EEFB2 /* CChessGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessGameTests.swift; sourceTree = "<group>"; };
+		0789494724AAC6B2007EEFB2 /* CChessRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessRank.swift; sourceTree = "<group>"; };
 		07C2585124A2B0BC009C4025 /* CChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C2585424A2B0BC009C4025 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07C2585624A2B0BC009C4025 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +45,6 @@
 		07C2586024A2B0BD009C4025 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07C2586224A2B0BD009C4025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07C2586724A2B0BD009C4025 /* CChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CChessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		07C2586B24A2B0BD009C4025 /* CChessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessTests.swift; sourceTree = "<group>"; };
 		07C2586D24A2B0BD009C4025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pieces.xcassets; sourceTree = "<group>"; };
 		07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessPiece.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				07FA1E9E24A973D200B633F6 /* NearbyServiceDelegate.swift */,
 				07FA1E9C24A9574400B633F6 /* NearbyService.swift */,
 				07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */,
+				0789494724AAC6B2007EEFB2 /* CChessRank.swift */,
 				07FA1E9024A5B7B300B633F6 /* CChessGame.swift */,
 				07C2585824A2B0BC009C4025 /* ContentView.swift */,
 				07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */,
@@ -119,8 +122,8 @@
 		07C2586A24A2B0BD009C4025 /* CChessTests */ = {
 			isa = PBXGroup;
 			children = (
-				07C2586B24A2B0BD009C4025 /* CChessTests.swift */,
 				07C2586D24A2B0BD009C4025 /* Info.plist */,
+				0789494524AAC40B007EEFB2 /* CChessGameTests.swift */,
 			);
 			path = CChessTests;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 					};
 					07C2586624A2B0BD009C4025 = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
 						TestTargetID = 07C2585024A2B0BC009C4025;
 					};
 				};
@@ -228,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0789494824AAC6B2007EEFB2 /* CChessRank.swift in Sources */,
 				07C2585524A2B0BC009C4025 /* AppDelegate.swift in Sources */,
 				07C2585724A2B0BC009C4025 /* SceneDelegate.swift in Sources */,
 				07FA1E9D24A9574400B633F6 /* NearbyService.swift in Sources */,
@@ -242,7 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07C2586C24A2B0BD009C4025 /* CChessTests.swift in Sources */,
+				0789494624AAC40B007EEFB2 /* CChessGameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +432,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = CChessTests/Info.plist;
@@ -438,6 +444,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldthumb.CChessTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CChess.app/CChess";
@@ -449,6 +456,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = CChessTests/Info.plist;

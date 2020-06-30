@@ -11,11 +11,12 @@ import Foundation
 struct CChessPiece: Hashable {
     let col: Int
     let row: Int
+    let rank: CChessRank
     let imageName: String
 }
 
 var testData: Set<CChessPiece> = [
-    CChessPiece(col: 0, row: 0, imageName: "bj"),
-    CChessPiece(col: 1, row: 0, imageName: "bm"),
-    CChessPiece(col: 2, row: 0, imageName: "bx"),
+    CChessPiece(col: 0, row: 0, rank: .rook, imageName: "bj"),
+    CChessPiece(col: 1, row: 0, rank: .knight, imageName: "bm"),
+    CChessPiece(col: 2, row: 0, rank: .bishop, imageName: "bx"),
 ]
