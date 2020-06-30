@@ -69,6 +69,9 @@ struct ContentView: View {
     }
     
     private func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+        guard game.canMovePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) else {
+            return
+        }
         game.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         nearbyService.send(msg: "\(fromCol):\(fromRow):\(toCol):\(toRow)")
     }

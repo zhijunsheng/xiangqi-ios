@@ -28,4 +28,18 @@ class CChessGameTests: XCTestCase {
         XCTAssertNotNil(game.pieceAt(col: 0, row: 1))
     }
 
+    func testCanMovePiece() {
+        let game = CChessGame()
+        XCTAssertFalse(game.canMovePiece(fromCol: 0, fromRow: 0, toCol: -2, toRow: 0))
+    }
+    
+    func testCaptureOwnPiece() {
+        let game = CChessGame()
+        XCTAssertFalse(game.canMovePiece(fromCol: 0, fromRow: 0, toCol: 0, toRow: 3))
+    }
+    
+    func testMovePieceFromEmpty() {
+        let game = CChessGame()
+        XCTAssertFalse(game.canMovePiece(fromCol: 0, fromRow: 1, toCol: 0, toRow: 3))
+    }
 }

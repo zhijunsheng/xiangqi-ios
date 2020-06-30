@@ -64,6 +64,22 @@ class CChessGame: ObservableObject {
         pieces.filter { $0.col == col && $0.row == row }.first
     }
     
+    func canMovePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        if toCol < 0 || toCol > 8 || toRow < 0 || toRow > 9 {
+            return false
+        }
+        
+        guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
+            return false
+        }
+        
+        if let targetPiece = pieceAt(col: toCol, row: toRow) {
+            return targetPiece.isRed != movingPiece.isRed
+        }
+        
+        return true
+    }
+    
     func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
             return
