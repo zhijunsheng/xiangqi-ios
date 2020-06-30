@@ -53,7 +53,7 @@ struct ContentView: View {
                 }
             }
             
-            Text("Red")
+            Text(game.redsTurn ? "Red" : "Black")
                 .font(.largeTitle)
             
             Button(action: {

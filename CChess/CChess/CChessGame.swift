@@ -12,8 +12,7 @@ import AVFoundation
 
 class CChessGame: ObservableObject {
     @Published var pieces: Set<CChessPiece> = []
-    
-    private var redsTurn = true
+    @Published var redsTurn = true
     private var audioPlayer: AVAudioPlayer?
     
     init() {
@@ -34,6 +33,7 @@ class CChessGame: ObservableObject {
     }
     
     func reset() {
+        redsTurn = true
         pieces.removeAll()
         for i in 0..<2 {
             pieces.insert(CChessPiece(col: 0 + i * 8, row: 0, isRed: false, rank: .rook, imageName: "bj"))
