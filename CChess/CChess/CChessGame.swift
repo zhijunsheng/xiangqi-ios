@@ -13,7 +13,8 @@ import AVFoundation
 class CChessGame: ObservableObject {
     @Published var pieces: Set<CChessPiece> = []
     
-    var audioPlayer: AVAudioPlayer?
+    private var redsTurn = true
+    private var audioPlayer: AVAudioPlayer?
     
     init() {
         reset()
@@ -73,6 +74,10 @@ class CChessGame: ObservableObject {
             return false
         }
         
+        if movingPiece.isRed != redsTurn {
+            return false
+        }
+        
         if let targetPiece = pieceAt(col: toCol, row: toRow) {
             return targetPiece.isRed != movingPiece.isRed
         }
@@ -91,6 +96,8 @@ class CChessGame: ObservableObject {
         }
         
         pieces.insert(CChessPiece(col: toCol, row: toRow, isRed: movingPiece.isRed, rank: movingPiece.rank, imageName: movingPiece.imageName))
+        
+        redsTurn.toggle()
     }
 }
 
