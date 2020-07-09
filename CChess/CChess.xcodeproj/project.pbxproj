@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0738A32924B7CD8E000A25D7 /* drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0738A32824B7CD8E000A25D7 /* drop.wav */; };
 		0789494624AAC40B007EEFB2 /* CChessGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789494524AAC40B007EEFB2 /* CChessGameTests.swift */; };
 		0789494824AAC6B2007EEFB2 /* CChessRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789494724AAC6B2007EEFB2 /* CChessRank.swift */; };
 		07C2585524A2B0BC009C4025 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2585424A2B0BC009C4025 /* AppDelegate.swift */; };
@@ -18,7 +19,6 @@
 		07FA1E8D24A58F8F00B633F6 /* Pieces.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */; };
 		07FA1E8F24A5B76800B633F6 /* CChessPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */; };
 		07FA1E9124A5B7B300B633F6 /* CChessGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E9024A5B7B300B633F6 /* CChessGame.swift */; };
-		07FA1E9B24A9491F00B633F6 /* drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 07FA1E9A24A9491F00B633F6 /* drop.wav */; };
 		07FA1E9D24A9574400B633F6 /* NearbyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E9C24A9574400B633F6 /* NearbyService.swift */; };
 		07FA1E9F24A973D200B633F6 /* NearbyServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA1E9E24A973D200B633F6 /* NearbyServiceDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0738A32824B7CD8E000A25D7 /* drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drop.wav; sourceTree = "<group>"; };
 		0789494524AAC40B007EEFB2 /* CChessGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessGameTests.swift; sourceTree = "<group>"; };
 		0789494724AAC6B2007EEFB2 /* CChessRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessRank.swift; sourceTree = "<group>"; };
 		07C2585124A2B0BC009C4025 /* CChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,7 +50,6 @@
 		07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pieces.xcassets; sourceTree = "<group>"; };
 		07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessPiece.swift; sourceTree = "<group>"; };
 		07FA1E9024A5B7B300B633F6 /* CChessGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessGame.swift; sourceTree = "<group>"; };
-		07FA1E9A24A9491F00B633F6 /* drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = drop.wav; path = ../../../../Downloads/drop.wav; sourceTree = "<group>"; };
 		07FA1E9C24A9574400B633F6 /* NearbyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyService.swift; sourceTree = "<group>"; };
 		07FA1E9E24A973D200B633F6 /* NearbyServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyServiceDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,7 +103,7 @@
 				07C2585824A2B0BC009C4025 /* ContentView.swift */,
 				07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */,
 				07C2585A24A2B0BD009C4025 /* Assets.xcassets */,
-				07FA1E9A24A9491F00B633F6 /* drop.wav */,
+				0738A32824B7CD8E000A25D7 /* drop.wav */,
 				07C2585F24A2B0BD009C4025 /* LaunchScreen.storyboard */,
 				07C2586224A2B0BD009C4025 /* Info.plist */,
 				07C2585C24A2B0BD009C4025 /* Preview Content */,
@@ -210,7 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07FA1E9B24A9491F00B633F6 /* drop.wav in Resources */,
+				0738A32924B7CD8E000A25D7 /* drop.wav in Resources */,
 				07FA1E8D24A58F8F00B633F6 /* Pieces.xcassets in Resources */,
 				07C2586124A2B0BD009C4025 /* LaunchScreen.storyboard in Resources */,
 				07C2585E24A2B0BD009C4025 /* Preview Assets.xcassets in Resources */,
