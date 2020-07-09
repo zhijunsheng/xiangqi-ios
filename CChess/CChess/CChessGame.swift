@@ -28,8 +28,7 @@ class CChessGame: ObservableObject {
     }
     
     func playSound() {
-        // TODO: come back to uncomment the following line
-//        audioPlayer?.play()
+        audioPlayer?.play()
     }
     
     func reset() {
