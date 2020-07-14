@@ -13,7 +13,7 @@ struct ContentView: View {
     let rows: Int = 10
     let nearbyService = NearbyService(serviceType: "gt-cchess")
     
-    @ObservedObject var game = CChessGame()
+    @ObservedObject var game = CChess()
     
     @State private var blackAtTop = true
     @State private var movingPieceLocation = CGPoint(x: 200, y: 300)
@@ -66,12 +66,15 @@ struct ContentView: View {
                 Text("Reset")
                     .font(.largeTitle)
             }
-        }.onAppear {
+        }
+        .onAppear {
             self.nearbyService.nearbyServiceDelegate = self
-        }.alert(isPresented: $showingDisconnectedAlert) {
+        }
+        .alert(isPresented: $showingDisconnectedAlert) {
             Alert(title: Text("\(peer) disconnected"), message: Text("It may be reconnected in a few seconds."), dismissButton: .default(Text("Got it.")))
-        }.alert(isPresented: $showingConnectedAlert) {
-            Alert(title: Text("\(peer) connected"), message: Text(/* firstMoveMade ? "" : */ "Whoever moves first becomes white player. For handicap, drag pieces out of board before making the first move."), dismissButton: .default(Text("Got it.")))
+        }
+        .alert(isPresented: $showingConnectedAlert) { /* firstMoveMade ? "" : */
+            Alert(title: Text("\(peer) connected"), message: Text("Whoever moves first becomes white player. For handicap, drag pieces out of board before making the first move."), dismissButton: .default(Text("Got it.")))
         }
     }
     
@@ -183,6 +186,6 @@ struct BoardGrid: Shape {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(game: CChessGame())
+        ContentView(game: CChess())
     }
 }

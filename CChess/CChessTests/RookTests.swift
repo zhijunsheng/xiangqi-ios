@@ -12,7 +12,7 @@ import XCTest
 class RookTests: XCTestCase {
 
     func testRookOnEmptyBoard() {
-        let game = CChessGame()
+        let game = CChess()
         game.pieces.removeAll()
         
         /*

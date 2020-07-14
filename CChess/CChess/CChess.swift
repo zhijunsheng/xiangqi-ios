@@ -10,7 +10,7 @@ import Foundation
 import Combine
 import AVFoundation
 
-class CChessGame: ObservableObject {
+class CChess: ObservableObject {
     @Published var pieces: Set<CChessPiece> = []
     @Published var redsTurn = true
     private var audioPlayer: AVAudioPlayer?
@@ -100,7 +100,7 @@ class CChessGame: ObservableObject {
     }
 }
 
-extension CChessGame: CustomStringConvertible {
+extension CChess: CustomStringConvertible {
     var description: String {
         var desc = ""
         

@@ -12,13 +12,13 @@ import XCTest
 class CChessGameTests: XCTestCase {
 
     func testGameBoard() {
-        let game = CChessGame()
+        let game = CChess()
         XCTAssertNotNil(game.pieceAt(col: 0, row: 0))
         XCTAssertNil(game.pieceAt(col: 0, row: 1))
     }
     
     func testMovePiece() {
-        let game = CChessGame()
+        let game = CChess()
         XCTAssertNotNil(game.pieceAt(col: 0, row: 0))
         XCTAssertNil(game.pieceAt(col: 0, row: 1))
         
@@ -29,17 +29,17 @@ class CChessGameTests: XCTestCase {
     }
 
     func testCanMovePiece() {
-        let game = CChessGame()
+        let game = CChess()
         XCTAssertFalse(game.canMovePiece(fromCol: 0, fromRow: 0, toCol: -2, toRow: 0))
     }
     
     func testCaptureOwnPiece() {
-        let game = CChessGame()
+        let game = CChess()
         XCTAssertFalse(game.canMovePiece(fromCol: 0, fromRow: 0, toCol: 0, toRow: 3))
     }
     
     func testMovePieceFromEmpty() {
-        let game = CChessGame()
+        let game = CChess()
         XCTAssertFalse(game.canMovePiece(fromCol: 0, fromRow: 1, toCol: 0, toRow: 3))
     }
 }
