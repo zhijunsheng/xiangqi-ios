@@ -57,8 +57,8 @@ class BoardView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let first = touches.first!
         let fingerLocation = first.location(in: self)
-        fromCol = p2p(Int((fingerLocation.x - originX) / cellSide + 0.5))
-        fromRow = p2p(Int((fingerLocation.y - originY) / cellSide + 0.5))
+        fromCol = p2pX(Int((fingerLocation.x - originX) / cellSide + 0.5))
+        fromRow = p2pY(Int((fingerLocation.y - originY) / cellSide + 0.5))
         
         if let fromCol = fromCol, let fromRow = fromRow, let movingPiece = cchessDelegate?.pieceAt(col: fromCol, row: fromRow) {
             movingImage = image(named: movingPiece.imageName)
@@ -77,8 +77,8 @@ class BoardView: UIView {
         let first = touches.first!
         let fingerLocation = first.location(in: self)
         
-        let toCol: Int = p2p(Int((fingerLocation.x - originX) / cellSide + 0.5))
-        let toRow: Int = p2p(Int((fingerLocation.y - originY) / cellSide + 0.5))
+        let toCol: Int = p2pX(Int((fingerLocation.x - originX) / cellSide + 0.5))
+        let toRow: Int = p2pY(Int((fingerLocation.y - originY) / cellSide + 0.5))
         
         if let fromCol = fromCol, let fromRow = fromRow, fromCol != toCol || fromRow != toRow {
             cchessDelegate?.play(with: Move(fC: fromCol, fR: fromRow, tC: toCol, tR: toRow))
@@ -102,9 +102,28 @@ class BoardView: UIView {
 //        }
 //    }
     
+    func animate(move: Move, _ completion: @escaping (UIViewAnimatingPosition) -> Void) {
+        guard let cchess = cchessDelegate, let piece = cchess.pieceAt(col: move.fC, row: move.fR) else {
+            return
+        }
+        let pieceImageView = UIImageView(image: image(named: piece.imageName))
+        addSubview(pieceImageView)
+        let normalBeginningFrame = CGRect(x: originX + CGFloat(p2pX(piece.col)) * cellSide, y: originY + CGFloat(p2pY(piece.row)) * cellSide, width: cellSide, height: cellSide)
+        pieceImageView.frame = imageRect(normalRect: normalBeginningFrame, ratio: pieceRatio)
+        let moveAnimator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut) {
+            let normalEnddingFrame = CGRect(x: self.originX + CGFloat(self.p2pX(move.tC)) * self.cellSide, y: self.originY + CGFloat(self.p2pY(move.tR)) * self.cellSide, width: self.cellSide, height: self.cellSide)
+            pieceImageView.frame = self.imageRect(normalRect: normalEnddingFrame, ratio: self.movingPieceRatio)
+        }
+        moveAnimator.addCompletion { animPos in
+            pieceImageView.removeFromSuperview()
+            completion(animPos)
+        }
+        moveAnimator.startAnimation()
+    }
+    
     private func drawPieces() {
         for piece in shadowPieces where fromCol != piece.col || fromRow != piece.row {
-            let normalRect = CGRect(x: originX + CGFloat(p2p(piece.col)) * cellSide - cellSide/2, y: originY + CGFloat(p2p(piece.row)) * cellSide - cellSide/2, width: cellSide, height: cellSide)
+            let normalRect = CGRect(x: originX + CGFloat(p2pX(piece.col)) * cellSide - cellSide/2, y: originY + CGFloat(p2pY(piece.row)) * cellSide - cellSide/2, width: cellSide, height: cellSide)
             let imgRect = imageRect(normalRect: normalRect, ratio: pieceRatio)
             image(named: piece.imageName)?.draw(in: imgRect)
         }
@@ -130,9 +149,9 @@ class BoardView: UIView {
         return CGRect(x: center.x - w/2, y: center.y - h/2, width: w, height: h)
     }
     
-    private func p2p(_ coordinate: Int) -> Int { // p2p: peer 2 peer
-        return blackAtTop ? coordinate : 7 - coordinate
-    }
+//    private func p2p(_ coordinate: Int) -> Int { // p2p: peer 2 peer
+//        return blackAtTop ? coordinate : 7 - coordinate
+//    }
     
     private func image(named name: String) -> UIImage? {
         if let stored = imageByName[name] {
@@ -218,11 +237,11 @@ class BoardView: UIView {
 //        return min(bounds.size.width, bounds.size.height) / CGFloat(rows)
 //    }
     
-//    func p2pX(_ col: Int) -> Int { // p2p: peer to peer
-//        return blackAtTop ? col : cols - 1 - col
-//    }
-//
-//    func p2pY(_ row: Int) -> Int {
-//        return blackAtTop ? row : rows - 1 - row
-//    }
+    func p2pX(_ col: Int) -> Int { // p2p: peer to peer
+        return blackAtTop ? col : cols - 1 - col
+    }
+
+    func p2pY(_ row: Int) -> Int {
+        return blackAtTop ? row : rows - 1 - row
+    }
 }

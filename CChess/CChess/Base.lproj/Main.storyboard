@@ -128,11 +128,11 @@
                     <connections>
                         <outlet property="boardView" destination="HxX-IT-ycb" id="KrX-Ta-jsN"/>
                         <outlet property="lowerPlayerColorView" destination="uXf-DL-nXP" id="cmV-a1-B1s"/>
-                        <outlet property="lowerPlayerLabel" destination="bGW-bR-bnc" id="pXm-GZ-bon"/>
-                        <outlet property="lowerPlayerView" destination="ymO-Q2-xbf" id="vXE-Q4-8WM"/>
+                        <outlet property="peerHomeView" destination="Nwg-Eh-bRC" id="Kb7-6n-eMO"/>
+                        <outlet property="peerLabel" destination="Leo-Mj-4vI" id="chn-5c-NnS"/>
                         <outlet property="upperPlayerColorView" destination="eBf-kE-DPv" id="rbo-iP-wyT"/>
-                        <outlet property="upperPlayerLabel" destination="Leo-Mj-4vI" id="chn-5c-NnS"/>
-                        <outlet property="upperPlayerView" destination="Nwg-Eh-bRC" id="Kb7-6n-eMO"/>
+                        <outlet property="youHomeView" destination="ymO-Q2-xbf" id="vXE-Q4-8WM"/>
+                        <outlet property="youLabel" destination="bGW-bR-bnc" id="pXm-GZ-bon"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

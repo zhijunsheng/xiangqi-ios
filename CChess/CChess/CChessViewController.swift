@@ -17,12 +17,12 @@ class CChessViewController: UIViewController {
     var cchess = CChess()
     
     @IBOutlet weak var boardView: BoardView!
-    @IBOutlet weak var upperPlayerView: UIView!
-    @IBOutlet weak var upperPlayerLabel: UILabel!
+    @IBOutlet weak var peerHomeView: UIView!
+    @IBOutlet weak var peerLabel: UILabel!
     @IBOutlet weak var upperPlayerColorView: UIView!
     
-    @IBOutlet weak var lowerPlayerView: UIView!
-    @IBOutlet weak var lowerPlayerLabel: UILabel!
+    @IBOutlet weak var youHomeView: UIView!
+    @IBOutlet weak var youLabel: UILabel!
     @IBOutlet weak var lowerPlayerColorView: UIView!
     
     var audioPlayer: AVAudioPlayer!
@@ -67,7 +67,7 @@ class CChessViewController: UIViewController {
         boardView.sharingDevice = false
         isRedDevice = true
         upperPlayerColorView.backgroundColor = .black
-        lowerPlayerColorView.backgroundColor = .white
+        lowerPlayerColorView.backgroundColor = .red
         firstMoveMade = false
         updateWhoseTurnColorsLocally(redTurn: cchess.redTurn)
         boardView.isUserInteractionEnabled = true
@@ -78,11 +78,11 @@ class CChessViewController: UIViewController {
         var whoseTurnView: UIView
         var waiterView: UIView
         if isRedDevice {
-            whoseTurnView = redTurn ? lowerPlayerView : upperPlayerView
-            waiterView = redTurn ? upperPlayerView : lowerPlayerView
+            whoseTurnView = redTurn ? youHomeView : peerHomeView
+            waiterView = redTurn ? peerHomeView : youHomeView
         } else {
-            whoseTurnView = redTurn ? upperPlayerView : lowerPlayerView
-            waiterView = redTurn ? lowerPlayerView : upperPlayerView
+            whoseTurnView = redTurn ? peerHomeView : youHomeView
+            waiterView = redTurn ? youHomeView : peerHomeView
         }
         
         UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut) { // iOS 10
@@ -140,16 +140,57 @@ class CChessViewController: UIViewController {
 }
 
 extension CChessViewController: NearbyServiceDelegate {
-    func didReceive(msg: String) {
+    func disconnectedFrom(peer: String) {
+        isolated = true
+        boardView.isUserInteractionEnabled = false
+        peerLabel.text = peer
         
+        let info = "It may be reconnected in a few seconds."
+        let alertController = UIAlertController(title: "\(peer) disconnected.", message: "\(info)", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Got it.", style: .default))
+        
+        avoidAlertCrashOnPad(alertController: alertController)
+        present(alertController, animated: true, completion: nil)
     }
     
     func connectedWith(peer: String) {
+        isolated = false
+        boardView.isUserInteractionEnabled = true
+        peerLabel.text = peer
         
+        let info = firstMoveMade ? "" : "Whoever moves first becomes red player. For handicap, drag pieces out of board before making the first move."
+        let alertController = UIAlertController(title: "\(peer) connected.", message: "\(info)", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Got it.", style: .default))
+        
+        avoidAlertCrashOnPad(alertController: alertController)
+        present(alertController, animated: true, completion: nil)
     }
     
-    func disconnectedFrom(peer: String) {
-        
+    func didReceive(msg: String) {
+        DispatchQueue.main.async {
+            if msg == "withdraw" {
+                self.updateWithdrawLocally()
+            } else {
+                let moveArr = msg.components(separatedBy: ":")
+                if let fromCol = Int(moveArr[0]), let fromRow = Int(moveArr[1]), let toCol = Int(moveArr[2]), let toRow = Int(moveArr[3]) {
+                    let move = Move(fC: fromCol, fR: fromRow, tC: toCol, tR: toRow)
+                    if !self.firstMoveMade && !self.cchess.isHandicap(move: move) {
+                        self.firstMoveMade = true
+                        self.boardView.blackAtTop = false
+                        self.isRedDevice = false
+                        self.upperPlayerColorView.backgroundColor = .white
+                        self.lowerPlayerColorView.backgroundColor = .black
+                        self.peerHomeView.backgroundColor = self.whoseTurnColor
+                        self.youHomeView.backgroundColor = self.waitingColor
+                        self.boardView.setNeedsDisplay()
+                    }
+                    
+                    self.boardView.animate(move: move) { _ in
+                        self.updateMoveLocally(move: move)
+                    }
+                }
+            }
+        }
     }
 }
 
