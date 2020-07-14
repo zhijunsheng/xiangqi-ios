@@ -104,7 +104,7 @@ extension CChessGame: CustomStringConvertible {
     var description: String {
         var desc = ""
         
-        desc += "  0 1 2 3 4 5 6 7 8\n"
+        desc += "+ 0 1 2 3 4 5 6 7 8\n"
         for row in 0..<10 {
             desc += "\(row)"
             for col in 0..<9 {

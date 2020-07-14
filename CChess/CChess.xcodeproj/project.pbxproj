@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0738A32924B7CD8E000A25D7 /* drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0738A32824B7CD8E000A25D7 /* drop.wav */; };
+		0738A32B24B7DCEA000A25D7 /* RookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0738A32A24B7DCEA000A25D7 /* RookTests.swift */; };
+		0738A32D24B7DEFA000A25D7 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0738A32C24B7DEFA000A25D7 /* Move.swift */; };
 		0789494624AAC40B007EEFB2 /* CChessGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789494524AAC40B007EEFB2 /* CChessGameTests.swift */; };
 		0789494824AAC6B2007EEFB2 /* CChessRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789494724AAC6B2007EEFB2 /* CChessRank.swift */; };
 		07C2585524A2B0BC009C4025 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2585424A2B0BC009C4025 /* AppDelegate.swift */; };
@@ -35,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		0738A32824B7CD8E000A25D7 /* drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drop.wav; sourceTree = "<group>"; };
+		0738A32A24B7DCEA000A25D7 /* RookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RookTests.swift; sourceTree = "<group>"; };
+		0738A32C24B7DEFA000A25D7 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
 		0789494524AAC40B007EEFB2 /* CChessGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessGameTests.swift; sourceTree = "<group>"; };
 		0789494724AAC6B2007EEFB2 /* CChessRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessRank.swift; sourceTree = "<group>"; };
 		07C2585124A2B0BC009C4025 /* CChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,13 +97,14 @@
 		07C2585324A2B0BC009C4025 /* CChess */ = {
 			isa = PBXGroup;
 			children = (
-				07C2585424A2B0BC009C4025 /* AppDelegate.swift */,
-				07C2585624A2B0BC009C4025 /* SceneDelegate.swift */,
 				07FA1E9E24A973D200B633F6 /* NearbyServiceDelegate.swift */,
 				07FA1E9C24A9574400B633F6 /* NearbyService.swift */,
-				07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */,
 				0789494724AAC6B2007EEFB2 /* CChessRank.swift */,
+				0738A32C24B7DEFA000A25D7 /* Move.swift */,
+				07FA1E8E24A5B76800B633F6 /* CChessPiece.swift */,
 				07FA1E9024A5B7B300B633F6 /* CChessGame.swift */,
+				07C2585424A2B0BC009C4025 /* AppDelegate.swift */,
+				07C2585624A2B0BC009C4025 /* SceneDelegate.swift */,
 				07C2585824A2B0BC009C4025 /* ContentView.swift */,
 				07FA1E8C24A58F8E00B633F6 /* Pieces.xcassets */,
 				07C2585A24A2B0BD009C4025 /* Assets.xcassets */,
@@ -124,6 +129,7 @@
 			children = (
 				07C2586D24A2B0BD009C4025 /* Info.plist */,
 				0789494524AAC40B007EEFB2 /* CChessGameTests.swift */,
+				0738A32A24B7DCEA000A25D7 /* RookTests.swift */,
 			);
 			path = CChessTests;
 			sourceTree = "<group>";
@@ -233,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0789494824AAC6B2007EEFB2 /* CChessRank.swift in Sources */,
+				0738A32D24B7DEFA000A25D7 /* Move.swift in Sources */,
 				07C2585524A2B0BC009C4025 /* AppDelegate.swift in Sources */,
 				07C2585724A2B0BC009C4025 /* SceneDelegate.swift in Sources */,
 				07FA1E9D24A9574400B633F6 /* NearbyService.swift in Sources */,
@@ -247,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0738A32B24B7DCEA000A25D7 /* RookTests.swift in Sources */,
 				0789494624AAC40B007EEFB2 /* CChessGameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
