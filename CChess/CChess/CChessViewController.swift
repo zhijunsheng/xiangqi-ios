@@ -28,7 +28,7 @@ class CChessViewController: UIViewController {
     var audioPlayer: AVAudioPlayer!
     
     private var isolated = true
-    private var isWhiteDevice = true
+    private var isRedDevice = true
     private var firstMoveMade = false
     
     override func viewDidLoad() {
@@ -49,18 +49,93 @@ class CChessViewController: UIViewController {
     @IBAction func flipPieceImages(_ sender: UIBarButtonItem) {
     }
     
+    /*
+     Don't move this function to model since a button could also trigger withdrawing.
+     */
+    private func isWithdrawing(move: Move) -> Bool {
+        guard let lastMovedPiece = cchess.lastMovedPiece, let movingPiece = pieceAt(col: move.fC, row: move.fR) else {
+            return false
+        }
+        
+        return movingPiece == lastMovedPiece && cchess.redTurn != movingPiece.isRed && pieceAt(col: move.tC, row: move.tR) == nil
+    }
+    
     private func resetLocally() {
         cchess.initializeGame()
         boardView.shadowPieces = cchess.pieces
         boardView.blackAtTop = true
         boardView.sharingDevice = false
-        isWhiteDevice = true
+        isRedDevice = true
         upperPlayerColorView.backgroundColor = .black
         lowerPlayerColorView.backgroundColor = .white
         firstMoveMade = false
-//        updateWhoseTurnColorsLocally(whiteTurn: cchess.redTurn)
+        updateWhoseTurnColorsLocally(redTurn: cchess.redTurn)
         boardView.isUserInteractionEnabled = true
         boardView.setNeedsDisplay()
+    }
+    
+    private func updateWhoseTurnColorsLocally(redTurn: Bool) {
+        var whoseTurnView: UIView
+        var waiterView: UIView
+        if isRedDevice {
+            whoseTurnView = redTurn ? lowerPlayerView : upperPlayerView
+            waiterView = redTurn ? upperPlayerView : lowerPlayerView
+        } else {
+            whoseTurnView = redTurn ? upperPlayerView : lowerPlayerView
+            waiterView = redTurn ? lowerPlayerView : upperPlayerView
+        }
+        
+        UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut) { // iOS 10
+            whoseTurnView.backgroundColor = self.whoseTurnColor
+            waiterView.backgroundColor = self.waitingColor
+        }.startAnimation()
+    }
+    
+    private func updateMoveLocally(move: Move) {
+        guard cchess.isHandicap(move: move) || cchess.isValid(move: move, isRed: cchess.redTurn) else {
+            return
+        }
+        
+        cchess.movePiece(move: move)
+        boardView.shadowPieces = cchess.pieces
+        boardView.setNeedsDisplay()
+        
+        if !cchess.isHandicap(move: move) {
+            updateWhoseTurnColorsLocally(redTurn: cchess.redTurn)
+        }
+        
+        audioPlayer.play()
+    }
+    
+    private func sendMoveToPeers(move: Move, targetRank: Character? = nil) {
+        var promotionPostfix = ""
+        if let targetRank = targetRank {
+            promotionPostfix = ":\(targetRank)"
+        }
+        let msg = "\(move.fC):\(move.fR):\(move.tC):\(move.tR)\(promotionPostfix)"
+        nearbyService.send(msg: msg)
+        if !cchess.isHandicap(move: move) {
+            firstMoveMade = true
+        }
+    }
+    
+    func updateWithdrawLocally() {
+        cchess.withdraw()
+        boardView.shadowPieces = cchess.pieces
+        updateWhoseTurnColorsLocally(redTurn: cchess.redTurn)
+        boardView.setNeedsDisplay()
+    }
+    
+    func sendWithdrawToPeers() {
+        nearbyService.send(msg: "withdraw")
+    }
+    
+    private func avoidAlertCrashOnPad(alertController: UIAlertController) {
+        if let popoverPresentationController = alertController.popoverPresentationController {
+            popoverPresentationController.permittedArrowDirections = .init(rawValue: 0)
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+        }
     }
 }
 
@@ -80,7 +155,28 @@ extension CChessViewController: NearbyServiceDelegate {
 
 extension CChessViewController: CChessDelegate {
     func play(with move: Move) {
+        guard let movingPiece = cchess.pieceAt(col: move.fC, row: move.fR),
+              cchess.isHandicap(move: move) ||
+                isWithdrawing(move: move) ||
+                movingPiece.isRed == cchess.redTurn else {
+            return
+        }
         
+        if isolated {
+            if isWithdrawing(move: move) {
+                updateWithdrawLocally()
+            } else {
+                updateMoveLocally(move: move)
+            }
+        } else {
+            if isWithdrawing(move: move) {
+                updateWithdrawLocally()
+                sendWithdrawToPeers()
+            } else if isRedDevice == cchess.redTurn {
+                updateMoveLocally(move: move)
+                sendMoveToPeers(move: move)
+            }
+        }
     }
     
     func pieceAt(col: Int, row: Int) -> CChessPiece? {
