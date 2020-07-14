@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentView: View {
     let cols: Int = 9
     let rows: Int = 10
+    let nearbyService = NearbyService(serviceType: "gt-cchess")
     
     @ObservedObject var game = CChessGame()
     
@@ -18,7 +19,9 @@ struct ContentView: View {
     @State private var movingPieceLocation = CGPoint(x: 200, y: 300)
     @State private var movingPiece: CChessPiece?
     
-    let nearbyService = NearbyService(serviceType: "gt-cchess")
+    @State private var showingConnectedAlert = false
+    @State private var showingDisconnectedAlert = false
+    @State private var peer = "Peer"
     
     var body: some View {
         VStack {
@@ -65,6 +68,10 @@ struct ContentView: View {
             }
         }.onAppear {
             self.nearbyService.nearbyServiceDelegate = self
+        }.alert(isPresented: $showingDisconnectedAlert) {
+            Alert(title: Text("\(peer) disconnected"), message: Text("It may be reconnected in a few seconds."), dismissButton: .default(Text("Got it.")))
+        }.alert(isPresented: $showingConnectedAlert) {
+            Alert(title: Text("\(peer) connected"), message: Text(/* firstMoveMade ? "" : */ "Whoever moves first becomes white player. For handicap, drag pieces out of board before making the first move."), dismissButton: .default(Text("Got it.")))
         }
     }
     
@@ -115,11 +122,13 @@ struct ContentView: View {
 
 extension ContentView: NearbyServiceDelegate {
     func connectedWith(peer: String) {
-        
+        self.peer = peer
+        showingConnectedAlert = true
     }
     
     func disconnectedFrom(peer: String) {
-        
+        self.peer = peer
+        showingDisconnectedAlert = true
     }
     
     func didSendInvitation() {
