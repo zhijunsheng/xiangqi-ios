@@ -33,12 +33,48 @@
                                             <constraint firstAttribute="width" secondItem="HxX-IT-ycb" secondAttribute="height" multiplier="1:1" id="KgE-tl-TUy"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBf-kE-DPv">
+                                        <rect key="frame" x="0.0" y="169.5" width="414" height="8"/>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="8" id="83w-vR-qEF"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXf-DL-nXP">
+                                        <rect key="frame" x="0.0" y="591.5" width="414" height="8"/>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="8" id="4Pj-Yr-nr8"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nwg-Eh-bRC">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="169.5"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ymO-Q2-xbf">
+                                        <rect key="frame" x="0.0" y="599.5" width="414" height="169.5"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <constraints>
+                                    <constraint firstItem="ymO-Q2-xbf" firstAttribute="top" secondItem="uXf-DL-nXP" secondAttribute="bottom" id="2cZ-J5-7Og"/>
                                     <constraint firstAttribute="trailing" secondItem="HxX-IT-ycb" secondAttribute="trailing" id="6bW-3G-CBu"/>
+                                    <constraint firstItem="HxX-IT-ycb" firstAttribute="top" secondItem="eBf-kE-DPv" secondAttribute="bottom" id="8G0-Rf-HL6"/>
+                                    <constraint firstAttribute="trailing" secondItem="eBf-kE-DPv" secondAttribute="trailing" id="Fye-gs-oPV"/>
+                                    <constraint firstItem="Nwg-Eh-bRC" firstAttribute="top" secondItem="LFS-hh-Uqn" secondAttribute="top" id="H5x-2Y-SKb"/>
+                                    <constraint firstItem="eBf-kE-DPv" firstAttribute="top" secondItem="Nwg-Eh-bRC" secondAttribute="bottom" id="Lqx-Io-UKF"/>
                                     <constraint firstItem="HxX-IT-ycb" firstAttribute="centerY" secondItem="LFS-hh-Uqn" secondAttribute="centerY" id="MWJ-0X-srk"/>
+                                    <constraint firstItem="ymO-Q2-xbf" firstAttribute="leading" secondItem="LFS-hh-Uqn" secondAttribute="leading" id="Ome-0s-P6q"/>
+                                    <constraint firstItem="eBf-kE-DPv" firstAttribute="leading" secondItem="LFS-hh-Uqn" secondAttribute="leading" id="Q6J-BP-GNj"/>
+                                    <constraint firstAttribute="trailing" secondItem="ymO-Q2-xbf" secondAttribute="trailing" id="TX1-Qe-2JJ"/>
                                     <constraint firstItem="HxX-IT-ycb" firstAttribute="leading" secondItem="LFS-hh-Uqn" secondAttribute="leading" id="TXR-2H-q8i"/>
+                                    <constraint firstItem="uXf-DL-nXP" firstAttribute="top" secondItem="HxX-IT-ycb" secondAttribute="bottom" id="XR3-TS-1Eq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Nwg-Eh-bRC" secondAttribute="trailing" id="Zm8-20-n6m"/>
+                                    <constraint firstItem="uXf-DL-nXP" firstAttribute="leading" secondItem="LFS-hh-Uqn" secondAttribute="leading" id="gEa-fh-zuP"/>
+                                    <constraint firstAttribute="bottom" secondItem="ymO-Q2-xbf" secondAttribute="bottom" id="gfi-bf-tJ8"/>
+                                    <constraint firstAttribute="trailing" secondItem="uXf-DL-nXP" secondAttribute="trailing" id="jge-9a-V1S"/>
+                                    <constraint firstItem="Nwg-Eh-bRC" firstAttribute="leading" secondItem="LFS-hh-Uqn" secondAttribute="leading" id="whV-Gp-jNh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -57,15 +93,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="97" y="139"/>
+            <point key="canvasLocation" x="95.652173913043484" y="138.61607142857142"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
