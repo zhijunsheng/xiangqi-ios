@@ -39,10 +39,10 @@ class BoardView: UIView {
 
     override func draw(_ rect: CGRect) {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            pieceRatio = 1.0
+            pieceRatio = 1.2
             movingPieceRatio = 1.4
         } else {
-            pieceRatio = 0.9
+            pieceRatio = 1.1
             movingPieceRatio = 1.2
         }
         
