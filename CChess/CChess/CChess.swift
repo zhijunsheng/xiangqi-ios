@@ -12,7 +12,7 @@ struct CChess {
     var pieces: Set<CChessPiece> = []
     var redsTurn = true
     
-    mutating func reset() {
+    mutating func initializeGame() {
         redsTurn = true
         pieces.removeAll()
         for i in 0..<2 {

@@ -57,8 +57,8 @@ class BoardView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let first = touches.first!
         let fingerLocation = first.location(in: self)
-        fromCol = p2p(Int((fingerLocation.x - originX) / cellSide))
-        fromRow = p2p(Int((fingerLocation.y - originY) / cellSide))
+        fromCol = p2p(Int((fingerLocation.x - originX) / cellSide + 0.5))
+        fromRow = p2p(Int((fingerLocation.y - originY) / cellSide + 0.5))
         
         if let fromCol = fromCol, let fromRow = fromRow, let movingPiece = cchessDelegate?.pieceAt(col: fromCol, row: fromRow) {
             movingImage = image(named: movingPiece.imageName)
@@ -77,8 +77,8 @@ class BoardView: UIView {
         let first = touches.first!
         let fingerLocation = first.location(in: self)
         
-        let toCol: Int = p2p(Int((fingerLocation.x - originX) / cellSide))
-        let toRow: Int = p2p(Int((fingerLocation.y - originY) / cellSide))
+        let toCol: Int = p2p(Int((fingerLocation.x - originX) / cellSide + 0.5))
+        let toRow: Int = p2p(Int((fingerLocation.y - originY) / cellSide + 0.5))
         
         if let fromCol = fromCol, let fromRow = fromRow, fromCol != toCol || fromRow != toRow {
             cchessDelegate?.play(with: Move(fC: fromCol, fR: fromRow, tC: toCol, tR: toRow))
@@ -200,29 +200,29 @@ class BoardView: UIView {
 //        }
 //    }
     
-    private func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
-        let col: Int = Int((x - originX(bounds: bounds)) / cellSide(bounds: bounds) + 0.5)
-        let row: Int = Int((y - originY(bounds: bounds)) / cellSide(bounds: bounds) + 0.5)
-        return (p2pX(col), p2pY(row))
-    }
-
-    private func originX(bounds: CGRect) -> CGFloat {
-        return (bounds.size.width - CGFloat(cols - 1) * cellSide(bounds: bounds)) / 2
-    }
-
-    private func originY(bounds: CGRect) -> CGFloat {
-        return (bounds.size.height - CGFloat(rows - 1) * cellSide(bounds: bounds)) / 2
-    }
-
-    private func cellSide(bounds: CGRect) -> CGFloat {
-        return min(bounds.size.width, bounds.size.height) / CGFloat(rows)
-    }
+//    private func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
+//        let col: Int = Int((x - originX(bounds: bounds)) / cellSide(bounds: bounds))
+//        let row: Int = Int((y - originY(bounds: bounds)) / cellSide(bounds: bounds))
+//        return (p2pX(col), p2pY(row))
+//    }
+//
+//    private func originX(bounds: CGRect) -> CGFloat {
+//        return (bounds.size.width - CGFloat(cols - 1) * cellSide(bounds: bounds)) / 2
+//    }
+//
+//    private func originY(bounds: CGRect) -> CGFloat {
+//        return (bounds.size.height - CGFloat(rows - 1) * cellSide(bounds: bounds)) / 2
+//    }
+//
+//    private func cellSide(bounds: CGRect) -> CGFloat {
+//        return min(bounds.size.width, bounds.size.height) / CGFloat(rows)
+//    }
     
-    func p2pX(_ col: Int) -> Int { // p2p: peer to peer
-        return blackAtTop ? col : cols - 1 - col
-    }
-    
-    func p2pY(_ row: Int) -> Int {
-        return blackAtTop ? row : rows - 1 - row
-    }
+//    func p2pX(_ col: Int) -> Int { // p2p: peer to peer
+//        return blackAtTop ? col : cols - 1 - col
+//    }
+//
+//    func p2pY(_ row: Int) -> Int {
+//        return blackAtTop ? row : rows - 1 - row
+//    }
 }
