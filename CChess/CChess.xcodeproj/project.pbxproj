@@ -16,6 +16,7 @@
 		075FF67324BE08CC009D96D7 /* CChessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF67224BE08CC009D96D7 /* CChessUITests.swift */; };
 		075FF68124BE0E43009D96D7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68024BE0E43009D96D7 /* BoardView.swift */; };
 		075FF68324BE0EFD009D96D7 /* Pieces.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 075FF68224BE0EFD009D96D7 /* Pieces.xcassets */; };
+		075FF68524BE0F38009D96D7 /* drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 075FF68424BE0F38009D96D7 /* drop.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		075FF67424BE08CC009D96D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		075FF68024BE0E43009D96D7 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		075FF68224BE0EFD009D96D7 /* Pieces.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pieces.xcassets; sourceTree = "<group>"; };
+		075FF68424BE0F38009D96D7 /* drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drop.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				075FF65624BE08CB009D96D7 /* Main.storyboard */,
 				075FF65924BE08CC009D96D7 /* Assets.xcassets */,
 				075FF68224BE0EFD009D96D7 /* Pieces.xcassets */,
+				075FF68424BE0F38009D96D7 /* drop.wav */,
 				075FF65B24BE08CC009D96D7 /* LaunchScreen.storyboard */,
 				075FF65E24BE08CC009D96D7 /* Info.plist */,
 			);
@@ -235,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				075FF68524BE0F38009D96D7 /* drop.wav in Resources */,
 				075FF68324BE0EFD009D96D7 /* Pieces.xcassets in Resources */,
 				075FF65D24BE08CC009D96D7 /* LaunchScreen.storyboard in Resources */,
 				075FF65A24BE08CC009D96D7 /* Assets.xcassets in Resources */,
