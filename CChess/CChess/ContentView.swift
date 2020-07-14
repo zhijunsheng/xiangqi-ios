@@ -114,6 +114,14 @@ struct ContentView: View {
 }
 
 extension ContentView: NearbyServiceDelegate {
+    func connectedWith(peer: String) {
+        
+    }
+    
+    func disconnectedFrom(peer: String) {
+        
+    }
+    
     func didSendInvitation() {
         blackAtTop.toggle()
     }
