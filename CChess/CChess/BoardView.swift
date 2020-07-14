@@ -93,25 +93,25 @@ class BoardView: UIView {
         path(in: bounds).stroke()
     }
     
-//    private func drawPieces() {
-//        for piece in shadowPieces {
-//            let img = UIImage(named: piece.imageName)
-//            let imgLoc = piecePosition(bounds: bounds, piece: piece)
-//
-//            img?.draw(in: CGRect(x: imgLoc.x, y: imgLoc.y, width: cellWidth, height: cellHeight))
-//        }
-//    }
-    
+    @available(iOS 10.0, *)
     func animate(move: Move, _ completion: @escaping (UIViewAnimatingPosition) -> Void) {
         guard let cchess = cchessDelegate, let piece = cchess.pieceAt(col: move.fC, row: move.fR) else {
             return
         }
         let pieceImageView = UIImageView(image: image(named: piece.imageName))
         addSubview(pieceImageView)
-        let normalBeginningFrame = CGRect(x: originX + CGFloat(p2pX(piece.col)) * cellSide, y: originY + CGFloat(p2pY(piece.row)) * cellSide, width: cellSide, height: cellSide)
+        let normalBeginningFrame =
+            CGRect(x: originX + CGFloat(p2pX(piece.col)) * cellSide - cellSide/2,
+                   y: originY + CGFloat(p2pY(piece.row)) * cellSide - cellSide/2,
+                   width: cellSide,
+                   height: cellSide)
         pieceImageView.frame = imageRect(normalRect: normalBeginningFrame, ratio: pieceRatio)
-        let moveAnimator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut) {
-            let normalEnddingFrame = CGRect(x: self.originX + CGFloat(self.p2pX(move.tC)) * self.cellSide, y: self.originY + CGFloat(self.p2pY(move.tR)) * self.cellSide, width: self.cellSide, height: self.cellSide)
+        let moveAnimator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
+            let normalEnddingFrame =
+                CGRect(x: self.originX + CGFloat(self.p2pX(move.tC)) * self.cellSide - self.cellSide/2,
+                       y: self.originY + CGFloat(self.p2pY(move.tR)) * self.cellSide - self.cellSide/2,
+                       width: self.cellSide,
+                       height: self.cellSide)
             pieceImageView.frame = self.imageRect(normalRect: normalEnddingFrame, ratio: self.movingPieceRatio)
         }
         moveAnimator.addCompletion { animPos in
@@ -148,10 +148,6 @@ class BoardView: UIView {
         let h = ratio * normalSize.height
         return CGRect(x: center.x - w/2, y: center.y - h/2, width: w, height: h)
     }
-    
-//    private func p2p(_ coordinate: Int) -> Int { // p2p: peer 2 peer
-//        return blackAtTop ? coordinate : 7 - coordinate
-//    }
     
     private func image(named name: String) -> UIImage? {
         if let stored = imageByName[name] {
@@ -200,42 +196,6 @@ class BoardView: UIView {
         }
         return path
     }
-    
-//    private func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
-//        guard game.canMovePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) else {
-//            return
-//        }
-//        game.movePiece(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-//        nearbyService.send(msg: "\(fromCol):\(fromRow):\(toCol):\(toRow)")
-//    }
-//
-//    private func piecePosition(bounds: CGRect, piece: CChessPiece) -> CGPoint {
-//        if piece == movingPiece {
-//            return movingPieceLocation!
-//        } else {
-//            let x = originX(bounds: bounds) + CGFloat(p2pX(piece.col)) * cellSide(bounds: bounds)
-//            let y = originY(bounds: bounds) + CGFloat(p2pY(piece.row)) * cellSide(bounds: bounds)
-//            return CGPoint(x: x, y: y)
-//        }
-//    }
-    
-//    private func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
-//        let col: Int = Int((x - originX(bounds: bounds)) / cellSide(bounds: bounds))
-//        let row: Int = Int((y - originY(bounds: bounds)) / cellSide(bounds: bounds))
-//        return (p2pX(col), p2pY(row))
-//    }
-//
-//    private func originX(bounds: CGRect) -> CGFloat {
-//        return (bounds.size.width - CGFloat(cols - 1) * cellSide(bounds: bounds)) / 2
-//    }
-//
-//    private func originY(bounds: CGRect) -> CGFloat {
-//        return (bounds.size.height - CGFloat(rows - 1) * cellSide(bounds: bounds)) / 2
-//    }
-//
-//    private func cellSide(bounds: CGRect) -> CGFloat {
-//        return min(bounds.size.width, bounds.size.height) / CGFloat(rows)
-//    }
     
     func p2pX(_ col: Int) -> Int { // p2p: peer to peer
         return blackAtTop ? col : cols - 1 - col

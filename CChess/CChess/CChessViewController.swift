@@ -85,10 +85,15 @@ class CChessViewController: UIViewController {
             waiterView = redTurn ? youHomeView : peerHomeView
         }
         
-        UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut) { // iOS 10
+        if #available(iOS 10.0, *) {
+            UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut) { // iOS 10
+                whoseTurnView.backgroundColor = self.whoseTurnColor
+                waiterView.backgroundColor = self.waitingColor
+            }.startAnimation()
+        } else {
             whoseTurnView.backgroundColor = self.whoseTurnColor
             waiterView.backgroundColor = self.waitingColor
-        }.startAnimation()
+        }
     }
     
     private func updateMoveLocally(move: Move) {
@@ -185,7 +190,11 @@ extension CChessViewController: NearbyServiceDelegate {
                         self.boardView.setNeedsDisplay()
                     }
                     
-                    self.boardView.animate(move: move) { _ in
+                    if #available(iOS 10.0, *) {
+                        self.boardView.animate(move: move) { _ in
+                            self.updateMoveLocally(move: move)
+                        }
+                    } else {
                         self.updateMoveLocally(move: move)
                     }
                 }
