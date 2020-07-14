@@ -23,6 +23,7 @@
 		075FF68D24BE1091009D96D7 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68C24BE1091009D96D7 /* Move.swift */; };
 		075FF68F24BE109F009D96D7 /* CChessPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68E24BE109F009D96D7 /* CChessPiece.swift */; };
 		075FF69124BE10A9009D96D7 /* CChess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF69024BE10A9009D96D7 /* CChess.swift */; };
+		075FF69324BE1771009D96D7 /* CChessDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF69224BE1771009D96D7 /* CChessDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		075FF68C24BE1091009D96D7 /* Move.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
 		075FF68E24BE109F009D96D7 /* CChessPiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CChessPiece.swift; sourceTree = "<group>"; };
 		075FF69024BE10A9009D96D7 /* CChess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CChess.swift; sourceTree = "<group>"; };
+		075FF69224BE1771009D96D7 /* CChessDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			children = (
 				075FF68624BE1061009D96D7 /* NearbyServiceDelegate.swift */,
 				075FF68824BE1075009D96D7 /* NearbyService.swift */,
+				075FF69224BE1771009D96D7 /* CChessDelegate.swift */,
 				075FF68C24BE1091009D96D7 /* Move.swift */,
 				075FF68A24BE1081009D96D7 /* CChessRank.swift */,
 				075FF68E24BE109F009D96D7 /* CChessPiece.swift */,
@@ -288,6 +291,7 @@
 				075FF68D24BE1091009D96D7 /* Move.swift in Sources */,
 				075FF68124BE0E43009D96D7 /* BoardView.swift in Sources */,
 				075FF65524BE08CB009D96D7 /* CChessViewController.swift in Sources */,
+				075FF69324BE1771009D96D7 /* CChessDelegate.swift in Sources */,
 				075FF68F24BE109F009D96D7 /* CChessPiece.swift in Sources */,
 				075FF68B24BE1081009D96D7 /* CChessRank.swift in Sources */,
 				075FF65124BE08CB009D96D7 /* AppDelegate.swift in Sources */,

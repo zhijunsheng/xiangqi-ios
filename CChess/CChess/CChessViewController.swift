@@ -18,9 +18,13 @@ class CChessViewController: UIViewController {
     @IBOutlet weak var lowerPlayerLabel: UILabel!
     @IBOutlet weak var lowerPlayerColorView: UIView!
     
+    var cchess = CChess()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        cchess.reset()
+        boardView.shadowPieces = cchess.pieces
     }
 
     @IBAction func reset(_ sender: UIBarButtonItem) {
