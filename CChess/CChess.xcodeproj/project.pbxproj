@@ -17,6 +17,12 @@
 		075FF68124BE0E43009D96D7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68024BE0E43009D96D7 /* BoardView.swift */; };
 		075FF68324BE0EFD009D96D7 /* Pieces.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 075FF68224BE0EFD009D96D7 /* Pieces.xcassets */; };
 		075FF68524BE0F38009D96D7 /* drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 075FF68424BE0F38009D96D7 /* drop.wav */; };
+		075FF68724BE1061009D96D7 /* NearbyServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68624BE1061009D96D7 /* NearbyServiceDelegate.swift */; };
+		075FF68924BE1075009D96D7 /* NearbyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68824BE1075009D96D7 /* NearbyService.swift */; };
+		075FF68B24BE1081009D96D7 /* CChessRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68A24BE1081009D96D7 /* CChessRank.swift */; };
+		075FF68D24BE1091009D96D7 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68C24BE1091009D96D7 /* Move.swift */; };
+		075FF68F24BE109F009D96D7 /* CChessPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68E24BE109F009D96D7 /* CChessPiece.swift */; };
+		075FF69124BE10A9009D96D7 /* CChess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF69024BE10A9009D96D7 /* CChess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,12 @@
 		075FF68024BE0E43009D96D7 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		075FF68224BE0EFD009D96D7 /* Pieces.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pieces.xcassets; sourceTree = "<group>"; };
 		075FF68424BE0F38009D96D7 /* drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drop.wav; sourceTree = "<group>"; };
+		075FF68624BE1061009D96D7 /* NearbyServiceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyServiceDelegate.swift; sourceTree = "<group>"; };
+		075FF68824BE1075009D96D7 /* NearbyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyService.swift; sourceTree = "<group>"; };
+		075FF68A24BE1081009D96D7 /* CChessRank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CChessRank.swift; sourceTree = "<group>"; };
+		075FF68C24BE1091009D96D7 /* Move.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
+		075FF68E24BE109F009D96D7 /* CChessPiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CChessPiece.swift; sourceTree = "<group>"; };
+		075FF69024BE10A9009D96D7 /* CChess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CChess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +115,14 @@
 		075FF64F24BE08CB009D96D7 /* CChess */ = {
 			isa = PBXGroup;
 			children = (
-				075FF65024BE08CB009D96D7 /* AppDelegate.swift */,
+				075FF68624BE1061009D96D7 /* NearbyServiceDelegate.swift */,
+				075FF68824BE1075009D96D7 /* NearbyService.swift */,
+				075FF68C24BE1091009D96D7 /* Move.swift */,
+				075FF68A24BE1081009D96D7 /* CChessRank.swift */,
+				075FF68E24BE109F009D96D7 /* CChessPiece.swift */,
+				075FF69024BE10A9009D96D7 /* CChess.swift */,
 				075FF68024BE0E43009D96D7 /* BoardView.swift */,
+				075FF65024BE08CB009D96D7 /* AppDelegate.swift */,
 				075FF65424BE08CB009D96D7 /* CChessViewController.swift */,
 				075FF65624BE08CB009D96D7 /* Main.storyboard */,
 				075FF65924BE08CC009D96D7 /* Assets.xcassets */,
@@ -267,9 +285,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				075FF68D24BE1091009D96D7 /* Move.swift in Sources */,
 				075FF68124BE0E43009D96D7 /* BoardView.swift in Sources */,
 				075FF65524BE08CB009D96D7 /* CChessViewController.swift in Sources */,
+				075FF68F24BE109F009D96D7 /* CChessPiece.swift in Sources */,
+				075FF68B24BE1081009D96D7 /* CChessRank.swift in Sources */,
 				075FF65124BE08CB009D96D7 /* AppDelegate.swift in Sources */,
+				075FF68724BE1061009D96D7 /* NearbyServiceDelegate.swift in Sources */,
+				075FF69124BE10A9009D96D7 /* CChess.swift in Sources */,
+				075FF68924BE1075009D96D7 /* NearbyService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
