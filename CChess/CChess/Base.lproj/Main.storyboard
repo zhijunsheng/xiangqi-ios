@@ -20,8 +20,16 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2j-KZ-Xdr">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="👌" id="0Gv-0b-m9d"/>
-                                    <barButtonItem title="⚔️" id="VnE-To-Jn5"/>
+                                    <barButtonItem title="👌" id="0Gv-0b-m9d">
+                                        <connections>
+                                            <action selector="reset:" destination="BYZ-38-t0r" id="R2W-uk-YSn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="⚔️" id="VnE-To-Jn5">
+                                        <connections>
+                                            <action selector="flipPieceImages:" destination="BYZ-38-t0r" id="nS2-3J-iLB"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFS-hh-Uqn">
@@ -117,6 +125,15 @@
                             <constraint firstItem="s2j-KZ-Xdr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yDT-DY-zkm"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="boardView" destination="HxX-IT-ycb" id="KrX-Ta-jsN"/>
+                        <outlet property="lowerPlayerColorView" destination="uXf-DL-nXP" id="cmV-a1-B1s"/>
+                        <outlet property="lowerPlayerLabel" destination="bGW-bR-bnc" id="pXm-GZ-bon"/>
+                        <outlet property="lowerPlayerView" destination="ymO-Q2-xbf" id="vXE-Q4-8WM"/>
+                        <outlet property="upperPlayerColorView" destination="eBf-kE-DPv" id="rbo-iP-wyT"/>
+                        <outlet property="upperPlayerLabel" destination="Leo-Mj-4vI" id="chn-5c-NnS"/>
+                        <outlet property="upperPlayerView" destination="Nwg-Eh-bRC" id="Kb7-6n-eMO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

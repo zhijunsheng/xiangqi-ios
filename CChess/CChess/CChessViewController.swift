@@ -9,11 +9,24 @@ import UIKit
 
 class CChessViewController: UIViewController {
 
+    @IBOutlet weak var boardView: BoardView!
+    @IBOutlet weak var upperPlayerView: UIView!
+    @IBOutlet weak var upperPlayerLabel: UILabel!
+    @IBOutlet weak var upperPlayerColorView: UIView!
+    
+    @IBOutlet weak var lowerPlayerView: UIView!
+    @IBOutlet weak var lowerPlayerLabel: UILabel!
+    @IBOutlet weak var lowerPlayerColorView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
-
+    @IBAction func reset(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func flipPieceImages(_ sender: UIBarButtonItem) {
+    }
 }
 
