@@ -44,9 +44,16 @@ class CChessViewController: UIViewController {
     }
 
     @IBAction func reset(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Restart?", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Yes", style: .destructive) {_ in self.resetLocally() })
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        avoidAlertCrashOnPad(alertController: alertController)
+        present(alertController, animated: true)
     }
     
     @IBAction func flipPieceImages(_ sender: UIBarButtonItem) {
+        boardView.sharingDevice.toggle()
+        boardView.setNeedsDisplay()
     }
     
     /*
