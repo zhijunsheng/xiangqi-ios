@@ -2,8 +2,7 @@
 //  AppDelegate.swift
 //  CChess
 //
-//  Created by Zhijun Sheng on 2020-06-23.
-//  Copyright © 2020 Gold Thumb Inc. All rights reserved.
+//  Created by Zhijun Sheng on 2020-07-14.
 //
 
 import UIKit
