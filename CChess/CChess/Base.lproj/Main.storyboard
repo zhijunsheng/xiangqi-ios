@@ -20,7 +20,8 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2j-KZ-Xdr">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="Item" id="0Gv-0b-m9d"/>
+                                    <barButtonItem title="👌" id="0Gv-0b-m9d"/>
+                                    <barButtonItem title="⚔️" id="VnE-To-Jn5"/>
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFS-hh-Uqn">
@@ -49,11 +50,37 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nwg-Eh-bRC">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="169.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Leo-Mj-4vI">
+                                                <rect key="frame" x="0.0" y="64.5" width="414" height="41"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Leo-Mj-4vI" secondAttribute="trailing" id="BFB-v4-rqo"/>
+                                            <constraint firstItem="Leo-Mj-4vI" firstAttribute="leading" secondItem="Nwg-Eh-bRC" secondAttribute="leading" id="MX7-qB-cbi"/>
+                                            <constraint firstItem="Leo-Mj-4vI" firstAttribute="centerY" secondItem="Nwg-Eh-bRC" secondAttribute="centerY" id="c1g-Ma-0uh"/>
+                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ymO-Q2-xbf">
                                         <rect key="frame" x="0.0" y="599.5" width="414" height="169.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGW-bR-bnc">
+                                                <rect key="frame" x="0.0" y="64.5" width="414" height="41"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                        <constraints>
+                                            <constraint firstItem="bGW-bR-bnc" firstAttribute="leading" secondItem="ymO-Q2-xbf" secondAttribute="leading" id="1dk-ZK-udr"/>
+                                            <constraint firstItem="bGW-bR-bnc" firstAttribute="centerY" secondItem="ymO-Q2-xbf" secondAttribute="centerY" id="5vU-p3-KC0"/>
+                                            <constraint firstAttribute="trailing" secondItem="bGW-bR-bnc" secondAttribute="trailing" id="U1S-eV-mSa"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
