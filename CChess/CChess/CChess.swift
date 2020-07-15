@@ -53,7 +53,7 @@ struct CChess {
     
     func underThreatAt(col: Int, row: Int, redEnemy: Bool) -> Bool {
         for piece in pieces where piece.isRed == redEnemy {
-            if canPieceAttack(move: Move(fC: piece.col, fR: piece.row, tC: col, tR: row)) {
+            if canPieceAttack(mv: Move(fC: piece.col, fR: piece.row, tC: col, tR: row)) {
                 return true
             }
         }
@@ -73,14 +73,35 @@ struct CChess {
             return false
         }
         
-        
-        
-        if movingPiece.isRed != redTurn {
+        if let target = pieceAt(col: mv.tC, row: mv.tR), target.isRed == movingPiece.isRed  {
             return false
         }
         
-        if let targetPiece = pieceAt(col: mv.tC, row: mv.tR) {
-            return targetPiece.isRed != movingPiece.isRed
+        switch movingPiece.rank {
+        case .knight where !validKnight(mv):
+            return false
+        case .rook where !validRook(mv):
+            return false
+        case .bishop where !validBishop(mv):
+            return false
+        case .king where !canKingMove(mv):
+            return false
+        case .pawn where !validPawn(mv):
+            return false
+        case .warrior where !validWarrior(mv):
+            return false
+        case .cannon where !validCannon(mv):
+            return false
+        default:
+            break
+        }
+        
+        if canRescueCheck(move: mv, isRed: isRed) {
+            return true
+        }
+
+        if kingExposedBy(protector: movingPiece) {
+            return false
         }
         
         return true
@@ -123,32 +144,37 @@ struct CChess {
         return !gameCopy.checked(isRed: isRed)
     }
     
-    func canPieceAttack(move: Move) -> Bool {
-        guard let movingPiece = pieceAt(col: move.fC, row: move.fR),
-              !isStandstill(move: move) else {
+    func canPieceAttack(mv: Move) -> Bool {
+        guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR),
+              !isStandstill(move: mv) else {
             return false
         }
 
         switch movingPiece.rank {
         case .knight:
-            return validKnight(move)
+            return validKnight(mv)
         case .rook:
-            return validRook(move)
+            return validRook(mv)
         case .bishop:
-            return validBishop(move)
+            return validBishop(mv)
         case .king:
-            return canKingAttack(move)
+            return canKingAttack(mv)
         case .pawn:
-            return canPawnAttack(move)
+            return validPawn(mv)
         case .warrior:
-            return true
+            return validWarrior(mv)
         case .cannon:
-            return true
+            return validCannon(mv)
         }
     }
     
-    func validWarrior(_ move: Move) -> Bool {
-        return false
+    func validWarrior(_ mv: Move) -> Bool {
+        guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR),
+              !outOfPalace(col: mv.tC, row: mv.tR, isRed: movingPiece.isRed) else {
+            return false
+        }
+        
+        return isDiagonal(mv) && steps(mv) == 1
     }
     
     func validCannon(_ move: Move) -> Bool {
@@ -161,41 +187,25 @@ struct CChess {
             abs(move.fR - move.tR) == 1 && abs(move.fC - move.tC) == 2
     }
     
-    func validRook(_ move: Move) -> Bool {
-        let fromCol = move.fC
-        let fromRow = move.fR
-        let toCol = move.tC
-        let toRow = move.tR
-        
-        guard emptyBetween(move) else {
+    func validRook(_ mv: Move) -> Bool {
+        guard emptyBetween(mv) else {
             return false
         }
-        return fromCol == toCol || fromRow == toRow
+        return mv.fC == mv.tC || mv.fR == mv.tR
     }
     
     func validBishop(_ move: Move) -> Bool {
-        let fromCol = move.fC
-        let fromRow = move.fR
-        let toCol = move.tC
-        let toRow = move.tR
-        
         guard emptyBetween(move) else {
             return false
         }
-        return abs(fromCol - toCol) == abs(fromRow - toRow)
+        return abs(move.fC - move.tC) == abs(move.fR - move.tR)
     }
     
-    func canKingMove(_ move: Move) -> Bool {
-        let toCol = move.tC
-        let toRow = move.tR
-        
-        guard !underThreatAt(col: toCol, row: toRow, redEnemy: !redTurn) else {
+    func canKingMove(_ mv: Move) -> Bool {
+        guard !underThreatAt(col: mv.tC, row: mv.tR, redEnemy: !redTurn) else {
             return false
         }
-//        if canCastle(toCol: toCol, toRow: toRow) {
-//            return true
-//        }
-        return canKingAttack(move)
+        return canKingAttack(mv)
     }
     
     func canKingAttack(_ move: Move) -> Bool {
@@ -231,7 +241,7 @@ struct CChess {
         return true
     }
     
-    func canPawnMove(_ move: Move) -> Bool {
+    func validPawn(_ move: Move) -> Bool {
         let fromCol = move.fC
         let fromRow = move.fR
         let toCol = move.tC
@@ -267,16 +277,31 @@ struct CChess {
         return false
     }
     
-    func canPawnAttack(_ move: Move) -> Bool {
-        let fromCol = move.fC
-        let fromRow = move.fR
-        let toCol = move.tC
-        let toRow = move.tR
-        
-        guard let movingPawn = pieceAt(col: fromCol, row: fromRow) else {
-            return false
+    private func isDiagonal(_ mv: Move) -> Bool {
+        return abs(mv.fC - mv.tC) == abs(mv.fR - mv.tR)
+    }
+    
+    private func outOfPalace(col: Int, row: Int, isRed: Bool) -> Bool {
+        if (isRed) {
+            return col < 3 || col > 5 || row < 0 || row > 2
+        } else {
+            return col < 3 || col > 5 || row < 7 || row > 9
         }
-        return toRow == fromRow + (movingPawn.isRed ? -1 : 1) && abs(toCol - fromCol) == 1
+    }
+    
+    private func selfSide(row: Int, isRed: Bool) -> Bool {
+        return isRed ? row <= 4 : row >= 5
+    }
+    
+    private func steps(_ mv: Move) -> Int {
+        if mv.fC == mv.tC {
+            return abs(mv.fR - mv.tR)
+        } else if mv.fR == mv.tR {
+            return abs(mv.fC - mv.tC)
+        } else if isDiagonal(mv) {
+            return abs(mv.fR - mv.tR)
+        }
+        return 0; // neither straight nor diagonal
     }
     
     func emptyBetween(_ move: Move) -> Bool {
@@ -360,7 +385,7 @@ struct CChess {
     }
     
     private func inBoard(_ col: Int, _ row: Int) -> Bool {
-        return col >= 0 && col <= 7 && row >= 0 && row <= 7
+        return col >= 0 && col <= 8 && row >= 0 && row <= 9
     }
     
     mutating func initializeGame() {
