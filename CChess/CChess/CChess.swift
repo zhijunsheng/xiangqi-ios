@@ -221,7 +221,7 @@ struct CChess {
     }
     
     func canKingMove(_ mv: Move) -> Bool {
-        guard !canSeeEnemyKingFrom(col: mv.tC, row: mv.tR, player: whoseTurn.enemy),
+        guard !canSeeEnemyKingFrom(col: mv.tC, row: mv.tR, player: whoseTurn),
               !underThreatAt(col: mv.tC, row: mv.tR, enemy: whoseTurn.enemy) else {
             return false
         }
