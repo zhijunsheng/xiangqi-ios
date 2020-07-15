@@ -154,13 +154,11 @@ class BoardView: UIView {
             return stored
         }
         
-        let img = UIImage(named: name)
-//        if sharingDevice || UIDevice.current.userInterfaceIdiom == .phone {
-//            img = flatPieceImage(pieceName: name, blackFlipped: sharingDevice)
-//        } else {
-//            img = UIImage(named: name)
-//
-//        }
+        var img = UIImage(named: name)
+        if name.first == "b", let actualImg = img, let cgImg = actualImg.cgImage {
+            img = UIImage(cgImage: cgImg, scale: 1.0, orientation: sharingDevice ? .downMirrored : .up)
+        }
+        
         imageByName[name] = img
         return img
     }
