@@ -110,7 +110,7 @@ class CChessViewController: UIViewController {
     }
     
     private func updateMoveLocally(move: Move) {
-        guard cchess.isHandicap(move: move) || cchess.isValid(move: move, isRed: cchess.redTurn) else {
+        guard cchess.isHandicap(move: move) || cchess.isValid(mv: move, isRed: cchess.redTurn) else {
             return
         }
         

@@ -64,25 +64,22 @@ struct CChess {
         return lastMovedPiece == nil && !inBoard(move.tC, move.tR)
     }
     
-    func isValid(move: Move, isRed: Bool) -> Bool {
-        let fromCol = move.fC
-        let fromRow = move.fR
-        let toCol = move.tC
-        let toRow = move.tR
-        
-        if toCol < 0 || toCol > 8 || toRow < 0 || toRow > 9 {
+    func isValid(mv: Move, isRed: Bool) -> Bool {
+        guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR) else {
             return false
         }
         
-        guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
+        guard inBoard(mv.tC, mv.tR), !isStandstill(move: mv) else {
             return false
         }
+        
+        
         
         if movingPiece.isRed != redTurn {
             return false
         }
         
-        if let targetPiece = pieceAt(col: toCol, row: toRow) {
+        if let targetPiece = pieceAt(col: mv.tC, row: mv.tR) {
             return targetPiece.isRed != movingPiece.isRed
         }
         
@@ -139,8 +136,6 @@ struct CChess {
             return validRook(move)
         case .bishop:
             return validBishop(move)
-//        case .queen:
-//            return validQueen(move)
         case .king:
             return canKingAttack(move)
         case .pawn:
@@ -150,6 +145,14 @@ struct CChess {
         case .cannon:
             return true
         }
+    }
+    
+    func validWarrior(_ move: Move) -> Bool {
+        return false
+    }
+    
+    func validCannon(_ move: Move) -> Bool {
+        return false
     }
     
     private func validKnight(_ move: Move) -> Bool {
@@ -180,10 +183,6 @@ struct CChess {
             return false
         }
         return abs(fromCol - toCol) == abs(fromRow - toRow)
-    }
-    
-    func validQueen(_ move: Move) -> Bool {
-        return validRook(move) || validBishop(move)
     }
     
     func canKingMove(_ move: Move) -> Bool {
