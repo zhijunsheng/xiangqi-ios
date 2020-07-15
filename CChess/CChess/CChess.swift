@@ -246,40 +246,18 @@ struct CChess {
         return true
     }
     
-    func validPawn(_ move: Move) -> Bool {
-        let fromCol = move.fC
-        let fromRow = move.fR
-        let toCol = move.tC
-        let toRow = move.tR
-        
-        guard let movingPawn = pieceAt(col: move.fC, row: move.fR) else {
+    func validPawn(_ mv: Move) -> Bool {
+        guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR),
+              steps(mv) == 1,
+              isStraight(mv) else {
             return false
         }
         
-//        if let target = pieceAt(col: move.tC, row: move.tR), target.isWhite != movingPawn.isWhite {
-//            return canPawnAttack(move)
-//        } else if toCol == fromCol {
-//            if pieceAt(col: move.fC, row: move.fR + (movingPawn.isWhite ? -1 : 1)) == nil {
-//                return
-//                    move.tR == fromRow + (movingPawn.isWhite ? -1 : 1) ||
-//                    toRow == fromRow + (movingPawn.isWhite ? -2 : 2) &&
-//                    pieceAt(col: fromCol, row: toRow) == nil &&
-//                    fromRow == (movingPawn.isWhite ? 6 : 1)
-//            }
-//        } else if let lastMovedPiece = lastMovedPiece,
-//                  lastMovedPiece.rank == .pawn,
-//                  lastMovedPiece.isWhite != movingPawn.isWhite,
-//                  lastMovedPiece.row == fromRow,
-//                  lastMovedPiece.col == toCol,
-//                  abs(toCol - fromCol) == 1 {
-//            if movingPawn.isWhite {
-//                return fromRow == 3 && toRow == 2
-//            } else {
-//                return fromRow == 4 && toRow == 5
-//            }
-//        }
-
-        return false
+        if selfSide(row: mv.fR, isRed: movingPiece.isRed) {
+            return mv.tR - mv.fR == (movingPiece.isRed ? -1 : 1)
+        } else {
+            return mv.tR - mv.fR != (movingPiece.isRed ? 1 : -1)
+        }
     }
     
     private func numPiecesBetween(_ mv: Move) -> Int {
