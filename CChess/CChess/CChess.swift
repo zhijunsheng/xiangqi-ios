@@ -282,10 +282,10 @@ struct CChess {
     }
     
     private func outOfPalace(col: Int, row: Int, isRed: Bool) -> Bool {
-        if (isRed) {
-            return col < 3 || col > 5 || row < 0 || row > 2
-        } else {
+        if isRed {
             return col < 3 || col > 5 || row < 7 || row > 9
+        } else {
+            return col < 3 || col > 5 || row < 0 || row > 2
         }
     }
     
