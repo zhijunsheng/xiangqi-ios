@@ -177,28 +177,36 @@ struct CChess {
         return isDiagonal(mv) && steps(mv) == 1
     }
     
-    func validCannon(_ move: Move) -> Bool {
-        return false
+    func validCannon(_ mv: Move) -> Bool {
+        if pieceAt(col: mv.tC, row: mv.tR) == nil {
+            return validRook(mv)
+        }
+        return numPiecesBetween(mv) == 1;
     }
     
-    private func validKnight(_ move: Move) -> Bool {
-        return
-            abs(move.fC - move.tC) == 1 && abs(move.fR - move.tR) == 2 ||
-            abs(move.fR - move.tR) == 1 && abs(move.fC - move.tC) == 2
+    private func validKnight(_ mv: Move) -> Bool {
+        if abs(mv.fC - mv.tC) == 1 && abs(mv.fR - mv.tR) == 2 {
+            return pieceAt(col: mv.fC, row: (mv.fR + mv.tR)/2) == nil
+        } else if abs(mv.fR - mv.tR) == 1 && abs(mv.fC - mv.tC) == 2 {
+            return pieceAt(col: (mv.fC + mv.tC)/2, row: mv.fR) == nil
+        }
+        return false
     }
     
     func validRook(_ mv: Move) -> Bool {
         guard emptyBetween(mv) else {
             return false
         }
-        return mv.fC == mv.tC || mv.fR == mv.tR
+        return isStraight(mv)
     }
     
-    func validBishop(_ move: Move) -> Bool {
-        guard emptyBetween(move) else {
+    func validBishop(_ mv: Move) -> Bool {
+        guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR),
+              selfSide(row: mv.tR, isRed: movingPiece.isRed),
+              emptyBetween(mv) else {
             return false
         }
-        return abs(move.fC - move.tC) == abs(move.fR - move.tR)
+        return isDiagonal(mv) && steps(mv) == 2
     }
     
     func canKingMove(_ mv: Move) -> Bool {
@@ -208,15 +216,12 @@ struct CChess {
         return canKingAttack(mv)
     }
     
-    func canKingAttack(_ move: Move) -> Bool {
-        let fromCol = move.fC
-        let fromRow = move.fR
-        let toCol = move.tC
-        let toRow = move.tR
-        
-        let deltaCol = abs(fromCol - toCol)
-        let deltaRow = abs(fromRow - toRow)
-        return (deltaCol == 1 || deltaRow == 1) && deltaCol + deltaRow < 3
+    func canKingAttack(_ mv: Move) -> Bool {
+        guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR),
+              !outOfPalace(col: mv.tC, row: mv.tR, isRed: movingPiece.isRed) else {
+            return false
+        }
+        return isStraight(mv) && steps(mv) == 1
     }
     
     func emptyAndSafe(row: Int, cols: ClosedRange<Int>, redEnemy: Bool) -> Bool {
@@ -277,6 +282,33 @@ struct CChess {
         return false
     }
     
+    private func numPiecesBetween(_ mv: Move) -> Int {
+        if !isStraight(mv) || steps(mv) < 2 {
+            return 0;
+        }
+        var cnt = 0
+        var head: Int
+        var tail: Int
+        if mv.fC == mv.tC { // vertical
+            head = min(mv.fR, mv.tR)
+            tail = max(mv.fR, mv.tR)
+            for row in head + 1 ..< tail {
+                cnt += pieceAt(col: mv.fC, row: row) == nil ? 0 : 1
+            }
+        } else {
+            head = min(mv.fC, mv.tC)
+            tail = max(mv.fC, mv.tC)
+            for col in head + 1 ..< tail {
+                cnt += pieceAt(col: col, row: mv.fR) == nil ? 0 : 1
+            }
+        }
+        return cnt
+    }
+    
+    private func isStraight(_ mv: Move) -> Bool {
+        return mv.fC == mv.tC || mv.fR == mv.tR
+    }
+    
     private func isDiagonal(_ mv: Move) -> Bool {
         return abs(mv.fC - mv.tC) == abs(mv.fR - mv.tR)
     }
@@ -290,7 +322,7 @@ struct CChess {
     }
     
     private func selfSide(row: Int, isRed: Bool) -> Bool {
-        return isRed ? row <= 4 : row >= 5
+        return isRed ? row >= 5 : row <= 4
     }
     
     private func steps(_ mv: Move) -> Int {
