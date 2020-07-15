@@ -156,7 +156,7 @@ class BoardView: UIView {
         
         var img = UIImage(named: name)
         if name.first == "b", let actualImg = img, let cgImg = actualImg.cgImage {
-            img = UIImage(cgImage: cgImg, scale: 1.0, orientation: sharingDevice ? .downMirrored : .up)
+            img = UIImage(cgImage: cgImg, scale: 1.0, orientation: sharingDevice ? .down : .up)
         }
         
         imageByName[name] = img
