@@ -52,6 +52,9 @@ class CChessViewController: UIViewController {
     }
     
     @IBAction func flipPieceImages(_ sender: UIBarButtonItem) {
+        peerLabel.text = "Black"
+        youLabel.text = "Red"
+        peerLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         boardView.sharingDevice.toggle()
         boardView.setNeedsDisplay()
     }
@@ -68,6 +71,9 @@ class CChessViewController: UIViewController {
     }
     
     private func resetLocally() {
+        peerLabel.text = "Peer"
+        youLabel.text = "You"
+        peerLabel.transform = .identity
         cchess.initializeGame()
         boardView.shadowPieces = cchess.pieces
         boardView.blackAtTop = true
