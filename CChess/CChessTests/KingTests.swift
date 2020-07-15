@@ -52,7 +52,7 @@ class KingTests: XCTestCase {
         cchess.movePiece(move: Move(5, 9, 4, 8))
         cchess.movePiece(move: Move(5, 0, 4, 1))
         cchess.movePiece(move: Move(4, 9, 5, 9))
-        XCTAssertTrue(cchess.canSeeKingFrom(col: 5, row: 0, redKing: false))
-        XCTAssertFalse(cchess.isValid(mv: Move(4, 0, 5, 0), isRed: false))
+        XCTAssertTrue(cchess.canSeeEnemyKingFrom(col: 5, row: 0, player: .black))
+        XCTAssertFalse(cchess.isValid(mv: Move(4, 0, 5, 0), player: .black))
     }
 }

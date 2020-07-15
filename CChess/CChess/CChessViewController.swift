@@ -67,7 +67,7 @@ class CChessViewController: UIViewController {
             return false
         }
         
-        return movingPiece == lastMovedPiece && cchess.redTurn != movingPiece.isRed && pieceAt(col: move.tC, row: move.tR) == nil
+        return movingPiece == lastMovedPiece && cchess.whoseTurn != movingPiece.player && pieceAt(col: move.tC, row: move.tR) == nil
     }
     
     private func resetLocally() {
@@ -82,20 +82,20 @@ class CChessViewController: UIViewController {
         upperPlayerColorView.backgroundColor = .black
         lowerPlayerColorView.backgroundColor = .red
         firstMoveMade = false
-        updateWhoseTurnColorsLocally(redTurn: cchess.redTurn)
+        updateWhoseTurnColorsLocally(player: cchess.whoseTurn)
         boardView.isUserInteractionEnabled = true
         boardView.setNeedsDisplay()
     }
     
-    private func updateWhoseTurnColorsLocally(redTurn: Bool) {
+    private func updateWhoseTurnColorsLocally(player: Player) {
         var whoseTurnView: UIView
         var waiterView: UIView
         if isRedDevice {
-            whoseTurnView = redTurn ? youHomeView : peerHomeView
-            waiterView = redTurn ? peerHomeView : youHomeView
+            whoseTurnView = player == .red ? youHomeView : peerHomeView
+            waiterView = player == .red ? peerHomeView : youHomeView
         } else {
-            whoseTurnView = redTurn ? peerHomeView : youHomeView
-            waiterView = redTurn ? youHomeView : peerHomeView
+            whoseTurnView = player == .red ? peerHomeView : youHomeView
+            waiterView = player == .red ? youHomeView : peerHomeView
         }
         
         if #available(iOS 10.0, *) {
@@ -110,7 +110,7 @@ class CChessViewController: UIViewController {
     }
     
     private func updateMoveLocally(move: Move) {
-        guard cchess.isHandicap(move: move) || cchess.isValid(mv: move, isRed: cchess.redTurn) else {
+        guard cchess.isHandicap(move: move) || cchess.isValid(mv: move, player: cchess.whoseTurn) else {
             return
         }
         
@@ -119,7 +119,7 @@ class CChessViewController: UIViewController {
         boardView.setNeedsDisplay()
         
         if !cchess.isHandicap(move: move) {
-            updateWhoseTurnColorsLocally(redTurn: cchess.redTurn)
+            updateWhoseTurnColorsLocally(player: cchess.whoseTurn)
         }
         
         audioPlayer.play()
@@ -140,7 +140,7 @@ class CChessViewController: UIViewController {
     func updateWithdrawLocally() {
         cchess.withdraw()
         boardView.shadowPieces = cchess.pieces
-        updateWhoseTurnColorsLocally(redTurn: cchess.redTurn)
+        updateWhoseTurnColorsLocally(player: cchess.whoseTurn)
         boardView.setNeedsDisplay()
     }
     
@@ -221,7 +221,7 @@ extension CChessViewController: CChessDelegate {
         guard let movingPiece = cchess.pieceAt(col: move.fC, row: move.fR),
               cchess.isHandicap(move: move) ||
                 isWithdrawing(move: move) ||
-                movingPiece.isRed == cchess.redTurn else {
+                movingPiece.player == cchess.whoseTurn else {
             return
         }
         
@@ -235,7 +235,7 @@ extension CChessViewController: CChessDelegate {
             if isWithdrawing(move: move) {
                 updateWithdrawLocally()
                 sendWithdrawToPeers()
-            } else if isRedDevice == cchess.redTurn {
+            } else if isRedDevice == (cchess.whoseTurn == .red) {
                 updateMoveLocally(move: move)
                 sendMoveToPeers(move: move)
             }

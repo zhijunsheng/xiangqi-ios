@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0732B7FC24BF23350007DF6D /* KingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0732B7FB24BF23350007DF6D /* KingTests.swift */; };
+		0732B7FE24BFAFF60007DF6D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0732B7FD24BFAFF60007DF6D /* Player.swift */; };
 		075FF65124BE08CB009D96D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF65024BE08CB009D96D7 /* AppDelegate.swift */; };
 		075FF65524BE08CB009D96D7 /* CChessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF65424BE08CB009D96D7 /* CChessViewController.swift */; };
 		075FF65824BE08CB009D96D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 075FF65624BE08CB009D96D7 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		0732B7FB24BF23350007DF6D /* KingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingTests.swift; sourceTree = "<group>"; };
+		0732B7FD24BFAFF60007DF6D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		075FF64D24BE08CB009D96D7 /* CChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		075FF65024BE08CB009D96D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		075FF65424BE08CB009D96D7 /* CChessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessViewController.swift; sourceTree = "<group>"; };
@@ -119,10 +121,11 @@
 			children = (
 				075FF68624BE1061009D96D7 /* NearbyServiceDelegate.swift */,
 				075FF68824BE1075009D96D7 /* NearbyService.swift */,
+				0732B7FD24BFAFF60007DF6D /* Player.swift */,
+				075FF68E24BE109F009D96D7 /* CChessPiece.swift */,
 				075FF69224BE1771009D96D7 /* CChessDelegate.swift */,
 				075FF68C24BE1091009D96D7 /* Move.swift */,
 				075FF68A24BE1081009D96D7 /* CChessRank.swift */,
-				075FF68E24BE109F009D96D7 /* CChessPiece.swift */,
 				075FF69024BE10A9009D96D7 /* CChess.swift */,
 				075FF68024BE0E43009D96D7 /* BoardView.swift */,
 				075FF65424BE08CB009D96D7 /* CChessViewController.swift */,
@@ -289,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0732B7FE24BFAFF60007DF6D /* Player.swift in Sources */,
 				075FF68D24BE1091009D96D7 /* Move.swift in Sources */,
 				075FF68124BE0E43009D96D7 /* BoardView.swift in Sources */,
 				075FF65524BE08CB009D96D7 /* CChessViewController.swift in Sources */,

@@ -11,7 +11,7 @@ import Foundation
 struct CChess {
     var pieces: Set<CChessPiece> = []
     var previousPieces: Set<CChessPiece> = []
-    private(set) var redTurn: Bool = true
+    private(set) var whoseTurn: Player = .red
     private(set) var lastMovedPiece: CChessPiece?
     
     var whiteKingSideRookMoved = false
@@ -27,7 +27,7 @@ struct CChess {
             return
         }
         pieces = previousPieces
-        redTurn = lastMovedPiece.isRed
+        whoseTurn = lastMovedPiece.player
         self.lastMovedPiece = nil
     }
     
@@ -46,24 +46,24 @@ struct CChess {
             pieces.remove(targetPiece)
         }
         
-        pieces.insert(CChessPiece(col: toCol, row: toRow, isRed: movingPiece.isRed, rank: movingPiece.rank, imageName: movingPiece.imageName))
+        pieces.insert(CChessPiece(col: toCol, row: toRow, player: movingPiece.player, rank: movingPiece.rank, imageName: movingPiece.imageName))
         
-        redTurn.toggle()
+        whoseTurn = whoseTurn == .red ? .black : .red
     }
     
-    func canSeeKingFrom(col: Int, row: Int, redKing: Bool) -> Bool {
-        guard let enemyKing = king(isRed: !redKing) else {
+    func canSeeEnemyKingFrom(col: Int, row: Int, player: Player) -> Bool {
+        guard let enemyKing = kingOf(player: player.enemy) else {
             return false
         }
         return numPiecesBetween(Move(enemyKing.col, enemyKing.row, col, row)) == 0
     }
     
-    private func king(isRed: Bool) -> CChessPiece? {
-        return pieces.filter{ $0.rank == .king && $0.isRed == isRed }.first
+    private func kingOf(player: Player) -> CChessPiece? {
+        return pieces.filter{ $0.rank == .king && $0.player == player }.first
     }
     
-    func underThreatAt(col: Int, row: Int, redEnemy: Bool) -> Bool {
-        for piece in pieces where piece.isRed == redEnemy {
+    func underThreatAt(col: Int, row: Int, enemy: Player) -> Bool {
+        for piece in pieces where piece.player == enemy {
             if canPieceAttack(mv: Move(fC: piece.col, fR: piece.row, tC: col, tR: row)) {
                 return true
             }
@@ -75,7 +75,7 @@ struct CChess {
         return lastMovedPiece == nil && !inBoard(move.tC, move.tR)
     }
     
-    func isValid(mv: Move, isRed: Bool) -> Bool {
+    func isValid(mv: Move, player: Player) -> Bool {
         guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR) else {
             return false
         }
@@ -84,7 +84,7 @@ struct CChess {
             return false
         }
         
-        if let target = pieceAt(col: mv.tC, row: mv.tR), target.isRed == movingPiece.isRed  {
+        if let target = pieceAt(col: mv.tC, row: mv.tR), target.player == movingPiece.player  {
             return false
         }
         
@@ -107,7 +107,7 @@ struct CChess {
             break
         }
         
-        if canRescueCheck(move: mv, isRed: isRed) {
+        if canRescueCheck(move: mv, player: player) {
             return true
         }
 
@@ -119,10 +119,10 @@ struct CChess {
     }
     
     private func kingExposedBy(protector: CChessPiece) -> Bool {
-        if let king = pieces.filter({ $0.isRed == protector.isRed && $0.rank == .king }).first {
+        if let king = pieces.filter({ $0.player == protector.player && $0.rank == .king }).first {
             var gameCopy = self
             gameCopy.pieces.remove(protector)
-            if gameCopy.checked(isRed: king.isRed) {
+            if gameCopy.checked(player: king.player) {
                 return true
             }
         }
@@ -133,15 +133,15 @@ struct CChess {
         return move.fC == move.tC && move.fR == move.tR
     }
     
-    func checked(isRed: Bool) -> Bool {
-        if let king = pieces.filter({ $0.isRed == isRed && $0.rank == .king }).first {
-            return underThreatAt(col: king.col, row: king.row, redEnemy: !isRed)
+    func checked(player: Player) -> Bool {
+        if let king = pieces.filter({ $0.player == player && $0.rank == .king }).first {
+            return underThreatAt(col: king.col, row: king.row, enemy: player.enemy)
         }
         return false
     }
     
-    func canRescueCheck(move: Move, isRed: Bool) -> Bool {
-        guard let movingPiece = pieceAt(col: move.fC, row: move.fR), checked(isRed: isRed) else {
+    func canRescueCheck(move: Move, player: Player) -> Bool {
+        guard let movingPiece = pieceAt(col: move.fC, row: move.fR), checked(player: player) else {
             return false
         }
         var gameCopy = self
@@ -150,9 +150,9 @@ struct CChess {
             gameCopy.pieces.remove(target)
         }
         
-        gameCopy.pieces.insert(CChessPiece(col: move.tC, row: move.tR, isRed: movingPiece.isRed, rank: movingPiece.rank, imageName: movingPiece.imageName))
+        gameCopy.pieces.insert(CChessPiece(col: move.tC, row: move.tR, player: movingPiece.player, rank: movingPiece.rank, imageName: movingPiece.imageName))
         
-        return !gameCopy.checked(isRed: isRed)
+        return !gameCopy.checked(player: player)
     }
     
     func canPieceAttack(mv: Move) -> Bool {
@@ -181,7 +181,7 @@ struct CChess {
     
     func validWarrior(_ mv: Move) -> Bool {
         guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR),
-              !outOfPalace(col: mv.tC, row: mv.tR, isRed: movingPiece.isRed) else {
+              !outOfPalace(col: mv.tC, row: mv.tR, player: movingPiece.player) else {
             return false
         }
         
@@ -213,7 +213,7 @@ struct CChess {
     
     func validBishop(_ mv: Move) -> Bool {
         guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR),
-              selfSide(row: mv.tR, isRed: movingPiece.isRed),
+              selfSide(row: mv.tR, player: movingPiece.player),
               emptyBetween(mv) else {
             return false
         }
@@ -221,8 +221,8 @@ struct CChess {
     }
     
     func canKingMove(_ mv: Move) -> Bool {
-        guard !canSeeKingFrom(col: mv.tC, row: mv.tR, redKing: !redTurn),
-              !underThreatAt(col: mv.tC, row: mv.tR, redEnemy: !redTurn) else {
+        guard !canSeeEnemyKingFrom(col: mv.tC, row: mv.tR, player: whoseTurn.enemy),
+              !underThreatAt(col: mv.tC, row: mv.tR, enemy: whoseTurn.enemy) else {
             return false
         }
         return canKingAttack(mv)
@@ -230,19 +230,19 @@ struct CChess {
     
     func canKingAttack(_ mv: Move) -> Bool {
         guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR),
-              !outOfPalace(col: mv.tC, row: mv.tR, isRed: movingPiece.isRed) else {
+              !outOfPalace(col: mv.tC, row: mv.tR, player: movingPiece.player) else {
             return false
         }
         return isStraight(mv) && steps(mv) == 1
     }
     
-    func emptyAndSafe(row: Int, cols: ClosedRange<Int>, redEnemy: Bool) -> Bool {
-        return emptyAt(row: row, cols: cols) && safeAt(row: row, cols: cols, redEnemy: redEnemy)
+    func emptyAndSafe(row: Int, cols: ClosedRange<Int>, enemy: Player) -> Bool {
+        return emptyAt(row: row, cols: cols) && safeAt(row: row, cols: cols, enemy: enemy)
     }
     
-    func safeAt(row: Int, cols: ClosedRange<Int>, redEnemy: Bool) -> Bool {
+    func safeAt(row: Int, cols: ClosedRange<Int>, enemy: Player) -> Bool {
         for col in cols {
-            if underThreatAt(col: col, row: row, redEnemy: redEnemy) {
+            if underThreatAt(col: col, row: row, enemy: enemy) {
                 return false
             }
         }
@@ -265,10 +265,10 @@ struct CChess {
             return false
         }
         
-        if selfSide(row: mv.fR, isRed: movingPiece.isRed) {
-            return mv.tR - mv.fR == (movingPiece.isRed ? -1 : 1)
+        if selfSide(row: mv.fR, player: movingPiece.player) {
+            return mv.tR - mv.fR == (movingPiece.player == .red ? -1 : 1)
         } else {
-            return mv.tR - mv.fR != (movingPiece.isRed ? 1 : -1)
+            return mv.tR - mv.fR != (movingPiece.player == .red ? 1 : -1)
         }
     }
     
@@ -303,16 +303,22 @@ struct CChess {
         return abs(mv.fC - mv.tC) == abs(mv.fR - mv.tR)
     }
     
-    private func outOfPalace(col: Int, row: Int, isRed: Bool) -> Bool {
-        if isRed {
+    private func outOfPalace(col: Int, row: Int, player: Player) -> Bool {
+        switch player {
+        case .red:
             return col < 3 || col > 5 || row < 7 || row > 9
-        } else {
+        case .black:
             return col < 3 || col > 5 || row < 0 || row > 2
         }
     }
     
-    private func selfSide(row: Int, isRed: Bool) -> Bool {
-        return isRed ? row >= 5 : row <= 4
+    private func selfSide(row: Int, player: Player) -> Bool {
+        switch player {
+        case .red:
+            return row >= 5
+        case .black:
+            return row <= 4
+        }
     }
     
     private func steps(_ mv: Move) -> Int {
@@ -411,32 +417,32 @@ struct CChess {
     }
     
     mutating func initializeGame() {
-        redTurn = true
+        whoseTurn = .red
         pieces.removeAll()
         for i in 0..<2 {
-            pieces.insert(CChessPiece(col: 0 + i * 8, row: 0, isRed: false, rank: .rook, imageName: "bj"))
-            pieces.insert(CChessPiece(col: 0 + i * 8, row: 9, isRed: true, rank: .rook, imageName: "rj"))
+            pieces.insert(CChessPiece(col: 0 + i * 8, row: 0, player: .black, rank: .rook, imageName: "bj"))
+            pieces.insert(CChessPiece(col: 0 + i * 8, row: 9, player: .red, rank: .rook, imageName: "rj"))
             
-            pieces.insert(CChessPiece(col: 1 + i * 6, row: 0, isRed: false, rank: .knight, imageName: "bm"))
-            pieces.insert(CChessPiece(col: 1 + i * 6, row: 9, isRed: true, rank: .knight, imageName: "rm"))
+            pieces.insert(CChessPiece(col: 1 + i * 6, row: 0, player: .black, rank: .knight, imageName: "bm"))
+            pieces.insert(CChessPiece(col: 1 + i * 6, row: 9, player: .red, rank: .knight, imageName: "rm"))
             
-            pieces.insert(CChessPiece(col: 2 + i * 4, row: 0, isRed: false, rank: .bishop, imageName: "bx"))
-            pieces.insert(CChessPiece(col: 2 + i * 4, row: 9, isRed: true, rank: .bishop, imageName: "rx"))
+            pieces.insert(CChessPiece(col: 2 + i * 4, row: 0, player: .black, rank: .bishop, imageName: "bx"))
+            pieces.insert(CChessPiece(col: 2 + i * 4, row: 9, player: .red, rank: .bishop, imageName: "rx"))
 
-            pieces.insert(CChessPiece(col: 3 + i * 2, row: 0, isRed: false, rank: .warrior, imageName: "bs"))
-            pieces.insert(CChessPiece(col: 3 + i * 2, row: 9, isRed: true, rank: .warrior, imageName: "rs"))
+            pieces.insert(CChessPiece(col: 3 + i * 2, row: 0, player: .black, rank: .warrior, imageName: "bs"))
+            pieces.insert(CChessPiece(col: 3 + i * 2, row: 9, player: .red, rank: .warrior, imageName: "rs"))
 
-            pieces.insert(CChessPiece(col: 1 + i * 6, row: 2, isRed: false, rank: .cannon, imageName: "bp"))
-            pieces.insert(CChessPiece(col: 1 + i * 6, row: 7, isRed: true, rank: .cannon, imageName: "rp"))
+            pieces.insert(CChessPiece(col: 1 + i * 6, row: 2, player: .black, rank: .cannon, imageName: "bp"))
+            pieces.insert(CChessPiece(col: 1 + i * 6, row: 7, player: .red, rank: .cannon, imageName: "rp"))
         }
         
         for i in 0..<5 {
-            pieces.insert(CChessPiece(col: i * 2, row: 3, isRed: false, rank: .pawn, imageName: "bz"))
-            pieces.insert(CChessPiece(col: i * 2, row: 6, isRed: true, rank: .pawn, imageName: "rz"))
+            pieces.insert(CChessPiece(col: i * 2, row: 3, player: .black, rank: .pawn, imageName: "bz"))
+            pieces.insert(CChessPiece(col: i * 2, row: 6, player: .red, rank: .pawn, imageName: "rz"))
         }
         
-        pieces.insert(CChessPiece(col: 4, row: 0, isRed: false, rank: .king, imageName: "bb"))
-        pieces.insert(CChessPiece(col: 4, row: 9, isRed: true, rank: .king, imageName: "rb"))
+        pieces.insert(CChessPiece(col: 4, row: 0, player: .black, rank: .king, imageName: "bb"))
+        pieces.insert(CChessPiece(col: 4, row: 9, player: .red, rank: .king, imageName: "rb"))
     }
 }
 
@@ -451,19 +457,19 @@ extension CChess: CustomStringConvertible {
                 if let piece = pieceAt(col: col, row: row) {
                     switch piece.rank {
                     case .king:
-                        desc += piece.isRed ? " k" : " K"
+                        desc += piece.player == .red ? " k" : " K"
                     case .warrior:
-                        desc += piece.isRed ? " w" : " W"
+                        desc += piece.player == .red ? " w" : " W"
                     case .bishop:
-                        desc += piece.isRed ? " b" : " B"
+                        desc += piece.player == .red ? " b" : " B"
                     case .knight:
-                        desc += piece.isRed ? " n" : " N"
+                        desc += piece.player == .red ? " n" : " N"
                     case .rook:
-                        desc += piece.isRed ? " r" : " R"
+                        desc += piece.player == .red ? " r" : " R"
                     case .cannon:
-                        desc += piece.isRed ? " c" : " C"
+                        desc += piece.player == .red ? " c" : " C"
                     case .pawn:
-                        desc += piece.isRed ? " p" : " P"
+                        desc += piece.player == .red ? " p" : " P"
                     }
                 } else {
                     desc += " ."
