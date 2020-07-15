@@ -51,6 +51,17 @@ struct CChess {
         redTurn.toggle()
     }
     
+    func canSeeKingFrom(col: Int, row: Int, redKing: Bool) -> Bool {
+        guard let enemyKing = king(isRed: !redKing) else {
+            return false
+        }
+        return numPiecesBetween(Move(enemyKing.col, enemyKing.row, col, row)) == 0
+    }
+    
+    private func king(isRed: Bool) -> CChessPiece? {
+        return pieces.filter{ $0.rank == .king && $0.isRed == isRed }.first
+    }
+    
     func underThreatAt(col: Int, row: Int, redEnemy: Bool) -> Bool {
         for piece in pieces where piece.isRed == redEnemy {
             if canPieceAttack(mv: Move(fC: piece.col, fR: piece.row, tC: col, tR: row)) {
@@ -210,7 +221,8 @@ struct CChess {
     }
     
     func canKingMove(_ mv: Move) -> Bool {
-        guard !underThreatAt(col: mv.tC, row: mv.tR, redEnemy: !redTurn) else {
+        guard !canSeeKingFrom(col: mv.tC, row: mv.tR, redKing: !redTurn),
+              !underThreatAt(col: mv.tC, row: mv.tR, redEnemy: !redTurn) else {
             return false
         }
         return canKingAttack(mv)
