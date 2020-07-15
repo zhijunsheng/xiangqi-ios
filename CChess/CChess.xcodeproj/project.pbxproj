@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0732B7FC24BF23350007DF6D /* KingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0732B7FB24BF23350007DF6D /* KingTests.swift */; };
 		075FF65124BE08CB009D96D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF65024BE08CB009D96D7 /* AppDelegate.swift */; };
 		075FF65524BE08CB009D96D7 /* CChessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF65424BE08CB009D96D7 /* CChessViewController.swift */; };
 		075FF65824BE08CB009D96D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 075FF65624BE08CB009D96D7 /* Main.storyboard */; };
 		075FF65A24BE08CC009D96D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 075FF65924BE08CC009D96D7 /* Assets.xcassets */; };
 		075FF65D24BE08CC009D96D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 075FF65B24BE08CC009D96D7 /* LaunchScreen.storyboard */; };
-		075FF66824BE08CC009D96D7 /* CChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF66724BE08CC009D96D7 /* CChessTests.swift */; };
 		075FF67324BE08CC009D96D7 /* CChessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF67224BE08CC009D96D7 /* CChessUITests.swift */; };
 		075FF68124BE0E43009D96D7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68024BE0E43009D96D7 /* BoardView.swift */; };
 		075FF68324BE0EFD009D96D7 /* Pieces.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 075FF68224BE0EFD009D96D7 /* Pieces.xcassets */; };
@@ -44,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0732B7FB24BF23350007DF6D /* KingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingTests.swift; sourceTree = "<group>"; };
 		075FF64D24BE08CB009D96D7 /* CChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		075FF65024BE08CB009D96D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		075FF65424BE08CB009D96D7 /* CChessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +53,6 @@
 		075FF65C24BE08CC009D96D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		075FF65E24BE08CC009D96D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		075FF66324BE08CC009D96D7 /* CChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CChessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		075FF66724BE08CC009D96D7 /* CChessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessTests.swift; sourceTree = "<group>"; };
 		075FF66924BE08CC009D96D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		075FF66E24BE08CC009D96D7 /* CChessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CChessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		075FF67224BE08CC009D96D7 /* CChessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessUITests.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 		075FF66624BE08CC009D96D7 /* CChessTests */ = {
 			isa = PBXGroup;
 			children = (
-				075FF66724BE08CC009D96D7 /* CChessTests.swift */,
+				0732B7FB24BF23350007DF6D /* KingTests.swift */,
 				075FF66924BE08CC009D96D7 /* Info.plist */,
 			);
 			path = CChessTests;
@@ -226,6 +226,7 @@
 					};
 					075FF66224BE08CC009D96D7 = {
 						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1200;
 						TestTargetID = 075FF64C24BE08CB009D96D7;
 					};
 					075FF66D24BE08CC009D96D7 = {
@@ -305,7 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075FF66824BE08CC009D96D7 /* CChessTests.swift in Sources */,
+				0732B7FC24BF23350007DF6D /* KingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +512,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = CChessTests/Info.plist;
@@ -522,6 +524,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldthumb.CChessTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CChess.app/CChess";
@@ -533,6 +536,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = CChessTests/Info.plist;

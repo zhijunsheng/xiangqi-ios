@@ -1,14 +1,14 @@
 //
-//  CChessTests.swift
+//  KingTests.swift
 //  CChessTests
 //
-//  Created by Zhijun Sheng on 2020-07-14.
+//  Created by Zhijun Sheng on 2020-07-15.
+//  Copyright © 2020 Gold Thumb Inc. All rights reserved.
 //
 
 import XCTest
-@testable import CChess
 
-class CChessTests: XCTestCase {
+class KingTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
