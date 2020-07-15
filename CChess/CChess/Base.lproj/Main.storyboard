@@ -25,7 +25,7 @@
                                             <action selector="reset:" destination="BYZ-38-t0r" id="R2W-uk-YSn"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="⚔️" id="VnE-To-Jn5">
+                                    <barButtonItem title="👇" id="VnE-To-Jn5">
                                         <connections>
                                             <action selector="flipPieceImages:" destination="BYZ-38-t0r" id="nS2-3J-iLB"/>
                                         </connections>
@@ -127,6 +127,7 @@
                     </view>
                     <connections>
                         <outlet property="boardView" destination="HxX-IT-ycb" id="KrX-Ta-jsN"/>
+                        <outlet property="flipImageBarButtonItem" destination="VnE-To-Jn5" id="byx-nT-cM8"/>
                         <outlet property="lowerPlayerColorView" destination="uXf-DL-nXP" id="cmV-a1-B1s"/>
                         <outlet property="peerHomeView" destination="Nwg-Eh-bRC" id="Kb7-6n-eMO"/>
                         <outlet property="peerLabel" destination="Leo-Mj-4vI" id="chn-5c-NnS"/>
