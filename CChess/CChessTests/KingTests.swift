@@ -14,22 +14,26 @@ class KingTests: XCTestCase {
     func testThreatFromCannon() {
         var cchess = CChess()
         cchess.initializeGame()
-        print(cchess)
         
         /*
          + 0 1 2 3 4 5 6 7 8
-         0 . . . . . . . . .
-         1 . . . . . . . . .
-         2 . . . . . . . . .
-         3 . . . . . . . . .
+         0 R N B W . K B N R
+         1 . . . . W . . . .
+         2 . C . . . . . C .
+         3 P . P . P . P . P
          4 . . . . . . . . .
          5 . . . . . . . . .
-         6 . . . . . . . . .
-         7 . . . . . . . . .
+         6 p . p . p . p . p
+         7 . c . . . c . . .
          8 . . . . . . . . .
-         9 . . . . . . . . .
+         9 r n b w k w b n r
          */
-        
+        cchess.movePiece(move: Move(7, 7, 5, 7))
+        cchess.movePiece(move: Move(5, 0, 4, 1))
+        cchess.movePiece(move: Move(5, 7, 5, 8))
+        cchess.movePiece(move: Move(4, 0, 5, 0))
+        cchess.movePiece(move: Move(5, 8, 5, 7))
+        XCTAssertFalse(cchess.isValid(mv: Move(4, 1, 5, 2), player: .black))
     }
     
     func testUnderThreat() {

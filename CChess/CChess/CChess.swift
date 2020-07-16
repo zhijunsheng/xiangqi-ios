@@ -112,17 +112,20 @@ struct CChess {
             return true
         }
 
-        if kingExposedBy(protector: movingPiece) {
+        if kingExposedBy(mv: mv) {
             return false
         }
         
         return true
     }
     
-    private func kingExposedBy(protector: CChessPiece) -> Bool {
-        if let king = pieces.filter({ $0.player == protector.player && $0.rank == .king }).first {
+    private func kingExposedBy(mv: Move) -> Bool {
+        guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR) else {
+            return false
+        }
+        if let king = pieces.filter({ $0.player == movingPiece.player && $0.rank == .king }).first {
             var gameCopy = self
-            gameCopy.pieces.remove(protector)
+            gameCopy.movePiece(move: mv)
             if gameCopy.checked(player: king.player) {
                 return true
             }
