@@ -90,7 +90,49 @@ class BoardView: UIView {
     }
     
     private func drawBoard() {
+        UIColor.lightGray.setStroke()
+        
+        let margin = cellSide/15
+        UIBezierPath(rect: CGRect(x: originX - margin, y: originY - margin, width: CGFloat(cols - 1) * cellSide + 2 * margin, height: CGFloat(rows - 1) * cellSide + 2 * margin)).stroke()
+        
         path(in: bounds).stroke()
+        
+        for i in 0..<2 {
+            drawStarAt(col: 1 + i * 6, row: 2)
+            drawStarAt(col: 1 + i * 6, row: 7)
+            drawHalfStarAt(col: 0, row: 3, left: false)
+            drawHalfStarAt(col: 0, row: 6, left: false)
+            drawHalfStarAt(col: 8, row: 3, left: true)
+            drawHalfStarAt(col: 8, row: 6, left: true)
+        }
+        for i in 0..<3 {
+            drawStarAt(col: 2 + i * 2, row: 3)
+            drawStarAt(col: 2 + i * 2, row: 6)
+        }
+    }
+    
+    private func drawHalfStarAt(col: Int, row: Int, left: Bool) {
+        let gap = cellSide / 9
+        let bar = cellSide / 4
+        let hSign: CGFloat = left ? -1 : 1;
+        let tipX = originX + CGFloat(col) * cellSide + hSign * gap
+        let path = UIBezierPath()
+        for i in 0..<2 {
+            let vSign: CGFloat = CGFloat(-1 + i * 2)
+            let tipY = originY + CGFloat(row) * cellSide + vSign * gap
+            path.move(to: CGPoint(x: tipX, y: tipY))
+            path.addLine(to: CGPoint(x: tipX + hSign * bar, y: tipY))
+//            g.drawLine(tipX, tipY, tipX + hSign * bar , tipY);
+//            g.drawLine(tipX, tipY, tipX, tipY + vSign * bar);
+            path.move(to: CGPoint(x: tipX, y: tipY))
+            path.addLine(to: CGPoint(x: tipX , y: tipY + vSign * bar))
+        }
+        path.stroke()
+    }
+    
+    private func drawStarAt(col: Int, row: Int) {
+        drawHalfStarAt(col: col, row: row, left: true)
+        drawHalfStarAt(col: col, row: row, left: false)
     }
     
     @available(iOS 10.0, *)
