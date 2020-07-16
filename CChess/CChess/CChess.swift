@@ -176,8 +176,12 @@ struct CChess {
         case .warrior:
             return validWarrior(mv)
         case .cannon:
-            return validCannon(mv)
+            return canCannonAttack(mv)
         }
+    }
+    
+    func canCannonAttack(_ mv: Move) -> Bool {
+        return validCannon(mv) && numPiecesBetween(mv) == 1
     }
     
     func validWarrior(_ mv: Move) -> Bool {
@@ -190,10 +194,13 @@ struct CChess {
     }
     
     func validCannon(_ mv: Move) -> Bool {
-        if pieceAt(col: mv.tC, row: mv.tR) == nil {
-            return validRook(mv)
+        guard let cannon = pieceAt(col: mv.fC, row: mv.fR) else {
+            return false
         }
-        return numPiecesBetween(mv) == 1;
+        if let target = pieceAt(col: mv.tC, row: mv.tR) {
+            return target.player.enemy == cannon.player && numPiecesBetween(mv) == 1
+        }
+        return validRook(mv)
     }
     
     private func validKnight(_ mv: Move) -> Bool {
