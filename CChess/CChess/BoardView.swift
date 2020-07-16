@@ -122,8 +122,6 @@ class BoardView: UIView {
             let tipY = originY + CGFloat(row) * cellSide + vSign * gap
             path.move(to: CGPoint(x: tipX, y: tipY))
             path.addLine(to: CGPoint(x: tipX + hSign * bar, y: tipY))
-//            g.drawLine(tipX, tipY, tipX + hSign * bar , tipY);
-//            g.drawLine(tipX, tipY, tipX, tipY + vSign * bar);
             path.move(to: CGPoint(x: tipX, y: tipY))
             path.addLine(to: CGPoint(x: tipX , y: tipY + vSign * bar))
         }
