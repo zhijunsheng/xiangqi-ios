@@ -41,6 +41,8 @@ struct CChess {
             return
         }
         
+        previousPieces = pieces
+        
         if let targetPiece = pieceAt(col: toCol, row: toRow) {
             pieces.remove(targetPiece)
         }
