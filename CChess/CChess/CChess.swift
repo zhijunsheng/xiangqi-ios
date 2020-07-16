@@ -41,12 +41,14 @@ struct CChess {
             return
         }
         
-        pieces.remove(movingPiece)
         if let targetPiece = pieceAt(col: toCol, row: toRow) {
             pieces.remove(targetPiece)
         }
         
-        pieces.insert(CChessPiece(col: toCol, row: toRow, player: movingPiece.player, rank: movingPiece.rank, imageName: movingPiece.imageName))
+        pieces.remove(movingPiece)
+        let newPiece = CChessPiece(col: toCol, row: toRow, player: movingPiece.player, rank: movingPiece.rank, imageName: movingPiece.imageName)
+        pieces.insert(newPiece)
+        lastMovedPiece = newPiece
         
         whoseTurn = whoseTurn == .red ? .black : .red
     }
