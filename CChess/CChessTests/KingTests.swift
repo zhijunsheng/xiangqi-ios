@@ -69,12 +69,14 @@ class KingTests: XCTestCase {
          6 p . p . p . p . p
          7 . c . . . . . c .
          8 . . . . w . . . .
-         9 r n b w . k b n r
+         9 r n b w k . b n r
          */
         cchess.movePiece(move: Move(5, 9, 4, 8))
         cchess.movePiece(move: Move(5, 0, 4, 1))
+        XCTAssertTrue(cchess.canKingAttack(Move(4, 9, 5, 9)))
+        XCTAssertFalse(cchess.canSeeEnemyKingFrom(col: 5, row: 9, player: .red))
         XCTAssertTrue(cchess.canKingMove(Move(4, 9, 5, 9)))
-//        XCTAssertTrue(cchess.isValid(mv: Move(4, 9, 5, 9), player: .red))
+        XCTAssertTrue(cchess.isValid(mv: Move(4, 9, 5, 9), player: .red))
     }
 
     func testKingsFaceToFace() {

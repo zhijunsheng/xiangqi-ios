@@ -55,7 +55,8 @@ struct CChess {
         guard let enemyKing = kingOf(player: player.enemy) else {
             return false
         }
-        return numPiecesBetween(Move(enemyKing.col, enemyKing.row, col, row)) == 0
+        return enemyKing.col == col &&
+            numPiecesBetween(Move(enemyKing.col, enemyKing.row, col, row)) == 0
     }
     
     private func kingOf(player: Player) -> CChessPiece? {
@@ -220,20 +221,20 @@ struct CChess {
         return isDiagonal(mv) && steps(mv) == 2
     }
     
-    func canKingMove(_ mv: Move) -> Bool {
-        guard !canSeeEnemyKingFrom(col: mv.tC, row: mv.tR, player: whoseTurn),
-              !underThreatAt(col: mv.tC, row: mv.tR, enemy: whoseTurn.enemy) else {
-            return false
-        }
-        return canKingAttack(mv)
-    }
-    
     func canKingAttack(_ mv: Move) -> Bool {
         guard let movingPiece = pieceAt(col: mv.fC, row: mv.fR),
               !outOfPalace(col: mv.tC, row: mv.tR, player: movingPiece.player) else {
             return false
         }
         return isStraight(mv) && steps(mv) == 1
+    }
+    
+    func canKingMove(_ mv: Move) -> Bool {
+        guard !canSeeEnemyKingFrom(col: mv.tC, row: mv.tR, player: whoseTurn),
+              !underThreatAt(col: mv.tC, row: mv.tR, enemy: whoseTurn.enemy) else {
+            return false
+        }
+        return canKingAttack(mv)
     }
     
     func emptyAndSafe(row: Int, cols: ClosedRange<Int>, enemy: Player) -> Bool {
