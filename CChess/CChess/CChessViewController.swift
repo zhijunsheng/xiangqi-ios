@@ -200,7 +200,7 @@ extension CChessViewController: NearbyServiceDelegate {
                         self.firstMoveMade = true
                         self.boardView.blackAtTop = false
                         self.isRedDevice = false
-                        self.upperPlayerColorView.backgroundColor = .white
+                        self.upperPlayerColorView.backgroundColor = .red
                         self.lowerPlayerColorView.backgroundColor = .black
                         self.peerHomeView.backgroundColor = self.whoseTurnColor
                         self.youHomeView.backgroundColor = self.waitingColor
