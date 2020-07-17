@@ -89,7 +89,7 @@ struct CChess {
             return false
         }
         
-        if let target = pieceAt(col: mv.tC, row: mv.tR), target.player == movingPiece.player  {
+        if let target = pieceAt(col: mv.tC, row: mv.tR), target.player == movingPiece.player {
             return false
         }
         
