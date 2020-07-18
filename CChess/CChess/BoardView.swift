@@ -90,7 +90,7 @@ class BoardView: UIView {
     }
     
     private func drawBoard() {
-        UIColor.lightGray.setStroke()
+//        UIColor.lightGray.setStroke()
         
         let margin = cellSide/15
         UIBezierPath(rect: CGRect(x: originX - margin, y: originY - margin, width: CGFloat(cols - 1) * cellSide + 2 * margin, height: CGFloat(rows - 1) * cellSide + 2 * margin)).stroke()
