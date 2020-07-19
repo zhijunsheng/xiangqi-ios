@@ -14,4 +14,9 @@ struct CChessPiece: Hashable {
     let player: Player
     let rank: CChessRank
     let imageName: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(row)
+        hasher.combine(col)
+    }
 }
