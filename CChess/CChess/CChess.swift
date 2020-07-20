@@ -41,6 +41,13 @@ struct CChess {
             return
         }
         
+        if isHandicap(move: move) {
+            if movingPiece.rank != .king {
+                pieces.remove(movingPiece)
+            }
+            return
+        }
+        
         previousPieces = pieces
         
         if let targetPiece = pieceAt(col: toCol, row: toRow) {
