@@ -48,6 +48,7 @@
 		0732B7FB24BF23350007DF6D /* KingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingTests.swift; sourceTree = "<group>"; };
 		0732B7FD24BFAFF60007DF6D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		0732B7FF24BFD3B40007DF6D /* CannonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonTests.swift; sourceTree = "<group>"; };
+		07579A7A24CB159A00DFAC5D /* CChess.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CChess.entitlements; sourceTree = "<group>"; };
 		075FF64D24BE08CB009D96D7 /* CChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		075FF65024BE08CB009D96D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		075FF65424BE08CB009D96D7 /* CChessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 		075FF64F24BE08CB009D96D7 /* CChess */ = {
 			isa = PBXGroup;
 			children = (
+				07579A7A24CB159A00DFAC5D /* CChess.entitlements */,
 				075FF68624BE1061009D96D7 /* NearbyServiceDelegate.swift */,
 				075FF68824BE1075009D96D7 /* NearbyService.swift */,
 				0732B7FD24BFAFF60007DF6D /* Player.swift */,
@@ -468,8 +470,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CChess/CChess.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = CChess/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -488,8 +491,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CChess/CChess.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = CChess/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
