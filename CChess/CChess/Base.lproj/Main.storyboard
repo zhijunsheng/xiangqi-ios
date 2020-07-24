@@ -19,12 +19,12 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2j-KZ-Xdr">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="👌" id="0Gv-0b-m9d">
+                                    <barButtonItem title="✈️" id="0Gv-0b-m9d">
                                         <connections>
                                             <action selector="reset:" destination="BYZ-38-t0r" id="R2W-uk-YSn"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="👇" id="VnE-To-Jn5">
+                                    <barButtonItem title="⚔️" id="VnE-To-Jn5">
                                         <connections>
                                             <action selector="flipPieceImages:" destination="BYZ-38-t0r" id="nS2-3J-iLB"/>
                                         </connections>
