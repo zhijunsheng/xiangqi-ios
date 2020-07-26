@@ -92,6 +92,8 @@ struct XiangqiBoard: CustomStringConvertible {
         return movingPiece.isRed == pieceAt(col: col, row: row)?.isRed
     }
     
+    // Is it a valid move from ... to ...?
+    // Can it move from ... to ...?
     func isValidRookMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         return (toRow == fromRow || toCol == fromCol) && numberOfPiecesBetween(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow) == 0
     }
@@ -142,6 +144,7 @@ struct XiangqiBoard: CustomStringConvertible {
         return number
     }
     
+    // TODO: pleace review
     func isValidKnightMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         if abs(toCol - fromCol) == 1 && abs(toRow - fromRow) == 2 {
             return pieceAt(col: fromCol, row: (fromRow + toRow) / 2) == nil

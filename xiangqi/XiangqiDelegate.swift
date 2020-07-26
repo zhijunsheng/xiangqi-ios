@@ -10,5 +10,5 @@ import UIKit
 
 protocol XiangqiDelegate {
     func movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int)
-    func pieceImageAt(col: Int, row: Int) -> UIImage?
+    func pieceAt(col: Int, row: Int) -> XiangqiPiece?
 }

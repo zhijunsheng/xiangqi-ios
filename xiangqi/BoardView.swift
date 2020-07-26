@@ -29,6 +29,7 @@ class BoardView: UIView {
     
     var movingPieceLocation: CGPoint?
     var movingPieceImage: UIImage?
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -43,7 +44,12 @@ class BoardView: UIView {
             return
         }
         
-        movingPieceImage = xiangqiDelegate?.pieceImageAt(col: fromCol, row: fromRow)
+        guard let piece = xiangqiDelegate?.pieceAt(col: fromCol, row: fromRow) else {
+            return
+        }
+        
+        movingPieceImage = image(piece: piece)
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -85,25 +91,39 @@ class BoardView: UIView {
         
         drawBoard(orgX: originX, orgY: originY)
         drawPieces(orgX: originX, orgY: originY)
-        
-        guard let movingPieceLocation = movingPieceLocation else {
-            return
-        }
-        movingPieceImage?.draw(in: CGRect(x: movingPieceLocation.x - cellSide / 2, y: movingPieceLocation.y - cellSide / 2, width: cellSide, height: cellSide))
     }
     
     func drawPieces(orgX: CGFloat, orgY: CGFloat) {
         for piece in pieces {
-            
             drawPiece(orgX: orgX, orgY: orgY, piece: piece)
         }
+        
+        guard let movingPieceLocation = movingPieceLocation else {
+            return
+        }
+        
+        
+        
+        movingPieceImage?.draw(in: CGRect(x: movingPieceLocation.x - cellSide / 2, y: movingPieceLocation.y - cellSide / 2, width: cellSide, height: cellSide))
     }
     
     func drawPiece(orgX: CGFloat, orgY: CGFloat, piece: XiangqiPiece) {
-        guard let pieceImage = UIImage(named: piece.imgName) else {
-            return
+        
+        image(piece: piece)?.draw(in: CGRect(x: orgX + cellSide * CGFloat(piece.col) - cellSide / 2, y: orgY + cellSide * CGFloat(piece.row) - cellSide / 2, width: cellSide, height: cellSide))
+    }
+    
+    func image(piece: XiangqiPiece) -> UIImage? {
+        guard let pieceImage = UIImage(named: piece.imgName), let cgImg = pieceImage.cgImage else {
+            return nil
         }
-        pieceImage.draw(in: CGRect(x: orgX + cellSide * CGFloat(piece.col) - cellSide / 2, y: orgY + cellSide * CGFloat(piece.row) - cellSide / 2, width: cellSide, height: cellSide))
+        var image: UIImage
+        
+        if piece.isRed {
+            image = UIImage(cgImage: cgImg, scale: 1, orientation: .down)
+        } else {
+            image = pieceImage
+        }
+        return image
     }
     
     func drawQuarterStar(orgX: CGFloat, orgY: CGFloat, locationX: Int, locationY: Int, isLeftHalf: Bool, isUpperHalf: Bool) {

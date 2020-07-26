@@ -52,12 +52,10 @@ class ViewController: UIViewController, XiangqiDelegate {
         }
     }
     
-    func pieceImageAt(col: Int, row: Int) -> UIImage? {
+    func pieceAt(col: Int, row: Int) -> XiangqiPiece? {
         guard let piece = board.pieceAt(col: col, row: row) else {
             return nil
         }
-        
-        let pieceImage: UIImage? = UIImage(named: piece.imgName)
-        return pieceImage
+        return piece
     }
 }
