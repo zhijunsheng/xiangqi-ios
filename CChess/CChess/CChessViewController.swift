@@ -131,12 +131,8 @@ class CChessViewController: UIViewController {
         audioPlayer.play()
     }
     
-    private func sendMoveToPeers(move: Move, targetRank: Character? = nil) {
-        var promotionPostfix = ""
-        if let targetRank = targetRank {
-            promotionPostfix = ":\(targetRank)"
-        }
-        let msg = "\(move.fC):\(move.fR):\(move.tC):\(move.tR)\(promotionPostfix)"
+    private func sendMoveToPeers(move: Move) {
+        let msg = "\(move.fC):\(move.fR):\(move.tC):\(move.tR)"
         nearbyService.send(msg: msg)
         if !cchess.isHandicap(move: move) {
             firstMoveMade = true
