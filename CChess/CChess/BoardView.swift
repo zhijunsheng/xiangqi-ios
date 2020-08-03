@@ -57,8 +57,7 @@ class BoardView: UIView {
         originX = (bounds.width - 8 * cellSide) / 2
         originY = (bounds.height - 9 * cellSide) / 2
         
-        drawBoard()
-        drawPieces()
+        drawBoardAndPieces()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -170,7 +169,7 @@ class BoardView: UIView {
         moveAnimator.startAnimation()
     }
     
-    private func drawPieces() {
+    private func drawBoardAndPieces() {
         if backgroundImage == nil {
             backgroundImage = createBackgroundImage()
         }
