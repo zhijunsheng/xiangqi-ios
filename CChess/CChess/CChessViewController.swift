@@ -64,6 +64,14 @@ class CChessViewController: UIViewController {
         boardView.setNeedsDisplay()
     }
     
+    @IBAction func info(_ sender: UIBarButtonItem) {
+        let info = "This app is playable between 2 iOS devices close to each other."
+        let alertController = UIAlertController(title: "\(info)", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Got it.", style: .default))
+        avoidAlertCrashOnPad(alertController: alertController)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     /*
      Don't move this function to model since a button could also trigger withdrawing.
      */
@@ -128,7 +136,9 @@ class CChessViewController: UIViewController {
             updateWhoseTurnColorsLocally(player: cchess.whoseTurn)
         }
         
+        #if !targetEnvironment(simulator)
         audioPlayer.play()
+        #endif
     }
     
     private func sendMoveToPeers(move: Move) {

@@ -18,11 +18,17 @@ class BoardView: UIView {
     var originY: CGFloat = -10
     var cellSide: CGFloat = -10
     
-    var shadowPieces: Set<CChessPiece> = []
+    var shadowPieces: Set<CChessPiece> = [] {
+        didSet {
+            backgroundImage = nil
+        }
+    }
+    private var backgroundImage: UIImage?
+    
     var cchessDelegate: CChessDelegate? = nil
     
-    var fromCol: Int? = nil
-    var fromRow: Int? = nil
+    var movingPieceFromCol: Int? = nil
+    var movingPieceFromRow: Int? = nil
     
     var movingImage: UIImage? = nil
     var movingPieceX: CGFloat = -1
@@ -34,6 +40,7 @@ class BoardView: UIView {
     var sharingDevice = false {
         didSet {
             imageByName.removeAll()
+            backgroundImage = nil
         }
     }
 
@@ -57,12 +64,15 @@ class BoardView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let first = touches.first!
         let fingerLocation = first.location(in: self)
-        fromCol = p2pX(Int((fingerLocation.x - originX) / cellSide + 0.5))
-        fromRow = p2pY(Int((fingerLocation.y - originY) / cellSide + 0.5))
+        let fromCol = p2pX(Int((fingerLocation.x - originX) / cellSide + 0.5))
+        let fromRow = p2pY(Int((fingerLocation.y - originY) / cellSide + 0.5))
+        movingPieceFromCol = fromCol
+        movingPieceFromRow = fromRow
         
-        if let fromCol = fromCol, let fromRow = fromRow, let movingPiece = cchessDelegate?.pieceAt(col: fromCol, row: fromRow) {
+        if let movingPiece = cchessDelegate?.pieceAt(col: fromCol, row: fromRow) {
             movingImage = image(named: movingPiece.imageName)
         }
+        backgroundImage = createBackgroundImage()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -80,18 +90,17 @@ class BoardView: UIView {
         let toCol: Int = p2pX(Int((fingerLocation.x - originX) / cellSide + 0.5))
         let toRow: Int = p2pY(Int((fingerLocation.y - originY) / cellSide + 0.5))
         
-        if let fromCol = fromCol, let fromRow = fromRow, fromCol != toCol || fromRow != toRow {
+        if let fromCol = movingPieceFromCol, let fromRow = movingPieceFromRow, fromCol != toCol || fromRow != toRow {
             cchessDelegate?.play(with: Move(fC: fromCol, fR: fromRow, tC: toCol, tR: toRow))
         }
         movingImage = nil
-        fromCol = nil
-        fromRow = nil
+        movingPieceFromCol = nil
+        movingPieceFromRow = nil
+        backgroundImage = createBackgroundImage()
         setNeedsDisplay()
     }
     
     private func drawBoard() {
-//        UIColor.lightGray.setStroke()
-        
         let margin = cellSide/15
         UIBezierPath(rect: CGRect(x: originX - margin, y: originY - margin, width: CGFloat(cols - 1) * cellSide + 2 * margin, height: CGFloat(rows - 1) * cellSide + 2 * margin)).stroke()
         
@@ -162,11 +171,10 @@ class BoardView: UIView {
     }
     
     private func drawPieces() {
-        for piece in shadowPieces where fromCol != piece.col || fromRow != piece.row {
-            let normalRect = CGRect(x: originX + CGFloat(p2pX(piece.col)) * cellSide - cellSide/2, y: originY + CGFloat(p2pY(piece.row)) * cellSide - cellSide/2, width: cellSide, height: cellSide)
-            let imgRect = imageRect(normalRect: normalRect, ratio: pieceRatio)
-            image(named: piece.imageName)?.draw(in: imgRect)
+        if backgroundImage == nil {
+            backgroundImage = createBackgroundImage()
         }
+        backgroundImage?.draw(at: CGPoint.zero)
         
         if let movingImage = movingImage {
             drawCrosshair(x: movingPieceX, y: movingPieceY)
@@ -249,11 +257,30 @@ class BoardView: UIView {
         return path
     }
     
-    func p2pX(_ col: Int) -> Int { // p2p: peer to peer
+    private func p2pX(_ col: Int) -> Int { // p2p: peer to peer
         return blackAtTop ? col : cols - 1 - col
     }
 
-    func p2pY(_ row: Int) -> Int {
+    private func p2pY(_ row: Int) -> Int {
         return blackAtTop ? row : rows - 1 - row
+    }
+    
+    private func drawPiece(piece: CChessPiece) {
+        let normalRect = CGRect(x: originX + CGFloat(p2pX(piece.col)) * cellSide - cellSide/2, y: originY + CGFloat(p2pY(piece.row)) * cellSide - cellSide/2, width: cellSide, height: cellSide)
+        let imgRect = imageRect(normalRect: normalRect, ratio: pieceRatio)
+        image(named: piece.imageName)?.draw(in: imgRect)
+    }
+    
+    private func createBackgroundImage() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0)
+        UIColor.white.setFill()
+        UIBezierPath(rect: bounds).fill()
+        drawBoard()
+        for piece in shadowPieces where movingPieceFromCol != piece.col || movingPieceFromRow != piece.row {
+            drawPiece(piece: piece)
+        }
+        let backgroundImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return backgroundImage
     }
 }

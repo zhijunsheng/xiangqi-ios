@@ -29,6 +29,12 @@
                                             <action selector="flipPieceImages:" destination="BYZ-38-t0r" id="nS2-3J-iLB"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HD4-HR-etA"/>
+                                    <barButtonItem title="📚" id="HEJ-Vg-BN4">
+                                        <connections>
+                                            <action selector="info:" destination="BYZ-38-t0r" id="NYq-Hs-kb9"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFS-hh-Uqn">
