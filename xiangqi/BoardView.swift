@@ -9,85 +9,53 @@
 import UIKit
 
 class BoardView: UIView {
-
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
+    let originX: CGFloat = 30 + 60
+    let originY: CGFloat = 35 + 20
+    let cellWidth: CGFloat = 60 + 7
+    let cellHeight: CGFloat = 50 + 13
+    
     override func draw(_ rect: CGRect) {
         let pencil = UIBezierPath()
         
-        pencil.move(to: CGPoint(x: 30, y: 30))
-        pencil.addLine(to: CGPoint(x: 30, y: 210))
+        for i in 0..<10 {
+            pencil.move(to: CGPoint(x: originX , y: CGFloat(i) * cellHeight + originY))
+            pencil.addLine(to: CGPoint(x: 8 * cellWidth + originX, y: CGFloat(i) * cellHeight + originY))
+        }
         
-        pencil.move(to: CGPoint(x: 60, y: 30))
-        pencil.addLine(to: CGPoint(x: 60, y: 210))
+        pencil.move(to: CGPoint(x: originX, y: originY))
+        pencil.addLine(to: CGPoint(x: originX, y:  5 * cellHeight + originY))
+    
+        // vertical
         
-        pencil.move(to:   CGPoint(x: 90, y: 30))
-        pencil.addLine(to: CGPoint(x: 90, y: 210))
+        for i in 0..<9 {
+            pencil.move(to: CGPoint(x: CGFloat(i) * cellWidth + originX , y: originY))
+            pencil.addLine(to: CGPoint(x: CGFloat(i) * cellWidth + originX, y: 4 * cellHeight + originY))
+        }
         
-        pencil.move(to: CGPoint(x: 120, y: 30))
-        pencil.addLine(to: CGPoint(x: 120, y: 210))
+        for i in 0..<9 {
+            pencil.move(to: CGPoint(x: CGFloat(i) * cellWidth + originX , y: 5 * cellHeight + originY))
+            pencil.addLine(to: CGPoint(x: CGFloat(i) * cellWidth + originX, y: 9 * cellHeight + originY))
+        }
         
-        pencil.move(to: CGPoint(x: 150, y: 30))
-        pencil.addLine(to: CGPoint(x: 150, y: 210))
+        for i in 0..<2 {
+            pencil.move(to: CGPoint(x: 8 * CGFloat(i) * cellWidth + originX, y: 4 * cellHeight + originY))
+            pencil.addLine(to: CGPoint(x: 8 * CGFloat(i) * cellWidth + originX, y: 5 * cellHeight + originY))
+        }
         
-        pencil.move(to: CGPoint(x: 180, y: 30))
-        pencil.addLine(to: CGPoint(x: 180, y: 210))
- 
-        pencil.move(to: CGPoint(x: 210, y: 30))
-        pencil.addLine(to: CGPoint(x: 210, y: 210))
+        pencil.move(to: CGPoint(x: 3 * cellWidth + originX, y: originY))
+        pencil.addLine(to: CGPoint(x: 5 * cellWidth + originX, y: originY + cellHeight * 2))
         
-        pencil.move(to: CGPoint(x: 240, y: 30))
-        pencil.addLine(to: CGPoint(x: 240, y: 210))
-        
-        pencil.move(to:   CGPoint(x: 270, y: 30))
-        pencil.addLine(to: CGPoint(x: 270, y: 210))
-        
-        //
-        pencil.move(to: CGPoint(x: 30, y: 240))
-        pencil.addLine(to: CGPoint(x: 30, y: 390))
-               
-        pencil.move(to: CGPoint(x: 60, y: 240))
-        pencil.addLine(to: CGPoint(x: 60, y: 390))
-               
-        pencil.move(to:   CGPoint(x: 90, y: 240))
-        pencil.addLine(to: CGPoint(x: 90, y: 390))
-               
-        pencil.move(to: CGPoint(x: 120, y: 240))
-        pencil.addLine(to: CGPoint(x: 120, y: 390))
-               
-        pencil.move(to: CGPoint(x: 150, y: 240))
-        pencil.addLine(to: CGPoint(x: 150, y: 390))
-            
-        pencil.move(to: CGPoint(x: 180, y: 240))
-        pencil.addLine(to: CGPoint(x: 180, y: 390))
-        
-        pencil.move(to: CGPoint(x: 210, y: 240))
-        pencil.addLine(to: CGPoint(x: 210, y: 390))
-               
-        pencil.move(to: CGPoint(x: 240, y: 240))
-        pencil.addLine(to: CGPoint(x: 240, y: 390))
-               
-        pencil.move(to:   CGPoint(x: 270, y: 240))
-        pencil.addLine(to: CGPoint(x: 270, y: 390))
-        
-        //horzontal
-        
-        pencil.move(to: CGPoint(x: 30, y: 30))
-        pencil.addLine(to: CGPoint(x: 270, y: 30))
-       
-        pencil.move(to: CGPoint(x: 30, y: 70))
-        pencil.addLine(to: CGPoint(x: 270, y: 70))
-        
-        pencil.move(to: CGPoint(x: 30, y: 110))
-        pencil.addLine(to: CGPoint(x: 270, y: 110))
-        
-        pencil.move(to: CGPoint(x: 30, y: 150))
-        pencil.addLine(to: CGPoint(x: 270, y: 150))
-        
-        pencil.move(to: CGPoint(x: 30, y: 190))
-        pencil.addLine(to: CGPoint(x: 270, y: 190))
+        pencil.move(to: CGPoint(x: 5 * cellWidth + originX, y: originY ))
+        pencil.addLine(to: CGPoint(x: 3 * cellWidth + originX, y: originY + cellHeight * 2))
         
         
+        
+        pencil.move(to: CGPoint(x: 3 * cellWidth + originX, y: originY + cellHeight * 7))
+        pencil.addLine(to: CGPoint(x: 5 * cellWidth + originX, y: originY + cellHeight * 9))
+        
+        
+        pencil.move(to: CGPoint(x: 5 * cellWidth + originX, y: originY + cellHeight * 7))
+        pencil.addLine(to: CGPoint(x: 3 * cellWidth + originX, y: originY + cellHeight * 9))
         
         
         
@@ -97,3 +65,4 @@ class BoardView: UIView {
 
 
 }
+
