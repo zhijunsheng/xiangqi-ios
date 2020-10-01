@@ -136,9 +136,7 @@ class CChessViewController: UIViewController {
             updateWhoseTurnColorsLocally(player: cchess.whoseTurn)
         }
         
-        #if !targetEnvironment(simulator)
         audioPlayer.play()
-        #endif
     }
     
     private func sendMoveToPeers(move: Move) {
