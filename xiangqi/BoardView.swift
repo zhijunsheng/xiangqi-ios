@@ -35,6 +35,13 @@ class BoardView: UIView {
             bs?.draw(in: CGRect(x: originX + cellSide * CGFloat(3 + i * 2) - cellSide * 0.5, y: originY - cellSide * 0.5, width: cellSide, height: cellSide))
             bp?.draw(in: CGRect(x: originX + cellSide * CGFloat(1 + i * 6) - cellSide * 0.5, y: originY + cellSide * 2 - cellSide * 0.5, width: cellSide, height: cellSide))
         }
+        
+        bj?.draw(in: CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>))
+        bm?.draw(in: CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>))
+        
+        
+        
+        
         let bz = UIImage(named: "bz")
         for i in 0..<5 {
             bz?.draw(in: CGRect(x: originX + cellSide * CGFloat(i) * 2 - cellSide * 0.5, y: originY + cellSide * 3 - cellSide * 0.5, width: cellSide, height: cellSide))
