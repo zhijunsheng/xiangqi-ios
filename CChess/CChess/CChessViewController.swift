@@ -27,7 +27,7 @@ class CChessViewController: UIViewController {
     
     @IBOutlet weak var flipImageBarButtonItem: UIBarButtonItem!
     
-    var audioPlayer: AVAudioPlayer!
+    var audioPlayer: AVAudioPlayer?
     
     private var isolated = true
     private var isRedDevice = true
@@ -136,7 +136,7 @@ class CChessViewController: UIViewController {
             updateWhoseTurnColorsLocally(player: cchess.whoseTurn)
         }
         
-        audioPlayer.play()
+        audioPlayer?.play()
     }
     
     private func sendMoveToPeers(move: Move) {
