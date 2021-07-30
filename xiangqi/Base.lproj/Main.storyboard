@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BG0-XK-hjq" customClass="BoardView" customModule="xiangqi" customModuleProvider="target" colorLabel="IBBuiltInLabel-Blue">
-                                <rect key="frame" x="20" y="20" width="728" height="594"/>
+                                <rect key="frame" x="20" y="20" width="728" height="879"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.47058826679999999" green="0.35686278339999999" blue="0.21568629149999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
