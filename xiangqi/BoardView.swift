@@ -10,7 +10,7 @@ import UIKit
 
 class BoardView: UIView {
 
-    var cellH: CGFloat = 48
+    var cellH: CGFloat = 36
     var gridX: CGFloat = 172
     var gridY: CGFloat = 210
     
@@ -19,8 +19,9 @@ class BoardView: UIView {
         print(bounds.width)
         print(bounds.height)
         
-        gridX = (728 - 48 * 8) / 2
-        gridY = (852 - 48 * 9) / 2
+        cellH = (bounds.width / 9 + bounds.height / 10) / 2
+        gridX = (bounds.width - cellH * 8) / 2
+        gridY = (bounds.height - cellH * 9) / 2
         
         let line = UIBezierPath()
         
