@@ -13,7 +13,7 @@
 		0765352A204A3C67008FC177 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07653529204A3C67008FC177 /* Assets.xcassets */; };
 		0765352D204A3C67008FC177 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0765352B204A3C67008FC177 /* LaunchScreen.storyboard */; };
 		9C52693626B0E0DD00BA7CE3 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C52693526B0E0DD00BA7CE3 /* BoardView.swift */; };
-		A1074209234EB3D500CDD037 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1074208234EB3D500CDD037 /* MathTests.swift */; };
+		9CDED13126BCBE7400621A5A /* LoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDED13026BCBE7400621A5A /* LoopTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,7 @@
 		07653533204A3C67008FC177 /* xiangqiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xiangqiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07653539204A3C67008FC177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C52693526B0E0DD00BA7CE3 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
-		A1074208234EB3D500CDD037 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
+		9CDED13026BCBE7400621A5A /* LoopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				07653539204A3C67008FC177 /* Info.plist */,
-				A1074208234EB3D500CDD037 /* MathTests.swift */,
+				9CDED13026BCBE7400621A5A /* LoopTests.swift */,
 			);
 			path = xiangqiTests;
 			sourceTree = "<group>";
@@ -153,7 +153,7 @@
 					};
 					07653532204A3C67008FC177 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1250;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 0765351E204A3C67008FC177;
 					};
@@ -213,7 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1074209234EB3D500CDD037 /* MathTests.swift in Sources */,
+				9CDED13126BCBE7400621A5A /* LoopTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

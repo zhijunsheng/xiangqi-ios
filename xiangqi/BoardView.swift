@@ -15,6 +15,14 @@ class BoardView: UIView {
     var gridY: CGFloat = 210
     
     override func draw(_ rect: CGRect) {
+   
+//        let img = UIImage(named: "abc")
+//        img?.draw(at: CGPoint(x: 1, y: 1))
+//        img?.draw(in: CGRect(x: 15, y: 170, width: 300, height: 200))
+      
+        
+        let bb = UIImage(named: "bb")
+        bb?.draw(in: CGRect(x: 15, y: 170, width: 200, height: 200))
         
         print(bounds.width)
         print(bounds.height)
