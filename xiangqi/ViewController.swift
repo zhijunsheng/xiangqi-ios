@@ -36,11 +36,5 @@ class ViewController: UIViewController, XiangqiDelegate {
             jiangImageView.isHidden = false
 
         }
-        
-        
-        
     }
-    
-    
-    
 }
