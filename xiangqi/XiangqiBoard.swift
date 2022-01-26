@@ -33,7 +33,7 @@ struct XiangqiBoard: CustomStringConvertible {
             return isValidCannonMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         }
         
-        return false
+        return true
     }
     
     func isValidGuardMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
