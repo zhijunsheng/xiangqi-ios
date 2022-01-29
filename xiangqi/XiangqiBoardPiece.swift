@@ -7,4 +7,7 @@ struct XiangqiBoardPiece: Hashable {
     var isRed     : Bool
     var imageName : String
     
+    
+    
+    
 }
