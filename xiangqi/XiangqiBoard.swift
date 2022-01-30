@@ -13,6 +13,10 @@ struct XiangqiBoard: CustomStringConvertible {
         return nil
     }
     
+    mutating func addPiece(pieceName : String, row: Int, col: Int, rank: String, isRed: Bool) {
+        piecesBox.insert(XiangqiBoardPiece(col: col, row: row, rank: rank, isRed: isRed, imageName: pieceName))
+    }
+    
     func isValidMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         
         if toCol < 0 || toCol > 8
@@ -123,7 +127,6 @@ struct XiangqiBoard: CustomStringConvertible {
         
     }
     
-    
     func isValidHorseMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         
         if fromCol - 1 == toCol && fromRow - 2 == toRow // ([1]1)
@@ -139,6 +142,7 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         return false
     }
+    
     func isValidSoldierMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
@@ -181,6 +185,7 @@ struct XiangqiBoard: CustomStringConvertible {
         
         return false
     }
+    
     mutating func move(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
             return
@@ -207,8 +212,31 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         return false
     }
+    
     func isValidCannonMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         return true
+    }
+    
+    mutating func resetGame() {
+        piecesBox.removeAll()
+        for i in 0..<5 {
+            addPiece(pieceName: "bz", row: 3, col: i * 2, rank: "P", isRed: false)
+            addPiece(pieceName: "rz", row: 6, col: i * 2, rank: "P", isRed: true)
+        }
+        for i in 0..<2 {
+            addPiece(pieceName: "bs", row: 0, col: 3 + i * 2, rank: "G", isRed: false)
+            addPiece(pieceName: "rs", row: 9, col: 3 + i * 2, rank: "G", isRed: true)
+            addPiece(pieceName: "rx", row: 9, col: 2 + i * 4, rank: "B", isRed: true)
+            addPiece(pieceName: "bp", row: 2, col: 1 + i * 6, rank: "C", isRed: false)
+            addPiece(pieceName: "rp", row: 7, col: 1 + i * 6, rank: "C", isRed: true)
+            addPiece(pieceName: "bm", row: 0, col: 1 + i * 6, rank: "K", isRed: false)
+            addPiece(pieceName: "bx", row: 0, col: 2 + i * 4, rank: "B", isRed: false)
+            addPiece(pieceName: "rj", row: 9, col: i * 8, rank: "R", isRed: true)
+            addPiece(pieceName: "bj", row: 0, col: i * 8, rank: "R", isRed: false)
+            addPiece(pieceName: "rm", row: 9, col: 1 + i * 6, rank: "K", isRed: true)
+        }
+        addPiece(pieceName: "bb", row: 0, col: 4, rank: "Q", isRed: false)
+        addPiece(pieceName: "rb", row: 9, col: 4, rank: "Q", isRed: true)
     }
     
     var description: String {
