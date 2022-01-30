@@ -68,27 +68,27 @@ struct XiangqiBoard: CustomStringConvertible {
         let movingPiece = pieceAt(col: fromCol, row: fromRow)
         
         if movingPiece?.isRed == true {
-            if toCol == 7 && toRow == 3
-            || toCol == 7 && toRow == 4
-            || toCol == 7 && toRow == 5
-            || toCol == 8 && toRow == 3
-            || toCol == 8 && toRow == 4
-            || toCol == 8 && toRow == 5
-            || toCol == 9 && toRow == 3
-            || toCol == 9 && toRow == 4
-            || toCol == 9 && toRow == 5 {
+            if toCol == 3 && toRow == 9
+            || toCol == 4 && toRow == 9
+            || toCol == 5 && toRow == 9
+            || toCol == 3 && toRow == 8
+            || toCol == 4 && toRow == 8
+            || toCol == 5 && toRow == 8
+            || toCol == 3 && toRow == 7
+            || toCol == 4 && toRow == 7
+            || toCol == 5 && toRow == 7 {
                 return true
             }
         }else{
-            if toCol == 2 && toRow == 3
-            || toCol == 2 && toRow == 4
-            || toCol == 2 && toRow == 5
-            || toCol == 1 && toRow == 3
-            || toCol == 1 && toRow == 4
-            || toCol == 1 && toRow == 5
-            || toCol == 0 && toRow == 3
-            || toCol == 0 && toRow == 4
-            || toCol == 0 && toRow == 5 {
+            if toCol == 3 && toRow == 2
+            || toCol == 4 && toRow == 2
+            || toCol == 5 && toRow == 2
+            || toCol == 3 && toRow == 1
+            || toCol == 4 && toRow == 1
+            || toCol == 5 && toRow == 1
+            || toCol == 3 && toRow == 0
+            || toCol == 4 && toRow == 0
+            || toCol == 5 && toRow == 0 {
                 return true
             }
         }
@@ -108,7 +108,7 @@ struct XiangqiBoard: CustomStringConvertible {
             || toCol == 4 && toRow == 7
             || toCol == 6 && toRow == 9
             || toCol == 8 && toRow == 7
-            || toCol == 2 && toRow == 5 {
+            || toCol == 6 && toRow == 5 {
                 return true
             }
         }else{
@@ -118,7 +118,7 @@ struct XiangqiBoard: CustomStringConvertible {
             || toCol == 4 && toRow == 2
             || toCol == 6 && toRow == 0
             || toCol == 8 && toRow == 2
-            || toCol == 2 && toRow == 4 {
+            || toCol == 6 && toRow == 4 {
                 return true
             }
         }
