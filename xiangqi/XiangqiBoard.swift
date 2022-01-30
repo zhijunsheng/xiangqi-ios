@@ -12,23 +12,30 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         return nil
     }
-//    frC, frR, tC, tR
+    
     func isValidMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        
+        if toCol < 0 || toCol > 8
+        || toRow < 0 || toRow > 9 {
+            return false
+        }
+        
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
             return false
         }
+        
         if movingPiece.rank == "K" {
-            return isValidKnightMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+            return isValidHorseMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         } else if movingPiece.rank == "B" {
-            return isValidBishopMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+            return isValidElephantMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         } else if movingPiece.rank == "G" {
             return isValidGuardMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         } else if movingPiece.rank == "Q" {
             return isValidKingMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         } else if movingPiece.rank == "P" {
-            return isValidPawnMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+            return isValidSoldierMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         } else if movingPiece.rank == "R" {
-            return isValidRookMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+            return isValidCarMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         } else if movingPiece.rank == "C" {
             return isValidCannonMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         }
@@ -54,50 +61,70 @@ struct XiangqiBoard: CustomStringConvertible {
     
     func isValidKingMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         
-        if toCol < 3
-        || toCol > 5
-        || toRow < 7 && toRow > 2 {
-            return false
+        let movingPiece = pieceAt(col: fromCol, row: fromRow)
+        
+        if movingPiece?.isRed == true {
+            if toCol == 7 && toRow == 3
+            || toCol == 7 && toRow == 4
+            || toCol == 7 && toRow == 5
+            || toCol == 8 && toRow == 3
+            || toCol == 8 && toRow == 4
+            || toCol == 8 && toRow == 5
+            || toCol == 9 && toRow == 3
+            || toCol == 9 && toRow == 4
+            || toCol == 9 && toRow == 5 {
+                return true
+            }
+        }else{
+            if toCol == 2 && toRow == 3
+            || toCol == 2 && toRow == 4
+            || toCol == 2 && toRow == 5
+            || toCol == 1 && toRow == 3
+            || toCol == 1 && toRow == 4
+            || toCol == 1 && toRow == 5
+            || toCol == 0 && toRow == 3
+            || toCol == 0 && toRow == 4
+            || toCol == 0 && toRow == 5 {
+                return true
+            }
         }
-        if fromRow + 1 == toRow && fromCol == toCol
-        || fromCol - 1 == toCol && fromRow == toRow
-        || fromRow - 1 == toRow && fromCol == toCol
-        || fromCol + 1 == toCol && fromRow == toRow
-        {
-            return true
-        }
+        
         return false
         
     }
     
-    func isValidBishopMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
-            return false
-        }
-        if movingPiece.isRed == false {
-            if toRow > 4 {
-                return false
+    func isValidElephantMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+        
+        let movingPiece = pieceAt(col: fromCol, row: fromRow)
+    
+        if movingPiece?.isRed == true {
+            if toCol == 2 && toRow == 9
+            || toCol == 0 && toRow == 7
+            || toCol == 2 && toRow == 5
+            || toCol == 4 && toRow == 7
+            || toCol == 6 && toRow == 9
+            || toCol == 8 && toRow == 7
+            || toCol == 2 && toRow == 5 {
+                return true
             }
-        } else if movingPiece.isRed == true {
-            if toRow < 5 {
-                return false
+        }else{
+            if toCol == 2 && toRow == 0
+            || toCol == 0 && toRow == 2
+            || toCol == 2 && toRow == 4
+            || toCol == 4 && toRow == 2
+            || toCol == 6 && toRow == 0
+            || toCol == 8 && toRow == 2
+            || toCol == 2 && toRow == 4 {
+                return true
             }
         }
-        
-        if fromCol - 2 == toCol && fromRow - 2 == toRow
-        || fromCol - 2 == toCol && fromRow + 2 == toRow
-        || fromCol + 2 == toCol && fromRow - 2 == toRow
-        || fromCol + 2 == toCol && fromRow + 2 == toRow {
-            return true
-        }
-        
-        
         
         return false
+        
     }
     
     
-    func isValidKnightMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+    func isValidHorseMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         
         if fromCol - 1 == toCol && fromRow - 2 == toRow // ([1]1)
         || fromCol - 2 == toCol && fromRow - 1 == toRow // ([1]2)
@@ -112,7 +139,7 @@ struct XiangqiBoard: CustomStringConvertible {
         }
         return false
     }
-    func isValidPawnMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+    func isValidSoldierMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         
         guard let movingPiece = pieceAt(col: fromCol, row: fromRow) else {
             return false
@@ -173,7 +200,7 @@ struct XiangqiBoard: CustomStringConvertible {
         piecesBox.insert(newPiece)
     }
     
-    func isValidRookMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
+    func isValidCarMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         if fromCol == toCol
         || fromRow == toRow {
             return true

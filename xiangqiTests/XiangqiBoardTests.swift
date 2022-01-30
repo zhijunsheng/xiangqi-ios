@@ -60,15 +60,15 @@ class XiangqiBoardTests: XCTestCase {
     }
     func testIsValidBishopMove() {
         let board = XiangqiBoard()
-        XCTAssertTrue(board.isValidBishopMove(fromCol: 2, fromRow: 0, toCol: 0, toRow: 2))
-        XCTAssertTrue(board.isValidBishopMove(fromCol: 0, fromRow: 2, toCol: 2, toRow: 4))
-        XCTAssertFalse(board.isValidBishopMove(fromCol: 4, fromRow: 2, toCol: 6, toRow: 8))
-        XCTAssertFalse(board.isValidBishopMove(fromCol: 4, fromRow: 2, toCol: 5, toRow: 3))
+        XCTAssertTrue(board.isValidElephantMove(fromCol: 2, fromRow: 0, toCol: 0, toRow: 2))
+        XCTAssertTrue(board.isValidElephantMove(fromCol: 0, fromRow: 2, toCol: 2, toRow: 4))
+        XCTAssertFalse(board.isValidElephantMove(fromCol: 4, fromRow: 2, toCol: 6, toRow: 8))
+        XCTAssertFalse(board.isValidElephantMove(fromCol: 4, fromRow: 2, toCol: 5, toRow: 3))
     }
     func testIsValidKnightMove() {
         let board = XiangqiBoard()
-        XCTAssertTrue(board.isValidKnightMove(fromCol: 0, fromRow: 1, toCol: 1, toRow: 3))
-        XCTAssertFalse(board.isValidKnightMove(fromCol: 0, fromRow: 1, toCol: 1, toRow: 2))
+        XCTAssertTrue(board.isValidHorseMove(fromCol: 0, fromRow: 1, toCol: 1, toRow: 3))
+        XCTAssertFalse(board.isValidHorseMove(fromCol: 0, fromRow: 1, toCol: 1, toRow: 2))
     }
     func testIsValidPawnMove() {
         let board = XiangqiBoard()
