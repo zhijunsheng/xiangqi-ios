@@ -9,6 +9,10 @@ class ViewController: UIViewController, XiangqiDelegate {
     var xiangqi = XiangqiBoard(piecesBox: Set<XiangqiBoardPiece>())
     var isRedTurn : Bool = true
     
+    func pieceAt(col: Int, row: Int) -> XiangqiBoardPiece? {
+        return xiangqi.pieceAt(col: col, row: row)
+    }
+    
     func move(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         if fromCol == toCol && fromRow == toRow {
             return
@@ -22,7 +26,6 @@ class ViewController: UIViewController, XiangqiDelegate {
         }
         
         xiangqi.move(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-        boardView.pieces = xiangqi.piecesBox
         boardView.setNeedsDisplay()
         
         if isRedTurn {
@@ -44,7 +47,6 @@ class ViewController: UIViewController, XiangqiDelegate {
         boardView.xiangqiDelegate = self
             
         xiangqi.resetGame()
-        boardView.pieces = xiangqi.piecesBox
         boardView.setNeedsDisplay()
     }
     
@@ -53,7 +55,6 @@ class ViewController: UIViewController, XiangqiDelegate {
         infoLabel.text = "红方回合"
         infoLabel.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         isRedTurn = true
-        boardView.pieces = xiangqi.piecesBox
         boardView.setNeedsDisplay()
     }
     

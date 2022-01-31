@@ -12,7 +12,6 @@ import UIKit
     let shortLine       : CGFloat                = 10
     var fromCol         : Int                    = -10
     var fromRow         : Int                    = -10
-    var pieces          : Set<XiangqiBoardPiece> = Set<XiangqiBoardPiece>()
     var xiangqiDelegate : XiangqiDelegate?       = nil
     
     override func draw(_ rect: CGRect) {
@@ -24,15 +23,18 @@ import UIKit
         drawPieces()
     }
     func drawPieces() {
-        for piece in pieces {
-            let pieceImage = UIImage(named: piece.imageName)
-            let pieceX = originX + CGFloat(piece.col) * width
-            let pieceY = originY + CGFloat(piece.row) * height
-            
-            pieceImage?.draw(in: CGRect(x: pieceX - height / 2, y: pieceY - height / 2, width: height, height: height))
+        
+        for c in 0..<cols {
+            for r in 0..<rows {
+                if let piece = xiangqiDelegate?.pieceAt(col: c, row: r) {
+                    let pieceImage = UIImage(named: piece.imageName)
+                    let pieceX = originX + CGFloat(piece.col) * width
+                    let pieceY = originY + CGFloat(piece.row) * height
+                    
+                    pieceImage?.draw(in: CGRect(x: pieceX - height / 2, y: pieceY - height / 2, width: height, height: height))
+                }
+            }
         }
-        
-        
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touchOne = touches.first!
@@ -101,17 +103,8 @@ import UIKit
         
         b2.move(to: CGPoint(x: width * 5 + originX, y: height * 7 + originY))
         b2.addLine(to: CGPoint(x: width * 3 + originX, y: height * 9 + originY))
-       
-        
-        // =================================================
-        
-        
-        b2.move(to: CGPoint(x: originX, y: originY + height * 4.5))
-        b2.addLine(to: CGPoint(x: originX + width * 8, y: originY + height * 4.5))
         #colorLiteral(red: 0, green: 0.6235294118, blue: 0.9176470588, alpha: 1).setStroke()
         b2.stroke()
-        
-        
         
     }
     
