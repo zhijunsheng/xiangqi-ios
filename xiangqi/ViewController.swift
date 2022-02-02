@@ -39,13 +39,17 @@ class ViewController: UIViewController, XiangqiDelegate {
             
         }
         
+
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         boardView.xiangqiDelegate = self
-            
+        infoLabel.text = "红方回合"
+        infoLabel.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        isRedTurn = true
         xiangqi.resetGame()
         boardView.setNeedsDisplay()
     }

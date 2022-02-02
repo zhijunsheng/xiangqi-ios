@@ -13,8 +13,143 @@ struct XiangqiBoard: CustomStringConvertible {
         return nil
     }
     
-    mutating func addPiece(pieceName : String, row: Int, col: Int, rank: String, isRed: Bool) {
+    mutating func addPiece(pieceName : String, row: Int, col: Int, rank: xiangqiRank, isRed: Bool) {
         piecesBox.insert(XiangqiBoardPiece(col: col, row: row, rank: rank, isRed: isRed, imageName: pieceName))
+    }
+    
+    func threaten() -> Bool {
+        for piece in piecesBox {
+            switch piece.rank {
+            case .Soldier:
+                if isSoldierThreaten(fromCol: piece.col, fromRow: piece.row, isRed: piece.isRed) {
+                    return true
+                }
+            case .Cannon:
+                if isCannonThreaten(fromCol: piece.col, fromRow: piece.row, isRed: piece.isRed) {
+                    return true
+                }
+            case .Car:
+                if isCarThreaten(fromCol: piece.col, fromRow: piece.row, isRed: piece.isRed) {
+                    return true
+                }
+            case .Horse:
+                if isHorseThreaten(fromCol: piece.col, fromRow: piece.row, isRed: piece.isRed) {
+                    return true
+                }
+            case .Elephant:
+                return false
+            case .Guard:
+                return false
+            case .King:
+                return false
+            }
+        }
+        return false
+    }
+    
+    func isSoldierThreaten(fromCol: Int, fromRow: Int, isRed: Bool) -> Bool {
+        if isRed == true {
+            for piece in piecesBox {
+                if piece.imageName == "bx" {
+                    if isValidSoldierMove(fromCol: fromCol, fromRow: fromRow, toCol: piece.col, toRow: piece.row) {
+                        return true
+                    }
+                }
+            }
+        }else{
+            for piece in piecesBox {
+                if piece.imageName == "rx" {
+                    if isValidSoldierMove(fromCol: fromCol, fromRow: fromRow, toCol: piece.col, toRow: piece.row) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
+    func isCannonThreaten(fromCol: Int, fromRow: Int, isRed: Bool) -> Bool {
+        if isRed == true {
+            for piece in piecesBox {
+                if piece.imageName == "bx" {
+                    if isValidCannonMove(fromCol: fromCol, fromRow: fromRow, toCol: piece.col, toRow: piece.row) {
+                        return true
+                    }
+                }
+            }
+        }else{
+            for piece in piecesBox {
+                if piece.imageName == "rx" {
+                    if isValidCannonMove(fromCol: fromCol, fromRow: fromRow, toCol: piece.col, toRow: piece.row) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
+    func isCarThreaten(fromCol: Int, fromRow: Int, isRed: Bool) -> Bool {
+        if isRed == true {
+            for piece in piecesBox {
+                if piece.imageName == "bx" {
+                    if isValidCarMove(fromCol: fromCol, fromRow: fromRow, toCol: piece.col, toRow: piece.row) {
+                        return true
+                    }
+                }
+            }
+        }else{
+            for piece in piecesBox {
+                if piece.imageName == "rx" {
+                    if isValidCarMove(fromCol: fromCol, fromRow: fromRow, toCol: piece.col, toRow: piece.row) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
+    func isHorseThreaten(fromCol: Int, fromRow: Int, isRed: Bool) -> Bool {
+        if isRed == true {
+            for piece in piecesBox {
+                if piece.imageName == "bx" {
+                    if isValidHorseMove(fromCol: fromCol, fromRow: fromRow, toCol: piece.col, toRow: piece.row) {
+                        return true
+                    }
+                }
+            }
+        }else{
+            for piece in piecesBox {
+                if piece.imageName == "rx" {
+                    if isValidHorseMove(fromCol: fromCol, fromRow: fromRow, toCol: piece.col, toRow: piece.row) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
+    func isKingThreaten(fromCol: Int, fromRow: Int, isRed: Bool) -> Bool {
+        var redKing: XiangqiBoardPiece? = nil
+        var blackKing: XiangqiBoardPiece? = nil
+        for piece in piecesBox {
+            if piece.imageName == "bb" {
+                blackKing = piece
+            }else if piece.imageName == "rb" {
+                redKing = piece
+            }
+        }
+        if redKing?.col == blackKing?.col {
+            for i in 0..<10 where i != redKing?.row && i != blackKing?.row {
+                if pieceAt(col: redKing!.col, row: i) != nil {
+                    return false
+                }
+            }
+            return true
+        }
+        return false
     }
     
     func isValidMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
@@ -28,19 +163,19 @@ struct XiangqiBoard: CustomStringConvertible {
             return false
         }
         
-        if movingPiece.rank == "K" {
+        if movingPiece.rank == .Horse {
             return isValidHorseMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-        } else if movingPiece.rank == "B" {
+        } else if movingPiece.rank == .Elephant {
             return isValidElephantMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-        } else if movingPiece.rank == "G" {
+        } else if movingPiece.rank == .Guard {
             return isValidGuardMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-        } else if movingPiece.rank == "Q" {
+        } else if movingPiece.rank == .King {
             return isValidKingMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-        } else if movingPiece.rank == "P" {
+        } else if movingPiece.rank == .Soldier {
             return isValidSoldierMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-        } else if movingPiece.rank == "R" {
+        } else if movingPiece.rank == .Car {
             return isValidCarMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-        } else if movingPiece.rank == "C" {
+        } else if movingPiece.rank == .Cannon {
             return isValidCannonMove(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
         }
         
@@ -102,24 +237,24 @@ struct XiangqiBoard: CustomStringConvertible {
         let movingPiece = pieceAt(col: fromCol, row: fromRow)
     
         if movingPiece?.isRed == true {
-            if toCol == 2 && toRow == 9
-            || toCol == 0 && toRow == 7
-            || toCol == 2 && toRow == 5
-            || toCol == 4 && toRow == 7
-            || toCol == 6 && toRow == 9
-            || toCol == 8 && toRow == 7
-            || toCol == 6 && toRow == 5 {
-                return true
+            if toRow >= 5 {
+                if fromCol + 2 == toCol && fromRow + 2 == toRow && pieceAt(col: fromCol + 1, row: fromRow + 1) == nil
+                || fromCol - 2 == toCol && fromRow + 2 == toRow && pieceAt(col: fromCol - 1, row: fromRow + 1) == nil
+                || fromCol + 2 == toCol && fromRow - 2 == toRow && pieceAt(col: fromCol + 1, row: fromRow - 1) == nil
+                || fromCol - 2 == toCol && fromRow - 2 == toRow && pieceAt(col: fromCol - 1, row: fromRow - 1) == nil
+                {
+                    return true
+                }
             }
         }else{
-            if toCol == 2 && toRow == 0
-            || toCol == 0 && toRow == 2
-            || toCol == 2 && toRow == 4
-            || toCol == 4 && toRow == 2
-            || toCol == 6 && toRow == 0
-            || toCol == 8 && toRow == 2
-            || toCol == 6 && toRow == 4 {
-                return true
+            if toRow <= 4 {
+                if fromCol + 2 == toCol && fromRow + 2 == toRow && pieceAt(col: fromCol + 1, row: fromRow + 1) == nil
+                || fromCol - 2 == toCol && fromRow + 2 == toRow && pieceAt(col: fromCol - 1, row: fromRow + 1) == nil
+                || fromCol + 2 == toCol && fromRow - 2 == toRow && pieceAt(col: fromCol + 1, row: fromRow - 1) == nil
+                || fromCol - 2 == toCol && fromRow - 2 == toRow && pieceAt(col: fromCol - 1, row: fromRow - 1) == nil
+                {
+                    return true
+                }
             }
         }
         
@@ -129,14 +264,14 @@ struct XiangqiBoard: CustomStringConvertible {
     
     func isValidHorseMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
         
-        if fromCol - 1 == toCol && fromRow - 2 == toRow // ([1]1)
-        || fromCol - 2 == toCol && fromRow - 1 == toRow // ([1]2)
-        || fromCol + 1 == toCol && fromRow - 2 == toRow // ([2]1)
-        || fromCol + 2 == toCol && fromRow - 1 == toRow // ([2]2)
-        || fromCol + 2 == toCol && fromRow + 1 == toRow // ([3]1)
-        || fromCol + 1 == toCol && fromRow + 2 == toRow // ([3]2)
-        || fromCol - 1 == toCol && fromRow + 2 == toRow // ([4]1)
-        || fromCol - 2 == toCol && fromRow + 1 == toRow // ([4]2)
+        if fromCol - 1 == toCol && fromRow - 2 == toRow && pieceAt(col: fromCol, row: fromRow - 1) == nil // ([1]1)
+        || fromCol - 2 == toCol && fromRow - 1 == toRow && pieceAt(col: fromCol - 1, row: fromRow) == nil // ([1]2)
+        || fromCol + 1 == toCol && fromRow - 2 == toRow && pieceAt(col: fromCol, row: fromRow - 1) == nil // ([2]1)
+        || fromCol + 2 == toCol && fromRow - 1 == toRow && pieceAt(col: fromCol + 1, row: fromRow) == nil // ([2]2)
+        || fromCol + 2 == toCol && fromRow + 1 == toRow && pieceAt(col: fromCol + 1, row: fromRow) == nil // ([3]1)
+        || fromCol + 1 == toCol && fromRow + 2 == toRow && pieceAt(col: fromCol, row: fromRow + 1) == nil // ([3]2)
+        || fromCol - 1 == toCol && fromRow + 2 == toRow && pieceAt(col: fromCol, row: fromRow + 1) == nil // ([4]1)
+        || fromCol - 2 == toCol && fromRow + 1 == toRow && pieceAt(col: fromCol - 1, row: fromRow) == nil // ([4]2)
         {
             return true
         }
@@ -153,7 +288,7 @@ struct XiangqiBoard: CustomStringConvertible {
                 return false
             }
             if fromRow == 6
-                || fromRow == 5 {
+            || fromRow == 5 {
                 if fromRow - 1 == toRow && fromCol == toCol {
                     return true
                 }
@@ -206,37 +341,117 @@ struct XiangqiBoard: CustomStringConvertible {
     }
     
     func isValidCarMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        if fromCol == toCol
-        || fromRow == toRow {
-            return true
+        if fromCol == toCol {
+            if fromRow < toRow {
+                for i in 1..<toRow - fromRow {
+                    if pieceAt(col: fromCol, row: fromRow + i) != nil {
+                        return false
+                    }
+                }
+                return true
+            }else if fromRow > toRow {
+                for i in 1..<fromRow - toRow {
+                    if pieceAt(col: fromCol, row: fromRow - i) != nil {
+                        return false
+                    }
+                }
+                return true
+            }
+        }else if fromRow == toRow {
+            if fromCol < toCol {
+                for i in 1..<toCol - fromCol {
+                    if pieceAt(col: fromCol + i, row: fromRow) != nil {
+                        return false
+                    }
+                }
+                return true
+            }else if fromCol > toCol {
+                for i in 1..<fromCol - toCol {
+                    if pieceAt(col: fromCol - i, row: fromRow) != nil {
+                        return false
+                    }
+                }
+                return true
+            }
         }
         return false
     }
     
     func isValidCannonMove(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) -> Bool {
-        return true
+        var stuck = 0
+        
+        if fromCol == toCol {
+            if fromRow < toRow {
+                for i in 1..<toRow - fromRow {
+                    if pieceAt(col: fromCol, row: fromRow + i) != nil {
+                        stuck += 1
+                    }
+                }
+                if stuck > 1
+                || stuck == 1 && pieceAt(col: toCol, row: toRow) == nil {
+                    return false
+                }
+                return true
+            }else if fromRow > toRow {
+                for i in 1..<fromRow - toRow {
+                    if pieceAt(col: fromCol, row: fromRow - i) != nil {
+                        stuck += 1
+                    }
+                }
+                if stuck > 1
+                || stuck == 1 && pieceAt(col: toCol, row: toRow) == nil {
+                    return false
+                }
+                return true
+            }
+        }else if fromRow == toRow {
+            if fromCol < toCol {
+                for i in 1..<toCol - fromCol {
+                    if pieceAt(col: fromCol + i, row: fromRow) != nil {
+                        stuck += 1
+                    }
+                }
+                if stuck > 1
+                || stuck == 1 && pieceAt(col: toCol, row: toRow) == nil {
+                    return false
+                }
+                return true
+            }else if fromCol > toCol {
+                for i in 1..<fromCol - toCol {
+                    if pieceAt(col: fromCol - i, row: fromRow) != nil {
+                        stuck += 1
+                    }
+                }
+                if stuck > 1
+                || stuck == 1 && pieceAt(col: toCol, row: toRow) == nil {
+                    return false
+                }
+                return true
+            }
+        }
+        return false
     }
     
     mutating func resetGame() {
         piecesBox.removeAll()
         for i in 0..<5 {
-            addPiece(pieceName: "bz", row: 3, col: i * 2, rank: "P", isRed: false)
-            addPiece(pieceName: "rz", row: 6, col: i * 2, rank: "P", isRed: true)
+            addPiece(pieceName: "bz", row: 3, col: i * 2, rank: .Soldier, isRed: false)
+            addPiece(pieceName: "rz", row: 6, col: i * 2, rank: .Soldier, isRed: true)
         }
         for i in 0..<2 {
-            addPiece(pieceName: "bs", row: 0, col: 3 + i * 2, rank: "G", isRed: false)
-            addPiece(pieceName: "rs", row: 9, col: 3 + i * 2, rank: "G", isRed: true)
-            addPiece(pieceName: "rx", row: 9, col: 2 + i * 4, rank: "B", isRed: true)
-            addPiece(pieceName: "bp", row: 2, col: 1 + i * 6, rank: "C", isRed: false)
-            addPiece(pieceName: "rp", row: 7, col: 1 + i * 6, rank: "C", isRed: true)
-            addPiece(pieceName: "bm", row: 0, col: 1 + i * 6, rank: "K", isRed: false)
-            addPiece(pieceName: "bx", row: 0, col: 2 + i * 4, rank: "B", isRed: false)
-            addPiece(pieceName: "rj", row: 9, col: i * 8, rank: "R", isRed: true)
-            addPiece(pieceName: "bj", row: 0, col: i * 8, rank: "R", isRed: false)
-            addPiece(pieceName: "rm", row: 9, col: 1 + i * 6, rank: "K", isRed: true)
+            addPiece(pieceName: "bs", row: 0, col: 3 + i * 2, rank: .Guard, isRed: false)
+            addPiece(pieceName: "rs", row: 9, col: 3 + i * 2, rank: .Guard, isRed: true)
+            addPiece(pieceName: "rx", row: 9, col: 2 + i * 4, rank: .Elephant, isRed: true)
+            addPiece(pieceName: "bp", row: 2, col: 1 + i * 6, rank: .Cannon, isRed: false)
+            addPiece(pieceName: "rp", row: 7, col: 1 + i * 6, rank: .Cannon, isRed: true)
+            addPiece(pieceName: "bm", row: 0, col: 1 + i * 6, rank: .Horse, isRed: false)
+            addPiece(pieceName: "bx", row: 0, col: 2 + i * 4, rank: .Elephant, isRed: false)
+            addPiece(pieceName: "rj", row: 9, col: i * 8, rank: .Car, isRed: true)
+            addPiece(pieceName: "bj", row: 0, col: i * 8, rank: .Car, isRed: false)
+            addPiece(pieceName: "rm", row: 9, col: 1 + i * 6, rank: .Horse, isRed: true)
         }
-        addPiece(pieceName: "bb", row: 0, col: 4, rank: "Q", isRed: false)
-        addPiece(pieceName: "rb", row: 9, col: 4, rank: "Q", isRed: true)
+        addPiece(pieceName: "bb", row: 0, col: 4, rank: .King, isRed: false)
+        addPiece(pieceName: "rb", row: 9, col: 4, rank: .King, isRed: true)
     }
     
     var description: String {
@@ -251,16 +466,13 @@ struct XiangqiBoard: CustomStringConvertible {
                     boardString.append(" .")
                 } else {
                     switch piece!.rank {
-                    case "R" : boardString.append(piece!.isRed ? " r" : " R")// rook
-                    case "K" : boardString.append(piece!.isRed ? " k" : " K")// knight
-                    case "B" : boardString.append(piece!.isRed ? " b" : " B")// bishop
-                    case "G" : boardString.append(piece!.isRed ? " g" : " G")// guard
-                    case "Q" : boardString.append(piece!.isRed ? " q" : " Q")// queen
-                    case "C" : boardString.append(piece!.isRed ? " c" : " C")// cellen
-                    case "P" : boardString.append(piece!.isRed ? " p" : " P")// pown
-                        
-                    default:
-                        break
+                    case .Car : boardString.append(piece!.isRed ? " r" : " R")// car
+                    case .Horse : boardString.append(piece!.isRed ? " k" : " K")// horse
+                    case .Elephant : boardString.append(piece!.isRed ? " b" : " B")// elephant
+                    case .Guard : boardString.append(piece!.isRed ? " g" : " G")// guard
+                    case .King : boardString.append(piece!.isRed ? " q" : " Q")// king
+                    case .Cannon : boardString.append(piece!.isRed ? " c" : " C")// cannon
+                    case .Soldier : boardString.append(piece!.isRed ? " p" : " P")// soldier
                     }
                 }
             }
