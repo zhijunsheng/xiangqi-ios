@@ -10,12 +10,14 @@
 		0732B7FC24BF23350007DF6D /* KingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0732B7FB24BF23350007DF6D /* KingTests.swift */; };
 		0732B7FE24BFAFF60007DF6D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0732B7FD24BFAFF60007DF6D /* Player.swift */; };
 		0732B80024BFD3B40007DF6D /* CannonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0732B7FF24BFD3B40007DF6D /* CannonTests.swift */; };
+		0737FDCF2A7D5912008C7B63 /* CChessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737FDCE2A7D5912008C7B63 /* CChessView.swift */; };
+		0737FDD12A7D5925008C7B63 /* CChessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737FDD02A7D5925008C7B63 /* CChessApp.swift */; };
 		075FF65124BE08CB009D96D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF65024BE08CB009D96D7 /* AppDelegate.swift */; };
 		075FF65524BE08CB009D96D7 /* CChessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF65424BE08CB009D96D7 /* CChessViewController.swift */; };
 		075FF65824BE08CB009D96D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 075FF65624BE08CB009D96D7 /* Main.storyboard */; };
 		075FF65A24BE08CC009D96D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 075FF65924BE08CC009D96D7 /* Assets.xcassets */; };
 		075FF65D24BE08CC009D96D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 075FF65B24BE08CC009D96D7 /* LaunchScreen.storyboard */; };
-		075FF68124BE0E43009D96D7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68024BE0E43009D96D7 /* BoardView.swift */; };
+		075FF68124BE0E43009D96D7 /* BoardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68024BE0E43009D96D7 /* BoardUIView.swift */; };
 		075FF68324BE0EFD009D96D7 /* Pieces.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 075FF68224BE0EFD009D96D7 /* Pieces.xcassets */; };
 		075FF68524BE0F38009D96D7 /* drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 075FF68424BE0F38009D96D7 /* drop.wav */; };
 		075FF68724BE1061009D96D7 /* NearbyServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF68624BE1061009D96D7 /* NearbyServiceDelegate.swift */; };
@@ -48,6 +50,8 @@
 		0732B7FB24BF23350007DF6D /* KingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingTests.swift; sourceTree = "<group>"; };
 		0732B7FD24BFAFF60007DF6D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		0732B7FF24BFD3B40007DF6D /* CannonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonTests.swift; sourceTree = "<group>"; };
+		0737FDCE2A7D5912008C7B63 /* CChessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessView.swift; sourceTree = "<group>"; };
+		0737FDD02A7D5925008C7B63 /* CChessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessApp.swift; sourceTree = "<group>"; };
 		07579A7A24CB159A00DFAC5D /* CChess.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CChess.entitlements; sourceTree = "<group>"; };
 		075FF64D24BE08CB009D96D7 /* CChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		075FF65024BE08CB009D96D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,7 +63,7 @@
 		075FF66324BE08CC009D96D7 /* CChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CChessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		075FF66924BE08CC009D96D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		075FF66E24BE08CC009D96D7 /* CChessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CChessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		075FF68024BE0E43009D96D7 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		075FF68024BE0E43009D96D7 /* BoardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardUIView.swift; sourceTree = "<group>"; };
 		075FF68224BE0EFD009D96D7 /* Pieces.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pieces.xcassets; sourceTree = "<group>"; };
 		075FF68424BE0F38009D96D7 /* drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drop.wav; sourceTree = "<group>"; };
 		075FF68624BE1061009D96D7 /* NearbyServiceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyServiceDelegate.swift; sourceTree = "<group>"; };
@@ -96,9 +100,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0737FDD22A7E5025008C7B63 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		075FF64424BE08CB009D96D7 = {
 			isa = PBXGroup;
 			children = (
+				0737FDD22A7E5025008C7B63 /* Common */,
 				075FF64F24BE08CB009D96D7 /* CChess */,
 				075FF66624BE08CC009D96D7 /* CChessTests */,
 				075FF64E24BE08CB009D96D7 /* Products */,
@@ -118,6 +130,8 @@
 		075FF64F24BE08CB009D96D7 /* CChess */ = {
 			isa = PBXGroup;
 			children = (
+				0737FDD02A7D5925008C7B63 /* CChessApp.swift */,
+				0737FDCE2A7D5912008C7B63 /* CChessView.swift */,
 				07579A7A24CB159A00DFAC5D /* CChess.entitlements */,
 				075FF68624BE1061009D96D7 /* NearbyServiceDelegate.swift */,
 				075FF68824BE1075009D96D7 /* NearbyService.swift */,
@@ -127,7 +141,7 @@
 				075FF68C24BE1091009D96D7 /* Move.swift */,
 				075FF68A24BE1081009D96D7 /* CChessRank.swift */,
 				075FF69024BE10A9009D96D7 /* CChess.swift */,
-				075FF68024BE0E43009D96D7 /* BoardView.swift */,
+				075FF68024BE0E43009D96D7 /* BoardUIView.swift */,
 				075FF65424BE08CB009D96D7 /* CChessViewController.swift */,
 				075FF65024BE08CB009D96D7 /* AppDelegate.swift */,
 				075FF65624BE08CB009D96D7 /* Main.storyboard */,
@@ -287,13 +301,15 @@
 			files = (
 				0732B7FE24BFAFF60007DF6D /* Player.swift in Sources */,
 				075FF68D24BE1091009D96D7 /* Move.swift in Sources */,
-				075FF68124BE0E43009D96D7 /* BoardView.swift in Sources */,
+				075FF68124BE0E43009D96D7 /* BoardUIView.swift in Sources */,
 				075FF65524BE08CB009D96D7 /* CChessViewController.swift in Sources */,
 				075FF69324BE1771009D96D7 /* CChessDelegate.swift in Sources */,
 				075FF68F24BE109F009D96D7 /* CChessPiece.swift in Sources */,
 				075FF68B24BE1081009D96D7 /* CChessRank.swift in Sources */,
+				0737FDCF2A7D5912008C7B63 /* CChessView.swift in Sources */,
 				075FF65124BE08CB009D96D7 /* AppDelegate.swift in Sources */,
 				075FF68724BE1061009D96D7 /* NearbyServiceDelegate.swift in Sources */,
+				0737FDD12A7D5925008C7B63 /* CChessApp.swift in Sources */,
 				075FF69124BE10A9009D96D7 /* CChess.swift in Sources */,
 				075FF68924BE1075009D96D7 /* NearbyService.swift in Sources */,
 			);

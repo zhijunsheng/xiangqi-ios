@@ -9,6 +9,9 @@
 import Foundation
 
 struct CChess {
+    static let cols: Int = 9
+    static let rows: Int = 10
+    
     var pieces: Set<CChessPiece> = []
     var previousPieces: Set<CChessPiece> = []
     private(set) var whoseTurn: Player = .red

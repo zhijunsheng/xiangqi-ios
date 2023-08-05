@@ -1,5 +1,5 @@
 //
-//  BoardView.swift
+//  BoardUIView.swift
 //  CChess
 //
 //  Created by Zhijun Sheng on 2020-07-14.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BoardView: UIView {
+class BoardUIView: UIView {
     let cols: Int = 9
     let rows: Int = 10
 

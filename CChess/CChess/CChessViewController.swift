@@ -16,7 +16,7 @@ class CChessViewController: UIViewController {
     
     var cchess = CChess()
     
-    @IBOutlet weak var boardView: BoardView!
+    @IBOutlet weak var boardView: BoardUIView!
     @IBOutlet weak var peerHomeView: UIView!
     @IBOutlet weak var peerLabel: UILabel!
     @IBOutlet weak var upperPlayerColorView: UIView!
