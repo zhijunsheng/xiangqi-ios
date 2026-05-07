@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		0732B80024BFD3B40007DF6D /* CannonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0732B7FF24BFD3B40007DF6D /* CannonTests.swift */; };
 		0737FDCF2A7D5912008C7B63 /* CChessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737FDCE2A7D5912008C7B63 /* CChessView.swift */; };
 		0737FDD12A7D5925008C7B63 /* CChessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737FDD02A7D5925008C7B63 /* CChessApp.swift */; };
+		0737FDD62A7E5151008C7B63 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737FDD52A7E5151008C7B63 /* BoardView.swift */; };
 		075FF65124BE08CB009D96D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF65024BE08CB009D96D7 /* AppDelegate.swift */; };
 		075FF65524BE08CB009D96D7 /* CChessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FF65424BE08CB009D96D7 /* CChessViewController.swift */; };
 		075FF65824BE08CB009D96D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 075FF65624BE08CB009D96D7 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 		0732B7FF24BFD3B40007DF6D /* CannonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonTests.swift; sourceTree = "<group>"; };
 		0737FDCE2A7D5912008C7B63 /* CChessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessView.swift; sourceTree = "<group>"; };
 		0737FDD02A7D5925008C7B63 /* CChessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CChessApp.swift; sourceTree = "<group>"; };
+		0737FDD52A7E5151008C7B63 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		07579A7A24CB159A00DFAC5D /* CChess.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CChess.entitlements; sourceTree = "<group>"; };
 		075FF64D24BE08CB009D96D7 /* CChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		075FF65024BE08CB009D96D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		0737FDD22A7E5025008C7B63 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0737FDD52A7E5151008C7B63 /* BoardView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				075FF69324BE1771009D96D7 /* CChessDelegate.swift in Sources */,
 				075FF68F24BE109F009D96D7 /* CChessPiece.swift in Sources */,
 				075FF68B24BE1081009D96D7 /* CChessRank.swift in Sources */,
+				0737FDD62A7E5151008C7B63 /* BoardView.swift in Sources */,
 				0737FDCF2A7D5912008C7B63 /* CChessView.swift in Sources */,
 				075FF65124BE08CB009D96D7 /* AppDelegate.swift in Sources */,
 				075FF68724BE1061009D96D7 /* NearbyServiceDelegate.swift in Sources */,
@@ -505,7 +509,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -532,7 +536,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

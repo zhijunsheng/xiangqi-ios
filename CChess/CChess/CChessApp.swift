@@ -6,13 +6,13 @@
 //  Copyright © 2023 Gold Thumb Inc. All rights reserved.
 //
 
-import SwiftUI
-
-@main
-struct CChessApp: App {
-    var body: some Scene {
-        WindowGroup {
-            CChessView()
-        }
-    }
-}
+//import SwiftUI
+//
+//@main
+//struct CChessApp: App {
+//    var body: some Scene {
+//        WindowGroup {
+//            CChessView()
+//        }
+//    }
+//}
