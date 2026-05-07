@@ -59,15 +59,15 @@ class CChessViewController: UIViewController {
         }
         boardView.sharingDevice = true
         peerLabel.text = "Black"
-        youLabel.text = "White"
+        youLabel.text = "Red"
         peerLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         boardView.setNeedsDisplay()
     }
     
     @IBAction func info(_ sender: UIBarButtonItem) {
-        let info = "This app is playable between 2 iOS devices close to each other."
+        let info = "Enjoy face-to-face Chinese Chess on a shared iPhone or iPad."
         let alertController = UIAlertController(title: "\(info)", message: nil, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Got it.", style: .default))
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
         avoidAlertCrashOnPad(alertController: alertController)
         present(alertController, animated: true, completion: nil)
     }
@@ -84,8 +84,8 @@ class CChessViewController: UIViewController {
     }
     
     private func resetLocally() {
-        peerLabel.text = "Peer"
-        youLabel.text = "You"
+        peerLabel.text = "Black"
+        youLabel.text = "Red"
         peerLabel.transform = .identity
         flipImageBarButtonItem.isEnabled = true
         cchess.initializeGame()
