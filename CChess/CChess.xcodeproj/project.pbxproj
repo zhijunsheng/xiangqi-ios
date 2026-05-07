@@ -493,9 +493,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CChess/CChess.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = CChess/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Chinese Chess";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.board-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -520,9 +521,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CChess/CChess.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = J8B74FCZCC;
 				INFOPLIST_FILE = CChess/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Chinese Chess";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.board-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
