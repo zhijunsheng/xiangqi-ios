@@ -40,5 +40,11 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Nearby multiplayer uses the local network to discover and connect to nearby devices.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_gt-cchess._tcp</string>
+	</array>
 </dict>
 </plist>

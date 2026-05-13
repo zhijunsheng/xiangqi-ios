@@ -47,7 +47,7 @@ class CChessViewController: UIViewController {
         boardView.cchessDelegate = self
         nearbyService.nearbyServiceDelegate = self
         
-        resetLocally()
+        resetToSingleDeviceMode()
         updateGreenGameBoardAspectReation()
         setupGTButton()
     }
@@ -123,15 +123,15 @@ class CChessViewController: UIViewController {
             )
         )
         
-//        alert.addAction(
-//            UIAlertAction(
-//                title: "Search Nearby",
-//                style: .default,
-//                handler: { _ in
-//                    self.searchNearby()
-//                }
-//            )
-//        )
+        alert.addAction(
+            UIAlertAction(
+                title: "Search Nearby",
+                style: .default,
+                handler: { _ in
+                    self.searchNearby()
+                }
+            )
+        )
         
         alert.addAction(
             UIAlertAction(
@@ -164,10 +164,30 @@ class CChessViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    private func searchNearby() { // FIXME: still searching nearby
+        guard isolated else { return }
+        nearbyService.initService(serviceType: CChessViewController.serviceType)
+        peerLabel.text = "Peer"
+        youLabel.text = "Searching nearby…"
+    }
+    
     private func resetToSoloPlay() {
-        let alertController = UIAlertController(title: "Restart?", message: nil, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Yes", style: .destructive) {_ in self.resetLocally() })
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        let alertController = UIAlertController(
+            title: "Restart Game?",
+            message: "Current progress will be lost.",
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(
+            UIAlertAction(title: "Restart", style: .destructive) {_ in
+                self.nearbyService.stopService()
+                self.resetToSingleDeviceMode()
+            }
+        )
+        alertController.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel)
+        )
+        
         avoidAlertCrashOnPad(alertController: alertController)
         present(alertController, animated: true)
     }
@@ -202,7 +222,7 @@ class CChessViewController: UIViewController {
         return movingPiece == lastMovedPiece && cchess.whoseTurn != movingPiece.player && pieceAt(col: move.tC, row: move.tR) == nil
     }
     
-    private func resetLocally() {
+    private func resetToSingleDeviceMode() {
         peerLabel.text = "Black"
         youLabel.text = "Red"
         peerLabel.transform = .identity
@@ -287,6 +307,28 @@ class CChessViewController: UIViewController {
 }
 
 extension CChessViewController: NearbyServiceDelegate {
+    
+    func connectedWith(peer: String) {
+//        prepareNewRound() TODO: add this func
+        
+        isolated = false
+//        flipImageBarButtonItem.isEnabled = false
+        boardView.isUserInteractionEnabled = true
+        peerLabel.text = peer
+        youLabel.text = "You"
+        
+        let info = firstMoveMade ? "" : "The first player will play Red. For handicap, drag pieces out of board before making the first move."
+        let alertController = UIAlertController(
+            title: "\(peer) connected.",
+            message: "\(info)",
+            preferredStyle: .alert
+        )
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        avoidAlertCrashOnPad(alertController: alertController)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     func disconnectedFrom(peer: String) {
         isolated = true
         boardView.isUserInteractionEnabled = false
@@ -294,20 +336,6 @@ extension CChessViewController: NearbyServiceDelegate {
         
         let info = "It may be reconnected in a few seconds."
         let alertController = UIAlertController(title: "\(peer) disconnected.", message: "\(info)", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Got it.", style: .default))
-        
-        avoidAlertCrashOnPad(alertController: alertController)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func connectedWith(peer: String) {
-        isolated = false
-//        flipImageBarButtonItem.isEnabled = false
-        boardView.isUserInteractionEnabled = true
-        peerLabel.text = peer
-        
-        let info = firstMoveMade ? "" : "Whoever moves first becomes red player. For handicap, drag pieces out of board before making the first move."
-        let alertController = UIAlertController(title: "\(peer) connected.", message: "\(info)", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Got it.", style: .default))
         
         avoidAlertCrashOnPad(alertController: alertController)
