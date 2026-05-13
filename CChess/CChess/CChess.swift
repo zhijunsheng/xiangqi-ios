@@ -444,6 +444,18 @@ struct CChess {
     mutating func initializeGame() {
         whoseTurn = .red
         pieces.removeAll()
+        
+        previousPieces.removeAll()
+        lastMovedPiece = nil
+
+        whiteKingSideRookMoved = false
+        whiteQueenSideRookMoved = false
+        whiteKingMoved = false
+
+        blackKingSideRookMoved = false
+        blackQueenSideRookMoved = false
+        blackKingMoved = false
+        
         for i in 0..<2 {
             pieces.insert(CChessPiece(col: 0 + i * 8, row: 0, player: .black, rank: .rook, imageName: "bj"))
             pieces.insert(CChessPiece(col: 0 + i * 8, row: 9, player: .red, rank: .rook, imageName: "rj"))

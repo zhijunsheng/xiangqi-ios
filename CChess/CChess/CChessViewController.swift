@@ -238,7 +238,11 @@ class CChessViewController: UIViewController {
         © Gold Thumb Inc.
 
         """
-        let alertController = UIAlertController(title: "\(info)", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: "About",
+            message: info,
+            preferredStyle: .alert
+        )
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         avoidAlertCrashOnPad(alertController: alertController)
         present(alertController, animated: true, completion: nil)
@@ -263,11 +267,14 @@ class CChessViewController: UIViewController {
         cchess.initializeGame()
         boardView.shadowPieces = cchess.pieces
         boardView.blackAtTop = true
+        
         boardView.sharingDevice = false
+        isolated = true
         isRedDevice = true
+        firstMoveMade = false
+
         upperPlayerColorView.backgroundColor = .black
         lowerPlayerColorView.backgroundColor = .red
-        firstMoveMade = false
         updateWhoseTurnColorsLocally(player: cchess.whoseTurn)
         boardView.isUserInteractionEnabled = true
         boardView.setNeedsDisplay()
