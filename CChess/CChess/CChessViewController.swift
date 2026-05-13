@@ -9,10 +9,12 @@ import UIKit
 import AVFoundation
 
 class CChessViewController: UIViewController {
+    
+    private var greenGameBoardAspectConstraint: NSLayoutConstraint?
+    private let gtButton = UIButton(type: .custom)
+    
     private static let serviceType = "gt-cchess"
     let nearbyService = NearbyService(serviceType: serviceType)
-    
-    private let gtButton = UIButton(type: .custom)
     
     let whoseTurnColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
     let waitingColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -46,8 +48,24 @@ class CChessViewController: UIViewController {
         nearbyService.nearbyServiceDelegate = self
         
         resetLocally()
-        
+        updateGreenGameBoardAspectReation()
         setupGTButton()
+    }
+    
+    private func updateGreenGameBoardAspectReation() {
+        greenGameBoardAspectConstraint?.isActive = false
+        
+        let isPad = traitCollection.horizontalSizeClass == .regular &&
+                    traitCollection.verticalSizeClass == .regular
+        
+        let ratio: CGFloat = isPad ? (10.0 / 11.5) : (10.0 / 13.0)
+        
+        greenGameBoardAspectConstraint = boardView.widthAnchor.constraint(
+            equalTo: boardView.heightAnchor,
+            multiplier: ratio
+        )
+        
+        greenGameBoardAspectConstraint?.isActive = true
     }
     
     private func setupGTButton() {
