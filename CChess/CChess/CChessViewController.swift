@@ -9,7 +9,10 @@ import UIKit
 import AVFoundation
 
 class CChessViewController: UIViewController {
-    let nearbyService = NearbyService(serviceType: "gt-cchess")
+    private static let serviceType = "gt-cchess"
+    let nearbyService = NearbyService(serviceType: serviceType)
+    
+    private let gtButton = UIButton(type: .custom)
     
     let whoseTurnColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
     let waitingColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -43,17 +46,119 @@ class CChessViewController: UIViewController {
         nearbyService.nearbyServiceDelegate = self
         
         resetLocally()
+        
+        setupGTButton()
     }
+    
+    private func setupGTButton() {
+        
+        gtButton.setImage(UIImage(named: "goldenThumb"), for: .normal)
+        gtButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        
+        // Position: top-right corner
+        gtButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Optional subtle styling
+        gtButton.backgroundColor = UIColor.black.withAlphaComponent(0.15)
+        gtButton.layer.cornerRadius = 22
+        gtButton.clipsToBounds = true
+        
+        // Action
+        gtButton.addTarget(self,
+                              action: #selector(gtButtonTapped),
+                              for: .touchUpInside)
+        
+        view.addSubview(gtButton)
+        
+        NSLayoutConstraint.activate([
+            gtButton.widthAnchor.constraint(equalToConstant: 44),
+            gtButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            gtButton.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: 12
+            ),
+            
+            gtButton.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                constant: -12
+            )
+        ])
+    }
+    
+    @objc
+    private func gtButtonTapped() {
+        
+        let alert = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
 
-    @IBAction func reset(_ sender: UIBarButtonItem) {
+        alert.addAction(
+            UIAlertAction(
+                title: "Reset to Solo Play",
+                style: .default,
+                handler: { _ in
+                    self.resetToSoloPlay()
+                }
+            )
+        )
+        
+//        alert.addAction(
+//            UIAlertAction(
+//                title: "Search Nearby",
+//                style: .default,
+//                handler: { _ in
+//                    self.searchNearby()
+//                }
+//            )
+//        )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "Flip",
+                style: .default,
+                handler: { _ in
+                    self.flipPieceImages()
+                }
+            )
+        )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "About",
+                style: .default,
+                handler: { _ in
+                    self.about()
+                }
+            )
+        )
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        // iPad safety
+        if let popover = alert.popoverPresentationController {
+            popover.sourceView = gtButton
+            popover.sourceRect = gtButton.bounds
+        }
+
+        present(alert, animated: true)
+    }
+    
+    private func resetToSoloPlay() {
         let alertController = UIAlertController(title: "Restart?", message: nil, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Yes", style: .destructive) {_ in self.resetLocally() })
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         avoidAlertCrashOnPad(alertController: alertController)
         present(alertController, animated: true)
     }
+
+    @IBAction func reset(_ sender: UIBarButtonItem) {
+        resetToSoloPlay()
+    }
     
-    @IBAction func flipPieceImages(_ sender: UIBarButtonItem) {
+    private func flipPieceImages() {
         guard !boardView.sharingDevice && !firstMoveMade else {
             return
         }
@@ -64,12 +169,20 @@ class CChessViewController: UIViewController {
         boardView.setNeedsDisplay()
     }
     
-    @IBAction func info(_ sender: UIBarButtonItem) {
+    @IBAction func flipPieceImages(_ sender: UIBarButtonItem) {
+        flipPieceImages()
+    }
+    
+    private func about() {
         let info = "Enjoy face-to-face Chinese Chess on a shared iPhone or iPad."
         let alertController = UIAlertController(title: "\(info)", message: nil, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         avoidAlertCrashOnPad(alertController: alertController)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func info(_ sender: UIBarButtonItem) {
+        about()
     }
     
     /*
