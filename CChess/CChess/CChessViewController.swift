@@ -204,7 +204,40 @@ class CChessViewController: UIViewController {
     }
     
     private func about() {
-        let info = "Enjoy face-to-face Chinese Chess on a shared iPhone or iPad."
+        let info =
+        """
+        
+        About Chinese Chess - Golden Thumb
+
+        Version 1.2
+
+        Chinese Chess - Golden Thumb is designed for comfortable face-to-face play, nearby multiplayer, teaching, and casual games anywhere.
+
+        Features
+
+        • Shared-device play with reversible board orientation
+        • Nearby multiplayer on two devices
+        • Smooth piece dragging with touch guidance
+        • Full-screen, distraction-free game board
+        • Lightweight and easy to use
+
+        Handicap Play
+
+        Before the first move, pieces can be dragged off the board to create handicap games (让子棋).
+
+        Gameplay Notes
+
+        • Red moves first
+        • The board can be flipped for opposite-side viewing
+        • Designed for quick local play and instant rematches
+
+        Built for family play, teaching, practice, and friendly competition.
+
+        Designed and developed by Gold Thumb Inc.
+
+        © Gold Thumb Inc.
+
+        """
         let alertController = UIAlertController(title: "\(info)", message: nil, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         avoidAlertCrashOnPad(alertController: alertController)
@@ -317,7 +350,7 @@ extension CChessViewController: NearbyServiceDelegate {
         peerLabel.text = peer
         youLabel.text = "You"
         
-        let info = firstMoveMade ? "" : "The first player will play Red. For handicap, drag pieces out of board before making the first move."
+        let info = firstMoveMade ? "" : "The first player will play Red. To create handicap games (让子棋), simply drag pieces off the board before the first move."
         let alertController = UIAlertController(
             title: "\(peer) connected.",
             message: "\(info)",
