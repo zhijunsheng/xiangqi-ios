@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,56 +17,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2j-KZ-Xdr">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
-                                <items>
-                                    <barButtonItem title="✈️" id="0Gv-0b-m9d">
-                                        <connections>
-                                            <action selector="reset:" destination="BYZ-38-t0r" id="R2W-uk-YSn"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="⚔️" id="VnE-To-Jn5">
-                                        <connections>
-                                            <action selector="flipPieceImages:" destination="BYZ-38-t0r" id="nS2-3J-iLB"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HD4-HR-etA"/>
-                                    <barButtonItem title="📚" id="HEJ-Vg-BN4">
-                                        <connections>
-                                            <action selector="info:" destination="BYZ-38-t0r" id="NYq-Hs-kb9"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFS-hh-Uqn">
-                                <rect key="frame" x="0.0" y="48" width="414" height="765"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HxX-IT-ycb" customClass="BoardUIView" customModule="CChess" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="152.5" width="414" height="460"/>
+                                        <rect key="frame" x="0.0" y="218" width="414" height="460"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="HxX-IT-ycb" secondAttribute="height" multiplier="9:10" id="KgE-tl-TUy"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBf-kE-DPv">
-                                        <rect key="frame" x="0.0" y="144.5" width="414" height="8"/>
+                                        <rect key="frame" x="0.0" y="210" width="414" height="8"/>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="83w-vR-qEF"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXf-DL-nXP">
-                                        <rect key="frame" x="0.0" y="612.5" width="414" height="8"/>
+                                        <rect key="frame" x="0.0" y="678" width="414" height="8"/>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="4Pj-Yr-nr8"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nwg-Eh-bRC">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="144.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="210"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Leo-Mj-4vI">
-                                                <rect key="frame" x="0.0" y="55.5" width="414" height="33.5"/>
+                                                <rect key="frame" x="0.0" y="88.5" width="414" height="33.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -79,10 +59,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ymO-Q2-xbf">
-                                        <rect key="frame" x="0.0" y="620.5" width="414" height="144.5"/>
+                                        <rect key="frame" x="0.0" y="686" width="414" height="210"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGW-bR-bnc">
-                                                <rect key="frame" x="0.0" y="55.5" width="414" height="33.5"/>
+                                                <rect key="frame" x="0.0" y="88.5" width="414" height="33.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -121,18 +101,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="s2j-KZ-Xdr" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="5vn-Mu-pzh"/>
-                            <constraint firstItem="s2j-KZ-Xdr" firstAttribute="top" secondItem="LFS-hh-Uqn" secondAttribute="bottom" id="bVV-vU-419"/>
-                            <constraint firstItem="LFS-hh-Uqn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gG2-DT-PVz"/>
+                            <constraint firstAttribute="bottom" secondItem="LFS-hh-Uqn" secondAttribute="bottom" id="bVV-vU-419"/>
+                            <constraint firstItem="LFS-hh-Uqn" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="gG2-DT-PVz"/>
                             <constraint firstItem="LFS-hh-Uqn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jg5-l4-okN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LFS-hh-Uqn" secondAttribute="trailing" id="p0D-Yb-Aum"/>
-                            <constraint firstItem="s2j-KZ-Xdr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="t1Z-Cc-NE4"/>
-                            <constraint firstItem="s2j-KZ-Xdr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yDT-DY-zkm"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="boardView" destination="HxX-IT-ycb" id="KrX-Ta-jsN"/>
-                        <outlet property="flipImageBarButtonItem" destination="VnE-To-Jn5" id="byx-nT-cM8"/>
                         <outlet property="lowerPlayerColorView" destination="uXf-DL-nXP" id="cmV-a1-B1s"/>
                         <outlet property="peerHomeView" destination="Nwg-Eh-bRC" id="Kb7-6n-eMO"/>
                         <outlet property="peerLabel" destination="Leo-Mj-4vI" id="chn-5c-NnS"/>
@@ -151,13 +127,13 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.79607843140000001" green="0.18823529410000001" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
-            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.76470588240000004" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

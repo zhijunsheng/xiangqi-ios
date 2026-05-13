@@ -28,7 +28,7 @@ class CChessViewController: UIViewController {
     @IBOutlet weak var youLabel: UILabel!
     @IBOutlet weak var lowerPlayerColorView: UIView!
     
-    @IBOutlet weak var flipImageBarButtonItem: UIBarButtonItem!
+//    @IBOutlet weak var flipImageBarButtonItem: UIBarButtonItem!
     
     var audioPlayer: AVAudioPlayer?
     
@@ -153,10 +153,6 @@ class CChessViewController: UIViewController {
         avoidAlertCrashOnPad(alertController: alertController)
         present(alertController, animated: true)
     }
-
-    @IBAction func reset(_ sender: UIBarButtonItem) {
-        resetToSoloPlay()
-    }
     
     private func flipPieceImages() {
         guard !boardView.sharingDevice && !firstMoveMade else {
@@ -169,20 +165,12 @@ class CChessViewController: UIViewController {
         boardView.setNeedsDisplay()
     }
     
-    @IBAction func flipPieceImages(_ sender: UIBarButtonItem) {
-        flipPieceImages()
-    }
-    
     private func about() {
         let info = "Enjoy face-to-face Chinese Chess on a shared iPhone or iPad."
         let alertController = UIAlertController(title: "\(info)", message: nil, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         avoidAlertCrashOnPad(alertController: alertController)
         present(alertController, animated: true, completion: nil)
-    }
-    
-    @IBAction func info(_ sender: UIBarButtonItem) {
-        about()
     }
     
     /*
@@ -200,7 +188,7 @@ class CChessViewController: UIViewController {
         peerLabel.text = "Black"
         youLabel.text = "Red"
         peerLabel.transform = .identity
-        flipImageBarButtonItem.isEnabled = true
+//        flipImageBarButtonItem.isEnabled = true
         cchess.initializeGame()
         boardView.shadowPieces = cchess.pieces
         boardView.blackAtTop = true
@@ -296,7 +284,7 @@ extension CChessViewController: NearbyServiceDelegate {
     
     func connectedWith(peer: String) {
         isolated = false
-        flipImageBarButtonItem.isEnabled = false
+//        flipImageBarButtonItem.isEnabled = false
         boardView.isUserInteractionEnabled = true
         peerLabel.text = peer
         
