@@ -206,12 +206,10 @@ class CChessViewController: UIViewController {
     private func about() {
         let info =
         """
-        
-        About Chinese Chess - Golden Thumb
 
-        Version 1.2
+        Version 1.2.1
 
-        Chinese Chess - Golden Thumb is designed for comfortable face-to-face play, nearby multiplayer, teaching, and casual games anywhere.
+        Golden Xiangqi is designed for comfortable face-to-face play, nearby multiplayer, teaching, and casual games anywhere.
 
         Features
 
@@ -223,7 +221,7 @@ class CChessViewController: UIViewController {
 
         Handicap Play
 
-        Before the first move, pieces can be dragged off the board to create handicap games (让子棋).
+        Before the first move, pieces can be dragged off the board to create handicap games.
 
         Gameplay Notes
 
