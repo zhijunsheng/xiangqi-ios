@@ -153,6 +153,16 @@ class CChessViewController: UIViewController {
             )
         )
         
+        alert.addAction(
+            UIAlertAction(
+                title: "More Games",
+                style: .default,
+                handler: { _ in
+                    self.moreGames()
+                }
+            )
+        )
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
 
         // iPad safety
@@ -162,6 +172,73 @@ class CChessViewController: UIViewController {
         }
 
         present(alert, animated: true)
+    }
+    
+    private func moreGames() {
+        
+        let alert = UIAlertController(
+            title: "More Games",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        
+        /*
+         Golden 24
+         https://apps.apple.com/app/24-game-golden-thumb/id1424312359
+         
+         Golden Four
+         https://apps.apple.com/app/golden-four/id1523328592
+         
+         Golden Five
+         
+         Golden Horn
+         https://apps.apple.com/app/horn-trap-golden-thumb/id1525284392
+         
+         Golden Chess
+         
+         Golden Xiangqi
+         https://apps.apple.com/app/chinese-chess-golden-thumb/id1522963331
+         */
+        
+        alert.addAction(
+            UIAlertAction(title: "Golden 24", style: .default) { _ in
+                self.openAppStore("itms-apps://itunes.apple.com/app/24-game-golden-thumb/id1424312359")
+            }
+        )
+        
+        alert.addAction(
+            UIAlertAction(title: "Golden Four", style: .default) { _ in
+                self.openAppStore("itms-apps://itunes.apple.com/app/golden-four/id1523328592")
+            }
+        )
+        
+        alert.addAction(
+            UIAlertAction(title: "Golden Horn", style: .default) { _ in
+                self.openAppStore("itms-apps://itunes.apple.com/app/horn-trap-golden-thumb/id1525284392")
+            }
+        )
+        
+        /*
+        alert.addAction(
+            UIAlertAction(title: "Golden Xiangqi", style: .default) { _ in
+                self.openAppStore("itms-apps://itunes.apple.com/app/chinese-chess-golden-thumb/id1522963331")
+            }
+        )
+         */
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        if let popover = alert.popoverPresentationController {
+            popover.sourceView = gtButton
+            popover.sourceRect = gtButton.bounds
+        }
+        
+        present(alert, animated: true)
+    }
+    
+    private func openAppStore(_ urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        UIApplication.shared.open(url)
     }
     
     private func searchNearby() { // FIXME: still searching nearby
@@ -207,7 +284,7 @@ class CChessViewController: UIViewController {
         let info =
         """
 
-        Version 1.2.1
+        Version 1.2
 
         Golden Xiangqi is designed for comfortable face-to-face play, nearby multiplayer, teaching, and casual games anywhere.
 
